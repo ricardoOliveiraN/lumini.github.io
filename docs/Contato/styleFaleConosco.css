@@ -192,7 +192,7 @@ nav .class_BotoesMenu button:hover {
     flex-direction: column;
     background-color: #013220;
     border-radius: 10px;
-    padding: 20px 30px 40px 30px;
+    padding: 20px 30px 30px 30px;
     margin-left: 20px;
     width: 60%;
     height: 100%;
@@ -214,10 +214,26 @@ nav .class_BotoesMenu button:hover {
     border: none;
     margin-bottom: 20px;
 }
+.class_Mensagem button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fffefa;
+    background-color: #FF9800;
+    cursor: pointer;
+    width: 30%;
+}
+.class_Mensagem button:hover {
+    box-shadow: 0px 0px 10px #FF9800;
+    transition: all 0.3s ease;
+}
 
 .class_Conteudo .class_Contato .class_Mensagem .class_IptMensagem {
     border-radius: 5px;
-    height: 250px;    
+    height: 220px;    
 }
 
 #ipt_mensagem {
