@@ -1,0 +1,175 @@
+/* Aplicando a nova fonte padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif; /* Fonte padrão atualizada para 'Lato' */
+}
+
+/* Ajustando a fonte original apenas nas classes especificadas */
+.MenuLogo,
+.class_Home2 {
+    font-family: 'Lato', sans-serif; /* Mantendo 'Lato' em todas as classes */
+}
+
+body {
+    background-color: #FFFEFA;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    background-color: #013220;  
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+.MenuLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.MenuLogo a {
+    display: inline-block;
+    position: relative;
+}
+
+.MenuLogo a img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.MenuLogo a:hover img {
+    border: 1px solid yellow;
+}
+
+.MenuLogo a:hover {
+    box-shadow: 0 0 10px 2px yellow;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* MENU LATERAL */
+
+.class_LinksMenu {
+    width: 100%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.class_LinksMenu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    font-weight: 500;
+    font-size: 1.12rem;
+}
+
+.class_LinksMenu li {
+    width: 100%;
+}
+
+.class_LinksMenu a {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #FFFEFA;
+}
+
+.class_LinksMenu a:hover {
+    background-color: #90D26D;
+    font-weight: 700;
+}
+
+nav .class_botaoUsuario {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav .class_botaoUsuario a {
+    text-decoration: none;
+    color: #FF9800;    
+}
+
+nav .class_botaoUsuario {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #013220;
+    font-size: 1.0rem;
+    color: #FFFEFA;
+    cursor: pointer;
+}
+
+nav .class_botaoUsuario button:hover a {
+    color: white; 
+}
+
+nav .class_BotoesMenu button:hover {
+    background-color: #FF9800;
+    color: #FFFEFA;
+    box-shadow: 0px 0px 10px #FF9800;
+}
+
+
+main {
+    
+    display: flex;
+    height: 86.3vh;
+    width: 100%;
+}
+
+.class_menuLateral {
+    position: fixed;
+    background-color: #013220;
+    height: 100%;
+    width: 16%;
+    margin-top: 7%;
+}
+#id_btnSair{
+    margin-top: 100%;
+}
+
+/* Aqui começa  a parte do Usuário */
+
+.class_DadosPerfil{
+    margin-top: 4%;
+    width: 84%;
+    margin-left: 16%;
+    background-color: #FFFEFA;
+}
+.class_DadosInternos{
+    margin: auto;
+    width: 68%;
+    border-radius: 6px;
+    margin-top: 4%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2) ;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.class_Circunferência{
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    border-radius: 50%;
+}
+.class_DadosUser{
+    align-self: flex-start;
+    margin-top: 17px;
+    line-height: 27px;
+    
+}
