@@ -16,7 +16,7 @@ body {
     background-color: #FFFEFA;
 }
 
-nav {
+/* nav {
     position: fixed;
     width: 100%;
     background-color: #013220;  
@@ -26,38 +26,39 @@ nav {
     justify-content: space-between;
     align-items: center;
     height: 90px;
-}
+} */
 
-.MenuLogo {
+/* .MenuLogo {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 12%;
     padding: 5px;
     box-sizing: border-box;
-}
+} */
 
-.MenuLogo a {
+/* .MenuLogo a {
     display: inline-block;
     position: relative;
-}
+} */
 
-.MenuLogo a img {
+/* .MenuLogo a img {
     width: 100%;
     height: auto;
     display: block;
-}
+} */
 
-.MenuLogo a:hover img {
+/* .MenuLogo a:hover img {
     border: 1px solid yellow;
-}
+} */
 
-.MenuLogo a:hover {
+/* .MenuLogo a:hover {
     box-shadow: 0 0 10px 2px yellow;
     transition: box-shadow 0.3s ease-in-out;
-}
+} */
 
 /* MENU LATERAL */
+
 
 .class_LinksMenu {
     width: 100%;
@@ -85,6 +86,11 @@ nav {
     justify-content: center;
     text-decoration: none;
     color: #FFFEFA;
+}
+.class_LinksMenu a img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .class_LinksMenu a:hover {
@@ -126,7 +132,7 @@ nav .class_BotoesMenu button:hover {
 main {
     
     display: flex;
-    height: 86.3vh;
+    height: 86.31vh;
     width: 100%;
 }
 
@@ -135,7 +141,6 @@ main {
     background-color: #013220;
     height: 100%;
     width: 16%;
-    margin-top: 7%;
 }
 #id_btnSair{
     margin-top: 100%;
@@ -162,6 +167,7 @@ main {
 }
 
 .class_Circunferência{
+    align-self: center;
     width: 100px;
     height: 100px;
     background-color: gray;
@@ -172,4 +178,27 @@ main {
     margin-top: 17px;
     line-height: 27px;
     
+}
+.class_DadosInternosDois{
+    margin-top: 4%;
+    display:flex;
+    width: 100%;
+    line-height: 36px;
+}
+.class_DadosInternosDois .class_span1{
+    color:#013220;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
+.class_DadosInternosDois .class_span2{
+    border: 1px solid #708090;
+    border-radius: 5px;
+    padding: 5px;
+}
+.class_Esquerda{
+    width: 50%;
+}
+.class_Direita{
+    align-self: flex-end;
+    width: 50%;
 }
