@@ -112,9 +112,74 @@ function validacoes() {
 function cadastrar(){
     
     var TipoUser = inp_tipo.value;
+    var senhaAleatoria = []   
+
+    for(var contador = 1; contador <= 10; contador++){
+      var numeroAleatorio = parseInt(Math.random() * 10)
+      var letraAleatoria = parseInt(Math.random() * 25 + 1)
+      if (letraAleatoria == 1) {
+        letraAleatoria = 'a'
+      } else if (letraAleatoria == 2) {
+        letraAleatoria = 'b'
+      } else if (letraAleatoria == 3) {
+        letraAleatoria = 'c'
+      } else if (letraAleatoria == 4) {
+        letraAleatoria = 'd'
+      } else if (letraAleatoria == 5) {
+        letraAleatoria = 'e'
+      } else if (letraAleatoria == 6) {
+        letraAleatoria = 'f'
+      } else if (letraAleatoria == 7) {
+        letraAleatoria = 'g'
+      } else if (letraAleatoria == 8) {
+        letraAleatoria = 'h'
+      } else if (letraAleatoria == 9) {
+        letraAleatoria = 'i'
+      } else if (letraAleatoria == 10) {
+        letraAleatoria = 'j'
+      } else if (letraAleatoria == 11) {
+        letraAleatoria = 'k'
+      } else if (letraAleatoria == 12) {
+        letraAleatoria = 'l'
+      } else if (letraAleatoria == 13) {
+        letraAleatoria = 'm'
+      } else if (letraAleatoria == 14) {
+        letraAleatoria = 'n'
+      } else if (letraAleatoria == 15) {
+        letraAleatoria = 'o'
+      } else if (letraAleatoria == 16) {
+        letraAleatoria = 'p'
+      } else if (letraAleatoria == 17) {
+        letraAleatoria = 'q'
+      } else if (letraAleatoria == 18) {
+        letraAleatoria = 'r'
+      } else if (letraAleatoria == 19) {
+        letraAleatoria = 's'
+      } else if (letraAleatoria == 20) {
+        letraAleatoria = 't'
+      } else if (letraAleatoria == 21) {
+        letraAleatoria = 'u'
+      } else if (letraAleatoria == 22) {
+        letraAleatoria = 'v'
+      } else if (letraAleatoria == 23) {
+        letraAleatoria = 'w'
+      } else if (letraAleatoria == 24) {
+        letraAleatoria = 'x'
+      } else if (letraAleatoria == 25) {
+        letraAleatoria = 'y'
+      } else if (letraAleatoria == 26) {
+        letraAleatoria = 'z'
+      }
+      if (contador % 2 == 0) {
+        senhaAleatoria.push(numeroAleatorio);
+      } else {
+        senhaAleatoria.push(letraAleatoria);
+      }
+    }
 
     if (qtdEmailCorreto >= 1 && qtdCelularCorreto >= 1 && qtdNomeCorreto >= 1 && TipoUser != 0){ 
         idUser++
+        alert(`Usuário cadastrado com sucesso!\n\nLogin:\nEmail: ${Email}\nSenha: ${senhaAleatoria[0]}${senhaAleatoria[1]}${senhaAleatoria[2]}${senhaAleatoria[3]}${senhaAleatoria[4]}${senhaAleatoria[5]}${senhaAleatoria[6]}${senhaAleatoria[7]}${senhaAleatoria[8]}${senhaAleatoria[9]}`)
         tableCampo.innerHTML += ` <tr>
                             <td>${idUser}</td>
                             <td>${TipoUser}</td>
