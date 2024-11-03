@@ -143,13 +143,12 @@ main {
     width: 16%;
 }
 #id_btnSair{
-    margin-top: 100%;
+    margin-top: 80%;
 }
 
 /* Aqui começa  a parte do Usuário */
 
 .class_DadosPerfil{
-    margin-top: 4%;
     width: 84%;
     margin-left: 16%;
     background-color: #FFFEFA;
@@ -179,18 +178,35 @@ main {
     line-height: 27px;
     
 }
+.class_DadosInternos button{
+    width: 186px;
+    height: 30px;
+    border: 1px solid #FF9800;
+    border-radius: 5px;
+    background-color: #FF9800;
+    font-weight: bold;
+    color: #FFFEFA;
+    cursor: pointer;
+}
+.class_DadosInternos button:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
 .class_DadosInternosDois{
     margin-top: 4%;
     display:flex;
     width: 100%;
     line-height: 36px;
+    margin-left: 87px;
+    margin-bottom: 8%;
 }
 .class_DadosInternosDois .class_span1{
     color:#013220;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
 }
-.class_DadosInternosDois .class_span2{
+.class_DiveErro{
+    width: 75%;
     border: 1px solid #708090;
     border-radius: 5px;
     padding: 5px;
