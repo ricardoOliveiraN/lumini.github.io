@@ -14,6 +14,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 
@@ -59,6 +61,7 @@
         <div class="div_mensagem">
             <h3>Resultado:</h3>
             <p id="p_info"></p>
+            <canvas id="myChartA" style="position: relative; height: 60%; width: 60%;"></canvas>
         </div>
     </div>
     <footer>
@@ -85,51 +88,144 @@
 </html>
 <script>
 
+
     var preco = 0
     var safra = 0
     var quilo = 0
+    var quiloLumini = 0
+    var QuiloTotal = 0 // sem lumini
+    var QuiloTotalLumini = 0 //com lumini
+    var precoSafra = 0 // sem lumini
+    var precoSafraLumini = 0 // com lumini
+    var PrecoTotal = 0 // sem lumini
+    var PrecoTotalLumini = 0 // com lumini
 
-    function Calcular(){
+    function Calcular() {
         preco = Number(input_preco.value)
         qtd_safra = Number(input_safra.value)
         quilo = Number(input_quilo.value)
-        var quiloLumini = (quilo * 1.2)
+        quiloLumini = (quilo * 1.2)
 
-        var QuiloTotal = (qtd_safra * quilo);
-        var QuiloTotalLumini = (qtd_safra * quiloLumini);
+        QuiloTotal = (qtd_safra * quilo);
+        QuiloTotalLumini = (qtd_safra * quiloLumini);
 
-        var precoSafra = (quilo * preco);
-        var precoSafraLumini = (quiloLumini * preco);
+        precoSafra = (quilo * preco);
+        precoSafraLumini = (quiloLumini * preco);
 
-        var PrecoTotal = (QuiloTotal * preco);
-        var PrecoTotalLumini = (QuiloTotalLumini * preco);
+        PrecoTotal = (QuiloTotal * preco);
+        PrecoTotalLumini = (QuiloTotalLumini * preco);
 
         var mensagem = `Atualmente sem o serviço Lumini, você produz <b>${QuiloTotal.toFixed(2)}kg</b> por ano. <br>
         É gerado em média <b>R$${precoSafra.toFixed(2)}</b> por safra. <br> 
         E Isso te gera uma total de <b>R$${PrecoTotal.toFixed(2)}</b> por ano. <br><br>`
 
-        if (qtd_safra == 1){
+        if (qtd_safra == 1) {
             mensagem += `Com o serviço LUMINI, e as tomadas de decisões corretas, você produzirá <span>${QuiloTotalLumini.toFixed(2)}kg</span> por ano. <br>
             A safra gerará uma média de <span>R$${precoSafraLumini.toFixed(2)}.</span> <br><br>
 
             <span>Ainda o aumento de Safras anuais pode aumentar consideravelmente indo de 1 para até 3.
             Isso te geraria em média R$${(precoSafraLumini * 3).toFixed(2)}!</span>
             `
-        } else if (qtd_safra == 2){
+        } else if (qtd_safra == 2) {
             mensagem += `Com o serviço LUMINI, e as tomadas de decisões corretas, você produzirá <span>${QuiloTotalLumini.toFixed(2)}kg</span>por ano. <br>
             Cada safra gerará uma média de <span>R$${precoSafraLumini.toFixed(2)}</span>. <br>
             E Isso te gerará uma total de <span>R$${PrecoTotalLumini.toFixed(2)}</span> por ano. <br><br>
 
             <span>Ainda o aumento de Safras anuais pode aumentar  indo de 2 para até 3.
             Isso te geraria em média R$${(PrecoTotalLumini + precoSafraLumini).toFixed(2)}</span>`
-        } else if (qtd_safra == 3){
+        } else if (qtd_safra == 3) {
             mensagem += `Com o serviço LUMINI, e as tomadas de decisões corretas, você produzirá <span>${QuiloTotalLumini.toFixed(2)}kg</span> por ano. <br>
             Cada safra gerará uma média de <span>R$${precoSafraLumini.toFixed(2)}</span>. <br>
             E Isso te gerará uma total de <span>R$${PrecoTotalLumini.toFixed(2)}</span> por ano. <br>`
         } else {
             mensagem = "Verifique se está colocando corretamente as Safras anuais.<br><br> <b>(Coloque um valor de 1 à 3)</b>"
         }
+        const labelsA = [
+        'Produção por Ano',
+        'Faturamento por Safra',
+        'Faturamento Total'
+    ];
 
+    const dataA = {
+        labels: labelsA,
+        datasets: [
+            {
+                label: 'Inicial',
+                backgroundColor: 'rgb(81, 157, 233, 0.7)',
+                borderColor: 'rgb(81, 157, 233, 1)',
+                data: [
+                    QuiloTotal,
+                    precoSafra,
+                    PrecoTotal
+                ]
+            },
+            {
+                label: 'Com Lumini',
+                backgroundColor: 'rgb(124, 198, 116, 0.7)',
+                borderColor: 'rgb(124, 198, 116, 1)',
+                data: [
+                    QuiloTotalLumini,
+                    precoSafraLumini,
+                    PrecoTotalLumini
+                ]
+            }
+        ]
+    };
+
+    const configA = {
+        type: 'bar',
+        data: dataA,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Sem Lumini x Com Lumini'
+                }
+            },
+            responsive: true,
+            scales: {
+                x: {
+                    stacked: false // Deixa as barras lado a lado
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+        const myChart = new Chart(
+            document.getElementById('myChartA'),
+            configA
+
+        )
         p_info.innerHTML = mensagem
     }
+
+
+
+
+    /* O que é calculado:
+
+    Sem a Lumini
+        - Produção média por ano de lúpulo
+        - Faturamento por safra
+        - Faturamento total
+        
+        Com a Lumini
+        - Nova produção média por ano
+        - Novo faturamento por safra
+        - Novo faturamento total
+
+        Fazer um gráfico de Barra comparando os valores com e sem a Lumini
+
+        Fazer um gráfico com dados futuros (colocando uma suposição)
+
+        Possibilidade de aumento de safras anuais (colocar isso como gráfico futuro talvez?)
+
+    */
+
+
+
+
 </script>
