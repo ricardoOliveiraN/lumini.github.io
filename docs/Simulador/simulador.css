@@ -112,7 +112,7 @@ nav .class_BotoesMenu button:hover {
 
 .class_Conteudo {
     display: flex;
-    width: 80%;
+    width: 90%;
     margin: 80px auto 0px auto;
 }
 
@@ -139,7 +139,7 @@ h1 {
 /* CHAMANDO A TAG SPAN QUE ESTA DENTRO DA DIV
 DANDO UM TAMANHO, DEIXANDO ELA MEDIUM E DANDO UMA COR*/
 .div_calculadora span {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
     color: #013220;
     margin-bottom: 4px;
@@ -177,25 +177,50 @@ input:focus {
 }
 
 /* Botoes*/
-.div_calculadora button {
-    padding: 15px 12px;
+ button {
     border-radius: 8px;
     border: none;
     color: #F5F5F5;
-    font-size: 16px;
+    
     cursor: pointer;
-    background-color: #FF9800;
+    
     font-weight: 600;
+   
+}
+.btn_lucro{
+    background-color: #FF9800;
+    font-size: 16px;
+    padding: 15px 0px;
     width: 100%;
+}
+.btn_grafico{
+    background-color: #68a354;
+    padding: 12px 12px;
+    font-size: 14px;
+    margin-top: 30px;
+}
+.btn_mensagem{
+    background-color: #68a354;
+    padding: 12px 12px;
+    font-size: 14px;
+    margin-top: 30px;
+}
+.conteiner-btn-grafico{
+    display: flex; 
+    justify-content: flex-end;
+
+}
+.container-btn-msg button:hover,.conteiner-btn-grafico button:hover {
+    color: #FFFEFA;
+    box-shadow: 0px 0px 10px #8fdf75;
 }
 
 .div_calculadora button:hover {
-    background-color: #FF9800;
     color: #FFFEFA;
     box-shadow: 0px 0px 10px #FF9800;
 }
 
-.div_mensagem {
+#div_mensagem {
     /*ESSA DIV FOI CRIADA COM TODOS OS INPUT
     NELA COLOCO UM TAMAANHO, COR, ESPAÇAMENTO NA TELA, ESPAÇAMENTO DE DENTRO PARA FORA
     SOMBRA E ARREDONDAMENTO*/
@@ -211,17 +236,17 @@ input:focus {
 
 }
 
-.div_mensagem h3 {
+#div_mensagem h3 {
     color: #013220;
-    opacity: 0.8;
+    opacity: 08;
     font-size: 20px;
 }
 
-.div_mensagem #p_info {
+#div_mensagem #p_info {
     margin-top: 20px;
 }
 
-.div_mensagem #p_info span {
+#div_mensagem #p_info span {
     font-weight: 800;
     color: #68a354;
 }
@@ -229,7 +254,6 @@ input:focus {
 /* footer */
 
 .class_Footer {
-    position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #013220;

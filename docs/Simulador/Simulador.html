@@ -52,16 +52,15 @@
             <span>Qual sua produção média por safra (kg): </span>
             <input placeholder="Digite o peso em média da plantação" type="number" id="input_quilo">
 
-            <span>Por quanto você vende o quilo do lúpulo (R$): </span><br>
+            <span>Por quanto você vende o quilo do lúpulo (): </span><br>
             <input placeholder="Digite o valor do quilo do lúpulo" type="number" id="input_preco">
             <!-- Botões que chamam a função -->
             <Button class="btn_lucro" onclick="Calcular()">Calcular rendimento</Button>
         </div>
         <!-- p onde irá aparecer a mensagem -->
-        <div class="div_mensagem">
+        <div id="div_mensagem">
             <h3>Resultado:</h3>
-            <p id="p_info"></p>
-            <canvas id="myChartA" style="position: relative; height: 60%; width: 60%;"></canvas>
+            <div id="containerMensagem"></div>
         </div>
     </div>
     <footer>
@@ -77,7 +76,6 @@
                     <img src="../Imagens/twitter.png" alt="">
                     <img src="../Imagens/youtube.png" alt="">
                 </div>
-
             </div>
 
         </div>
@@ -99,6 +97,9 @@
     var precoSafraLumini = 0 // com lumini
     var PrecoTotal = 0 // sem lumini
     var PrecoTotalLumini = 0 // com lumini
+    var anos5semLUMINI = 0
+    var ano5comLUMINI = 0
+    var anos5comLUMINIeMELHORcuidado = 0
 
     function Calcular() {
         preco = Number(input_preco.value)
@@ -111,95 +112,113 @@
 
         precoSafra = (quilo * preco);
         precoSafraLumini = (quiloLumini * preco);
+        precoSafraLuminiMELHORSITUAÇÃO = (precoSafraLumini * 3);
 
         PrecoTotal = (QuiloTotal * preco);
         PrecoTotalLumini = (QuiloTotalLumini * preco);
 
+        anos5semLUMINI = (PrecoTotal * 5)
+        anos5comLUMINI = (PrecoTotalLumini * 5)
+        anos5comLUMINIeMELHORcuidado = (precoSafraLuminiMELHORSITUAÇÃO * 5)
+
         var mensagem = `Atualmente sem o serviço Lumini, você produz <b>${QuiloTotal.toFixed(2)}kg</b> por ano. <br>
-        É gerado em média <b>R$${precoSafra.toFixed(2)}</b> por safra. <br> 
-        E Isso te gera uma total de <b>R$${PrecoTotal.toFixed(2)}</b> por ano. <br><br>`
+        É gerado em média <b>${precoSafra.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b> por safra. <br> 
+        E Isso te gera uma total de <b>${PrecoTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b> por ano. <br><br>`
 
         if (qtd_safra == 1) {
             mensagem += `Com o serviço LUMINI, e as tomadas de decisões corretas, você produzirá <span>${QuiloTotalLumini.toFixed(2)}kg</span> por ano. <br>
-            A safra gerará uma média de <span>R$${precoSafraLumini.toFixed(2)}.</span> <br><br>
+            A safra gerará uma média de <span>${precoSafraLumini.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}.</span> <br><br>
 
             <span>Ainda o aumento de Safras anuais pode aumentar consideravelmente indo de 1 para até 3.
-            Isso te geraria em média R$${(precoSafraLumini * 3).toFixed(2)}!</span>
+            Isso te geraria em média ${(precoSafraLumini * 3).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!</span>
+            <div class="conteiner-btn-grafico"><button class="btn_grafico" onclick="Ver()"> Ver graficos </button></div>
             `
         } else if (qtd_safra == 2) {
-            mensagem += `Com o serviço LUMINI, e as tomadas de decisões corretas, você produzirá <span>${QuiloTotalLumini.toFixed(2)}kg</span>por ano. <br>
-            Cada safra gerará uma média de <span>R$${precoSafraLumini.toFixed(2)}</span>. <br>
-            E Isso te gerará uma total de <span>R$${PrecoTotalLumini.toFixed(2)}</span> por ano. <br><br>
+            mensagem += `Com o serviço LUMINI, e as tomadas de decisões corretas, você produzirá <span>${QuiloTotalLumini.toFixed(2)}kg</span> por ano. <br>
+            Cada safra gerará uma média de <span>${precoSafraLumini.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>. <br>
+            E Isso te gerará uma total de <span>${PrecoTotalLumini.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> por ano. <br><br>
 
             <span>Ainda o aumento de Safras anuais pode aumentar  indo de 2 para até 3.
-            Isso te geraria em média R$${(PrecoTotalLumini + precoSafraLumini).toFixed(2)}</span>`
+            Isso te geraria em média ${((precoSafraLumini * 3)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+            <div class="conteiner-btn-grafico"><button class="btn_grafico" onclick="Ver()"> Ver graficos </button></div>`
         } else if (qtd_safra == 3) {
             mensagem += `Com o serviço LUMINI, e as tomadas de decisões corretas, você produzirá <span>${QuiloTotalLumini.toFixed(2)}kg</span> por ano. <br>
-            Cada safra gerará uma média de <span>R$${precoSafraLumini.toFixed(2)}</span>. <br>
-            E Isso te gerará uma total de <span>R$${PrecoTotalLumini.toFixed(2)}</span> por ano. <br>`
+            Cada safra gerará uma média de <span>${precoSafraLumini.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>. <br>
+            E Isso te gerará uma total de <span>${PrecoTotalLumini.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> por ano. <div class="conteiner-btn-grafico"><button class="btn_grafico" onclick="Ver()"> Ver graficos </button></div>`
         } else {
-            mensagem = "Verifique se está colocando corretamente as Safras anuais.<br><br> <b>(Coloque um valor de 1 à 3)</b>"
+            mensagem = "Verifique se está colocando corretamente as Safras anuais.<br><br> <b>(Coloque um valor inteiro de 1 à 3)</b>"
         }
+
+        containerMensagem.innerHTML = `<p id="p_info">${mensagem}</p>`
+    }
+
+    function Ver() {
+        containerMensagem.innerHTML = 
+        `<canvas id="myChartA" style="position: relative; height: 60%; width: 60%;"></canvas>
+       <div class= "container-btn-msg"><Button class="btn_mensagem" onclick="Calcular()">ver mensagem</Button></div>`
+
         const labelsA = [
-        'Produção por Ano',
-        'Faturamento por Safra',
-        'Faturamento Total'
-    ];
+            'Faturamento Total'
+        ];
 
-    const dataA = {
-        labels: labelsA,
-        datasets: [
-            {
-                label: 'Inicial',
-                backgroundColor: 'rgb(81, 157, 233, 0.7)',
-                borderColor: 'rgb(81, 157, 233, 1)',
-                data: [
-                    QuiloTotal,
-                    precoSafra,
-                    PrecoTotal
-                ]
-            },
-            {
-                label: 'Com Lumini',
-                backgroundColor: 'rgb(124, 198, 116, 0.7)',
-                borderColor: 'rgb(124, 198, 116, 1)',
-                data: [
-                    QuiloTotalLumini,
-                    precoSafraLumini,
-                    PrecoTotalLumini
-                ]
-            }
-        ]
-    };
-
-    const configA = {
-        type: 'bar',
-        data: dataA,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Sem Lumini x Com Lumini'
+        const dataA = {
+            labels: labelsA,
+            datasets: [
+                {
+                    label: 'Atual',
+                    backgroundColor: 'rgb(81, 157, 233, 0.7)',
+                    borderColor: 'rgb(81, 157, 233, 1)',
+                    data: [
+                        anos5semLUMINI,
+                    ]
                 }
-            },
-            responsive: true,
-            scales: {
-                x: {
-                    stacked: false // Deixa as barras lado a lado
+                ,
+                {
+                    label: 'Com Lumini',
+                    backgroundColor: 'rgb(124, 198, 116, 0.7)',
+                    borderColor: 'rgb(124, 198, 116, 1)',
+                    data: [
+                        anos5comLUMINI,
+                    ]
                 },
-                y: {
-                    beginAtZero: true
+                {
+                    label: 'Melhor resultado possivel',
+                    backgroundColor: 'rgb(5, 80, 36)',
+                    borderColor: 'rgb(5, 80, 36)',
+                    data: [
+                        anos5comLUMINIeMELHORcuidado,
+                    ]
+                }
+            ]
+        };
+
+        const configA = {
+            type: 'bar',
+            data: dataA,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Proximos 5 anos'
+                    }
+                },
+                responsive: true,
+                scales: {
+                    x: {
+                        stacked: false // Deixa as barras lado a lado
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    };
+        };
 
         const myChart = new Chart(
             document.getElementById('myChartA'),
             configA
 
         )
-        p_info.innerHTML = mensagem
     }
 
 
