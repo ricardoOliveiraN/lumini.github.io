@@ -16,7 +16,7 @@ body {
     background-color: #FFFEFA;
 }
 
-nav {
+/* nav {
     position: fixed;
     width: 100%;
     background-color: #013220;  
@@ -55,7 +55,7 @@ nav {
 .MenuLogo a:hover {
     box-shadow: 0 0 10px 2px yellow;
     transition: box-shadow 0.3s ease-in-out;
-}
+} */
 
 /* MENU LATERAL */
 
@@ -85,6 +85,11 @@ nav {
     justify-content: center;
     text-decoration: none;
     color: #FFFEFA;
+}
+.class_LinksMenu a img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .class_LinksMenu a:hover {
@@ -126,7 +131,7 @@ nav .class_BotoesMenu button:hover {
 main {
     
     display: flex;
-    height: 86.3vh;
+    height: 86.31vh;
     width: 100%;
 }
 
@@ -135,11 +140,11 @@ main {
     background-color: #013220;
     height: 100%;
     width: 16%;
-    margin-top: 7%;
 }
 #id_btnSair{
-    margin-top: 100%;
+    margin-top: 80%;
 }
+
 
 .class_dashs {
     margin-top: 7%;

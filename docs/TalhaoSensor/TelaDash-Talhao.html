@@ -13,100 +13,95 @@
     <link rel="stylesheet" href="styleDash-Talhao.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-    <header>
-        <nav>
-            <div class="MenuLogo">
-                <a href="../TalhaoSensor/TelaDash-Geral.html">
-                    <img src="../Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
-                </a>
-            </div>
-            <div class="class_botaoUsuario">
-                Ricardo José ▼
-            </div>
-        </nav>
-    </header>
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
                 <ul>
+                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">
+                            <img src="../Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                        </a>
+                    </li>
                     <li><a href="../TalhaoSensor/TelaDash-Geral.html">Dashboard</a></li>
                     <li><a href="../CadastrarUsuario/CadastrarUsuario.html">Funcionários</a></li>
                     <li><a href="../SimuladorCliente/SimuladorCliente.html">Simulador</a></li>
+                    <li><a href=#>Perfil</a></li>
                     <li id="id_btnSair"><a href="../LoginCadastro/TelaLogin.html">Sair</a></li>
                 </ul>
             </div>
-    </div>
-            <div class="class_dashs">
-                <div class="class_kpisMenu">
-                    <div class="class_kpi class_kpi1">
-                        <div class="class_kpiTexto">
-                            Quantidade Sensores:
-                        </div>
-                        <div class="class_kpiNumero">
-                            3
-                        </div>
+        </div>
+        </div>
+        <div class="class_dashs">
+            <div class="class_kpisMenu">
+                <div class="class_kpi class_kpi1">
+                    <div class="class_kpiTexto">
+                        Quantidade Sensores:
                     </div>
-                    <div class="class_kpi class_kpi2">
-                        <div class="class_kpiTexto">
-                            Sensores ativos:
-                        </div>
-                        <div class="class_kpiNumero">
-                            3
-                        </div>
+                    <div class="class_kpiNumero">
+                        3
                     </div>
-                    <div class="class_kpi class_kpi3">
-                        <div class="class_kpiTexto">
-                            Sensores em manutenção:
-                        </div>
-                        <div class="class_kpiNumero">
-                            0
-                        </div>
+                </div>
+                <div class="class_kpi class_kpi2">
+                    <div class="class_kpiTexto">
+                        Sensores ativos:
                     </div>
-                    <div class="class_kpi class_kpi4">
-                        <div class="class_kpiTexto">
-                            Sensores com alertas:
+                    <div class="class_kpiNumero">
+                        3
+                    </div>
+                </div>
+                <div class="class_kpi class_kpi3">
+                    <div class="class_kpiTexto">
+                        Sensores em manutenção:
+                    </div>
+                    <div class="class_kpiNumero">
+                        0
+                    </div>
+                </div>
+                <div class="class_kpi class_kpi4">
+                    <div class="class_kpiTexto">
+                        Sensores com alertas:
+                    </div>
+                    <div class="class_kpiNumero">
+                        1
+                    </div>
+                </div>
+            </div>
+            <div class="class_talhoes">
+                <div class="class_talhoesGraficosContainer">
+                    <div class="class_talhoesGraficosTitulo">
+                        Talhão 4
+                    </div>
+                    <div class="class_talhoesGraficos">
+                        <div class="class_talhoesGrafico class_talhoesGrafico1">
+                            <canvas id="myChartA" style="position: relative; height: 54vh; width: 28vw;"></canvas>
                         </div>
-                        <div class="class_kpiNumero">
-                            1
+                        <div class="class_talhoesGrafico class_talhoesGrafico2">
+                            <canvas id="myChartB" style="position: relative; height: 54vh; width: 28vw;"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="class_talhoes">
-                    <div class="class_talhoesGraficosContainer">
-                        <div class="class_talhoesGraficosTitulo">
-                            Talhão 4
-                        </div>
-                        <div class="class_talhoesGraficos">
-                            <div class="class_talhoesGrafico class_talhoesGrafico1">
-                                <canvas id="myChartA" style="position: relative; height: 54vh; width: 28vw;"></canvas>
-                            </div>
-                            <div class="class_talhoesGrafico class_talhoesGrafico2">
-                                <canvas id="myChartB" style="position: relative; height: 54vh; width: 28vw;"></canvas>
-                            </div>
-                        </div>
+                <div class="class_talhoesSelecionar">
+                    <div class="class_tituloSelecionar">
+                        <h3>Selecionar</h3>
                     </div>
-                    <div class="class_talhoesSelecionar">
-                        <div class="class_tituloSelecionar">
-                            <h3>Selecionar</h3>
+                    <div class="class_talhoesSelecionarOpcoes">
+                        <div class="class_talhoesSelecionarOpcao" id="btnVoltar">
+                            <a href="../TalhaoSensor/TelaDash-Geral.html">Voltar</a>
                         </div>
-                        <div class="class_talhoesSelecionarOpcoes">
-                            <div class="class_talhoesSelecionarOpcao" id="btnVoltar">
-                                <a href="../TalhaoSensor/TelaDash-Geral.html">Voltar</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Sensor.html">Sensor 1.1</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao    ">
-                                <a style="background-color: #F44336;" href="TelaDash-Sensor.html">Sensor 1.2</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Sensor.html">Sensor 1.3</a>
-                            </div>
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Sensor.html">Sensor 1.1</a>
+                        </div>
+                        <div class="class_talhoesSelecionarOpcao    ">
+                            <a style="background-color: #F44336;" href="TelaDash-Sensor.html">Sensor 1.2</a>
+                        </div>
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Sensor.html">Sensor 1.3</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </main>
 </body>
 
@@ -155,11 +150,11 @@
                 title: {
                     display: true,
                     text: 'Horas com luz'
+                }
             }
         }
     }
-    }
-    
+
 
     // Segundo Gráfico
 
@@ -189,22 +184,22 @@
         type: 'doughnut',
         data: dataB,
         options: {
-        plugins: {
-            title: {
-                display: true,
-                text: 'Status luminosidade'
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Status luminosidade'
+                }
             }
         }
-    }
     }
 
 </script>
 
 <script>
-     const myChart = new Chart(
+    const myChart = new Chart(
         document.getElementById('myChartA'),
         configA
-        
+
     )
 
     const myChart2 = new Chart(

@@ -16,7 +16,7 @@ body {
     background-color: #FFFEFA;
 }
 
-nav {
+/* nav {
     position: fixed;
     width: 100%;
     background-color: #013220;  
@@ -55,7 +55,7 @@ nav {
 .MenuLogo a:hover {
     box-shadow: 0 0 10px 2px yellow;
     transition: box-shadow 0.3s ease-in-out;
-}
+} */
 
 /* MENU LATERAL */
 
@@ -85,6 +85,11 @@ nav {
     justify-content: center;
     text-decoration: none;
     color: #FFFEFA;
+}
+.class_LinksMenu a img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .class_LinksMenu a:hover {
@@ -126,7 +131,7 @@ nav .class_BotoesMenu button:hover {
 main {
     
     display: flex;
-    height: 86.3vh;
+    height: 86.31vh;
     width: 100%;
 }
 
@@ -134,51 +139,169 @@ main {
     position: fixed;
     background-color: #013220;
     height: 100%;
-    width: 16%;
-    margin-top: 7%;
+    width: 15%;
 }
 #id_btnSair{
-    margin-top: 100%;
+    margin-top: 80%;
 }
-
 
 
 .class_dashs {
-    margin-top: 7%;
-    width: 84%;
-    margin-left: 16%;
+    width: 85%;
+    margin-left: 15%;
     background-color: #FFFEFA;
+    display: flex;
+    flex-direction: column;
+}
+
+.class_dashCima {
+    width: 100%;
+    height: 35vh;
+    display: flex;
+    flex-direction: row;
+    order: 2;
+    justify-content: space-between;
+}
+
+.class_dashBaixo {
+    width: 100%;
+    height: 65vh;
+    order: 1;
+}
+
+.class_dashs .class_metricas {
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    height: auto;
+    margin: 0.5%;
+    justify-content: space-between;
+    order: 3;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.class_dashs .class_metricasExplicacao {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    background-color: #2c5e3e;
+    /* box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2); */
+    border-radius: 8px;
+    color: white;
+    height: 55%;
+    padding: 2%;
+    margin-bottom: 1%;
+}
+
+.class_dashs .class_metricasExplicacao h3 {
+    margin-bottom: 1%;
+}
+
+.class_dashs .class_metricasExplicacaoTexto {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    border-radius: 4px;
+}
+
+.class_dashs .class_metricasExplicacao span {
+    color: white;
+}
+
+.class_dashs .class_metricasExplicacao .class_span1 b {
+    color: rgb(67, 144, 228);
+}
+
+.class_dashs .class_metricasExplicacao .class_span2 b {
+    color: rgb(228, 225, 67);
+}
+
+.class_dashs .class_metricasExplicacao .class_span3 b {
+    color: rgb(228, 137, 67);
+}
+
+.class_dashs .class_metricasTitulo {
+    display: flex;
+    flex-direction: column;
+    background-color:#013220;
+    padding: 3%;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.class_dashs .class_metricasTitulo h1 {
+    align-self: center;
+    margin-bottom: 8px;
+    border-bottom: 1px solid white;
+    width: 100%;
+    text-align: center;
+}
+
+.class_dashs .class_metricasTitulo span {
+    margin: 1% 2% 1% 1%;
 }
 
 .class_dashs .class_kpisMenu {
-    background-color: #68A357;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 1% 20%;
-    height: 10vh;
+    height: auto;
+    width: auto;
+    padding: 1%;
+    margin: 0.5%;
+    order: 2;
+    border-radius: 8px;
+    /* box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.2); */
+}
 
+.class_kpisMenuTitulo {
+    margin-bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
 .class_kpi {
     display: flex;
     flex-direction: row;
-    color: #FFFEFA;
     font-size: 22px;
-    justify-content: space-between;
-    width: 20vw;
+    width: 14vw;
+    justify-content: space-around;
+    margin: 10% 2%;
+}
+
+.class_kpis {
+    display: flex;
+    flex: row;
+}
+
+.class_kpisMenuCima {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 50%;
+}
+.class_kpisMenuBaixo {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 50%;
 }
 
 .class_kpiTexto {
     display: flex;
     align-items: center;
+    width: 8vw;
 }
 
 .class_kpiNumero {
-    border: 1px solid #FFFEFA;
-    width: 45px;
-    height: 45px;
+    border: 1px solid black;
+    width: 42px;
+    height: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -191,12 +314,77 @@ main {
     background-color: #013220;
 }
 .class_kpi2 .class_kpiNumero {
-    background-color: #F44336;
+    background-color: rgb(67, 144, 228, 1);
+}
+.class_kpi3 .class_kpiNumero {
+    background-color: rgb(204, 187, 0);
+}
+.class_kpi4 .class_kpiNumero {
+    background-color: rgb(255, 140, 0);
+}
+
+.class_sensorAlertas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 24vw;
+    background-color: #FFFEFA;
+    border-radius: 8px;
+    margin: 1%;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
+    padding: 0.8px;
+    order: 1;
+}
+
+.class_Voltar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #68A357;
+    width: 30%;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2)
+}
+
+.class_Voltar a {
+    text-decoration: none;
+    color: white;
+}
+
+.class_tituloAlertas {
+    margin: 3px;
+    color: #FF9800;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 4px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 95%;
+}
+
+th, td {
+    text-align: left;
+    padding: 2px 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tituloAlerta th {
+    background-color: #f0f5f1;
+    color: #2c5e3e;
+ 
+}
+
+th {
+    color: #333;
 }
 
 .class_talhoes {
     width: 100%;
-    height: 75vh;
+    height: 65vh;
     display: flex;
     flex-direction: row;
 }
@@ -206,12 +394,12 @@ main {
     width: 85%;
     display: flex;
     flex-direction: column;
-    margin: 2%;
+    margin: 1% 1% 2% 1%;
     height: 95%;
-    padding: 0 1% 1% 1%;
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+    padding: 0.5%;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-}
+}   
 
 .class_talhoesGraficosTitulo {
     text-align: center;
@@ -225,8 +413,8 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px solid #013220;
-    box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+    /* border: 1px solid #013220;
+    box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.2); */
     border-radius: 8px;
     padding: 10px;
 }
@@ -245,14 +433,15 @@ main {
     background-color: #FFFEFA;
     border-radius: 8px;
     height: 95%; 
-    width: 15%;
-    margin: 2% 2% auto auto;
-    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2)
+    width: 16%;
+    margin: 1%;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2)
 }
 
 .class_tituloSelecionar {
-    margin: 3vh;
+    margin: 4vh;
     color: #013220;
+    font-size: 24px;
 }
 
 .class_talhoesSelecionarOpcoes {
@@ -262,21 +451,24 @@ main {
     align-items: center;
     background-color: #FFFEFA;
     border-radius: 8px;
-    width: 85%;
+    width: 100%;
     height: 40vh;
+    padding: 0;
 }
 
 .class_talhoesSelecionarOpcao a{
+    justify-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2vh;
-    padding: 10px 10px;
+    width: 110%;
+    margin: 1vh 0;
+    padding: 12px 10px;
     background-color: #68A357;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 4px;
     color: #FFFEFA;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 2px 0.5px rgba(0, 0, 0, 0.2);
     text-decoration: none;
 }
 

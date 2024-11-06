@@ -13,60 +13,137 @@
     <link rel="stylesheet" href="styleDash-Geral.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-    <header>
-        <nav>
-            <div class="MenuLogo">
-                <a href="../TalhaoSensor/TelaDash-Geral.html">
-                    <img src="../Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
-                </a>
-            </div>
-            <div class="class_botaoUsuario">
-                Ricardo José ▼
-            </div>
-        </nav>
-    </header>
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
                 <ul>
+                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">
+                            <img src="../Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                        </a>
+                    </li>
                     <li><a href="../TalhaoSensor/TelaDash-Geral.html">Dashboard</a></li>
                     <li><a href="../CadastrarUsuario/CadastrarUsuario.html">Funcionários</a></li>
                     <li><a href="../SimuladorCliente/SimuladorCliente.html">Simulador</a></li>
+                    <li><a href="../TelaPerfil/TelaPerfil.html">Perfil</a></li>
                     <li id="id_btnSair"><a href="../LoginCadastro/TelaLogin.html">Sair</a></li>
                 </ul>
             </div>
-    </div>
-            <div class="class_dashs">
-                <div class="class_kpisMenu">
-                    <div class="class_kpi class_kpi1">
-                        <div class="class_kpiTexto">
-                            Quantidade Talhões:
-                        </div>
-                        <div class="class_kpiNumero">
-                            4
-                        </div>
+        </div>
+        </div>
+        <div class="class_dashs">
+            <div class="class_dashCima">
+                <div class="class_metricas">
+                    <div class="class_metricasTitulo">
+                        <h1>Todos os Talhões</h1>
+                        <label> <span>Dados do Dia:</span>
+                            <input type="date" id="diaDados" value="2024-11-05" min="2024-08-01" max="2024-12-31" />
+                        </label>
                     </div>
-                    <div class="class_kpi class_kpi2">
-                        <div class="class_kpiTexto">
-                            Talhões com alertas:
-                        </div>
-                        <div class="class_kpiNumero">
-                            1
+                    <div class="class_metricasExplicacao">
+                        <h3>Quantidade de horas</h3>
+                        <div class="class_metricasExplicacaoTexto">
+                            <span class="class_span1"><b>Ideal</b> - Entre 15 e 17 horas</span>
+                            <span class="class_span2"><b>Insuficiente</b> - Menos de 15 horas </span>
+                            <span class="class_span3"><b>Excesso</b> - Mais de 17 horas </span>
                         </div>
                     </div>
                 </div>
+                <div class="class_kpisMenu">
+                    <div class="class_kpisMenuTitulo">
+                        <h3>Status Talhões</h3>
+                        <hr>
+                    </div>
+                    <div class="class_kpis">
+                        <div class="class_kpisMenuCima">
+                            <div class="class_kpi class_kpi1">
+                                <div class="class_kpiTexto">
+                                    Total:
+                                </div>
+                                <div class="class_kpiNumero">
+                                    5
+                                </div>
+                            </div>
+                            <div class="class_kpi class_kpi2">
+                                <div class="class_kpiTexto">
+                                    Ideal:
+                                </div>
+                                <div class="class_kpiNumero">
+                                    3
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="class_kpisMenuBaixo">
+                            <div class="class_kpi class_kpi3">
+                                <div class="class_kpiTexto">
+                                    Insuficiente:
+                                </div>
+                                <div class="class_kpiNumero">
+                                    1
+                                </div>
+                            </div>
+                            <div class="class_kpi class_kpi4">
+                                <div class="class_kpiTexto">
+                                    Excesso:
+                                </div>
+                                <div class="class_kpiNumero">
+                                    1
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="class_sensorAlertas">
+                    <div class="class_tituloAlertas">
+                        <h3>Alertas</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr class="tituloAlerta">
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Horas</th>
+                                <th>Dia</th>
+                            </tr>
+                            <tr>
+                                <th>01</th>
+                                <th>Insuficiente</th>
+                                <th>14</th>
+                                <th>20/09/24</th>
+                            </tr>
+                            <tr>
+                                <th>02</th>
+                                <th>Excesso</th>
+                                <th>18</th>
+                                <th>22/09/24</th>
+                            </tr>
+                            <tr>
+                                <th>03</th>
+                                <th>Insuficiente</th>
+                                <th>14.5</th>
+                                <th>24/10/24</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableCampo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="class_dashBaixo">
+
                 <div class="class_talhoes">
                     <div class="class_talhoesGraficosContainer">
-                        <div class="class_talhoesGraficosTitulo">
+                        <!-- <div class="class_talhoesGraficosTitulo">
                             Todos os Talhões
-                        </div>
+                        </div> -->
                         <div class="class_talhoesGraficos">
                             <div class="class_talhoesGrafico class_talhoesGrafico1">
-                                <canvas id="myChartA" style="position: relative; height: 54vh; width: 28vw;"></canvas>
+                                <canvas id="myChartA" style="position: relative; height: 56vh; width: 28vw;"></canvas>
                             </div>
                             <div class="class_talhoesGrafico class_talhoesGrafico2">
-                                <canvas id="myChartB" style="position: relative; height: 54vh; width: 28vw;"></canvas>
+                                <canvas id="myChartB" style="position: relative; height: 28vh;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -79,7 +156,7 @@
                                 <a href="TelaDash-Talhao.html">Talhão 1</a>
                             </div>
                             <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Talhao.html">Talhão 2</a>
+                                <a href="TelaDash-Talhao.html" style="background-color: #F44336;">Talhão 2</a>
                             </div>
                             <div class="class_talhoesSelecionarOpcao">
                                 <a href="TelaDash-Talhao.html">Talhão 3</a>
@@ -87,10 +164,14 @@
                             <div class="class_talhoesSelecionarOpcao">
                                 <a href="TelaDash-Talhao.html" style="background-color: #F44336;">Talhão 4</a>
                             </div>
+                            <div class="class_talhoesSelecionarOpcao">
+                                <a href="TelaDash-Talhao.html">Talhão 5</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </main>
 </body>
 
@@ -103,34 +184,42 @@
         'Talhão 2',
         'Talhão 3',
         'Talhão 4',
+        'Talhão 5',
     ];
 
     const dataA = {
         labels: labelsA,
         datasets: [{
-            label: 'Tempo com luz',
+            label: 'Horas com luz',
             backgroundColor: [
                 'rgb(67, 144, 228, 0.7)',
-                'rgb(67, 144, 228, 0.7)',
+                'rgb(228, 144, 67, 0.7)',
                 'rgb(67, 144, 228, 0.7)',
                 'rgb(228, 225, 67, 0.7)',
-                
+
             ],
             borderColor: [
                 'rgb(67, 144, 228, 0.7)',
-                'rgb(67, 144, 228, 0.7)',
+                'rgb(228, 144, 67, 0.7)',
                 'rgb(67, 144, 228, 0.7)',
                 'rgb(228, 225, 67, 0.7)',
             ],
-            data: [17, 17, 17, 15, 20]
+            data: [16, 17.5, 16, 14.5, 16, 20]
         },
         {
-            label: 'Meta diária',
-            backgroundColor: 'rgb(138, 141, 144)',
-            borderColor: 'rgb(138, 141, 144)',
-            data: [16, 16, 16, 16, 16, 16],
+            label: 'Máximo',
+            backgroundColor: 'rgb(228, 144, 67, 0.7)',
+            borderColor: 'rgb(228, 144, 67, 0.7)',
+            data: [17, 17, 17, 17, 17, 17, 17],
             type: "line"
-        }
+        },
+        {
+            label: 'Mínimo',
+            backgroundColor: 'rgb(228, 225, 67, 0.7)',
+            borderColor: 'rgb(228, 225, 67, 0.7)',
+            data: [15, 15, 15, 15, 15, 15, 15],
+            type: "line"
+        },
         ]
     };
 
@@ -141,18 +230,32 @@
             plugins: {
                 title: {
                     display: true,
-                    text: 'Horas com luz'
+                    text: 'Dia 05/11 - Horas com Luz'
+                }
+            },
+            scales: {
+                x: {
+                    title: {   
+                        display: true,
+                        text: 'Talhões'
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Quantidade de horas'
+                    },
+                }
             }
         }
     }
-    }
-    
+
 
     // Segundo Gráfico
 
     const labelsB = [
-        'Luz suficiente',
-        'Luz insuficiente',
+        'Status ideal',
+        'Status indesejável',
     ];
 
 
@@ -168,7 +271,7 @@
                 'rgb(76, 177, 64, 0.7)',
                 'rgb(163, 0, 0, 0.7)',
             ],
-            data: [3, 1]
+            data: [3, 2]
         }]
 
     };
@@ -177,22 +280,22 @@
         type: 'doughnut',
         data: dataB,
         options: {
-        plugins: {
-            title: {
-                display: true,
-                text: 'Status Luminosidade'
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Dia 05/11 - Status Luminosidade'
+                }
             }
         }
-    }
     }
 
 </script>
 
 <script>
-     const myChart = new Chart(
+    const myChart = new Chart(
         document.getElementById('myChartA'),
         configA
-        
+
     )
 
     const myChart2 = new Chart(
