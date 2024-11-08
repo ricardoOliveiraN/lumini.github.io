@@ -1,0 +1,307 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: white;
+    font-family: 'Lato', sans-serif;
+    background-color: #013220;
+}
+
+button {
+    cursor: pointer;
+    transition: 0.2s;
+}
+/* Animação do botão */
+button:hover {
+    transform: scale(1.1);
+}
+/* Padronização de todos os inputs */
+input {
+    border-radius: 5px;
+    width: 400px;
+    height: 50px;
+    margin: 0px 0px 5px 0px;
+    font-size: 18px;
+}
+
+select {
+    border-radius: 5px;
+    width: 400px;
+    height: 50px;
+    margin: 0px 0px 40px 0px;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Coloca um espaço no placeholder */
+input::placeholder {
+    padding-left: 3px;
+}
+
+/* TELA LOGIN */
+.class_login {
+    width: 50%;
+    height: 100vh;
+    background-image: url('../assets/fundo-lupulo.jpg');
+    background-size: cover;
+    position: fixed;
+    z-index: 1;
+}
+
+.class_mensagem2 {
+    position: fixed;
+    z-index: 2;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100vh;
+}
+
+.class_mensagem2 span {
+    font-size: 40px;
+    font-weight: 1000;
+}
+
+.class_ideal {
+    color: #FF9800;
+    text-shadow: 0px 0px 60px yellow;
+    border-radius: 5px;
+    width: 200px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px 20px 0px;
+} 
+
+.class_signin {
+    position: fixed;
+    z-index: 2;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin: 0px 0px 0px 94vh;
+}
+
+.class_home2 {
+    display: flex;   
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 20px;
+    right: 20px; 
+    width: auto; /* Mantém o tamanho de acordo com o conteúdo */
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.class_home2 a {
+    display: inline-block;
+    position: relative;
+    font-size: 30px; /* Mantém o estilo de fonte */
+    color: #FF9800;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px; /* Espaçamento entre o texto e a imagem */
+}
+
+.class_home2 img {
+    width: 200px; /* Ajuste o tamanho para que não fique muito largo */
+    height: auto;
+    display: block;
+    margin: 0; /* Remove margens desnecessárias */
+}
+
+.class_home2 a:hover img {
+    border: 2px solid yellow; /* Borda amarela ao passar o mouse */
+}
+
+.class_home2 a:hover {
+    box-shadow: 0 0 10px 2px yellow; /* Sombra amarela no hover */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+
+.class_registro2 {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+}
+
+#lbl_signin {
+    font-size: 40px;
+    font-weight: 800;
+    margin: 0px 0px 40px 0px;
+}
+
+.class_olhos {
+    display: flex;
+    align-items: center;
+}
+
+.class_olhos input {
+    position: fixed;
+    margin: 60px 0px 10px -200px;
+}
+
+.class_imagemOlho img {
+    position: fixed;
+    width: 30px;
+    margin: 10px 0px 0px 150px;
+    opacity: 0.7;   
+    cursor: pointer;
+}
+
+#lbl_esqueceu {
+    margin: 55px 0px 0px 260px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    text-decoration: underline;
+    opacity: 0.9;
+}
+#btn_acessar {
+    background-color: #FF9800;
+    color: white;
+    height: 60px;
+    width: 200px;
+    border-radius: 5px;
+    margin: 35px 0px 20px 0px;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.class_NovoCadastro {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+
+#link_cadastro {
+    border: 1px solid;
+    border-radius: 5px;
+    color: #FF9800;
+    font-weight: 800;
+    cursor: pointer;
+    margin: 20px 0px 0px 0px;
+    height: 50px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* TELA CADASTRO */
+.class_TelaCadastro {
+    display: flex;
+}
+
+.class_signup {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.class_registro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#lbl_signup {
+    font-size: 40px;
+    font-weight: 800;
+    margin: 0px 0px 40px 0px;
+}
+
+#btn_cadastrar {
+    background-color: #FF9800;
+    color: white;
+    height: 60px;
+    width: 200px;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 20px;
+    margin: 0px 0px 10px 0px;
+}
+
+#lbl_possui {
+    font-size: 20px;
+}
+
+#link_login {
+    text-decoration: underline;
+    cursor: pointer;
+    color: white;
+}
+
+.class_mensagem {
+    width: 50%;
+    height: 100vh;
+}
+
+.class_fundo {
+    height: 100vh;
+    background-image: url('../Imagens/fundo-lupulo.jpg');
+    background-size: cover;
+    z-index: 1;
+}
+
+.class_textos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 2;
+    margin: -560px 0px 0px 200px;
+}
+
+.class_textos span {
+    font-size: 40px;
+    font-weight: 1000;
+}
+
+.MenuLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12%;
+    padding: 5px;
+    box-sizing: border-box;
+    position: fixed; /* Torna a posição fixa na tela */
+    top: 20px; /* Define a distância do topo */
+    left: 20px; /* Posiciona no canto superior esquerdo */
+}
+
+.MenuLogo a {
+    display: inline-block;
+    position: relative;
+}
+
+.MenuLogo a img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.MenuLogo a:hover img {
+    border: 2px solid yellow; /* Adiciona borda amarela no hover */
+}
+
+.MenuLogo a:hover {
+    box-shadow: 0 0 10px 2px yellow; /* Sombra amarela no hover */
+    transition: box-shadow 0.3s ease-in-out; /* Animação suave */
+}
+
