@@ -31,23 +31,30 @@
                 </ul>
             </div>
         </div>
-    </div>
+
         <div class="class_dashs">
-            <div class="class_kpisMenu">
-                <div class="class_kpi class_kpi1">
-                    <div class="class_kpiTexto">
-                        Média Luminosidade (lux):
+            <div class="class_conteinerUm">
+                <div class="class_kpisMenu">
+                    <div class="class_kpi class_kpi1">
+                        <div class="class_kpiTexto">
+                            Média Luminosidade (lux):
+                        </div>
+                        <div class="class_kpiNumero">
+                            1640
+                        </div>
                     </div>
-                    <div class="class_kpiNumero">
-                        1640
+                    <div class="class_kpi class_kpi2">
+                        <div class="class_kpiTexto">
+                            Média horas com luz:
+                        </div>
+                        <div class="class_kpiNumero">
+                            15,87
+                        </div>
                     </div>
                 </div>
-                <div class="class_kpi class_kpi2">
-                    <div class="class_kpiTexto">
-                        Média horas com luz:
-                    </div>
-                    <div class="class_kpiNumero">
-                        15,87
+                <div class="class_voltar">
+                    <div>
+                        <a href="../TalhaoSensor/TelaDash-Talhao.html">Voltar</a>
                     </div>
                 </div>
             </div>
@@ -56,6 +63,7 @@
                     <div class="class_sensorGraficosTitulo">
                         Sensor 1.2
                     </div>
+
                     <div class="class_sensorGraficos">
                         <div class="class_sensorGrafico class_sensorGrafico1">
                             <canvas id="myChartA" style="position: relative; height: 36vh; width: 42vw;"></canvas>
@@ -63,16 +71,17 @@
                         <div class="class_sensorGrafico class_sensorGrafico2">
                             <canvas id="myChartB" style="position: relative; height: 36vh; width: 42vw;"></canvas>
                         </div>
-                            <!-- DIV SENSOR TEMPO REAL -->
-                        <div style="display: flex; justify-content: center; padding: 0 0 100px 0;">
+                    </div>
+                    <!-- DIV SENSOR TEMPO REAL -->
+                    <!-- <div style="display: flex; justify-content: center; padding: 0 0 100px 0;">
                             <div style="position: relative; height: 36vh; width: 42vw;">
                                 <canvas id="sensorAnalogico"></canvas>
                             </div>
-                        </div>
-                            <!-- FINAL DA DIV -->
-                    </div>
+                        </div> -->
+                    <!-- FINAL DA DIV -->
+
                 </div>
-                <div class="class_sensorAlertas">
+                <!-- <div class="class_sensorAlertas">
                     <div class="class_tituloAlertas">
                         <h3>Alertas</h3>
                     </div>
@@ -110,10 +119,8 @@
                         <tbody id="tableCampo">
                         </tbody>
                     </table>
-                    <div class="class_Voltar">
-                        <a href="../TalhaoSensor/TelaDash-Talhao.html">Voltar</a>
-                    </div>
-                </div>
+
+                </div> -->
             </div>
         </div>
     </main>
@@ -122,6 +129,23 @@
 </html>
 
 <script>
+
+    var dataValues = [0, 0, 0, 0, 0, 400, 3000, 10000, 20000, 30000, 40000, 45000, 50000, 45000, 40000, 30000, 20000, 10000, 10000, 10000, 10000, 0, 0];
+    var backGroundValues = [];
+    var qtdVezes = 0;
+
+    for (var contador = 0; contador < dataValues.length; contador ++){
+
+        if(dataValues[contador] == 10000 && dataValues[contador + 1] == 10000){
+
+            backGroundValues.push('rgb(255, 0, 0)');
+        }else{
+           
+            backGroundValues.push('rgba(75, 192, 192, 0.6)');
+        }
+
+    }
+
 
 
     // Primeiro Gráfico
@@ -157,9 +181,9 @@
         labels: labelsA,
         datasets: [{
             label: 'Tempo com luz',
-            backgroundColor: 'rgb(81, 157, 233, 0.7)',
-            borderColor: 'rgb(81, 157, 233, 0.7)',
-            data: [0, 0, 0, 0, 0, 400, 3000, 10000, 20000, 30000, 40000, 45000, 50000, 45000, 40000, 30000, 20000, 10000, 10000, 10000, 10000, 0, 0]
+            borderColor: backGroundValues,
+            backgroundColor: backGroundValues,
+            data: dataValues
         },
         ]
     };
@@ -228,75 +252,75 @@
             }
         }
     };
-// GRAFICO EM TEMPO REAL INDEX
+    // GRAFICO EM TEMPO REAL INDEX
     var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Sensor 1.2',
-                    borderColor: '#FF9800',
-                    backgroundColor: '#FF9800'
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(Lux)'
-                        },
-                        beginAtZero: true,
-                    },
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Sensor 1.2',
+                borderColor: '#FF9800',
+                backgroundColor: '#FF9800'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
                 },
-            }
-        })
-
-
-        var paginacao = {};
-        var tempo = {};
-
-
-        function obterDados(grafico, endpoint) {
-            fetch('http://localhost:3300/sensores/' + endpoint)
-                .then(response => response.json())
-                .then(valores => {
-                    if (paginacao[endpoint] == null) {
-                        paginacao[endpoint] = 0;
-                    }
-                    if (tempo[endpoint] == null) {
-                        tempo[endpoint] = 0;
-                    }
-
-
-                    var ultimaPaginacao = paginacao[endpoint];
-                    paginacao[endpoint] = valores.length;
-                    valores = valores.slice(ultimaPaginacao);
-
-
-                    valores.forEach((valor) => {
-                        if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                            grafico.data.labels.shift();
-                            grafico.data.datasets[0].data.shift();
-                        }
-
-
-                        grafico.data.labels.push(tempo[endpoint]++);
-                        grafico.data.datasets[0].data.push(parseFloat(valor));
-                        grafico.update();
-                    });
-                })
-                .catch(error => console.error('Erro ao obter dados:', error));
+                y: {
+                    title: {
+                        display: true,
+                        text: '(Lux)'
+                    },
+                    beginAtZero: true,
+                },
+            },
         }
+    })
 
 
-        setInterval(() => {
-            obterDados(sensorAnalogico, 'analogico')
-        }, 1000);
+    var paginacao = {};
+    var tempo = {};
 
-// ATE AQUI O GRAFICO
+
+    function obterDados(grafico, endpoint) {
+        fetch('http://localhost:3300/sensores/' + endpoint)
+            .then(response => response.json())
+            .then(valores => {
+                if (paginacao[endpoint] == null) {
+                    paginacao[endpoint] = 0;
+                }
+                if (tempo[endpoint] == null) {
+                    tempo[endpoint] = 0;
+                }
+
+
+                var ultimaPaginacao = paginacao[endpoint];
+                paginacao[endpoint] = valores.length;
+                valores = valores.slice(ultimaPaginacao);
+
+
+                valores.forEach((valor) => {
+                    if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                        grafico.data.labels.shift();
+                        grafico.data.datasets[0].data.shift();
+                    }
+
+
+                    grafico.data.labels.push(tempo[endpoint]++);
+                    grafico.data.datasets[0].data.push(parseFloat(valor));
+                    grafico.update();
+                });
+            })
+            .catch(error => console.error('Erro ao obter dados:', error));
+    }
+
+
+    setInterval(() => {
+        obterDados(sensorAnalogico, 'analogico')
+    }, 1000);
+
+    // ATE AQUI O GRAFICO
 </script>
 
 <script>
