@@ -53,9 +53,7 @@
                     </div>
                 </div>
                 <div class="class_voltar">
-                    <div>
-                        <a href="../TalhaoSensor/TelaDash-Talhao.html">Voltar</a>
-                    </div>
+                    <a href="../TalhaoSensor/TelaDash-Talhao.html">Voltar</a>
                 </div>
             </div>
             <div class="class_sensor">
@@ -134,13 +132,13 @@
     var backGroundValues = [];
     var qtdVezes = 0;
 
-    for (var contador = 0; contador < dataValues.length; contador ++){
+    for (var contador = 0; contador < dataValues.length; contador++) {
 
-        if(dataValues[contador] == 10000 && dataValues[contador + 1] == 10000){
+        if (dataValues[contador] == 10000 && dataValues[contador + 1] == 10000) {
 
             backGroundValues.push('rgb(255, 0, 0)');
-        }else{
-           
+        } else {
+
             backGroundValues.push('rgba(75, 192, 192, 0.6)');
         }
 
