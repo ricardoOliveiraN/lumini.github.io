@@ -1,0 +1,344 @@
+/* Aplicando a nova fonte padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif; /* Fonte padrão atualizada para 'Lato' */
+}
+
+/* Ajustando a fonte original apenas nas classes especificadas */
+.MenuLogo,
+.class_Home2 {
+    font-family: 'Lato', sans-serif; /* Mantendo 'Lato' em todas as classes */
+}
+
+body {
+    background-color: #FFFEFA;
+    height: 100%;
+}
+
+/* nav {
+    position: fixed;
+    width: 100%;
+    background-color: #013220;  
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    z-index: 1;
+}
+
+.MenuLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.MenuLogo a {
+    display: inline-block;
+    position: relative;
+}
+
+.MenuLogo a img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.MenuLogo a:hover img {
+    border: 1px solid yellow;
+}
+
+.MenuLogo a:hover {
+    box-shadow: 0 0 10px 2px yellow;
+    transition: box-shadow 0.3s ease-in-out;
+} */
+
+/* MENU LATERAL */
+
+.class_LinksMenu {
+    width: 100%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.class_LinksMenu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    font-weight: 500;
+    font-size: 1.12rem;
+}
+
+.class_LinksMenu li {
+    width: 100%;
+}
+
+.class_LinksMenu a {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #FFFEFA;
+}
+.class_LinksMenu a img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.class_LinksMenu a:hover {
+    background-color: #90D26D;
+    font-weight: 700;
+}
+
+nav .class_botaoUsuario {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav .class_botaoUsuario a {
+    text-decoration: none;
+    color: #FF9800;    
+}
+
+nav .class_botaoUsuario {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #013220;
+    font-size: 1.0rem;
+    color: #FFFEFA;
+    cursor: pointer;
+}
+
+nav .class_botaoUsuario button:hover a {
+    color: white; 
+}
+
+nav .class_BotoesMenu button:hover {
+    background-color: #FF9800;
+    color: #FFFEFA;
+    box-shadow: 0px 0px 10px #FF9800;
+}
+
+
+main {    
+    display: flex;
+    height: 200%;
+    width: 100%;
+}
+
+.class_menuLateral {
+    /* position: fixed; */
+    background-color: #013220;
+    height: 31%;
+    width: 10%;
+    /* display:none; */
+}
+#id_btnSair{
+    margin-top: 80%;
+}
+
+.class_conteinerUm{
+    display: flex;
+    justify-content: center;
+}
+.class_dashs {
+    
+    flex-grow: 1;
+    /* margin-left: 16%; */
+    background-color: #FFFEFA;
+}
+
+.class_dashs .class_kpisMenu {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  
+    margin-top: 15px;
+    margin-left: 24px;
+    width: 781px;
+    height: 70px;
+
+}
+
+.class_kpi {
+    display: flex;
+    flex-direction: row;
+    font-size: 22px;
+    width: 25vw;
+}
+
+.class_kpiTexto {
+    display: flex;
+    color: #000000;
+    /* font-weight: bold; */
+    align-items: center;
+    margin-right: 5px;
+}
+
+.class_kpiNumero {
+    border: 1px solid #FFFEFA;
+    width: auto;
+    padding: 0 5px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFEFA;
+    border-radius: 5px;
+    font-weight: 800;
+}
+
+.class_kpi1 .class_kpiNumero {
+    background-color: #013220;
+}
+.class_kpi2 .class_kpiNumero {
+    background-color: #013220;
+}
+
+.class_voltar{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 362px;
+    margin-top: 15px;
+    margin-left: 24px;
+    
+}
+
+.class_voltar a{
+    text-decoration: none;
+    color: #013220;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: rgb(207, 206, 206);
+    border-radius: 8px;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.class_sensor {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.class_sensorGraficosContainer {
+    background-color: white ;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 2% 2% 100px 2%;
+    height: 1100px;
+    padding: 0 1% 1% 1%;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.class_sensorGraficosTitulo {
+    text-align: center;
+    margin: 1.5vh 0 1.5vh 1vw;
+    font-weight: 900;
+    font-size: 35px;
+    color: #013220;
+}
+
+.class_sensorGraficos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    height: 100%;
+}
+
+.class_sensorGrafico {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 318px;
+    border: 1px solid #013220;
+    box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin: 0px -18px 0px -18px;
+}
+
+.class_sensorAlertas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    background-color: #FFFEFA;
+    border-radius: 8px;
+    height: auto;
+    margin: 2% 2% auto auto;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+}
+
+/* .class_voltar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #68A357;
+    width: 30%;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+    border: 1px solid red;
+}
+
+.class_voltar a {
+    text-decoration: none;
+    color: white;
+} */
+
+.class_tituloAlertas {
+    margin: 3vh;
+    color: #FF9800;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tituloAlerta th {
+    background-color: #f0f5f1;
+    color: #2c5e3e;
+ 
+}
+
+th {
+    color: #333;
+}

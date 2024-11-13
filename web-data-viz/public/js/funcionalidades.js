@@ -211,24 +211,24 @@ var UsuarioLogin = '';
 
 // Função da tela de Login
 
-function entrarSite() {
+// function entrarSite() {
 
-    var SenhaLogin = inp_senha2.value;
-    var Usuario = inp_usuario.value;
+//     var SenhaLogin = inp_senha2.value;
+//     var Usuario = inp_usuario.value;
 
-    if (SenhaLogin == 'Urubu100@' && Usuario == 'Lumini') {
-        const urlHome = "../SenhaNova/TelaSenhaNova.html";
-        window.close();
-        window.open(urlHome);
-    } else {
+//     if (SenhaLogin == 'Urubu100@' && Usuario == 'Lumini') {
+//         const urlHome = "../SenhaNova/TelaSenhaNova.html";
+//         window.close();
+//         window.open(urlHome);
+//     } else {
 
-        inp_senha2.style.borderColor = 'red';
-        inp_usuario.style.borderColor = 'red';
-        div_alerta.innerHTML = `Usuário ou senha inválido(s)`;
+//         inp_senha2.style.borderColor = 'red';
+//         inp_usuario.style.borderColor = 'red';
+//         div_alerta.innerHTML = `Usuário ou senha inválido(s)`;
 
-    }
+//     }
 
-}
+// }
 
 
 function entrar() {
@@ -239,11 +239,11 @@ function entrar() {
     if (emailVar == "" || senhaVar == "") {
         cardErro.style.display = "block"
         mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        finalizarAguardar();
+        // finalizarAguardar();
         return false;
     }
     else {
-        setInterval(sumirMensagem, 5000)
+        // setInterval(sumirMensagem, 5000)
     }
 
     console.log("FORM LOGIN: ", emailVar);
@@ -268,12 +268,13 @@ function entrar() {
                 console.log(json);
                 console.log(JSON.stringify(json));
                 sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.id;
-                sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                sessionStorage.SENHA_USUARIO = json.senha;
+                sessionStorage.FK_EMPRESA = json.fkEmpresa;
+                // sessionStorage.ID_USUARIO = json.id;
+                // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                 setTimeout(function () {
-                    window.location = "CadastrarUsuario.html";
+                    window.location = "TelaDash-Geral.html";
                 }, 1000); // apenas para exibir o loading
 
             });

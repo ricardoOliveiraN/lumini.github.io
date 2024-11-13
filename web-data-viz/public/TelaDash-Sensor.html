@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumini</title>
+    <link rel="icon" href="../Imagens/iconeLuz.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styleDash-Sensor.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="class_menuLateral">
+            <div class="class_LinksMenu">
+                <ul>
+                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">
+                            <img src="../Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                        </a>
+                    </li>
+                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">Dashboard</a></li>
+                    <li><a href="../CadastrarUsuario/CadastrarUsuario.html">Funcionários</a></li>
+                    <li><a href="../SimuladorCliente/SimuladorCliente.html">Simulador</a></li>
+                    <li><a href=#>Perfil</a></li>
+                    <li id="id_btnSair"><a href="../LoginCadastro/TelaLogin.html">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="class_dashs">
+            <div class="class_conteinerUm">
+                <div class="class_kpisMenu">
+                    <div class="class_kpi class_kpi1">
+                        <div class="class_kpiTexto">
+                            Média Luminosidade (lux):
+                        </div>
+                        <div class="class_kpiNumero">
+                            1640
+                        </div>
+                    </div>
+                    <div class="class_kpi class_kpi2">
+                        <div class="class_kpiTexto">
+                            Média horas com luz:
+                        </div>
+                        <div class="class_kpiNumero">
+                            15,87
+                        </div>
+                    </div>
+                </div>
+                <div class="class_voltar">
+                    <a href="../TalhaoSensor/TelaDash-Talhao.html">Voltar</a>
+                </div>
+            </div>
+            <div class="class_sensor">
+                <div class="class_sensorGraficosContainer">
+                    <div class="class_sensorGraficosTitulo">
+                        Sensor 1.2
+                    </div>
+
+                    <div class="class_sensorGraficos">
+                        <div class="class_sensorGrafico class_sensorGrafico1">
+                            <canvas id="myChartA" style="position: relative; height: 36vh; width: 42vw;"></canvas>
+                        </div>
+                        <div class="class_sensorGrafico class_sensorGrafico2">
+                            <canvas id="myChartB" style="position: relative; height: 36vh; width: 42vw;"></canvas>
+                        </div>
+                    </div>
+                    <!-- DIV SENSOR TEMPO REAL -->
+                    <!-- <div style="display: flex; justify-content: center; padding: 0 0 100px 0;">
+                            <div style="position: relative; height: 36vh; width: 42vw;">
+                                <canvas id="sensorAnalogico"></canvas>
+                            </div>
+                        </div> -->
+                    <!-- FINAL DA DIV -->
+
+                </div>
+                <!-- <div class="class_sensorAlertas">
+                    <div class="class_tituloAlertas">
+                        <h3>Alertas</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr class="tituloAlerta">
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Dia</th>
+                                <th>Horário</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>01</th>
+                                <th>Baixo</th>
+                                <th>26/09/24</th>
+                                <th>19:25:30</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>02</th>
+                                <th>Crítico</th>
+                                <th>26/09/24</th>
+                                <th>19:27:20</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>03</th>
+                                <th>Baixo</th>
+                                <th>23/10/24</th>
+                                <th>18:45:40</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableCampo">
+                        </tbody>
+                    </table>
+
+                </div> -->
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+
+<script>
+
+    var dataValues = [0, 0, 0, 0, 0, 400, 3000, 10000, 20000, 30000, 40000, 45000, 50000, 45000, 40000, 30000, 20000, 10000, 10000, 10000, 10000, 0, 0];
+    var backGroundValues = [];
+    var qtdVezes = 0;
+
+    for (var contador = 0; contador < dataValues.length; contador++) {
+
+        if (dataValues[contador] == 10000 && dataValues[contador + 1] == 10000) {
+
+            backGroundValues.push('rgb(255, 0, 0)');
+        } else {
+
+            backGroundValues.push('rgba(75, 192, 192, 0.6)');
+        }
+
+    }
+
+
+
+    // Primeiro Gráfico
+
+    const labelsA = [
+        '00:00',
+        '01:00',
+        '02:00',
+        '03:00',
+        '04:00',
+        '05:00',
+        '06:00',
+        '07:00',
+        '08:00',
+        '09:00',
+        '10:00',
+        '11:00',
+        '12:00',
+        '13:00',
+        '14:00',
+        '15:00',
+        '16:00',
+        '17:00',
+        '18:00',
+        '19:00',
+        '20:00',
+        '21:00',
+        '22:00',
+        '23:00',
+    ];
+
+    const dataA = {
+        labels: labelsA,
+        datasets: [{
+            label: 'Tempo com luz',
+            borderColor: backGroundValues,
+            backgroundColor: backGroundValues,
+            data: dataValues
+        },
+        ]
+    };
+
+    const configA = {
+        type: 'line',
+        data: dataA,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Luminosidade: 06/10/24'
+                }
+            }
+        }
+    }
+
+
+    // Segundo Gráfico
+
+    const labelsB = [
+        '23/09',
+        '24/09',
+        '25/09',
+        '26/09',
+        '27/09',
+        '28/09',
+        '29/09',
+        '30/09',
+        '01/10',
+        '02/10',
+        '03/10',
+        '04/10',
+        '05/10',
+        '06/10',
+    ];
+
+    const dataB = {
+        labels: labelsB,
+        datasets: [{
+            label: 'Tempo com luz',
+            backgroundColor: 'rgb(228, 225, 67, 0.7)',
+            borderColor: 'rgb(124, 198, 116, 0.7)',
+
+            data: [16, 16, 16, 14, 16, 16, 16, 15, 16, 16, 16, 17, 16, 16, 20]
+        },
+        {
+            label: 'Meta diária',
+            backgroundColor: 'rgb(138, 141, 144)',
+            borderColor: 'rgb(138, 141, 144)',
+            data: [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+            type: "line"
+        }
+        ]
+    };
+
+    const configB = {
+        type: 'bar',
+        data: dataB,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: '14 dias - Luminosidade'
+                }
+            }
+        }
+    };
+    // GRAFICO EM TEMPO REAL INDEX
+    var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Sensor 1.2',
+                borderColor: '#FF9800',
+                backgroundColor: '#FF9800'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '(Lux)'
+                    },
+                    beginAtZero: true,
+                },
+            },
+        }
+    })
+
+
+    var paginacao = {};
+    var tempo = {};
+
+
+    function obterDados(grafico, endpoint) {
+        fetch('http://localhost:3300/sensores/' + endpoint)
+            .then(response => response.json())
+            .then(valores => {
+                if (paginacao[endpoint] == null) {
+                    paginacao[endpoint] = 0;
+                }
+                if (tempo[endpoint] == null) {
+                    tempo[endpoint] = 0;
+                }
+
+
+                var ultimaPaginacao = paginacao[endpoint];
+                paginacao[endpoint] = valores.length;
+                valores = valores.slice(ultimaPaginacao);
+
+
+                valores.forEach((valor) => {
+                    if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                        grafico.data.labels.shift();
+                        grafico.data.datasets[0].data.shift();
+                    }
+
+
+                    grafico.data.labels.push(tempo[endpoint]++);
+                    grafico.data.datasets[0].data.push(parseFloat(valor));
+                    grafico.update();
+                });
+            })
+            .catch(error => console.error('Erro ao obter dados:', error));
+    }
+
+
+    setInterval(() => {
+        obterDados(sensorAnalogico, 'analogico')
+    }, 1000);
+
+    // ATE AQUI O GRAFICO
+</script>
+
+<script>
+    const myChart = new Chart(
+        document.getElementById('myChartA'),
+        configA
+
+    )
+
+    const myChart2 = new Chart(
+        document.getElementById('myChartB'),
+        configB
+    )
+</script>

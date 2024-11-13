@@ -205,6 +205,7 @@ function cadastrar() {
   var senhaVar = 'Lumini@100';
   var telefoneVar = Telefone;
   var tipoVar = TipoUser;
+  var fkEmpresaVar = sessionStorage.FK_EMPRESA;
 
   
   // Enviando o valor da nova input
@@ -220,7 +221,8 @@ function cadastrar() {
       emailServer: emailVar,
       telefoneServer: telefoneVar,
       senhaServer: senhaVar,
-      tipoServer: tipoVar
+      tipoServer: tipoVar,
+      fkEmpresaServer: fkEmpresaVar
     }),
   })
     .then(function (resposta) {

@@ -1,0 +1,424 @@
+/* Aplicando a nova fonte padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif; /* Fonte padrão atualizada para 'Lato' */
+}
+
+/* Ajustando a fonte original apenas nas classes especificadas */
+.MenuLogo,
+.class_Home2 {
+    font-family: 'Lato', sans-serif; /* Mantendo 'Lato' em todas as classes */
+}
+
+body {
+    background-color: #FFFEFA;
+}
+
+nav {
+    background-color: #013220;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    box-shadow: 0px 0px 10px #0F1108;
+}
+
+.MenuLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.MenuLogo a {
+    display: inline-block;
+    position: relative;
+}
+
+.MenuLogo a img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.MenuLogo a:hover img {
+    border: 2px solid yellow;
+}
+
+.MenuLogo a:hover {
+    box-shadow: 0 0 10px 2px yellow;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+nav .class_LinksMenu {
+    width: 50%;
+}
+
+nav .class_LinksMenu ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    font-weight: 500;
+    font-size: 1.12rem;
+}
+
+nav .class_LinksMenu a {
+    text-decoration: none;
+    color: #FFFEFA;
+}
+
+nav .class_LinksMenu a:hover {
+    color: #FF9800;
+    font-weight: 700;
+}
+
+nav .class_BotoesMenu {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav .class_BotoesMenu a {
+    text-decoration: none;
+    color: #FF9800;    
+}
+
+nav .class_BotoesMenu button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #01322000;
+    font-size: 1.0rem;
+    border: 2.3px solid #FF9800;
+    color: #FF9800;
+    cursor: pointer;
+}
+
+nav .class_BotoesMenu button:hover a {
+    color: white; 
+}
+
+nav .class_BotoesMenu button:hover {
+    background-color: #FF9800;
+    color: #FFFEFA;
+    box-shadow: 0px 0px 10px #FF9800;
+}
+
+.class_ImgInicial {
+    background-image: url(../Imagens/imgHOMElupulo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 440px;
+}
+
+.class_ImgInicial h3 {
+    color: #FFFEFA;
+    width: 400px;
+    font-size: 68px;
+    margin-left: 20%;
+    padding-top: 75px;
+}
+
+.class_ImgInicial span {
+    color: #FF9800;
+    font-style: italic;
+    text-shadow: 0px 0px 60px #eaff00;
+}
+
+/* PARTE1 - SOBRE NÓS */
+.PARTE1 {
+    width: 80%;
+    margin: auto;
+}
+
+main .class_SobreNosHOME {
+    display: flex;
+    justify-content: space-between;
+    margin: 80px;
+}
+
+main .class_SobreNosHOME .class_ConteudoSobreNosHOME {
+    width: 46%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.class_ImgSobreNosHOME {
+    width: 46%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.class_ImgSobreNosHOME2 {
+    width: 46%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+main .class_ConteudoSobreNosHOME h2 {
+    font-size: 40px;
+    color: #013220;
+}
+
+main .class_ConteudoSobreNosHOME p {
+    font-size: 20px;
+    padding: 20px 0px;
+    text-align: justify;
+    color: #0F1108;
+}
+
+/* Estilo de botão na PARTE1 */
+/* Estilo de botão na PARTE1 */
+.PARTE1 button {
+    font-size: 20px;
+    padding: 13px 25px;
+    border-radius: 5px;
+    border: 2.3px solid orange; /* Borda laranja */
+    background-color: white;    /* Fundo branco */
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;  /* Transição suave */
+}
+
+.PARTE1 button:hover {
+    background-color: orange; /* Fundo laranja */
+    border: 2.3px solid orange; /* Borda laranja */
+    box-shadow: 0px 0px 10px #FF9800;
+}
+
+/* Estilo padrão para os links dentro dos botões */
+.sem-sublinhado {
+    text-decoration: none; /* Remove o sublinhado */
+    color: orange;         /* Define o texto laranja */
+    transition: all 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.PARTE1 button:hover .sem-sublinhado {
+    color: white; /* Altera para branco ao passar o mouse sobre o botão */
+}
+main .class_ImgSobreNosHOME img,
+main .class_ImgSobreNosHOME2 img {
+    width: 85%;
+}
+
+/* PARTE2 - SIMULADOR FINANCEIRO */
+.PARTE2 {
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #013220;
+}
+
+.class_SimuladorHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PARTE2 h2 {
+    font-size: 40px;
+    color: #FFFEFA;
+    margin: 60px 0px;
+}
+
+.class_ContainerCardSimuladorHome {
+    display: flex;
+    justify-content: space-around;
+}
+
+.class_CardSimuladorHome {
+    width: 28%;
+    height: 340px;
+    padding: 0px 30px;
+    background-color: #90d26d00;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 6px solid #FFFEFA;
+    transition: all 0.3s ease;
+}
+
+.class_CardSimuladorHome:hover {
+    background-color: #90d26d;
+    border: none;
+    box-shadow: 0px 0px 10px #90d26d;
+    transform: scale(1.05);
+}
+
+.class_CardSimuladorHome img {
+    height: 35%;
+    margin-bottom: 30px;
+}
+
+.class_CardSimuladorHome p {
+    font-size: 20px;
+    text-align: center;
+    color: #FFFEFA;
+}
+
+/* Estilo de botão na PARTE2 */
+.PARTE2 button {
+    font-size: 20px;
+    padding: 13px 25px;
+    border-radius: 5px;
+    border: 2.3px solid orange; /* Borda laranja */
+    color: orange;              /* Texto laranja */
+    background-color: #013220;  /* Fundo escuro */
+    font-weight: 700;
+    cursor: pointer;
+    margin: 30px 0px 60px 0px;
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+.PARTE2 button:hover {
+    background-color: orange; /* Fundo laranja */
+    color: white;             /* Texto branco */
+    border: 2.3px solid orange; /* Borda laranja */
+    box-shadow: 0px 0px 10px #FF9800;
+}
+
+/* Estilo padrão para os links dentro dos botões na PARTE2 */
+.PARTE2 .sem-sublinhado {
+    text-decoration: none; /* Remove o sublinhado */
+    color: orange;         /* Define o texto laranja */
+    transition: all 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.PARTE2 button:hover .sem-sublinhado {
+    color: white; /* Altera para branco ao passar o mouse sobre o botão */
+}
+
+/* PARTE3 - CONTATO */
+.PARTE3 {
+    width: 80%;
+    margin: auto;
+    color: #0F1108;
+}
+
+.PARTE3 h2 {
+    font-size: 40px;
+    color: #013220;
+    margin: 60px 0px 10px 0px;
+}
+
+.PARTE3 p {
+    font-size: 20px;
+}
+
+.class_CardsContatoHome {
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.class_CardsContatoHome h2,
+p {
+    font-size: 18px;
+    margin: 5px 0px;
+}
+
+.class_card2ContatoHome {
+    border-left: 3px solid #FF9800;
+    padding-left: 10%;
+}
+
+.class_card1ContatoHom {
+    padding-right: 10%;
+}
+
+/* Estilo de botão na PARTE3 */
+.PARTE3 button {
+    font-size: 20px;
+    padding: 13px 25px;
+    border-radius: 5px;
+    border: 2.3px solid orange; /* Borda laranja */
+    color: orange;              /* Texto laranja */
+    background-color: white;    /* Fundo branco */
+    font-weight: 700;
+    cursor: pointer;
+    margin: 30px 0px 60px 0px;
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+.PARTE3 button:hover {
+    background-color: orange; /* Fundo laranja */
+    color: white;             /* Texto branco */
+    border: 2.3px solid orange; /* Borda laranja */
+    box-shadow: 0px 0px 10px #FF9800;
+}
+
+/* Estilo padrão para os links dentro dos botões na PARTE3 */
+.PARTE3 .sem-sublinhado {
+    text-decoration: none; /* Remove o sublinhado */
+    color: orange;         /* Define o texto laranja */
+    transition: all 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.PARTE3 button:hover .sem-sublinhado {
+    color: white; /* Altera para branco ao passar o mouse sobre o botão */
+}
+
+/* CLASSE PARA REMOVER O SUBLINHADO NA TAG a DE TODOS OS BOTÕES */
+/* Estilo padrão para os links dentro dos botões */
+.sem-sublinhado {
+    text-decoration: none; /* Remove o sublinhado */
+    color: orange;         /* Define o texto laranja */
+    transition: all 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.sem-sublinhado:hover {
+    color: white; /* Altera para branco ao passar o mouse */
+}
+
+
+/* footer */
+
+.class_Footer {
+    background-color: #013220;
+    border-bottom: 2px solid #013220;
+    display: flex;
+    justify-content: center;
+}
+
+.class_Footer .class_Container {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.class_Footer .class_Container img {
+    width: 11%;
+}
+
+.class_Footer .class_Container p {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0; 
+    width: 80%;
+    color: white;
+    font-size: 18px;
+}
+
+.class_Footer .class_Container div {
+    justify-content: space-evenly;
+    display: flex;
+    width: 199px;
+    align-items: center;
+}

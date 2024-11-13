@@ -20,7 +20,7 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
+                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].fkUsuario_Empresa)
                             .then((resultadoAquarios) => {
                                 if (resultadoAquarios.length > 0) {
                                     res.json({
@@ -28,7 +28,7 @@ function autenticar(req, res) {
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha,
-                                        aquarios: resultadoAquarios
+                                        fkEmpresa: resultadoAutenticar[0].fkUsuario_Empresa
                                     });
                                 } else {
                                     res.status(204).json({ aquarios: [] });
@@ -58,6 +58,7 @@ function cadastrar(req, res) {
     var senha = req.body.senhaServer;
     var telefone = req.body.telefoneServer;
     var tipo = req.body.tipoServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -69,7 +70,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, telefone, tipo)
+        usuarioModel.cadastrar(fkEmpresa, nome, email, senha, telefone, tipo)
             .then(
                 function (resultado) {
                     res.json(resultado);
