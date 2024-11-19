@@ -54,9 +54,9 @@ CREATE TABLE usuario (
 		CHECK (email LIKE '%@%' AND email LIKE '%.%'),
         -- checando se o formato de email é válido
     telefone VARCHAR(16),
-    tipoUsuario VARCHAR(11) NOT NULL,
+    tipoUsuario VARCHAR(13) NOT NULL,
 		CONSTRAINT chkTipoUsuario
-		CHECK (tipoUsuario IN('Responsável', 'Comum', 'Convidado')), /*
+		CHECK (tipoUsuario IN('Administrador', 'Comum', 'Convidado')), /*
 			permissionamento -> 
             responsável (pela empresa): adicionar/remover usuários, alterar filtros dos dash, visualizar dash;
 			comum: alterar filtros dos dash, visualizar dash; 
@@ -97,6 +97,18 @@ CREATE TABLE sensor (
 		REFERENCES talhao(idTalhao)
 ) AUTO_INCREMENT 10000;
 
+CREATE TABLE filtragemDados (
+	idFiltragemDados INT PRIMARY KEY AUTO_INCREMENT,
+    dia DATE,
+    qtdHorasLuz DECIMAL(4,2),
+    statusDia VARCHAR(12),
+		CONSTRAINT chkStatusDia
+		CHECK (statusDia IN('Ideal', 'Insuficiente', 'Excesso'))
+        -- Insuficiente: menos que 14
+        -- Excesso: mais que 16
+        -- Ideal: entre 14 e 16
+)AUTO_INCREMENT = 10000;
+
 CREATE TABLE dadosSensor (
 	idDadosSensor INT AUTO_INCREMENT,
     fkDadosSensor_Sensor INT,
@@ -120,18 +132,6 @@ CREATE TABLE dadosSensor (
     		CONSTRAINT fkReFiltragemDados_DadosSensor FOREIGN KEY (fkDadosSensor_FiltragemDados)
 			REFERENCES filtragemDados(idFiltragemDados)
 );
-
-CREATE TABLE filtragemDados (
-	idFiltragemDados INT PRIMARY KEY AUTO_INCREMENT,
-    dia DATE,
-    qtdHorasLuz DECIMAL(4,2),
-    statusDia VARCHAR(12),
-		CONSTRAINT chkStatusDia
-		CHECK (statusDia IN('Ideal', 'Insuficiente', 'Excesso'))
-        -- Insuficiente: menos que 14
-        -- Excesso: mais que 16
-        -- Ideal: entre 14 e 16
-)AUTO_INCREMENT = 10000;
 
 INSERT INTO filtragemDados (dia, qtdHorasLuz, statusDia) VALUES
 	('2024-09-08', 13.00, 'Insuficiente'),
@@ -192,18 +192,18 @@ INSERT INTO sensor (statusFuncionamento, dtInstalacao, dtUltimaManutencao, fkSen
 	('Ativo', '2024-09-30', NULL, 105),
 	('Ativo', '2024-09-30', NULL, 106);
 
-INSERT INTO dadosSensor (fkDadosSensor_Sensor, qtdLuz, statusLuminosidade, alerta, momentoCaptura, fkDadosSensor_FiltragemDados) VALUES
-	(10000, 35.50, 'Satisfatória', 'Não', '2024-09-08 08:00:00', 10000),
-	(10001, 15.10, 'Baixa', 'Não', '2024-09-08 17:00:00', 10001),
-	(10002, 0.50, 'Crítica', 'Sim', '2024-09-11 23:00:00', 10002),
-	(10003, 25.80, 'Satisfatória', 'Não', '2024-09-13 07:00:00', 10003),
-	(10003, 25.90, 'Satisfatória', 'Não', '2024-09-13 07:00:01', 10003),
-	(10004, 45.10, 'Satisfatória', 'Não', '2024-09-25 13:00:00', 10004),
-	(10004, 30.90, 'Satisfatória', 'Não', '2024-09-25 14:00:00', 10004),
-	(10005, 12.10, 'Baixa', 'Não', '2024-09-26 08:00:00', 10005),
-	(10006, 8.70, 'Baixa', 'Não', '2024-09-26 18:00:00', 10006),
-	(10007, 50.25, 'Satisfatória', 'Não', '2024-10-04 12:00:00', 10007),
-    (10008, 16.00, 'Baixa', 'Sim', '2024-10-05 18:00:00', 100008);
+INSERT INTO dadosSensor (fkDadosSensor_Sensor, qtdLuz, statusLuminosidade, alerta, momentoCaptura) VALUES
+	(10000, 35.50, 'Satisfatória', 'Não', '2024-09-08 08:00:00'),
+	(10001, 15.10, 'Baixa', 'Não', '2024-09-08 17:00:00'),
+	(10002, 0.50, 'Crítica', 'Sim', '2024-09-11 23:00:00'),
+	(10003, 25.80, 'Satisfatória', 'Não', '2024-09-13 07:00:00'),
+	(10003, 25.90, 'Satisfatória', 'Não', '2024-09-13 07:00:01'),
+	(10004, 45.10, 'Satisfatória', 'Não', '2024-09-25 13:00:00'),
+	(10004, 30.90, 'Satisfatória', 'Não', '2024-09-25 14:00:00'),
+	(10005, 12.10, 'Baixa', 'Não', '2024-09-26 08:00:00'),
+	(10006, 8.70, 'Baixa', 'Não', '2024-09-26 18:00:00'),
+	(10007, 50.25, 'Satisfatória', 'Não', '2024-10-04 12:00:00'),
+    (10008, 16.00, 'Baixa', 'Sim', '2024-10-05 18:00:00');
     
 SELECT 
 	filial.nomeFantasia AS Filial,
