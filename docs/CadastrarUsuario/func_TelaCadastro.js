@@ -14,6 +14,8 @@ var idUser = 0
 
 function validacoes() {
 
+  
+
     Email = inp_email.value;
     Telefone = inp_telefone.value;
     Nome = inp_nome.value;

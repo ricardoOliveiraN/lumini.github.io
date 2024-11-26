@@ -12,16 +12,16 @@ function listar() {
   return database.executar(instrucaoSql);
 }
 
-function buscarPorCnpj(cnpj) {
-  var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
+function cadastrarEmpresa(NomeFantasia, cnpj, TamanhoEmpresa, QuantidadeHectare, StatusCadastro, DataCriacao,fkEmpresaEndereco) {
+  var instrucaoSql = `INSERT INTO empresa (nomeFantasia, cnpj, tamanhoEmpresa, qtdHectares, statusCadastro, dtCriacao, fkEmpresa_Endereco) VALUES ('${NomeFantasia}', '${cnpj}', '${TamanhoEmpresa}', '${QuantidadeHectare}', '${StatusCadastro}', '${DataCriacao}', '${fkEmpresaEndereco}') `;
 
   return database.executar(instrucaoSql);
 }
 
-function cadastrar(razaoSocial, cnpj) {
-  var instrucaoSql = `INSERT INTO empresa (razao_social, cnpj) VALUES ('${razaoSocial}', '${cnpj}')`;
+function cadastrarEndereco(cep, uf, cidade, logradouro, numero, complemento) {
+  var instrucaoSql = `INSERT INTO endereco (cep, uf, cidade, logradouro, numero, complemento) VALUES ('${cep}', '${uf}', '${cidade}', '${logradouro}', '${numero}', '${complemento}')`;
 
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+module.exports = { cadastrarEmpresa, buscarPorId, cadastrarEndereco, listar };
