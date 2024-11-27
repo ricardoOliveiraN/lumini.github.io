@@ -21,8 +21,9 @@ function empresasAtivas(){
 
 function quantidadeEmpresaEstado(){
 
+    var Estado = inp_uf;
 
-    fetch(`/dashFunc/empresasAtivas/${cnpjEmpresa}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/dashFunc/enderecoEstado/${Estado}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -49,9 +50,9 @@ function quantidadeEmpresaEstado(){
 }
 
 
-function quantidadeFuncionarios(idEmpresa){
+function quantidadeFuncionarios(dEmpresa){
 
-    fetch(`/dashFunc/qtdFuncionarios/${idEmpresa}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/dashFunc/qtdFuncionarios`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -77,7 +78,28 @@ function quantidadeFuncionarios(idEmpresa){
 }
 
 function qtdSensoresEmpresa(){
+    fetch(`/dashFunc/qtdSensores`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
 
+                
+
+                alert('Deu certo obtenção de qtdFuncionarios');
+
+                quantidadeFuncionarios(idEmpresa)
+
+
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
 }
 
 

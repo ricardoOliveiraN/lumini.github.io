@@ -10,17 +10,17 @@ function buscarEmpresasAtivas() {
     return database.executar(instrucaoSql);
 }
 
-function buscarEmpresasCnpj(cnpj) {
+function buscarEnderecoEstado(Estado) {
 
-    var instrucaoSql = `SELECT idEmpresa FROM empresa WHERE cnpj = '${cnpj}';`;
+    var instrucaoSql = `SELECT COUNT(*) FROM empresa JOIN endereco ON fkEmpresa_Endereco = idendereco WHERE uf = '${Estado}';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function buscarQTDFunc(idEmpresa){
+function buscarQTDFunc(){
     
-    var instrucaoSql = `SELECT COUNT(idUsuario) FROM usuario WHERE fkUsuario_Empresa = '${idEmpresa}';`;
+    var instrucaoSql = `SELECT COUNT(idUsuario) FROM usuario;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -31,6 +31,6 @@ function buscarQTDFunc(idEmpresa){
 
 module.exports = {
     buscarEmpresasAtivas,
-    buscarEmpresasCnpj,
+    buscarEnderecoEstado,
     buscarQTDFunc
 }

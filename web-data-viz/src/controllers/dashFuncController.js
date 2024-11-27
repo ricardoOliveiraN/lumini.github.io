@@ -23,10 +23,10 @@ function buscarEmpresasAtivas(req, res) {
 
 }
 
-function buscarEmpresasEstado(req,res){
+function buscarEnderecoEstado(req,res){
 
-    var cnpj = req.parms.cnpjEmpresa;
-    dashFuncModel.buscarEmpresasCnpj(cnpj)
+    var Estado = req.parms.Estado;
+    dashFuncModel.buscarEnderecoEstado(Estado)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -46,9 +46,9 @@ function buscarEmpresasEstado(req,res){
 
 }
 
-function buscarQTDFunc(req,res){
-    var idEmpresa = req.parms.idEmpresa;
-    dashFuncModel.buscarQTDFunc(idEmpresa)
+function buscarQuantidadeFuncionarios(req,res){
+    
+    dashFuncModel.buscarQTDFunc()
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -67,11 +67,33 @@ function buscarQTDFunc(req,res){
 
 }
 
+function buscarQuantidadeSensores(req,res){
+
+    dashFuncModel.buscarQTDFunc()
+        .then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado! Das empresas");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+
+}
 
 
 
 module.exports = {
     buscarEmpresasAtivas,
-    buscarEmpresasCnpj,
-    buscarQTDFunc
+    buscarEnderecoEstado,
+    buscarQuantidadeFuncionarios,
+    buscarQuantidadeSensores
 }
