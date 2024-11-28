@@ -263,7 +263,7 @@ nav .class_BotoesMenu button:hover {
     background-color: #FFFEFA;
     /* box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2); */
     /* margin: 10px 45.5%; */
-    padding: 30px 20px;
+    padding: 40px 5px;
     border-radius: 8px;
     /* box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.2); */
 }
@@ -314,8 +314,8 @@ nav .class_BotoesMenu button:hover {
 
 .class_kpiNumero {
     border: 1px solid black;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -353,11 +353,15 @@ nav .class_BotoesMenu button:hover {
     background-color: #fffefa;
     border-radius: 8px;
     /* margin: 1%; */
-    /* box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
     padding: 8px 12px;
-    border: 0.5px solid #0132207a;
+    /* border: 0.5px solid #0132207a; */
 
     /* order: 3; */
+
+}
+.class_sensorAlertas tr{
+    height: 25px;
 }
 
 .class_Voltar {
