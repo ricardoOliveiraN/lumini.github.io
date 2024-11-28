@@ -7,7 +7,7 @@ function cadastrarEmpresa(req, res) {
   var QuantidadeHectare = req.body.QuantidadeHectareServer;
   var StatusCadastro = req.body.StatusCadastroServer;
   var DataCriacao = req.body.DataCriacaoServer;
-  var fkEmpresaEndereco = req.body.fkEmpresaEnderecoServer;
+
 
   if (NomeFantasia == undefined) {
     res.status(400).send("Seu NomeFantasia está undefined!");
@@ -21,8 +21,7 @@ function cadastrarEmpresa(req, res) {
     res.status(400).send("Sua StatusCadastro está undefined!");
   } else if (DataCriacao == undefined) {
     res.status(400).send("Sua DataCriacao está undefined!");
-  } else if (fkEmpresaEndereco == undefined) {
-    res.status(400).send("Sua fkEmpresaEndereco está undefined!");
+  
   }
 
 
@@ -30,7 +29,7 @@ function cadastrarEmpresa(req, res) {
   else {
 
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    empresaModel.cadastrarEmpresa(NomeFantasia, cnpj, TamanhoEmpresa, QuantidadeHectare, StatusCadastro, DataCriacao,fkEmpresaEndereco)
+    empresaModel.cadastrarEmpresa(NomeFantasia, cnpj, TamanhoEmpresa, QuantidadeHectare, StatusCadastro, DataCriacao)
       .then(
         function (resultado) {
           res.json(resultado);
@@ -69,6 +68,7 @@ function cadastrarEndereco(req, res) {
   var logradouro = req.body.logradouroServer;
   var numero = req.body.numeroServer;
   var complemento = req.body.complementoServer;
+  var fkEmpresa = req.body.fkEmpresaServer;
 
   if (cep == undefined) {
     res.status(400).send("Seu cep está undefined!");
@@ -87,7 +87,7 @@ function cadastrarEndereco(req, res) {
   else {
 
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    empresaModel.cadastrarEndereco(cep, uf, cidade, logradouro, numero, complemento)
+    empresaModel.cadastrarEndereco(cep, uf, cidade, logradouro, numero, complemento, fkEmpresa)
       .then(
         function (resultado) {
           res.json(resultado);
@@ -105,9 +105,23 @@ function cadastrarEndereco(req, res) {
   }
 }
 
+
+function buscarID(req, res){
+
+  var cnpj = req.params.cnpj;
+
+  empresaModel.buscarId(cnpj).then((resultado) => {
+    res.status(200).json(resultado);
+  });
+
+
+}
+
+
 module.exports = {
   cadastrarEmpresa,
   buscarPorId,
   cadastrarEndereco,
   listar,
+  buscarID
 };

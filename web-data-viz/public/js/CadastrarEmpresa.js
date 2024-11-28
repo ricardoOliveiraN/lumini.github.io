@@ -7,9 +7,10 @@ function cadastrarEndereco() {
     var Logradouro = inp_logradouro.value;
     var Numero = Number(inp_numero.value);
     var Complemento = inp_complemento.value;
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
 
     var EnderecoNotNull = CEP != '' && UF != '' && Cidade != '' && Logradouro != '' && Numero != '';
-
+    alert('entrei aqui')
     if (EnderecoNotNull) {
 
         if (Complemento == '') {
@@ -29,17 +30,17 @@ function cadastrarEndereco() {
                 cidadeServer: Cidade,
                 logradouroServer: Logradouro,
                 numeroServer: Numero,
-                complementoServer: Complemento
+                complementoServer: Complemento,
+                fkEmpresaServer: fkEmpresa
             }),
         })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    cardErro.style.display = "block";
-
-                    var idEndereco = resposta[0].insertId;
-                    sessionStorage.ID_ENDERECO = idEndereco;
+                    
+                    alert('Deu certo no endereco')
+                    
 
 
                 } else {
@@ -48,7 +49,7 @@ function cadastrarEndereco() {
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                finalizarAguardar();
+         
             });
 
         return false;
@@ -57,23 +58,23 @@ function cadastrarEndereco() {
     }
 }
 
-
+/*Cadastrar empresa, pegar o */
 
 function cadastrarEmpresa() {
 
     /*Tabela Empresa*/
     var NomeFantasia = inp_nomeFantasia.value;
     var CNPJ = Number(inp_cnpj.value);
-    var TamanhoEmpresa = Number(inp_tamanhoEmpresa.value);
+    var TamanhoEmpresa = inp_tamanhoEmpresa.value;
     var QuantidadeHectare = Number(inp_qtdHectare.value);
     var StatusCadastro = inp_statusCadastro.value;
     var DataCriacao = inp_dataCriacao.value;
 
 
-    var fkEmpresaEndereco = sessionStorage.ID_ENDERECO;
 
 
-    var nenhumNull = NomeFantasia != '' && CNPJ != '' && TamanhoEmpresa != '' && QuantidadeHectare != '' && StatusCadastro != '' && DataCriacao != '' && fkEmpresaEndereco != ''
+
+    var nenhumNull = NomeFantasia != '' && CNPJ != '' && TamanhoEmpresa != '' && QuantidadeHectare != '' && StatusCadastro != '' && DataCriacao != '' 
 
     if (nenhumNull) {
 
@@ -90,17 +91,18 @@ function cadastrarEmpresa() {
                 TamanhoEmpresaServer: TamanhoEmpresa,
                 QuantidadeHectareServer: QuantidadeHectare,
                 StatusCadastroServer: StatusCadastro,
-                DataCriacaoServer: DataCriacao,
-                fkEmpresaEnderecoServer: fkEmpresaEndereco        
+                DataCriacaoServer: DataCriacao       
             }),
         })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    cardErro.style.display = "block";
+                
 
                     alert('Deu certo!! Inserir Empresa')
+
+                    buscarIDEmpresa(CNPJ);
 
 
                 } else {
@@ -109,7 +111,7 @@ function cadastrarEmpresa() {
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                finalizarAguardar();
+           
             });
 
         return false;
@@ -121,4 +123,31 @@ function cadastrarEmpresa() {
 
 }
 
+function buscarIDEmpresa(cnpj){
 
+    fetch(`/empresas/buscarID/${cnpj}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+
+
+                var valor = resposta[0].idEmpresa;
+
+                sessionStorage.ID_EMPRESA = valor;
+
+                alert(valor)
+                
+
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+
+}
