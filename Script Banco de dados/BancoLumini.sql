@@ -2,20 +2,39 @@ CREATE DATABASE lumini;
 
 USE lumini;
 
-CREATE TABLE endereco (
-	idEndereco INT PRIMARY KEY AUTO_INCREMENT,
-    cep VARCHAR(9),
-    uf CHAR(2),
-		CONSTRAINT chkUF
-        CHECK (uf IN(
-        'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 
-        'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SE', 'SP', 'TO')),
-        -- checando para apenas estados brasileiros válidos
-    cidade VARCHAR(45),
-    logradouro VARCHAR(45),
-    numero VARCHAR(8),
-    complemento VARCHAR(45)
-);
+-- SELECT filtragemDados.qtdHorasLuz, talhao.numero 
+-- 	FROM filtragemDados 
+-- 	JOIN dadosSensor 
+-- 		ON idFiltragemDados = fkDadosSensor_FiltragemDados 
+-- 	JOIN sensor 
+-- 		ON idSensor = fkDadosSensor_Sensor 
+-- 	JOIN talhao 
+-- 		ON idTalhao = fkSensor_Talhao 
+-- 	WHERE filtragemDados.dia = '2024-11-27' AND talhao.fkTalhao_Empresa = '2';
+        
+-- SELECT filtragemDados.qtdHorasLuz, sensor.idSensor
+-- 	FROM filtragemDados
+-- 	JOIN dadosSensor
+-- 		ON idFiltragemDados = fkDadosSensor_FiltragemDados
+-- 	JOIN sensor
+-- 		ON idSensor = fkDadosSensor_Sensor
+-- 	JOIN talhao
+-- 		ON idTalhao = fkSensor_Talhao
+-- 	WHERE filtragemDados.dia = '2024-11-27' AND talhao.fkTalhao_Empresa = '2' AND talhao.numero = '2';
+
+-- SELECT filtragemDados.qtdHorasLuz, filtragemDados.dia 
+-- 	FROM filtragemDados 
+-- 	JOIN dadosSensor
+-- 		ON idFiltragemDados = fkDadosSensor_FiltragemDados
+-- 	JOIN sensor
+-- 		ON idSensor = fkDadosSensor_Sensor
+-- 	JOIN talhao
+-- 		ON idTalhao = fkSensor_Talhao
+-- 	WHERE idSensor = 10000
+-- 	LIMIT 14;
+
+-- INSERT INTO endereco (idEndereco, cep, uf, cidade, logradouro, numero, complemento) VALUES
+-- 	(1, );
 
 CREATE TABLE empresa (
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,10 +56,25 @@ CREATE TABLE empresa (
 	fkEmpresa_EmpresaSede INT,
 		CONSTRAINT fkReEmpresa_EmpresaSede FOREIGN KEY (fkEmpresa_EmpresaSede)
 		REFERENCES empresa(idEmpresa),
-	fkEmpresa_Endereco INT,
-		CONSTRAINT fkReEmpresa_Endereco 
-        FOREIGN KEY (fkEmpresa_Endereco) 
-        REFERENCES endereco (idEndereco)
+);
+
+CREATE TABLE endereco (
+	idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+    cep VARCHAR(9),
+    uf CHAR(2),
+		CONSTRAINT chkUF
+        CHECK (uf IN(
+        'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 
+        'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SE', 'SP', 'TO')),
+        -- checando para apenas estados brasileiros válidos
+    cidade VARCHAR(45),
+    logradouro VARCHAR(45),
+    numero VARCHAR(8),
+    complemento VARCHAR(45),
+	fkEndeco_Empresa INT,
+		CONSTRAINT fkReEndereco_Empresa
+        FOREIGN KEY (fkEndereco_Empresa) 
+        REFERENCES empresa (idEmpresa)
 );
 
 CREATE TABLE usuario (
