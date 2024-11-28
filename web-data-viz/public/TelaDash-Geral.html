@@ -16,7 +16,7 @@
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-<body>
+<body onload="horasLuz()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -74,10 +74,12 @@
                         <canvas id="myChartA" style="position: relative; height: 45vh; width: 21.6vw;"></canvas>
                     </div>
                     <div class="class_talhoesGrafico class_talhoesGrafico2">
-                        <canvas id="myChartB" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                        <canvas id="myChartB"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
                     </div>
                     <div class="class_talhoesGrafico class_talhoesGrafico2">
-                        <canvas id="myChartC" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                        <canvas id="myChartC"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
                     </div>
                 </div>
             </div>
@@ -167,9 +169,11 @@
 </body>
 
 </html>
-
+<script src="./js/funcDashboards.js"></script>
 <script>
-
+    var qtdTalhoes = sessionStorage.TOTAL_TALHOES;
+    var totalHoras = sessionStorage.TOTAL_HORAS;
+    
     const labelsA = [
         'Talhão 1',
         'Talhão 2',
