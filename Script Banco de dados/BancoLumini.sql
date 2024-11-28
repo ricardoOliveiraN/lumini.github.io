@@ -2,38 +2,6 @@ CREATE DATABASE lumini;
 
 USE lumini;
 
-SELECT filtragemDados.qtdHorasLuz, talhao.numero 
-	FROM filtragemDados 
-	JOIN dadosSensor 
-		ON idFiltragemDados = fkDadosSensor_FiltragemDados 
-	JOIN sensor 
-		ON idSensor = fkDadosSensor_Sensor 
-	JOIN talhao 
-		ON idTalhao = fkSensor_Talhao 
-	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = '2';
-        
-SELECT filtragemDados.qtdHorasLuz, sensor.idSensor
-	FROM filtragemDados
-	JOIN dadosSensor
-		ON idFiltragemDados = fkDadosSensor_FiltragemDados
-	JOIN sensor
-		ON idSensor = fkDadosSensor_Sensor
-	JOIN talhao
-		ON idTalhao = fkSensor_Talhao
-	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = '2' AND talhao.numero = '2';
-
-SELECT filtragemDados.qtdHorasLuz, filtragemDados.dia 
-	FROM filtragemDados 
-	JOIN dadosSensor
-		ON idFiltragemDados = fkDadosSensor_FiltragemDados
-	JOIN sensor
-		ON idSensor = fkDadosSensor_Sensor
-	JOIN talhao
-		ON idTalhao = fkSensor_Talhao
-	WHERE idSensor = 10000
-	LIMIT 14;
-	
-
 CREATE TABLE empresa (
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
     nomeFantasia VARCHAR(45),
@@ -153,8 +121,8 @@ CREATE TABLE dadosSensor (
         -- a luminosidade, vinda da voltagem, captada pelo sensor não deve ser negativa
 	statusLuminosidade VARCHAR(12),
 		CONSTRAINT chkStatusLuminosidade
-		CHECK (statusLuminosidade IN('Satisfatória', 'Baixa', 'Crítica')),
-        -- luminosidade -> crítica: abaixo de 0,2 lux; baixa: 0,2 - 30 lux; satisfatória 30 - 50 lux;
+		CHECK (statusLuminosidade IN('Satisfatória', 'Insuficiente', 'Excesso')),
+        -- luminosidade -> excesso: acima de 100.000 lux; insuficiente: 10.000 lux; satisfatória 10.000 - 100.000 lux;
     alerta CHAR(3),
 		CONSTRAINT chkAlerta
         CHECK (alerta IN('Sim', 'Não')),
@@ -195,7 +163,7 @@ INSERT INTO sensor (idSensor, statusFuncionamento, dtInstalacao, dtUltimaManuten
 	(10009, 'Ativo', '2024-11-28', NULL, 103),
 	(10010, 'Ativo', '2024-11-28', NULL, 103),
 	(10011, 'Ativo', '2024-11-28', NULL, 103);
-
+	
 INSERT INTO filtragemDados (idFiltragemDados, dia, qtdHorasLuz, statusDia) VALUES
 	(500000, '2024-12-03', 16, 'Ideal'), -- 1
 	(500001, '2024-12-03', 16, 'Ideal'), -- 1
@@ -209,21 +177,104 @@ INSERT INTO filtragemDados (idFiltragemDados, dia, qtdHorasLuz, statusDia) VALUE
 	(500009, '2024-12-03', 16, 'Ideal'), -- 4
 	(500010, '2024-12-03', 16, 'Ideal'), -- 4
 	(500011, '2024-12-03', 16, 'Ideal'); -- 4
-
+        
 INSERT INTO dadosSensor (idDadosSensor, fkDadosSensor_Sensor, qtdLuz, statusLuminosidade, alerta, momentoCaptura, fkDadosSensor_FiltragemDados) VALUES
 	(1000000, 10000, 25000, 'Satisfatória', 'Não', DEFAULT, 500000),
-	(1000001, 10001, 25000, 'Satisfatória', 'Não', DEFAULT, 500001),
+	(1000001, 10001, 8000, 'Insuficiente', 'Sim', DEFAULT, 500001),
 	(1000002, 10002, 25000, 'Satisfatória', 'Não', DEFAULT, 500002),
 	(1000003, 10003, 25000, 'Satisfatória', 'Não', DEFAULT, 500003),
-	(1000004, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500004),
+	(1000004, 10004, 122000, 'Excesso', 'Sim', DEFAULT, 500004),
 	(1000005, 10005, 25000, 'Satisfatória', 'Não', DEFAULT, 500005),
-	(1000006, 10006, 25000, 'Satisfatória', 'Não', DEFAULT, 500006),
+	(1000006, 10006, 9000, 'Insuficiente', 'Não', DEFAULT, 500006),
 	(1000007, 10007, 25000, 'Satisfatória', 'Não', DEFAULT, 500007),
 	(1000008, 10008, 25000, 'Satisfatória', 'Não', DEFAULT, 500008),
 	(1000009, 10009, 25000, 'Satisfatória', 'Não', DEFAULT, 500009),
-	(1000010, 10010, 25000, 'Satisfatória', 'Não', DEFAULT, 500010),
+	(1000010, 10010, 7000, 'Insuficiente', 'Sim', DEFAULT, 500010),
 	(1000011, 10011, 25000, 'Satisfatória', 'Não', DEFAULT, 500011);
+ 
+-- Grafico 1, pagina geral 
+SELECT min(filtragemDados.qtdHorasLuz), talhao.numero 
+	FROM filtragemDados 
+	JOIN dadosSensor 
+		ON idFiltragemDados = fkDadosSensor_FiltragemDados 
+	JOIN sensor 
+		ON idSensor = fkDadosSensor_Sensor 
+	JOIN talhao 
+		ON idTalhao = fkSensor_Talhao 
+	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = '2' AND filtragemDados.dia = '2024-12-03'
+    GROUP BY talhao.numero;
     
+-- Grafico 2, pagina geral
+SELECT talhao.numero, filtragemDados.statusDia, filtragemDados.qtdHorasLuz, dia FROM talhao
+	JOIN sensor
+		ON idTalhao = fkSensor_Talhao
+	JOIN dadosSensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN filtragemDados
+		ON fkDadosSensor_FiltragemDados = idFiltragemDados
+	WHERE filtragemDados.dia = '2024-12-03';
+        
+-- Gráfico 3, pagina Geral
+SELECT talhao.numero, dadosSensor.statusLuminosidade FROM talhao
+	JOIN sensor
+		ON idTalhao = fkSensor_Talhao
+	JOIN dadosSensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN filtragemDados
+		ON fkDadosSensor_FiltragemDados = idFiltragemDados
+	WHERE (dadosSensor.statusLuminosidade = 'Insuficiente' OR dadosSensor.statusLuminosidade = 'Excesso') AND filtragemDados.dia = '2024-12-03';
+
+-- Grafico 1, pagina Talhao
+SELECT filtragemDados.qtdHorasLuz, sensor.idSensor
+	FROM filtragemDados
+	JOIN dadosSensor
+		ON idFiltragemDados = fkDadosSensor_FiltragemDados
+	JOIN sensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN talhao
+		ON idTalhao = fkSensor_Talhao
+	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = '2' AND talhao.numero = '2';
+    
+-- Gráfico 2, pagina talhao
+SELECT sensor.idSensor, filtragemDados.statusDia, filtragemDados.qtdHorasLuz, dia FROM sensor
+	JOIN dadosSensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN filtragemDados
+		ON fkDadosSensor_FiltragemDados = idFiltragemDados
+	WHERE filtragemDados.dia = '2024-12-03';
+    
+-- Gráfico 3, pagina talhao
+SELECT sensor.idSensor, dadosSensor.statusLuminosidade FROM talhao
+	JOIN sensor
+		ON idTalhao = fkSensor_Talhao
+	JOIN dadosSensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN filtragemDados
+		ON fkDadosSensor_FiltragemDados = idFiltragemDados
+	WHERE (dadosSensor.statusLuminosidade = 'Insuficiente' OR dadosSensor.statusLuminosidade = 'Excesso') 
+		AND filtragemDados.dia = '2024-12-03'
+        AND talhao.numero = '1';
+
+-- Gráfico 2, pagina sensor
+SELECT filtragemDados.qtdHorasLuz, filtragemDados.dia 
+	FROM filtragemDados 
+	JOIN dadosSensor
+		ON idFiltragemDados = fkDadosSensor_FiltragemDados
+	JOIN sensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN talhao
+		ON idTalhao = fkSensor_Talhao
+	WHERE idSensor = 10000
+    ORDER BY filtragemDados.dia DESC
+	LIMIT 14;
+    
+-- 
+--
+--
+--     INSERÇÃO ANTIGA
+--
+--
+--
 --
 
 INSERT INTO filtragemDados (dia, qtdHorasLuz, statusDia) VALUES
