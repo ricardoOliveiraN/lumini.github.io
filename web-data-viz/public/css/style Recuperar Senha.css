@@ -45,7 +45,8 @@ input::placeholder {
 .class_login {
     width: 50%;
     height: 100vh;
-    background-image: url('../imagens/fundo-lupulo.jpg');
+    filter: brightness(0.5);
+    background-image: url(../Imagens/fundoEsquerdo.jpeg);
     background-size: cover;
     position: fixed;
     z-index: 1;
@@ -68,7 +69,8 @@ input::placeholder {
 }
 
 .class_ideal {
-    color: #FF9800;
+    background-color: #FF9800;
+    color: #ffffff;
     text-shadow: 0px 0px 60px yellow;
     border-radius: 5px;
     width: 200px;
@@ -86,7 +88,7 @@ input::placeholder {
     height: 100vh;
     display: flex;
     justify-content: center;
-    margin: 0px 0px 0px 94vh;
+    margin: 0px 0px 0px 85vh;
 }
 
 .class_home2 {
@@ -129,55 +131,56 @@ input::placeholder {
 }
 
 
-.class_registro2 {
-    display: flex; 
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center;
-}
-
-#lbl_signin {
-    font-size: 40px;
-    font-weight: 800;
-    margin: 0px 0px 40px 0px;
-}
-
-.class_olhos {
+.recuperar-senha {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 250px;
+    position: relative;
+    left: 60px;
 }
 
-.class_olhos input {
-    position: fixed;
-    margin: 60px 0px 10px -200px;
+.recuperar-senha h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
 }
 
-.class_imagemOlho img {
-    position: fixed;
-    width: 30px;
-    margin: 10px 0px 0px 150px;
-    opacity: 0.7;   
-    cursor: pointer;
+.mensagem-recuperacao {
+    width: 400px;
+    margin-bottom: 20px;
+    align-self: flex-start;
+    margin-left: 15px;
 }
 
-#lbl_esqueceu {
-    margin: 55px 0px 0px 260px;
+.mensagem-recuperacao span {
     font-size: 16px;
-    cursor: pointer;
+    font-weight: 400;
     color: white;
-    font-weight: 600;
-    text-decoration: underline;
-    opacity: 0.9;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
 }
-#btn_acessar {
+input {
+    border-radius: 15px; 
+    width: 400px;
+    height: 50px; 
+    margin-bottom: 40px;
+    font-size: 18px;
+    border: 1px solid #ccc; 
+    padding: 10px;
+}
+
+button {
     background-color: #FF9800;
     color: white;
     height: 60px;
-    width: 200px;
-    border-radius: 5px;
-    margin: 35px 0px 20px 0px;
+    width: 280px;
+    border-radius: 15px;
     font-weight: 800;
     font-size: 20px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 .class_NovoCadastro {
@@ -199,109 +202,3 @@ input::placeholder {
     align-items: center;
     justify-content: center;
 }
-
-/* TELA CADASTRO */
-.class_TelaCadastro {
-    display: flex;
-}
-
-.class_signup {
-    width: 50%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.class_registro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#lbl_signup {
-    font-size: 40px;
-    font-weight: 800;
-    margin: 0px 0px 40px 0px;
-}
-
-#btn_cadastrar {
-    background-color: #FF9800;
-    color: white;
-    height: 60px;
-    width: 200px;
-    border-radius: 5px;
-    font-weight: 800;
-    font-size: 20px;
-    margin: 0px 0px 10px 0px;
-}
-
-#lbl_possui {
-    font-size: 20px;
-}
-
-#link_login {
-    text-decoration: underline;
-    cursor: pointer;
-    color: white;
-}
-
-.class_mensagem {
-    width: 50%;
-    height: 100vh;
-}
-
-.class_fundo {
-    height: 100vh;
-    background-image: url('../Imagens/fundo-lupulo.jpg');
-    background-size: cover;
-    z-index: 1;
-}
-
-.class_textos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: 2;
-    margin: -560px 0px 0px 200px;
-}
-
-.class_textos span {
-    font-size: 40px;
-    font-weight: 1000;
-}
-
-.MenuLogo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 12%;
-    padding: 5px;
-    box-sizing: border-box;
-    position: fixed; /* Torna a posição fixa na tela */
-    top: 20px; /* Define a distância do topo */
-    left: 20px; /* Posiciona no canto superior esquerdo */
-}
-
-.MenuLogo a {
-    display: inline-block;
-    position: relative;
-}
-
-.MenuLogo a img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.MenuLogo a:hover img {
-    border: 2px solid yellow; /* Adiciona borda amarela no hover */
-}
-
-.MenuLogo a:hover {
-    box-shadow: 0 0 10px 2px yellow; /* Sombra amarela no hover */
-    transition: box-shadow 0.3s ease-in-out; /* Animação suave */
-}
-

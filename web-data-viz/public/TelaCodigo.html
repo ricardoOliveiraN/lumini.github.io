@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumini</title>
+    <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
+    <link rel="stylesheet" href="css/styleCodigo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="class_login"></div>
+    <div class="class_mensagem2">
+        <span id="trazemos">TRAZEMOS A SOLUÇÃO</span>
+        <span id="ideal" style="font-size: 60px;">IDEAL</span>
+        <span id="negocio">PRO SEU NEGÓCIO!</span>
+    </div>
+    <div class="class_signin">
+        <div class="class_home2">
+            <a href="index.html">
+                <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+            </a>
+        </div>
+        <div class="class_registro2">
+            <span id="lbl_recuperar">Recuperar senha</span>
+            <span id="lbl_codigo">Digite o código de recuperação</span>
+            <div class="class_codigos">
+                <input oninput="ValidarCodigo()" id="inp_CodigoUm" type="text">
+                <input oninput="ValidarCodigo()" id="inp_CodigoDois" type="text">
+                <input oninput="ValidarCodigo()" id="inp_CodigoTres" type="text">
+                <input oninput="ValidarCodigo()" id="inp_CodigoQuatro" type="text">
+            </div>
+            <div id="div_CodigoInvalido" style="display: none;">CÓDIGO INVÁLIDO!
+            </div>
+            <button onclick="EntrarSite()" id="btn_enviar">ENVIAR</button>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="func_TelaCodigo.js"></script>

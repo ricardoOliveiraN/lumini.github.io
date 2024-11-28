@@ -5,123 +5,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumini</title>
-    <link rel="icon" href="../Imagens/iconeLuz.png" type="image/png">
+    <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styleDash-Sensor.css">
+    <link rel="stylesheet" href="css/styleDash-Geral.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .class_kpiNumero {
+            width: 80px;
+        }
+        .class_kpisMenu {
+            padding: 37px 20px;
+        }
+        .class_kpiTexto{
+            font-size: 20.5px;
+        }
+    </style>
 </head>
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
-data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+    data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+
 <body>
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
                 <ul>
-                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">
-                            <img src="../Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                    <li><a href="TelaDash-Geral.html">
+                            <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
                         </a>
                     </li>
-                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">Dashboard</a></li>
-                    <li><a href="../CadastrarUsuario/CadastrarUsuario.html">Funcionários</a></li>
-                    <li><a href="../SimuladorCliente/SimuladorCliente.html">Simulador</a></li>
-                    <li><a href=#>Perfil</a></li>
-                    <li id="id_btnSair"><a href="../LoginCadastro/TelaLogin.html">Sair</a></li>
+                    <li><a href="TelaDash-Geral.html">Dashboard</a></li>
+                    <li><a href="CadastrarUsuario.html">Funcionários</a></li>
+                    <li><a href="SimuladorCliente.html">Simulador</a></li>
+                    <li><a href="TelaPerfil.html">Perfil</a></li>
+                    <li><a href="./BobIA/public/index.html">BobIA</a></li>
+                    <li id="id_btnSair"><a href="TelaLogin.html">Sair</a></li>
                 </ul>
             </div>
         </div>
-
+        </div>
         <div class="class_dashs">
-            <div class="class_conteinerUm">
-                <div class="class_kpisMenu">
-                    <div class="class_kpi class_kpi1">
-                        <div class="class_kpiTexto">
-                            Média Luminosidade (lux):
+            <div class="class_dashCima">
+                <div class="class_tituloDash">
+                    <h1>Dashboard Sensor 1.3</h1>
+                </div>
+
+                <div class="class_talhoesSelecionar">
+                    <div class="class_talhoesSelecionarOpcoes">
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html">Talhão 2</a>
                         </div>
-                        <div class="class_kpiNumero">
-                            1640
-                        </div>
-                    </div>
-                    <div class="class_kpi class_kpi2">
-                        <div class="class_kpiTexto">
-                            Média horas com luz:
-                        </div>
-                        <div class="class_kpiNumero">
-                            15,87
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html">Todos Talhões</a>
                         </div>
                     </div>
                 </div>
-                <div class="class_voltar">
-                    <a href="../TalhaoSensor/TelaDash-Talhao.html">Voltar</a>
+
+            </div>
+            <!-- <div class="class_dashBaixo"> -->
+            <div class="class_talhoesGraficosContainer">
+                <!-- <div class="class_talhoesGraficosTitulo">
+                            Todos os Talhões
+                        </div> -->
+                <div class="class_talhoesGraficos">
+                    <div class="class_talhoesGrafico class_talhoesGrafico1">
+                        <canvas id="myChartA" style="position: relative; height: 20vh; width: 34.5vw;"></canvas>
+                    </div>
+                    <div class="class_talhoesGrafico class_talhoesGrafico2">
+                        <canvas id="myChartB" style="position: relative; height: 40vh; width: 34.5vw; margin: 24px 0px;"></canvas>
+                    </div>
                 </div>
             </div>
-            <div class="class_sensor">
-                <div class="class_sensorGraficosContainer">
-                    <div class="class_sensorGraficosTitulo">
-                        Sensor 1.2
-                    </div>
-
-                    <div class="class_sensorGraficos">
-                        <div class="class_sensorGrafico class_sensorGrafico1">
-                            <canvas id="myChartA" style="position: relative; height: 36vh; width: 42vw;"></canvas>
-                        </div>
-                        <div class="class_sensorGrafico class_sensorGrafico2">
-                            <canvas id="myChartB" style="position: relative; height: 36vh; width: 42vw;"></canvas>
-                        </div>
-                    </div>
-                    <!-- DIV SENSOR TEMPO REAL -->
-                    <!-- <div style="display: flex; justify-content: center; padding: 0 0 100px 0;">
-                            <div style="position: relative; height: 36vh; width: 42vw;">
-                                <canvas id="sensorAnalogico"></canvas>
+            <!-- </div> -->
+            <div class="container-AlertaeSelecionar">
+                <div class="class_talhoesSelecionar">
+                    <div class="class_kpisMenu">
+                        <div class="class_kpi class_kpi1">
+                            <div class="class_kpiNumero">
+                                <span>1640</span>
                             </div>
-                        </div> -->
-                    <!-- FINAL DA DIV -->
-
-                </div>
-                <!-- <div class="class_sensorAlertas">
-                    <div class="class_tituloAlertas">
-                        <h3>Alertas</h3>
+                            <div class="class_kpiTexto">
+                                <span>Média Luminosidade</span>
+                            </div>
+                        </div>
+                        <div class="class_kpi class_kpi1">
+                            <div class="class_kpiNumero">
+                                <span>15,87</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Média horas com luz</span>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                        <!-- </div> -->
                     </div>
+                </div>
+                <div class="class_sensorAlertas">
                     <table>
                         <thead>
                             <tr class="tituloAlerta">
-                                <th>ID</th>
+                                <th>Alerta</th>
                                 <th>Tipo</th>
+                                <th>Horas</th>
                                 <th>Dia</th>
-                                <th>Horário</th>
-                                <th></th>
                             </tr>
                             <tr>
                                 <th>01</th>
-                                <th>Baixo</th>
-                                <th>26/09/24</th>
-                                <th>19:25:30</th>
-                                <th></th>
+                                <th>Insuficiente</th>
+                                <th>14</th>
+                                <th>20/09/24</th>
                             </tr>
                             <tr>
                                 <th>02</th>
-                                <th>Crítico</th>
-                                <th>26/09/24</th>
-                                <th>19:27:20</th>
-                                <th></th>
+                                <th>Excesso</th>
+                                <th>18</th>
+                                <th>22/09/24</th>
                             </tr>
                             <tr>
                                 <th>03</th>
-                                <th>Baixo</th>
-                                <th>23/10/24</th>
-                                <th>18:45:40</th>
-                                <th></th>
+                                <th>Insuficiente</th>
+                                <th>14.5</th>
+                                <th>24/10/24</th>
                             </tr>
                         </thead>
                         <tbody id="tableCampo">
                         </tbody>
                     </table>
+                </div>
 
-                </div> -->
             </div>
         </div>
+
     </main>
 </body>
 

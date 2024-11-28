@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumini</title>
+    <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
+    <link rel="stylesheet" href="css/style Recuperar Senha.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="class_login"></div>
+    <div class="class_mensagem2">
+        <span>MANTENHA O</span>
+        <span class="class_ideal" style="font-size: 60px;">IDEAL</span>
+        <span>PRO SEU NEGÓCIO!</span>
+    </div>
+    <div class="class_signin">
+        <div class="class_home2">
+            <a href="index.html">
+                <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+            </a>
+        </div>
+        <div class="recuperar-senha">
+            <h2>Recuperar Senha</h2>
+            <div class="mensagem-recuperacao">
+                <span>Digite o email, para o envio do código<br>de recuperação de senha.</span>
+            </div>
+            <input type="email" id="inp_email" placeholder="Email" />
+            <div id="div_emailErrado" style="color: red;font-weight: bold;"></div>
+            <button onclick="ENVIAR()" id="btn_enviar">Enviar</button>
+        </div>
+        
+    </div>
+</body>
+
+</html>
+<script src="funcionalidades Recuperar Senha.js"></script>

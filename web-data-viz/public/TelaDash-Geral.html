@@ -5,176 +5,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumini</title>
-    <link rel="icon" href="./assets/Imagens/iconeLuz.png" type="image/png">
+    <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./css/styleDash-Geral.css">
+    <link rel="stylesheet" href="css/styleDash-Geral.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
-data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+    data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+
 <body>
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
                 <ul>
-                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">
-                            <img src="./assets/Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                    <li><a href="TelaDash-Geral.html">
+                            <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
                         </a>
                     </li>
-                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">Dashboard</a></li>
-                    <li><a href="../CadastrarUsuario/CadastrarUsuario.html">Funcionários</a></li>
-                    <li><a href="../SimuladorCliente/SimuladorCliente.html">Simulador</a></li>
-                    <li><a href="../TelaPerfil/TelaPerfil.html">Perfil</a></li>
-                    <li id="id_btnSair"><a href="../LoginCadastro/TelaLogin.html">Sair</a></li>
+                    <li><a href="TelaDash-Geral.html">Dashboard</a></li>
+                    <li><a href="CadastrarUsuario.html">Funcionários</a></li>
+                    <li><a href="SimuladorCliente.html">Simulador</a></li>
+                    <li><a href="TelaPerfil.html">Perfil</a></li>
+                    <li><a href="./BobIA/public/index.html">BobIA</a></li>
+                    <li id="id_btnSair"><a href="TelaLogin.html">Sair</a></li>
                 </ul>
             </div>
         </div>
         </div>
         <div class="class_dashs">
             <div class="class_dashCima">
-                <!-- <div class="class_metricas">
-                    <div class="class_metricasTitulo">
-                        <h1>Todos os Talhões</h1>
-                        <label> <span>Dados do Dia:</span>
-                            <input type="date" id="diaDados" value="2024-11-05" min="2024-08-01" max="2024-12-31" />
-                        </label>
-                    </div>
-                    <div class="class_metricasExplicacao">
-                        <h3>Quantidade de horas</h3>
-                        <div class="class_metricasExplicacaoTexto">
-                            <span class="class_span1"><b>Ideal</b> - Entre 15 e 17 horas</span>
-                            <span class="class_span2"><b>Insuficiente</b> - Menos de 15 horas </span>
-                            <span class="class_span3"><b>Excesso</b> - Mais de 17 horas </span>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="class_kpisMenu">
-                    <div class="class_kpisMenuTitulo">
-                        <h3>Status Talhões</h3>
-                    </div>
-                    <div class="class_kpis">
-                        <div class="class_kpisMenuCima">
-                            <div class="class_kpi class_kpi1">
-                                <div class="class_kpiTexto">
-                                    Total:
-                                </div>
-                                <div class="class_kpiNumero">
-                                    5
-                                </div>
-                            </div>
-                            <div class="class_kpi class_kpi2">
-                                <div class="class_kpiTexto">
-                                    Ideal:
-                                </div>
-                                <div class="class_kpiNumero">
-                                    3
-                                </div>
-                            </div>
-                        </div>
+                <div class="class_tituloDash">
+                    <h1>Dashboard Talhões</h1>
+                </div>
 
-                        <div class="class_kpisMenuBaixo">
-                            <div class="class_kpi class_kpi3">
-                                <div class="class_kpiTexto">
-                                    Insuficiente:
-                                </div>
-                                <div class="class_kpiNumero">
-                                    1
-                                </div>
-                            </div>
-                            <div class="class_kpi class_kpi4">
-                                <div class="class_kpiTexto">
-                                    Excesso:
-                                </div>
-                                <div class="class_kpiNumero">
-                                    1
-                                </div>
-                            </div>
+                <div class="class_talhoesSelecionar">
+                    <div class="class_talhoesSelecionarOpcoes">
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html">Talhão 1</a>
+                        </div>
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Talhão 2</a>
+                        </div>
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html">Talhão 3</a>
+                        </div>
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Talhão 4</a>
+                        </div>
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html">Talhão 5</a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="class_dashBaixo">
 
-                <div class="class_talhoes">
-                    <div class="class_talhoesGraficosContainer">
-                        <!-- <div class="class_talhoesGraficosTitulo">
+            </div>
+            <!-- <div class="class_dashBaixo"> -->
+
+
+            <div class="class_talhoesGraficosContainer">
+                <!-- <div class="class_talhoesGraficosTitulo">
                             Todos os Talhões
-                        </div> --> 
-                        <div class="class_talhoesGraficos">
-                            <div class="class_talhoesGrafico class_talhoesGrafico1">
-                                <canvas id="myChartA" style="position: relative; height: 40vh; width: 20vw;"></canvas>
-                            </div>
-                            <div class="class_talhoesGrafico class_talhoesGrafico2">
-                                <canvas id="myChartB" style="position: relative; height: 28vh; width: 20vw;"></canvas>
-                            </div>
-                            <div class="class_talhoesGrafico class_talhoesGrafico2">
-                                <canvas id="myChartC" style="position: relative; height: 28vh; width: 20vw;"></canvas>
-                            </div>
-                        </div>
+                        </div> -->
+                <div class="class_talhoesGraficos">
+                    <div class="class_talhoesGrafico class_talhoesGrafico1">
+                        <canvas id="myChartA" style="position: relative; height: 45vh; width: 21.6vw;"></canvas>
                     </div>
-                    <div class="class_talhoesSelecionar">
-                        <div class="class_tituloSelecionar">
-                            <h3>Selecionar</h3>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcoes">
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Talhao.html">Talhão 1</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Talhao.html" style="background-color: rgb(163, 0, 0.7);">Talhão 2</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Talhao.html">Talhão 3</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Talhao.html" style="background-color: rgb(163, 0, 0.7);">Talhão 4</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Talhao.html">Talhão 5</a>
-                            </div>
-                        </div>
+                    <div class="class_talhoesGrafico class_talhoesGrafico2">
+                        <canvas id="myChartB" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                    </div>
+                    <div class="class_talhoesGrafico class_talhoesGrafico2">
+                        <canvas id="myChartC" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="class_sensorAlertas">
-                <div class="class_tituloAlertas">
-                    <h3>Alertas</h3>
+            <!-- </div> -->
+            <div class="container-AlertaeSelecionar">
+                <div class="class_talhoesSelecionar">
+                    <div class="class_kpisMenu">
+                        <div class="class_kpi class_kpi1">
+                            <div class="class_kpiNumero">
+                                <span>5</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span> Total </span>
+                            </div>
+                        </div>
+                        <div class="class_kpi class_kpi2">
+                            <div class="class_kpiNumero">
+                                <span>3</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Ideal</span>
+                            </div>
+                        </div>
+                        <div class="class_kpi class_kpi3">
+                            <div class="class_kpiNumero">
+                                <span>1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Abaixo</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero">
+                                1
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Excesso</span>
+                            </div>
+
+                        </div>
+                        <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
                 </div>
-                <table>
-                    <thead>
-                        <tr class="tituloAlerta">
-                            <th>ID</th>
-                            <th>Tipo</th>
-                            <th>Horas</th>
-                            <th>Dia</th>
-                        </tr>
-                        <tr>
-                            <th>01</th>
-                            <th>Insuficiente</th>
-                            <th>14</th>
-                            <th>20/09/24</th>
-                        </tr>
-                        <tr>
-                            <th>02</th>
-                            <th>Excesso</th>
-                            <th>18</th>
-                            <th>22/09/24</th>
-                        </tr>
-                        <tr>
-                            <th>03</th>
-                            <th>Insuficiente</th>
-                            <th>14.5</th>
-                            <th>24/10/24</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableCampo">
-                    </tbody>
-                </table>
+                <div class="class_sensorAlertas">
+                    <table>
+                        <thead>
+                            <tr class="tituloAlerta">
+                                <th>Alerta</th>
+                                <th>Tipo</th>
+                                <th>Horas</th>
+                                <th>Dia</th>
+                            </tr>
+                            <tr>
+                                <th>01</th>
+                                <th>Insuficiente</th>
+                                <th>14</th>
+                                <th>20/09/24</th>
+                            </tr>
+                            <tr>
+                                <th>02</th>
+                                <th>Excesso</th>
+                                <th>18</th>
+                                <th>22/09/24</th>
+                            </tr>
+                            <tr>
+                                <th>03</th>
+                                <th>Insuficiente</th>
+                                <th>14.5</th>
+                                <th>24/10/24</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableCampo">
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
+
     </main>
 </body>
 
@@ -210,7 +194,7 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
             {
                 label: 'Horas com luz',
                 backgroundColor: [
-                    'rgb(33, 150, 243)',
+                    'rgb(114, 189, 119)',
 
                 ],
                 borderColor: [
@@ -220,7 +204,7 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
                     'rgb(0, 0, 0)',
                     'rgb(0, 0, 0)',
                 ],
-                data: [16, 17.5, 16, 14.5, 16, 20]
+                data: [16, 17.5, 16, 12, 16, 20]
             },
         ]
     };
@@ -233,15 +217,20 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
                 title: {
                     display: true,
                     text: 'Dia 05/11 - Horas com Luz'
+                },
+                legend: {
+                    labels: {
+                        boxWidth: 20 // Configuração correta para ajustar a largura dos quadrados da legenda
+                    }
                 }
             },
             scales: {
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Talhões'
-                    },
-                },
+                // x: {
+                //     title: {
+                //         display: true,
+                //         text: 'Talhões'
+                //     },
+                // },
                 y: {
                     title: {
                         display: true,
@@ -256,8 +245,8 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
     // Segundo Gráfico
 
     const labelsB = [
-        'Status ideal',
-        'Status indesejável',
+        'ideal',
+        'indesejável',
     ];
 
 
@@ -266,12 +255,12 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
         datasets: [{
             label: 'Talhões',
             backgroundColor: [
-                'rgb(0, 128, 55)',
-                'rgb(163, 0, 0.7)',
+                'rgb(95, 155, 99)',
+                'rgb(179, 53, 53)',
             ],
             borderColor: [
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0, 0.2)',
+                'rgb(0, 0, 0, 0.2)',
             ],
             data: [3, 2]
         }]
@@ -285,7 +274,25 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
             plugins: {
                 title: {
                     display: true,
-                    text: 'Dia 05/11 - Status Luminosidade'
+                    text: 'Dia 05/11 - Status Luminosidade nos Talhões',
+                    font: {
+                        size: 14,
+                    }
+                },
+                legend: {
+                    position: 'right', // Posiciona a legenda à direita
+                    labels: {
+                        font: {
+                            // size: 14, // Tamanho da fonte
+                            // family: 'Arial', // Fonte personalizada
+                            // style: 'italic', // Estilo da fonte (normal, italic, bold)
+                        },
+                        // color: '#333', // Cor do texto da legenda
+                        boxWidth: 20, // Largura do quadrado de cor na legenda
+                        // boxHeight: 15, // Altura do quadrado de cor na legenda
+                        // padding: 10, // Espaçamento entre os itens
+                        // usePointStyle: true, // Exibe ícones como pontos ao invés de quadrados
+                    }
                 }
             }
         }
@@ -306,18 +313,18 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
         datasets: [{
             label: 'Quantidade',
             backgroundColor: [
-                'rgb(44, 120, 101)',
-                'rgb(144, 210, 109)',
-                'rgb(255, 152, 0)',
-                'rgb(1, 50, 32)',
-                'rgb(139, 69, 19)',
+                'rgb(188, 53, 53)',
+                ' rgb(185, 190, 27)',
+                ' rgb(168, 193, 25)',
+                'rgb(218, 99, 1)',
+                'rgb(218, 149, 1)',
             ],
             borderColor: [
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
+                'rgb(0,0,0,0.2)',
+                'rgb(0,0,0,0.2)',
+                'rgb(0,0,0,0.2)',
+                'rgb(0,0,0,0.2)',
+                'rgb(0,0,0,0.2)',
             ],
             data: [3, 2, 1, 1, 4]
         }]
@@ -331,7 +338,18 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
             plugins: {
                 title: {
                     display: true,
-                    text: 'Quantidade de Alertas por Talhão'
+                    text: 'Quantidade de Alertas por Talhão',
+                    font: {
+                        size: 14,
+                    }
+                },
+                legend: {
+                    position: 'right', // Posiciona a legenda à direita
+                    labels: {
+                        boxWidth: 20,
+                    }
+
+
                 }
             }
         }

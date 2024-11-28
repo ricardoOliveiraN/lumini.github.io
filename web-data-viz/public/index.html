@@ -1,84 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumini</title>
+    <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
 
-    <title>AquaTech | Página Inicial</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
-      </div>
-    </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
+    <header>
+        <nav>
+            <div class="MenuLogo">
+                <a href="index.html">
+                    <img src="Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                </a>
+            </div>
+            <div class="class_LinksMenu">
+                <ul>
+                    <li><a href="TelaSobreNos.html">Quem somos</a></li>
+                    <li><a href="TelaServicos.html">Serviços</a></li>
+                    <li><a href="Simulador.html">Simulador</a></li>
+                    <li><a href="TelaFaleConosco.Html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="class_BotoesMenu">
+                <a href="TelaLogin.html"><button>Entrar</button></a>
+                <!-- <button><a href="./LoginCadastro/TelaCadastro.html">Cadastrar</a></button> -->
+            </div>
+        </nav>
+        <div class="class_ImgInicial">
+            <h3> A <span>Luz</span> para seu negócio.</h3>
         </div>
-      </div>
-    </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
-      </div>
-    </div>
-  </body>
+    </header>
+    <main>
+        <div class="PARTE1">
+            <div class="class_SobreNosHOME">
+                <div class="class_ConteudoSobreNosHOME">
+                    <h2>Sobre a LUMINI</h2>
+                    <p>A LUMINI é uma empresa fundada por seis jovens aficionados por tecnologia que, ao se depararem
+                        com um grande problema na produção de uma das bebidas mais amada pelos brasileiros, a CERVEJA,
+                        não tiveram escolha a não ser procurar uma solução. <br>
+                        A nossa história é marcada por diversas curiosidades e pontos divertidos, venha conhecer mais
+                        dessa jornada...</p>
+                    <button><a href="./QuemSomos/TelaSobreNos.html" class="sem-sublinhado">Saiba Mais</a></button>
+                </div>
+                <div class="class_ImgSobreNosHOME">
+                    <img src="./Imagens/imgHOMEgrupo.jpg" alt="">
+                </div>
+            </div>
+
+            <div class="class_SobreNosHOME">
+                <div class="class_ImgSobreNosHOME2">
+                    <img src="./Imagens/imgHOMEdashboard.jpg" alt="">
+                </div>
+                <div class="class_ConteudoSobreNosHOME">
+                    <h2>Nosso Serviço</h2>
+                    <p>Com a instalação dos nossos sensores, você, valente produtor de Lúpulo desse Brasil, terá acesso
+                        a dados que irão promover o aumento da quantidade e qualidade do seus produtos.
+                        <br>
+                        E não só isso, nós disponibilizamos para você diversos serviços extras que visam aperfeiçoar
+                        ainda mais a sua produção.
+                        <br>Venha ficar por dentro de todas essas imperdíveis oportunidades...
+                    </p>
+                    <button><a href="./Serviços/TelaServicos.html" class="sem-sublinhado">Saiba Mais</a></button>
+                </div>
+            </div>
+        </div>
+        <div class="PARTE2">
+            <div class="class_SimuladorHome">
+                <h2>Simulador financeiro</h2>
+                <div class="class_ContainerCardSimuladorHome">
+                    <div class="class_CardSimuladorHome">
+                        <img src="./Imagens/iconeDinheiro.png" alt="">
+                        <p>Mude de patamar financeiro, tendo um aumento de receita significativo!</p>
+                    </div>
+                    <div class="class_CardSimuladorHome">
+                        <img src="./Imagens/iconeSifrao.png" alt="">
+                        <p>Calcule o lucro que terá utilizando o sensor LUMINI</p>
+                    </div>
+                    <div class="class_CardSimuladorHome">
+                        <img src="./Imagens/iconeGrafico.png" alt="">
+                        <p>Controle as suas finanças, tendo uma estimativa do retorno financeiro </p>
+                    </div>
+                </div>
+                <button><a href="./Simulador/Simulador.html" class="sem-sublinhado">Simular</a></button>
+            </div>
+        </div>
+        <div class="PARTE3">
+            <div class="class_contatoHOME">
+                <h2>Contatos LUMINI</h2>
+                <p>Segunda á Sexta das 8h as 16h</p>
+                <div class="class_CardsContatoHome">
+                    <div class="class_card1ContatoHome">
+                        <h4>Para atendimento aos clientes</h4>
+                        <p>SAC@lumini.com</p>
+                        <p>+55 11 99999-9999</p>
+                    </div>
+                    <div class="class_card2ContatoHome">
+                        <h4>Para atendimento aos clientes</h4>
+                        <p>SAC@lumini.com</p>
+                        <p>+55 11 99999-9999</p>
+                    </div>
+                </div>
+                <button><a href="./Contato/TelaFaleConosco.Html" class="sem-sublinhado">Ver todos</a></button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="class_Footer">
+
+            <div class="class_Container">
+
+                <img src="./Imagens/logo-sem-fundo.png" alt="">
+                <p>Todos os direitos reservados</p>
+
+                <div class="class_redesSociais">
+                    <img src="./Imagens/instagram (2).png" alt="">
+                    <img src="./Imagens/twitter.png" alt="">
+                    <img src="./Imagens/youtube.png" alt="">
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+</body>
 
 </html>
-<script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
-data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>

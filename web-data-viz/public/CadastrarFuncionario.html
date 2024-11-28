@@ -33,48 +33,43 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
                 </ul>
             </div>
         </div>
-        <div class="class_cadastro">
-            <div class="class_CadastroFunc">
-                <h1>Cadastro de Usuário</h1>
+        <div class="class_cadastro" style="padding-top: 0px;">
+            <div class="class_CadastroFunc" style="margin-top: 2%;">
+                <h1>Cadastro de Funcionários</h1>
                 <div class="class_iptsCadastroFunc">
                     <div class="class_separacaoIpts">
-                        <input oninput="validacoes()" type="text" placeholder="Nome"
-                        id="inp_nome">
-                        <input oninput="validacoes()" type="tel" placeholder="Celular"
-                        id="inp_telefone">
+                        <input oninput="validacoes()" type="text" placeholder="CNPJ"
+                        id="inp_CNPJ">
+                        <input oninput="validacoes()" type="text" placeholder="Tamanho empresa"
+                        id="inp_tamanho">
+                        <input oninput="validacoes()" type="text" placeholder="É sede?"
+                        id="inp_sede">
+                        <input oninput="validacoes()" type="text" placeholder="CEP"
+                        id="inp_cep">
+                        <input oninput="validacoes()" type="text" placeholder="Cidade"
+                        id="inp_cidade">
+                        <input oninput="validacoes()" type="text" placeholder="Número"
+                        id="inp_numero">
                     </div>
-                    <div class="class_separacaoIpts">
-                        <input oninput="validacoes()" type="email" placeholder="Email"
-                        id="inp_email">
-                        <select id="inp_tipo">
-                            <option value="0" disabled selected>Tipo de Usuário</option>
-                            <option value="Admin">Administrador</option>
-                            <option value="Convidado">Convidado</option>
-                            <option value="Comum">Comum</option>
-                        </select>
+                    <div class="class_separacaoIpts" style="margin-right: 0px;">
+                        <input oninput="validacoes()" type="text" placeholder="Razão social"
+                        id="inp_razao">
+                        <input oninput="validacoes()" type="text" placeholder="Quantidade de Hectares"
+                        id="inp_hectar">
+                        <input oninput="validacoes()" type="text" placeholder="CNPJ Matriz"
+                        id="inp_matriz">
+                        <input oninput="validacoes()" type="text" placeholder="UF"
+                        id="inp_uf">
+                        <input oninput="validacoes()" type="text" placeholder="Logradouro"
+                        id="inp_logradouro">
+                        <input oninput="validacoes()" type="text" placeholder="Complemento"
+                        id="inp_complemento">
                     </div>
+                    
                 </div>
                 <div class="class_btnCadastroFunc">
-                    <button id="btn_buscarFunc"><img src="imagens/ic--outline-search.png">Buscar</button>
                     <button id="btn_CadastrarFunc" onclick="cadastrar2()"><img src="imagens/ic--round-plus.png"> Cadastrar</button>
                 </div>
-            </div>
-            <div class="container">
-                <h1>Funcionários</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tipo</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Celular</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableCampo">
-                    </tbody>
-                </table>
             </div>
         </div>
     </main>
