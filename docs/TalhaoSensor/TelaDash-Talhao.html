@@ -10,100 +10,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styleDash-Talhao.css">
+    <link rel="stylesheet" href="styleDash-Geral.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .class_kpiNumero {
+            width: 45px;
+            height: 45px;
+        }
+        .class_kpi {
+            font-size: 16.6px;
+        }
+        .class_kpisMenu {
+            padding: 37px 20px;
+        }
+    </style>
 </head>
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
-data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+    data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+
 <body>
-    <!-- <main>
-        <div class="class_menuLateral">
-            <div class="class_LinksMenu">
-                <ul>
-                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">
-                            <img src="../Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
-                        </a>
-                    </li>
-                    <li><a href="../TalhaoSensor/TelaDash-Geral.html">Dashboard</a></li>
-                    <li><a href="../CadastrarUsuario/CadastrarUsuario.html">Funcionários</a></li>
-                    <li><a href="../SimuladorCliente/SimuladorCliente.html">Simulador</a></li>
-                    <li><a href=#>Perfil</a></li>
-                    <li id="id_btnSair"><a href="../LoginCadastro/TelaLogin.html">Sair</a></li>
-                </ul>
-            </div>
-        </div>
-        </div>
-        <div class="class_dashs">
-            <div class="class_kpisMenu">
-                <div class="class_kpi class_kpi1">
-                    <div class="class_kpiTexto">
-                        Quantidade Sensores:
-                    </div>
-                    <div class="class_kpiNumero">
-                        3
-                    </div>
-                </div>
-                <div class="class_kpi class_kpi2">
-                    <div class="class_kpiTexto">
-                        Sensores ativos:
-                    </div>
-                    <div class="class_kpiNumero">
-                        3
-                    </div>
-                </div>
-                <div class="class_kpi class_kpi3">
-                    <div class="class_kpiTexto">
-                        Sensores em manutenção:
-                    </div>
-                    <div class="class_kpiNumero">
-                        0
-                    </div>
-                </div>
-                <div class="class_kpi class_kpi4">
-                    <div class="class_kpiTexto">
-                        Sensores com alertas:
-                    </div>
-                    <div class="class_kpiNumero">
-                        1
-                    </div>
-                </div>
-            </div>
-            <div class="class_talhoes">
-                <div class="class_talhoesGraficosContainer">
-                    <div class="class_talhoesGraficosTitulo">
-                        Talhão 4
-                    </div>
-                    <div class="class_talhoesGraficos">
-                        <div class="class_talhoesGrafico class_talhoesGrafico1">
-                            <canvas id="myChartA" style="position: relative; height: 54vh; width: 28vw;"></canvas>
-                        </div>
-                        <div class="class_talhoesGrafico class_talhoesGrafico2">
-                            <canvas id="myChartB" style="position: relative; height: 54vh; width: 28vw;"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="class_talhoesSelecionar">
-                    <div class="class_tituloSelecionar">
-                        <h3>Selecionar</h3>
-                    </div>
-                    <div class="class_talhoesSelecionarOpcoes">
-                        <div class="class_talhoesSelecionarOpcao" id="btnVoltar">
-                            <a href="../TalhaoSensor/TelaDash-Geral.html">Voltar</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Sensor.html">Sensor 1.1</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao    ">
-                            <a style="background-color: #F44336;" href="TelaDash-Sensor.html">Sensor 1.2</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Sensor.html">Sensor 1.3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main> -->
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -116,6 +41,7 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
                     <li><a href="../CadastrarUsuario/CadastrarUsuario.html">Funcionários</a></li>
                     <li><a href="../SimuladorCliente/SimuladorCliente.html">Simulador</a></li>
                     <li><a href="../TelaPerfil/TelaPerfil.html">Perfil</a></li>
+                    <li><a href="../BobIA/public/index.html">BobIA</a></li>
                     <li id="id_btnSair"><a href="../LoginCadastro/TelaLogin.html">Sair</a></li>
                 </ul>
             </div>
@@ -123,149 +49,191 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
         </div>
         <div class="class_dashs">
             <div class="class_dashCima">
-                <!-- <div class="class_metricas">
-                    <div class="class_metricasTitulo">
-                        <h1>Todos os Talhões</h1>
-                        <label> <span>Dados do Dia:</span>
-                            <input type="date" id="diaDados" value="2024-11-05" min="2024-08-01" max="2024-12-31" />
-                        </label>
-                    </div>
-                    <div class="class_metricasExplicacao">
-                        <h3>Quantidade de horas</h3>
-                        <div class="class_metricasExplicacaoTexto">
-                            <span class="class_span1"><b>Ideal</b> - Entre 15 e 17 horas</span>
-                            <span class="class_span2"><b>Insuficiente</b> - Menos de 15 horas </span>
-                            <span class="class_span3"><b>Excesso</b> - Mais de 17 horas </span>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="class_kpisMenu">
-                    <div class="class_kpisMenuTitulo">
-                        <h3>Status Talhões</h3>
-                    </div>
-                    <div class="class_kpis">
-                        <div class="class_kpisMenuCima">
-                            <div class="class_kpi class_kpi1">
-                                <div class="class_kpiTexto">
-                                    Quantidade de sensores:
-                                </div>
-                                <div class="class_kpiNumero">
-                                    3
-                                </div>
-                            </div>
-                            <div class="class_kpi class_kpi2">
-                                <div class="class_kpiTexto">
-                                    Sensores ativos:
-                                </div>
-                                <div class="class_kpiNumero">
-                                    3
-                                </div>
-                            </div>
-                        </div>
+                <div class="class_tituloDash">
+                    <h1>Dashboard Talhão 2</h1>
+                </div>
 
-                        <div class="class_kpisMenuBaixo">
-                            <div class="class_kpi class_kpi3">
-                                <div class="class_kpiTexto">
-                                    Sensores em manutenção:
-                                </div>
-                                <div class="class_kpiNumero">
-                                    0
-                                </div>
-                            </div>
-                            <div class="class_kpi class_kpi4">
-                                <div class="class_kpiTexto">
-                                    Sensores com alertas:
-                                </div>
-                                <div class="class_kpiNumero">
-                                    1
-                                </div>
-                            </div>
+                <div class="class_talhoesSelecionar">
+                    <div class="class_talhoesSelecionarOpcoes">
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Sensor.html">Sensor 1.1</a>
+                        </div>
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Sensor.html" style="background-color:rgb(179, 53, 53);">Sensor 1.2</a>
+                        </div>
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Sensor.html">Sensor 1.3</a>
+                        </div>
+                        <div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Geral.html">Todos Talhões</a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="class_dashBaixo">
 
-                <div class="class_talhoes">
-                    <div class="class_talhoesGraficosContainer">
-                        <!-- <div class="class_talhoesGraficosTitulo">
+            </div>
+            <!-- <div class="class_dashBaixo"> -->
+
+
+            <div class="class_talhoesGraficosContainer">
+                <!-- <div class="class_talhoesGraficosTitulo">
                             Todos os Talhões
                         </div> -->
-                        <div class="class_talhoesGraficos">
-                            <div class="class_talhoesGrafico class_talhoesGrafico1">
-                                <canvas id="myChartA" style="position: relative; height: 40vh; width: 20vw;"></canvas>
-                            </div>
-                            <div class="class_talhoesGrafico class_talhoesGrafico2">
-                                <canvas id="myChartB" style="position: relative; height: 28vh; width: 20vw;"></canvas>
-                            </div>
-                            <div class="class_talhoesGrafico class_talhoesGrafico2">
-                                <canvas id="myChartC" style="position: relative; height: 28vh; width: 20vw;"></canvas>
-                            </div>
-                        </div>
+                <div class="class_talhoesGraficos">
+                    <div class="class_talhoesGrafico class_talhoesGrafico1">
+                        <canvas id="myChartA" style="position: relative; height: 45vh; width: 21.6vw;"></canvas>
                     </div>
-                    <div class="class_talhoesSelecionar">
-                        <div class="class_tituloSelecionar">
-                            <h3>Selecionar</h3>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcoes">
-                            <div class="class_talhoesSelecionarOpcao" id="btnVoltar">
-                                <a href="../TalhaoSensor/TelaDash-Geral.html">Voltar</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Sensor.html">Sensor 1.1</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a style="background-color: rgb(163, 0, 0.7);" href="TelaDash-Sensor.html">Sensor 1.2</a>
-                            </div>
-                            <div class="class_talhoesSelecionarOpcao">
-                                <a href="TelaDash-Sensor.html">Sensor 1.3</a>
-                            </div>
-                        </div>
+                    <div class="class_talhoesGrafico class_talhoesGrafico2">
+                        <canvas id="myChartB" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                    </div>
+                    <div class="class_talhoesGrafico class_talhoesGrafico2">
+                        <canvas id="myChartC" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="class_sensorAlertas">
-                <div class="class_tituloAlertas">
-                    <h3>Alertas</h3>
+            <!-- </div> -->
+            <div class="container-AlertaeSelecionar">
+                <div class="class_talhoesSelecionar">
+                    <div class="class_kpisMenu">
+                        <div class="class_kpi class_kpi1">
+                            <div class="class_kpiNumero">
+                                <span>5</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Sensores <br> total</span>
+                            </div>
+                        </div>
+                        <div class="class_kpi class_kpi2">
+                            <div class="class_kpiNumero">
+                                <span>3</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Sensores <br> ativos</span>
+                            </div>
+                        </div>
+                        <div class="class_kpi class_kpi3">
+                            <div class="class_kpiNumero">
+                                <span>2</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Sensor em<br>manutenção</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero" style="padding: 1px;">
+                                1
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Sensores<br> com alerta</span>
+                            </div>
+
+                        </div>
+                        <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
                 </div>
-                <table>
-                    <thead>
-                        <tr class="tituloAlerta">
-                            <th>ID</th>
-                            <th>Tipo</th>
-                            <th>Horas</th>
-                            <th>Dia</th>
-                        </tr>
-                        <tr>
-                            <th>01</th>
-                            <th>Insuficiente</th>
-                            <th>14</th>
-                            <th>20/09/24</th>
-                        </tr>
-                        <tr>
-                            <th>02</th>
-                            <th>Excesso</th>
-                            <th>18</th>
-                            <th>22/09/24</th>
-                        </tr>
-                        <tr>
-                            <th>03</th>
-                            <th>Insuficiente</th>
-                            <th>14.5</th>
-                            <th>24/10/24</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableCampo">
-                    </tbody>
-                </table>
+                <div class="class_sensorAlertas">
+                    <table>
+                        <thead>
+                            <tr class="tituloAlerta">
+                                <th>Alerta</th>
+                                <th>Tipo</th>
+                                <th>Horas</th>
+                                <th>Dia</th>
+                            </tr>
+                            <tr>
+                                <th>01</th>
+                                <th>Insuficiente</th>
+                                <th>14</th>
+                                <th>20/09/24</th>
+                            </tr>
+                            <tr>
+                                <th>02</th>
+                                <th>Excesso</th>
+                                <th>18</th>
+                                <th>22/09/24</th>
+                            </tr>
+                            <tr>
+                                <th>03</th>
+                                <th>Insuficiente</th>
+                                <th>14.5</th>
+                                <th>24/10/24</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableCampo">
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
+
     </main>
 </body>
 
 </html>
 
 <script>
+
+// const labelsA = [
+        
+//     ];
+
+//     const dataA = {
+//         labels: labelsA,
+//         datasets: [
+//             {
+//                 label: 'Meta diária',
+//                 backgroundColor: 'rgb(138, 141, 144)',
+//                 borderColor: 'rgb(138, 141, 144)',
+//                 data: [16, 16, 16],
+//                 type: "line"
+//             },
+//             {
+//                 label: 'Tempo com luz',
+//                 backgroundColor: [
+//                     'rgb(33, 150, 243)',
+
+//                 ],
+//                 borderColor: [
+//                     'rgb(67, 144, 228, 0.7)',
+//                     'rgb(124, 198, 116, 0.7)',
+//                     'rgb(67, 144, 228, 0.7)',
+//                 ],
+//                 data: [17, 14, 17, 20]
+//             },
+
+//         ]
+//     };
+
+//     const configA = {
+//         type: 'bar',
+//         data: dataA,
+//         options: {
+//             plugins: {
+//                 title: {
+//                     display: true,
+//                     text: 'Dia 05/11 - Horas com Luz'
+//                 }
+//             },
+//             scales: {
+//                 x: {
+//                     title: {
+//                         display: true,
+//                         text: 'Sensores'
+//                     },
+//                 },
+//                 y: {
+//                     title: {
+//                         display: true,
+//                         text: 'Quantidade de horas'
+//                     },
+//                 }
+//             }
+//         }
+//     }
+
+
 
     const labelsA = [
         'Sensor 1.1',
@@ -284,19 +252,20 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
                 type: "line"
             },
             {
-                label: 'Tempo com luz',
+                label: 'Horas com luz',
                 backgroundColor: [
-                    'rgb(33, 150, 243)',
+                    'rgb(114, 189, 119)',
 
                 ],
                 borderColor: [
-                    'rgb(67, 144, 228, 0.7)',
-                    'rgb(124, 198, 116, 0.7)',
-                    'rgb(67, 144, 228, 0.7)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
                 ],
-                data: [17, 14, 17, 20]
+                data: [17, 14, 17]
             },
-
         ]
     };
 
@@ -308,15 +277,20 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
                 title: {
                     display: true,
                     text: 'Dia 05/11 - Horas com Luz'
+                },
+                legend: {
+                    labels: {
+                        boxWidth: 20 // Configuração correta para ajustar a largura dos quadrados da legenda
+                    }
                 }
             },
             scales: {
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Sensores'
-                    },
-                },
+                // x: {
+                //     title: {
+                //         display: true,
+                //         text: 'Talhões'
+                //     },
+                // },
                 y: {
                     title: {
                         display: true,
@@ -331,22 +305,22 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
     // Segundo Gráfico
 
     const labelsB = [
-        'Status ideal',
-        'Status indesejável',
+        'ideal',
+        'indesejável',
     ];
 
 
     const dataB = {
         labels: labelsB,
         datasets: [{
-            label: 'Quantidade de sensores',
+            label: 'Talhões',
             backgroundColor: [
-                'rgb(0, 128, 55)',
-                'rgb(163, 0, 0.7)',
+                'rgb(95, 155, 99)',
+                'rgb(179, 53, 53)',
             ],
             borderColor: [
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
+                'rgb(0, 0, 0, 0.2)',
+                'rgb(0, 0, 0, 0.2)',
             ],
             data: [2, 1]
         }]
@@ -360,15 +334,34 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
             plugins: {
                 title: {
                     display: true,
-                    text: 'Dia 05/11 - Status Luminosidade'
+                    text: 'Dia 05/11 - Status Luminosidade nos Sensores',
+                    font: {
+                        size: 14,
+                    }
+                },
+                legend: {
+                    position: 'right', // Posiciona a legenda à direita
+                    labels: {
+                        font: {
+                            // size: 14, // Tamanho da fonte
+                            // family: 'Arial', // Fonte personalizada
+                            // style: 'italic', // Estilo da fonte (normal, italic, bold)
+                        },
+                        // color: '#333', // Cor do texto da legenda
+                        boxWidth: 20, // Largura do quadrado de cor na legenda
+                        // boxHeight: 15, // Altura do quadrado de cor na legenda
+                        // padding: 10, // Espaçamento entre os itens
+                        // usePointStyle: true, // Exibe ícones como pontos ao invés de quadrados
+                    }
                 }
             }
         }
     }
 
     /* TERCEIRO GRÁFICO */
+    
     const labelsC = [
-        'Sensor 1.1',
+      'Sensor 1.1',
         'Sensor 1.2',
         'Sensor 1.3',
     ];
@@ -379,15 +372,14 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
         datasets: [{
             label: 'Quantidade',
             backgroundColor: [
-                'rgb(144, 210, 109)',
-                'rgb(255, 152, 0)',
-                'rgb(139, 69, 19)',
+                'rgb(188, 53, 53)',
+                'rgb(218, 99, 1)',
+                ' rgb(185, 190, 27)',
             ],
             borderColor: [
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
+                'rgb(0,0,0,0.2)',
+                'rgb(0,0,0,0.2)',
+                'rgb(0,0,0,0.2)',
             ],
             data: [3, 2, 1]
         }]
@@ -401,7 +393,18 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
             plugins: {
                 title: {
                     display: true,
-                    text: 'Quantidade de Alertas por Sensor'
+                    text: 'Quantidade de Alertas por Sensor',
+                    font: {
+                        size: 14,
+                    }
+                },
+                legend: {
+                    position: 'right', // Posiciona a legenda à direita
+                    labels: {
+                        boxWidth: 20,
+                    }
+
+
                 }
             }
         }
