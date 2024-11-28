@@ -2,39 +2,37 @@ CREATE DATABASE lumini;
 
 USE lumini;
 
--- SELECT filtragemDados.qtdHorasLuz, talhao.numero 
--- 	FROM filtragemDados 
--- 	JOIN dadosSensor 
--- 		ON idFiltragemDados = fkDadosSensor_FiltragemDados 
--- 	JOIN sensor 
--- 		ON idSensor = fkDadosSensor_Sensor 
--- 	JOIN talhao 
--- 		ON idTalhao = fkSensor_Talhao 
--- 	WHERE filtragemDados.dia = '2024-11-27' AND talhao.fkTalhao_Empresa = '2';
+SELECT filtragemDados.qtdHorasLuz, talhao.numero 
+	FROM filtragemDados 
+	JOIN dadosSensor 
+		ON idFiltragemDados = fkDadosSensor_FiltragemDados 
+	JOIN sensor 
+		ON idSensor = fkDadosSensor_Sensor 
+	JOIN talhao 
+		ON idTalhao = fkSensor_Talhao 
+	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = '2';
         
--- SELECT filtragemDados.qtdHorasLuz, sensor.idSensor
--- 	FROM filtragemDados
--- 	JOIN dadosSensor
--- 		ON idFiltragemDados = fkDadosSensor_FiltragemDados
--- 	JOIN sensor
--- 		ON idSensor = fkDadosSensor_Sensor
--- 	JOIN talhao
--- 		ON idTalhao = fkSensor_Talhao
--- 	WHERE filtragemDados.dia = '2024-11-27' AND talhao.fkTalhao_Empresa = '2' AND talhao.numero = '2';
+SELECT filtragemDados.qtdHorasLuz, sensor.idSensor
+	FROM filtragemDados
+	JOIN dadosSensor
+		ON idFiltragemDados = fkDadosSensor_FiltragemDados
+	JOIN sensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN talhao
+		ON idTalhao = fkSensor_Talhao
+	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = '2' AND talhao.numero = '2';
 
--- SELECT filtragemDados.qtdHorasLuz, filtragemDados.dia 
--- 	FROM filtragemDados 
--- 	JOIN dadosSensor
--- 		ON idFiltragemDados = fkDadosSensor_FiltragemDados
--- 	JOIN sensor
--- 		ON idSensor = fkDadosSensor_Sensor
--- 	JOIN talhao
--- 		ON idTalhao = fkSensor_Talhao
--- 	WHERE idSensor = 10000
--- 	LIMIT 14;
-
--- INSERT INTO endereco (idEndereco, cep, uf, cidade, logradouro, numero, complemento) VALUES
--- 	(1, );
+SELECT filtragemDados.qtdHorasLuz, filtragemDados.dia 
+	FROM filtragemDados 
+	JOIN dadosSensor
+		ON idFiltragemDados = fkDadosSensor_FiltragemDados
+	JOIN sensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN talhao
+		ON idTalhao = fkSensor_Talhao
+	WHERE idSensor = 10000
+	LIMIT 14;
+	
 
 CREATE TABLE empresa (
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -55,7 +53,7 @@ CREATE TABLE empresa (
         -- data de criação deve ser obrigatoriamente antes que a data de inativação
 	fkEmpresa_EmpresaSede INT,
 		CONSTRAINT fkReEmpresa_EmpresaSede FOREIGN KEY (fkEmpresa_EmpresaSede)
-		REFERENCES empresa(idEmpresa),
+		REFERENCES empresa(idEmpresa)
 );
 
 CREATE TABLE endereco (
@@ -71,7 +69,7 @@ CREATE TABLE endereco (
     logradouro VARCHAR(45),
     numero VARCHAR(8),
     complemento VARCHAR(45),
-	fkEndeco_Empresa INT,
+	fkEndereco_Empresa INT,
 		CONSTRAINT fkReEndereco_Empresa
         FOREIGN KEY (fkEndereco_Empresa) 
         REFERENCES empresa (idEmpresa)
@@ -129,7 +127,7 @@ CREATE TABLE sensor (
     fkSensor_Talhao INT,
 		CONSTRAINT fkReSensor_Talhao FOREIGN KEY (fkSensor_Talhao)
 		REFERENCES talhao(idTalhao)
-) AUTO_INCREMENT 10000;
+) AUTO_INCREMENT 10000;    
 
 CREATE TABLE filtragemDados (
 	idFiltragemDados INT PRIMARY KEY AUTO_INCREMENT,
@@ -141,7 +139,7 @@ CREATE TABLE filtragemDados (
         -- Insuficiente: menos que 14
         -- Excesso: mais que 16
         -- Ideal: entre 14 e 16
-)AUTO_INCREMENT = 10000;
+)AUTO_INCREMENT = 500000;
 
 CREATE TABLE dadosSensor (
 	idDadosSensor INT AUTO_INCREMENT,
@@ -165,7 +163,68 @@ CREATE TABLE dadosSensor (
     fkDadosSensor_FiltragemDados INT,
     		CONSTRAINT fkReFiltragemDados_DadosSensor FOREIGN KEY (fkDadosSensor_FiltragemDados)
 			REFERENCES filtragemDados(idFiltragemDados)
-);
+) AUTO_INCREMENT = 1000000;
+
+INSERT INTO empresa (idEmpresa, nomeFantasia, cnpj, tamanhoEmpresa, qtdHectares, statusCadastro, dtCriacao, dtSaida, fkEmpresa_EmpresaSede) VALUES
+    (1, 'Lumini', '87654321000195', 'Grande', NULL, 'ativo', '2024-11-26', NULL, NULL),
+	(2, 'FrizzaLupulo', '12345678000195', 'Médio', '20', 'ativo', '2024-11-27', NULL, NULL);
+
+INSERT INTO endereco (idEndereco, cep, uf, cidade, logradouro, numero, complemento) VALUES
+ 	(1, '01414-001', 'SP', 'São Paulo', 'Rua Haddock Lobo', '585', NULL);
+
+INSERT INTO usuario (idUsuario, fkUsuario_Empresa, nome, senha, email, telefone, tipoUsuario, statusUsuario, dtCriacao, dtExclusao) VALUES
+	(1000, 1, 'Igor', 'Lumini@100', 'igor@lumini.com', '11942971496', 'Administrador', 'ativo', '2024-11-26', NULL),
+	(1001, 2, 'Frizza', 'Urubu@100', 'frizza@sptech.com', '11912345678', 'Administrador', 'ativo', '2024-11-27', NULL);
+
+INSERT INTO talhao (idTalhao, numero, areaTalhao, fkTalhao_Empresa) VALUES
+	(100, 1, 15000, 2),
+	(101, 2, 15000, 2),
+	(102, 3, 15000, 2),
+	(103, 4, 15000, 2);
+
+INSERT INTO sensor (idSensor, statusFuncionamento, dtInstalacao, dtUltimaManutencao, fkSensor_Talhao) VALUES
+	(10000, 'Ativo', '2024-11-28', NULL, 100),
+	(10001, 'Ativo', '2024-11-28', NULL, 100),
+	(10002, 'Ativo', '2024-11-28', NULL, 100),
+	(10003, 'Ativo', '2024-11-28', NULL, 101),
+	(10004, 'Ativo', '2024-11-28', NULL, 101),
+	(10005, 'Ativo', '2024-11-28', NULL, 101),
+	(10006, 'Ativo', '2024-11-28', NULL, 101),
+	(10007, 'Ativo', '2024-11-28', NULL, 102),
+	(10008, 'Ativo', '2024-11-28', NULL, 102),
+	(10009, 'Ativo', '2024-11-28', NULL, 103),
+	(10010, 'Ativo', '2024-11-28', NULL, 103),
+	(10011, 'Ativo', '2024-11-28', NULL, 103);
+
+INSERT INTO filtragemDados (idFiltragemDados, dia, qtdHorasLuz, statusDia) VALUES
+	(500000, '2024-12-03', 16, 'Ideal'), -- 1
+	(500001, '2024-12-03', 16, 'Ideal'), -- 1
+	(500002, '2024-12-03', 16, 'Ideal'), -- 1
+	(500003, '2024-12-03', 16, 'Ideal'), -- 2
+	(500004, '2024-12-03', 18, 'Excesso'), -- 2
+	(500005, '2024-12-03', 15, 'Ideal'), -- 2
+	(500006, '2024-12-03', 14, 'Insuficiente'), -- 2
+	(500007, '2024-12-03', 16, 'Ideal'), -- 3
+	(500008, '2024-12-03', 16, 'Ideal'), -- 3
+	(500009, '2024-12-03', 16, 'Ideal'), -- 4
+	(500010, '2024-12-03', 16, 'Ideal'), -- 4
+	(500011, '2024-12-03', 16, 'Ideal'); -- 4
+
+INSERT INTO dadosSensor (idDadosSensor, fkDadosSensor_Sensor, qtdLuz, statusLuminosidade, alerta, momentoCaptura, fkDadosSensor_FiltragemDados) VALUES
+	(1000000, 10000, 25000, 'Satisfatória', 'Não', DEFAULT, 500000),
+	(1000001, 10001, 25000, 'Satisfatória', 'Não', DEFAULT, 500001),
+	(1000002, 10002, 25000, 'Satisfatória', 'Não', DEFAULT, 500002),
+	(1000003, 10003, 25000, 'Satisfatória', 'Não', DEFAULT, 500003),
+	(1000004, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500004),
+	(1000005, 10005, 25000, 'Satisfatória', 'Não', DEFAULT, 500005),
+	(1000006, 10006, 25000, 'Satisfatória', 'Não', DEFAULT, 500006),
+	(1000007, 10007, 25000, 'Satisfatória', 'Não', DEFAULT, 500007),
+	(1000008, 10008, 25000, 'Satisfatória', 'Não', DEFAULT, 500008),
+	(1000009, 10009, 25000, 'Satisfatória', 'Não', DEFAULT, 500009),
+	(1000010, 10010, 25000, 'Satisfatória', 'Não', DEFAULT, 500010),
+	(1000011, 10011, 25000, 'Satisfatória', 'Não', DEFAULT, 500011);
+    
+--
 
 INSERT INTO filtragemDados (dia, qtdHorasLuz, statusDia) VALUES
 	('2024-09-08', 13.00, 'Insuficiente'),
