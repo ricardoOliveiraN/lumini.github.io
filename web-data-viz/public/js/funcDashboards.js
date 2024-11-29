@@ -5,6 +5,12 @@ var G1_data = [];
 var qtdIdeal = 0
 var qtdIndesejavel = 0
 
+var qtdExcesso = 0
+var qtdAbaixo = 0
+
+var quantidadeTalhoes = 0
+
+
 function horasLuz() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
     fetch(`/medidas/horasLuz/${idEmpresa}`, {
@@ -28,6 +34,7 @@ function horasLuz() {
 
                 for (var contador = 0; contador < json.length; contador++) {
                     G1_labels.push('Talhão ' + json[contador].numTalhao)
+                    quantidadeTalhoes++
 
                     G1_data.push(json[contador].qtdHoras)
 
@@ -36,10 +43,20 @@ function horasLuz() {
                     } else {
                         qtdIdeal++
                     }
+
+                    if (json[contador].qtdHoras > 17) {
+                        qtdExcesso++
+                    } else if (json[contador].qtdHoras < 15) {
+                        qtdAbaixo++
+                    } 
                 }
 
                 plotarGrafico1();
                 plotarGrafico2();
+                span_totalTalhoes.innerHTML = quantidadeTalhoes;
+                span_totalIdeal.innerHTML = qtdIdeal;
+                span_totalAbaixo.innerHTML = qtdAbaixo;
+                span_totalExcesso.innerHTML = qtdExcesso;
 
             });
 
