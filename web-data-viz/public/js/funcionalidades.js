@@ -272,10 +272,16 @@ function entrar() {
                 sessionStorage.FK_EMPRESA = json.fkEmpresa;
                 // sessionStorage.ID_USUARIO = json.id;
                 // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                if (sessionStorage.FK_EMPRESA == 1) {
+                    setTimeout(function () {
+                        window.location = "CadastrarFuncionario.html";
+                    }, 1000);
+                } else {
 
-                setTimeout(function () {
-                    window.location = "TelaDash-Geral.html";
-                }, 1000); // apenas para exibir o loading
+                    setTimeout(function () {
+                        window.location = "TelaDash-Geral.html";
+                    }, 1000); // apenas para exibir o loading
+                }
 
             });
 
