@@ -1,14 +1,10 @@
 var medidaModel = require("../models/medidaModel");
 
-function buscarUltimasMedidas(req, res) {
+function horasLuz(req, res) {
 
-    const limite_linhas = 7;
+    var idEmpresa = req.params.idEmpresa;
 
-    var idAquario = req.params.idAquario;
-
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-    medidaModel.buscarUltimasMedidas(idAquario, limite_linhas).then(function (resultado) {
+    medidaModel.horasLuz(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -21,14 +17,28 @@ function buscarUltimasMedidas(req, res) {
     });
 }
 
+function qtdAlertasTalhao(req, res) {
 
-function buscarMedidasEmTempoReal(req, res) {
+    var idEmpresa = req.params.idEmpresa;
 
-    var idAquario = req.params.idAquario;
+    medidaModel.qtdAlertasTalhao(idEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
-    console.log(`Recuperando medidas em tempo real`);
+function historicoAlertas(req, res) {
 
-    medidaModel.buscarMedidasEmTempoReal(idAquario).then(function (resultado) {
+    var idEmpresa = req.params.idEmpresa;
+
+    medidaModel.historicoAlertas(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -42,7 +52,7 @@ function buscarMedidasEmTempoReal(req, res) {
 }
 
 module.exports = {
-    buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
-
+    horasLuz,
+    qtdAlertasTalhao,
+    historicoAlertas
 }

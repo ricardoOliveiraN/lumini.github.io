@@ -11,12 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styleDash-Geral.css">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
 </head>
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-<body>
+<body onload="horasLuz(); qtdAlertasTalhao(); historicoAlertas()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -42,22 +45,8 @@
                 </div>
 
                 <div class="class_talhoesSelecionar">
-                    <div class="class_talhoesSelecionarOpcoes">
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html">Talhão 1</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Talhão 2</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html">Talhão 3</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Talhão 4</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html">Talhão 5</a>
-                        </div>
+                    <div class="class_talhoesSelecionarOpcoes" id="div_botoesTalhoes">
+                        
                     </div>
                 </div>
 
@@ -74,10 +63,12 @@
                         <canvas id="myChartA" style="position: relative; height: 45vh; width: 21.6vw;"></canvas>
                     </div>
                     <div class="class_talhoesGrafico class_talhoesGrafico2">
-                        <canvas id="myChartB" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                        <canvas id="myChartB"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
                     </div>
                     <div class="class_talhoesGrafico class_talhoesGrafico2">
-                        <canvas id="myChartC" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                        <canvas id="myChartC"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
                     </div>
                 </div>
             </div>
@@ -87,7 +78,7 @@
                     <div class="class_kpisMenu">
                         <div class="class_kpi class_kpi1">
                             <div class="class_kpiNumero">
-                                <span>5</span>
+                                <span id="span_totalTalhoes">5</span>
                             </div>
                             <div class="class_kpiTexto">
                                 <span> Total </span>
@@ -95,7 +86,7 @@
                         </div>
                         <div class="class_kpi class_kpi2">
                             <div class="class_kpiNumero">
-                                <span>3</span>
+                                <span id="span_totalIdeal">3</span>
                             </div>
                             <div class="class_kpiTexto">
                                 <span>Ideal</span>
@@ -103,7 +94,7 @@
                         </div>
                         <div class="class_kpi class_kpi3">
                             <div class="class_kpiNumero">
-                                <span>1</span>
+                                <span id="span_totalAbaixo">1</span>
                             </div>
                             <div class="class_kpiTexto">
                                 <span>Abaixo</span>
@@ -112,7 +103,7 @@
                         </div>
                         <div class="class_kpi class_kpi4">
                             <div class="class_kpiNumero">
-                                1
+                                <span id="span_totalExcesso">1</span>
                             </div>
                             <div class="class_kpiTexto">
                                 <span>Excesso</span>
@@ -125,34 +116,12 @@
                 </div>
                 <div class="class_sensorAlertas">
                     <table>
-                        <thead>
+                        <thead id="historico_Alertas">
                             <tr class="tituloAlerta">
                                 <th>Talhao</th>
-                                <th>Sensor</th>
                                 <th>Tipo</th>
                                 <th>Horas</th>
                                 <th>Dia</th>
-                            </tr>
-                            <tr>
-                                <th>01</th>
-                                <th>1.2</th>
-                                <th>Insuficiente</th>
-                                <th>14</th>
-                                <th>20/09/24</th>
-                            </tr>
-                            <tr>
-                                <th>01</th>
-                                <th>1.1</th>
-                                <th>Excesso</th>
-                                <th>18</th>
-                                <th>22/09/24</th>
-                            </tr>
-                            <tr>
-                                <th>02</th>
-                                <th>1.3</th>
-                                <th>Insuficiente</th>
-                                <th>14.5</th>
-                                <th>24/10/24</th>
                             </tr>
                         </thead>
                         <tbody id="tableCampo">
@@ -167,214 +136,4 @@
 </body>
 
 </html>
-
-<script>
-
-    const labelsA = [
-        'Talhão 1',
-        'Talhão 2',
-        'Talhão 3',
-        'Talhão 4',
-        'Talhão 5',
-    ];
-
-    const dataA = {
-        labels: labelsA,
-        datasets: [
-            {
-                label: 'Máximo',
-                backgroundColor: 'rgb(255, 87, 51)',
-                borderColor: 'rgb(255, 87, 51)',
-                data: [17, 17, 17, 17, 17, 17, 17],
-                type: "line"
-            },
-            {
-                label: 'Mínimo',
-                backgroundColor: 'rgb(255, 171, 0)',
-                borderColor: 'rgb(255, 171, 0)',
-                data: [15, 15, 15, 15, 15, 15, 15],
-                type: "line"
-            },
-            {
-                label: 'Horas com luz',
-                backgroundColor: [
-                    'rgb(114, 189, 119)',
-
-                ],
-                borderColor: [
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
-                ],
-                data: [16, 17.5, 16, 12, 16, 20]
-            },
-        ]
-    };
-
-    const configA = {
-        type: 'bar',
-        data: dataA,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Dia 05/11 - Horas com Luz'
-                },
-                legend: {
-                    labels: {
-                        boxWidth: 20 // Configuração correta para ajustar a largura dos quadrados da legenda
-                    }
-                }
-            },
-            scales: {
-                // x: {
-                //     title: {
-                //         display: true,
-                //         text: 'Talhões'
-                //     },
-                // },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Quantidade de horas'
-                    },
-                }
-            }
-        }
-    }
-
-
-    // Segundo Gráfico
-
-    const labelsB = [
-        'ideal',
-        'indesejável',
-    ];
-
-
-    const dataB = {
-        labels: labelsB,
-        datasets: [{
-            label: 'Talhões',
-            backgroundColor: [
-                'rgb(95, 155, 99)',
-                'rgb(179, 53, 53)',
-            ],
-            borderColor: [
-                'rgb(0, 0, 0, 0.2)',
-                'rgb(0, 0, 0, 0.2)',
-            ],
-            data: [3, 2]
-        }]
-
-    };
-
-    const configB = {
-        type: 'doughnut',
-        data: dataB,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Dia 05/11 - Status Luminosidade nos Talhões',
-                    font: {
-                        size: 14,
-                    }
-                },
-                legend: {
-                    position: 'right', // Posiciona a legenda à direita
-                    labels: {
-                        font: {
-                            // size: 14, // Tamanho da fonte
-                            // family: 'Arial', // Fonte personalizada
-                            // style: 'italic', // Estilo da fonte (normal, italic, bold)
-                        },
-                        // color: '#333', // Cor do texto da legenda
-                        boxWidth: 20, // Largura do quadrado de cor na legenda
-                        // boxHeight: 15, // Altura do quadrado de cor na legenda
-                        // padding: 10, // Espaçamento entre os itens
-                        // usePointStyle: true, // Exibe ícones como pontos ao invés de quadrados
-                    }
-                }
-            }
-        }
-    }
-
-    /* TERCEIRO GRÁFICO */
-    const labelsC = [
-        'Talhão 1',
-        'Talhão 2',
-        'Talhão 3',
-        'Talhão 4',
-        'Talhão 5',
-    ];
-
-
-    const dataC = {
-        labels: labelsC,
-        datasets: [{
-            label: 'Quantidade',
-            backgroundColor: [
-                'rgb(188, 53, 53)',
-                ' rgb(185, 190, 27)',
-                ' rgb(168, 193, 25)',
-                'rgb(218, 99, 1)',
-                'rgb(218, 149, 1)',
-            ],
-            borderColor: [
-                'rgb(0,0,0,0.2)',
-                'rgb(0,0,0,0.2)',
-                'rgb(0,0,0,0.2)',
-                'rgb(0,0,0,0.2)',
-                'rgb(0,0,0,0.2)',
-            ],
-            data: [3, 2, 1, 1, 4]
-        }]
-
-    };
-
-    const configC = {
-        type: 'doughnut',
-        data: dataC,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Quantidade de Alertas por Talhão',
-                    font: {
-                        size: 14,
-                    }
-                },
-                legend: {
-                    position: 'right', // Posiciona a legenda à direita
-                    labels: {
-                        boxWidth: 20,
-                    }
-
-
-                }
-            }
-        }
-    }
-
-</script>
-
-<script>
-    const myChart = new Chart(
-        document.getElementById('myChartA'),
-        configA
-
-    )
-
-    const myChart2 = new Chart(
-        document.getElementById('myChartB'),
-        configB
-    )
-
-    const myChart3 = new Chart(
-        document.getElementById('myChartC'),
-        configC
-    )
-</script>
+<script src="./js/funcDashboards.js"></script>
