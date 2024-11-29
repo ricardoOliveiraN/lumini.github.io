@@ -19,7 +19,7 @@
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-<body onload="horasLuz(); qtdAlertasTalhao()">
+<body onload="horasLuz(); qtdAlertasTalhao(); historicoAlertas()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -45,22 +45,8 @@
                 </div>
 
                 <div class="class_talhoesSelecionar">
-                    <div class="class_talhoesSelecionarOpcoes">
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html">Talhão 1</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Talhão 2</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html">Talhão 3</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Talhão 4</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html">Talhão 5</a>
-                        </div>
+                    <div class="class_talhoesSelecionarOpcoes" id="div_botoesTalhoes">
+                        
                     </div>
                 </div>
 
@@ -130,34 +116,12 @@
                 </div>
                 <div class="class_sensorAlertas">
                     <table>
-                        <thead>
+                        <thead id="historico_Alertas">
                             <tr class="tituloAlerta">
                                 <th>Talhao</th>
-                                <th>Sensor</th>
                                 <th>Tipo</th>
                                 <th>Horas</th>
                                 <th>Dia</th>
-                            </tr>
-                            <tr>
-                                <th>01</th>
-                                <th>1.2</th>
-                                <th>Insuficiente</th>
-                                <th>14</th>
-                                <th>20/09/24</th>
-                            </tr>
-                            <tr>
-                                <th>01</th>
-                                <th>1.1</th>
-                                <th>Excesso</th>
-                                <th>18</th>
-                                <th>22/09/24</th>
-                            </tr>
-                            <tr>
-                                <th>02</th>
-                                <th>1.3</th>
-                                <th>Insuficiente</th>
-                                <th>14.5</th>
-                                <th>24/10/24</th>
                             </tr>
                         </thead>
                         <tbody id="tableCampo">

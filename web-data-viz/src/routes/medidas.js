@@ -11,4 +11,8 @@ router.get("/qtdAlertasTalhao/:idEmpresa", function (req, res) {
     medidaController.qtdAlertasTalhao(req, res);
 })
 
+router.get("/historicoAlertas/:idEmpresa", function (req, res) {
+    medidaController.historicoAlertas(req, res);
+})
+
 module.exports = router;

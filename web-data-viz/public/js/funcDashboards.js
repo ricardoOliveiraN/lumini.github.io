@@ -40,16 +40,24 @@ function horasLuz() {
 
                     if (json[contador].qtdHoras < 16) {
                         qtdIndesejavel++
+                        div_botoesTalhoes.innerHTML += `<div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Talhão ${contador+1}</a>
+                        </div>`
                     } else {
                         qtdIdeal++
+                        div_botoesTalhoes.innerHTML += `<div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Talhão ${contador+1}</a>
+                        </div>`
                     }
 
                     if (json[contador].qtdHoras > 17) {
                         qtdExcesso++
                     } else if (json[contador].qtdHoras < 15) {
                         qtdAbaixo++
-                    } 
+                    }
                 }
+
+            
 
                 plotarGrafico1();
                 plotarGrafico2();
@@ -131,6 +139,52 @@ function qtdAlertasTalhao() {
     return false;
 }
 
+function historicoAlertas() {
+    var idEmpresa = sessionStorage.FK_EMPRESA;
+    fetch(`/medidas/historicoAlertas/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+
+                for (var i = 0; i < json.length; i++) {
+                    var somenteDataNasc = json[i].dia.split("T")[0];
+                    historico_Alertas.innerHTML += `<tr><th>${json[i].numero}</th>
+                    <th>${json[i].statusDia}</th>
+                    <th>${json[i].qtdHorasLuz}</th>
+                    <th>${somenteDataNasc}</th></tr>`
+                }
+
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar realizar a busca da quantidade de horas!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                // finalizarAguardar(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
+
 
 
 function plotarGrafico1() {
@@ -168,6 +222,17 @@ function plotarGrafico1() {
             },
         ]
     };
+    const hoje = new Date();
+
+    // Calcula um dia antes
+    const umDiaAntes = new Date(hoje);
+    umDiaAntes.setDate(hoje.getDate() - 1);
+
+    // Obtém o dia do mês anterior
+    const diaAnterior = umDiaAntes.getDate();
+
+    // Obtém o mês (0 a 11, somamos 1 para ajustar)
+    const mesAtual = umDiaAntes.getMonth() + 1;
 
     const configA = {
         type: 'bar',
@@ -176,7 +241,7 @@ function plotarGrafico1() {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Dia 05/11 - Horas com Luz'
+                    text: `Dia ${diaAnterior}/${mesAtual} - Horas com Luz`
                 },
                 legend: {
                     labels: {
@@ -236,7 +301,7 @@ function plotarGrafico2() {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Dia 05/11 - Status Luminosidade nos Talhões',
+                    text: `Dia ${diaAnterior}/${mesAtual} - Status Luminosidade nos Talhões`,
                     font: {
                         size: 14,
                     }
@@ -321,4 +386,17 @@ function plotarGrafico3() {
         configC
     )
 }
+
+const hoje = new Date();
+
+// Calcula um dia antes
+const umDiaAntes = new Date(hoje);
+umDiaAntes.setDate(hoje.getDate() - 1);
+
+// Obtém o dia do mês anterior
+const diaAnterior = umDiaAntes.getDate();
+
+// Obtém o mês (0 a 11, somamos 1 para ajustar)
+const mesAtual = umDiaAntes.getMonth() + 1;
+
 

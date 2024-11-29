@@ -32,7 +32,23 @@ function qtdAlertasTalhao(idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function historicoAlertas(idEmpresa) {
+
+    var instrucaoSql = `SELECT talhao.numero, filtragemDados.statusDia, filtragemDados.qtdHorasLuz, filtragemDados.dia FROM talhao
+	JOIN sensor
+		ON talhao.idTalhao = sensor.fkSensor_Talhao
+	JOIN dadosSensor
+		ON sensor.idSensor = dadosSensor.fkDadosSensor_Sensor
+	JOIN filtragemDados
+		ON dadosSensor.fkDadosSensor_FiltragemDados = filtragemDados.idFiltragemDados
+	WHERE filtragemDados.statusDia = 'Insuficiente' OR filtragemDados.statusDia = 'Excesso' AND filtragemDados.dia = '2024-12-03' AND fkTalhao_Empresa = ${idEmpresa};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     horasLuz,
-	qtdAlertasTalhao
+	qtdAlertasTalhao,
+	historicoAlertas
 }
