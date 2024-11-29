@@ -7,8 +7,8 @@ router.get("/horasLuz/:idEmpresa", function (req, res) {
     medidaController.horasLuz(req, res);
 });
 
-router.get("/tempo-real/:idAquario", function (req, res) {
-    medidaController.buscarMedidasEmTempoReal(req, res);
+router.get("/qtdAlertasTalhao/:idEmpresa", function (req, res) {
+    medidaController.qtdAlertasTalhao(req, res);
 })
 
 module.exports = router;

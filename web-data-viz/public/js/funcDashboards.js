@@ -1,14 +1,200 @@
 var G1_labels = [];
 var G1_data = [];
 
+
+var qtdIdeal = 0
+var qtdIndesejavel = 0
+
+function horasLuz() {
+    var idEmpresa = sessionStorage.FK_EMPRESA;
+    fetch(`/medidas/horasLuz/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+
+
+
+                for (var contador = 0; contador < json.length; contador++) {
+                    G1_labels.push('Talhão ' + json[contador].numTalhao)
+
+                    G1_data.push(json[contador].qtdHoras)
+
+                    if (json[contador].qtdHoras < 16) {
+                        qtdIndesejavel++
+                    } else {
+                        qtdIdeal++
+                    }
+                }
+
+                plotarGrafico1();
+                plotarGrafico2();
+
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar realizar a busca da quantidade de horas!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                // finalizarAguardar(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
+
+var talhoes = []
+var qtdAlertas = []
+
+function qtdAlertasTalhao() {
+    var idEmpresa = sessionStorage.FK_EMPRESA;
+    fetch(`/medidas/qtdAlertasTalhao/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+                for (var i = 0; i < json.length; i++) {
+
+                    if (talhoes.indexOf('Talhão ' + json[i].numero) == -1) {
+                        talhoes.push('Talhão ' + json[i].numero)
+                        qtdAlertas.push(1)
+
+                    } else {
+                        var posicao = talhoes.indexOf('Talhão ' + json[i].numero)
+                        qtdAlertas[posicao]++
+                    }
+                }
+                console.log(talhoes)
+                console.log(qtdAlertas)
+                plotarGrafico3()
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar realizar a busca da quantidade de horas!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                // finalizarAguardar(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
+
+
+
+function plotarGrafico1() {
+    const dataA = {
+        labels: G1_labels,
+        datasets: [
+            {
+                label: 'Máximo',
+                backgroundColor: 'rgb(255, 87, 51)',
+                borderColor: 'rgb(255, 87, 51)',
+                data: [17, 17, 17, 17, 17, 17, 17],
+                type: "line"
+            },
+            {
+                label: 'Mínimo',
+                backgroundColor: 'rgb(255, 171, 0)',
+                borderColor: 'rgb(255, 171, 0)',
+                data: [15, 15, 15, 15, 15, 15, 15],
+                type: "line"
+            },
+            {
+                label: 'Horas com luz',
+                backgroundColor: [
+                    'rgb(114, 189, 119)',
+
+                ],
+                borderColor: [
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                ],
+                data: G1_data
+            },
+        ]
+    };
+
+    const configA = {
+        type: 'bar',
+        data: dataA,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Dia 05/11 - Horas com Luz'
+                },
+                legend: {
+                    labels: {
+                        boxWidth: 20 // Configuração correta para ajustar a largura dos quadrados da legenda
+                    }
+                }
+            },
+            scales: {
+                // x: {
+                //     title: {
+                //         display: true,
+                //         text: 'Talhões'
+                //     },
+                // },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Quantidade de horas'
+                    },
+                }
+            }
+        }
+    }
+    const myChart = new Chart(
+        document.getElementById('myChartA'),
+        configA
+    )
+}
+
+function plotarGrafico2() {
     // Segundo Gráfico
-
     const labelsB = [
-        'ideal',
-        'indesejável',
+        'Ideal',
+        'Indesejável'
     ];
-
-
     const dataB = {
         labels: labelsB,
         datasets: [{
@@ -21,7 +207,7 @@ var G1_data = [];
                 'rgb(0, 0, 0, 0.2)',
                 'rgb(0, 0, 0, 0.2)',
             ],
-            data: [3, 2]
+            data: [qtdIdeal, qtdIndesejavel]
         }]
 
     };
@@ -56,19 +242,18 @@ var G1_data = [];
             }
         }
     }
+    const myChart2 = new Chart(
+        document.getElementById('myChartB'),
+        configB
+    )
 
+}
+
+function plotarGrafico3() {
     /* TERCEIRO GRÁFICO */
-    const labelsC = [
-        'Talhão 1',
-        'Talhão 2',
-        'Talhão 3',
-        'Talhão 4',
-        'Talhão 5',
-    ];
-
 
     const dataC = {
-        labels: labelsC,
+        labels: talhoes,
         datasets: [{
             label: 'Quantidade',
             backgroundColor: [
@@ -85,7 +270,7 @@ var G1_data = [];
                 'rgb(0,0,0,0.2)',
                 'rgb(0,0,0,0.2)',
             ],
-            data: [3, 2, 1, 1, 4]
+            data: qtdAlertas
         }]
 
     };
@@ -114,142 +299,9 @@ var G1_data = [];
         }
     }
 
-function horasLuz() {
-    var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/horasLuz/${idEmpresa}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
-
-        if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-
-                var qtdIdeal = 0
-                var qtdIndesejavel = 0
-                
-
-                for(var contador = 0; contador < json.length; contador++){
-                    G1_labels.push('Talhão ' + json[contador].numTalhao)
-
-                    G1_data.push(json[contador].qtdHoras)
-
-                    if (json[contador].qtdHoras < 16) {
-                        qtdIndesejavel++
-                    } else {
-                        qtdIdeal++
-                    }
-                }
-            
-                plotarGrafico1();
-
-            });
-
-        } else {
-
-            console.log("Houve um erro ao tentar realizar a busca da quantidade de horas!");
-
-            resposta.text().then(texto => {
-                console.error(texto);
-                // finalizarAguardar(texto);
-            });
-        }
-
-    }).catch(function (erro) {
-        console.log(erro);
-    })
-
-    return false;
-}
-
-const dataA = {
-    labels: G1_labels,
-    datasets: [
-        {
-            label: 'Máximo',
-            backgroundColor: 'rgb(255, 87, 51)',
-            borderColor: 'rgb(255, 87, 51)',
-            data: [17, 17, 17, 17, 17, 17, 17],
-            type: "line"
-        },
-        {
-            label: 'Mínimo',
-            backgroundColor: 'rgb(255, 171, 0)',
-            borderColor: 'rgb(255, 171, 0)',
-            data: [15, 15, 15, 15, 15, 15, 15],
-            type: "line"
-        },
-        {
-            label: 'Horas com luz',
-            backgroundColor: [
-                'rgb(114, 189, 119)',
-
-            ],
-            borderColor: [
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
-                'rgb(0, 0, 0)',
-            ],
-            data: G1_data
-        },
-    ]
-};
-
-const configA = {
-    type: 'bar',
-    data: dataA,
-    options: {
-        plugins: {
-            title: {
-                display: true,
-                text: 'Dia 05/11 - Horas com Luz'
-            },
-            legend: {
-                labels: {
-                    boxWidth: 20 // Configuração correta para ajustar a largura dos quadrados da legenda
-                }
-            }
-        },
-        scales: {
-            // x: {
-            //     title: {
-            //         display: true,
-            //         text: 'Talhões'
-            //     },
-            // },
-            y: {
-                title: {
-                    display: true,
-                    text: 'Quantidade de horas'
-                },
-            }
-        }
-    }
-}
-
-function plotarGrafico1() {
-    const myChart = new Chart(
-        document.getElementById('myChartA'),
-        configA
+    const myChart3 = new Chart(
+        document.getElementById('myChartC'),
+        configC
     )
 }
 
-
-const myChart2 = new Chart(
-    document.getElementById('myChartB'),
-    configB
-)
-
-const myChart3 = new Chart(
-    document.getElementById('myChartC'),
-    configC
-)
