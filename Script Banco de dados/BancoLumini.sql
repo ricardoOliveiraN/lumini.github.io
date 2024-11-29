@@ -208,14 +208,14 @@ SELECT min(filtragemDados.qtdHorasLuz), talhao.numero
     GROUP BY talhao.numero;
     
 -- Grafico 2, pagina geral
-SELECT talhao.numero, filtragemDados.statusDia, filtragemDados.qtdHorasLuz, dia FROM talhao
+SELECT talhao.numero, filtragemDados.statusDia, filtragemDados.qtdHorasLuz, filtragemDados.dia FROM talhao
 	JOIN sensor
-		ON idTalhao = fkSensor_Talhao
+		ON talhao.idTalhao = sensor.fkSensor_Talhao
 	JOIN dadosSensor
-		ON idSensor = fkDadosSensor_Sensor
+		ON sensor.idSensor = dadosSensor.fkDadosSensor_Sensor
 	JOIN filtragemDados
-		ON fkDadosSensor_FiltragemDados = idFiltragemDados
-	WHERE filtragemDados.dia = '2024-12-03';
+		ON dadosSensor.fkDadosSensor_FiltragemDados = filtragemDados.idFiltragemDados
+	WHERE filtragemDados.statusDia = 'Insuficiente' OR filtragemDados.statusDia = 'Excesso' AND filtragemDados.dia = '2024-12-03';
         
 -- Gráfico 3, pagina Geral
 SELECT talhao.numero, dadosSensor.statusLuminosidade FROM talhao
