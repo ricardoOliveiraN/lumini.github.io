@@ -285,7 +285,7 @@ function entrar() {
 
             resposta.text().then(texto => {
                 console.error(texto);
-                finalizarAguardar(texto);
+                // finalizarAguardar(texto);
             });
         }
 
