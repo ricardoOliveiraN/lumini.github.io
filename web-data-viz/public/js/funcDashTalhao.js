@@ -1,6 +1,6 @@
 var G1_labels = [];
 var G1_data = [];
-
+var idSensoresLista = []
 
 var qtdIdeal = 0
 var qtdIndesejavel = 0
@@ -10,8 +10,13 @@ var qtdAbaixo = 0
 
 var quantidadeSensores = 0
 
-var sensores = []
+var sensoresComAlerta = []
 var qtdAlertas = []
+
+var sensoresAlertas = 0
+var sensoresAtivos = 0
+var sensoresInativos = 0
+var sensoresManutencao = 0
 
 // INÍCIO DAS ROTAS DA TELA TALHÃO 
 function qtdLuzSensor() {
@@ -36,93 +41,56 @@ function qtdLuzSensor() {
 
 
                 for (var contador = 0; contador < json.length; contador++) {
-                    G1_labels.push('Sensor ' + `${contador+1}`)
-                    quantidadeSensores++
-                    sensores.push(`Sensor ${contador+1}`)
 
-                    G1_data.push(json[contador].qtdHorasLuz)
+                    if (idSensoresLista.indexOf(`${json[contador].idSensor}`) == -1) {
+                        idSensoresLista.push(`${json[contador].idSensor}`)
+                        G1_labels.push(`Sensor ${idSensoresLista.length}`)
+                        quantidadeSensores++
+                        G1_data.push(json[contador].qtdHorasLuz)
+                    }
+                }
 
-                    if (json[contador].qtdHorasLuz < 15 || json[contador].qtdHorasLuz > 17) {
+                for (var i = 0; i < idSensoresLista.length; i++) {
+                    if (G1_data[i] < 15 || G1_data[i] > 17) {
+                        sensoresComAlerta.push(`Sensor ${i + 1}`)
+                        qtdAlertas.push(1)
+                        sensoresAlertas++
                         qtdIndesejavel++
+
+                        if (sensoresComAlerta.indexOf('Sensor ' + `${i + 1}`) == -1) {
+                            sensoresComAlerta.push(`Sensor ${i + 1}`)
+                            qtdAlertas.push(1)
+                            sensoresAlertas++
+                        } else {
+                            var posicao = sensoresComAlerta.indexOf('Sensor ' + `${i + 1}`)
+                            qtdAlertas[posicao]++
+                        }
+
                         div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Sensor ${contador+1}</a>
-                        </div>`
+                        <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Sensor ${i+1}</a>
+                    </div>`
                     } else {
                         qtdIdeal++
                         div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Sensor ${contador+1}</a>
-                        </div>`
+                        <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Sensor ${[i+1]}</a>
+                    </div>`
                     }
 
-                    if (json[contador].qtdHorasLuz > 17) {
+                    if (json[i].qtdHorasLuz > 17) {
                         qtdExcesso++
-                    } else if (json[contador].qtdHorasLuz < 15) {
+                    } else if (json[i].qtdHorasLuz < 15) {
                         qtdAbaixo++
                     }
                 }
 
-            
+
 
                 plotarGrafico1();
                 plotarGrafico2();
+                plotarGrafico3();
                 span_totalSensores.innerHTML = quantidadeSensores;
-                // span_totalIdeal.innerHTML = qtdIdeal;
-                // span_totalAbaixo.innerHTML = qtdAbaixo;
-                // span_totalExcesso.innerHTML = qtdExcesso;
+                span_sensoresAlerta.innerHTML = sensoresAlertas;
 
-            });
-
-        } else {
-
-            console.log("Houve um erro ao tentar realizar a busca da quantidade de horas!");
-
-            resposta.text().then(texto => {
-                console.error(texto);
-                // finalizarAguardar(texto);
-            });
-        }
-
-    }).catch(function (erro) {
-        console.log(erro);
-    })
-
-    return false;
-}
-
-
-
-function qtdAlertasSensor() {
-    var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/qtdAlertasSensor/${idEmpresa}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
-
-        if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-
-                for (var i = 0; i < sensores.length; i++) {
-
-                    if (sensores.indexOf('Sensor ' + `${i+1}`) == -1) {
-                        sensores.push('Sensor ' + `${i+1}`)
-                        qtdAlertas.push(1)
-
-                    } else {
-                        var posicao = sensores.indexOf('Sensor ' + `${i+1}`)
-                        qtdAlertas[posicao]++
-                    }
-                }
-                console.log(sensores)
-                console.log(qtdAlertas)
-                plotarGrafico3()
             });
 
         } else {
@@ -281,7 +249,7 @@ function plotarGrafico3() {
     /* TERCEIRO GRÁFICO */
 
     const dataC = {
-        labels: sensores,
+        labels: sensoresComAlerta,
         datasets: [{
             label: 'Quantidade',
             backgroundColor: [
@@ -345,5 +313,54 @@ const diaAnterior = umDiaAntes.getDate();
 
 // Obtém o mês (0 a 11, somamos 1 para ajustar)
 const mesAtual = umDiaAntes.getMonth() + 1;
+
+function statusSensor() {
+    var idEmpresa = sessionStorage.FK_EMPRESA;
+    fetch(`/medidas/statusSensor/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+                for(var contador = 0; contador < json.length; contador++){
+                    if (json[contador].statusFuncionamento == 'Ativo') {
+                        sensoresAtivos++
+                    } else if (json[contador].statusFuncionamento == 'Inativo') {
+                      sensoresInativos++  
+                    } else {
+                        sensoresManutencao++
+                    }
+                }
+                span_sensoresAtivos.innerHTML = sensoresAtivos;
+                span_sensoresManutencao.innerHTML = sensoresManutencao;
+
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar realizar a busca da quantidade de horas!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                // finalizarAguardar(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
 
 

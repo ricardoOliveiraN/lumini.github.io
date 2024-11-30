@@ -73,11 +73,11 @@ function qtdLuzSensor(req, res) {
     });
 }
 
-function qtdAlertasSensor(req, res) {
+function statusSensor(req, res) {
     
     var idEmpresa = req.params.idEmpresa;
     
-    medidaModel.qtdAlertasSensor(idEmpresa).then(function (resultado) {
+    medidaModel.statusSensor(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -96,5 +96,5 @@ module.exports = {
     qtdAlertasTalhao,
     historicoAlertas,
     qtdLuzSensor,
-    qtdAlertasSensor
+    statusSensor
 }

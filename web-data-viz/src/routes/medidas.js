@@ -23,8 +23,8 @@ router.get("/qtdLuzSensor/:idEmpresa", function (req, res) {
     medidaController.qtdLuzSensor(req, res);
 })
 
-router.get("/qtdAlertasSensor/:idEmpresa", function (req, res) {
-    medidaController.qtdAlertasSensor(req, res);
+router.get("/statusSensor/:idEmpresa", function (req, res) {
+    medidaController.statusSensor(req, res);
 })
 // FIM DAS ROTAS DA TELA TALHÃO 
 

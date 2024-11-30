@@ -29,7 +29,7 @@
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-    <body onload="validarSessao(); qtdLuzSensor(); qtdAlertasSensor()">
+    <body onload="validarSessao(); qtdLuzSensor(); statusSensor()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -95,7 +95,7 @@
                         </div>
                         <div class="class_kpi class_kpi2">
                             <div class="class_kpiNumero">
-                                <span>3</span>
+                                <span id="span_sensoresAtivos">3</span>
                             </div>
                             <div class="class_kpiTexto">
                                 <span>Sensores <br> ativos</span>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="class_kpi class_kpi3">
                             <div class="class_kpiNumero">
-                                <span>2</span>
+                                <span id="span_sensoresManutencao">2</span>
                             </div>
                             <div class="class_kpiTexto">
                                 <span>Sensor em<br>manutenção</span>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="class_kpi class_kpi4">
                             <div class="class_kpiNumero" style="padding: 1px;">
-                                1
+                                <span id="span_sensoresAlerta">1</span>
                             </div>
                             <div class="class_kpiTexto">
                                 <span>Sensores<br> com alerta</span>
@@ -127,15 +127,15 @@
                     <table>
                         <thead>
                             <tr class="tituloAlerta">
-                                <th>Talhao</th>
                                 <th>Sensor</th>
+                                <th>Talhao</th>
                                 <th>Tipo</th>
                                 <th>Horas</th>
                                 <th>Dia</th>
                             </tr>
                             <tr>
-                                <th>01</th>
                                 <th>1.2</th>
+                                <th>01</th>
                                 <th>Insuficiente</th>
                                 <th>14</th>
                                 <th>20/09/24</th>

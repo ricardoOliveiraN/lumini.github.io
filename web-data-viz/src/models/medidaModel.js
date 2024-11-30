@@ -67,18 +67,17 @@ function qtdLuzSensor(idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
-function qtdAlertasSensor(idEmpresa) {
+function statusSensor(idEmpresa) {
 
-    var instrucaoSql = `SELECT sensor.idSensor, dadosSensor.statusLuminosidade FROM talhao
-	JOIN sensor
-		ON idTalhao = fkSensor_Talhao
-	JOIN dadosSensor
-		ON idSensor = fkDadosSensor_Sensor
-	JOIN filtragemDados
-		ON fkDadosSensor_FiltragemDados = idFiltragemDados
-	WHERE (dadosSensor.statusLuminosidade = 'Insuficiente' OR dadosSensor.statusLuminosidade = 'Excesso') 
-		AND filtragemDados.dia = '2024-12-03'
-        AND talhao.numero = '2' AND talhao.fkTalhao_Empresa = ${idEmpresa};`;
+    var instrucaoSql = `SELECT distinct(sensor.idSensor), statusFuncionamento
+    FROM sensor
+    JOIN dadosSensor
+        ON idSensor = fkDadosSensor_Sensor
+    JOIN filtragemDados
+        ON idFiltragemDados = fkDadosSensor_FiltragemDados
+    JOIN talhao
+        ON idTalhao = fkSensor_Talhao
+    WHERE talhao.fkTalhao_Empresa = ${idEmpresa} AND talhao.numero = '2';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -90,5 +89,5 @@ module.exports = {
 	qtdAlertasTalhao,
 	historicoAlertas,
 	qtdLuzSensor,
-	qtdAlertasSensor
+	statusSensor
 }
