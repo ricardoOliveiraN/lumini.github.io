@@ -8,12 +8,15 @@ var qtdIndesejavel = 0
 var qtdExcesso = 0
 var qtdAbaixo = 0
 
-var quantidadeTalhoes = 0
+var quantidadeSensores = 0
 
+var sensores = []
+var qtdAlertas = []
 
-function horasLuz() {
+// INÍCIO DAS ROTAS DA TELA TALHÃO 
+function qtdLuzSensor() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/horasLuz/${idEmpresa}`, {
+    fetch(`/medidas/qtdLuzSensor/${idEmpresa}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -33,26 +36,27 @@ function horasLuz() {
 
 
                 for (var contador = 0; contador < json.length; contador++) {
-                    G1_labels.push('Talhão ' + json[contador].numTalhao)
-                    quantidadeTalhoes++
+                    G1_labels.push('Sensor ' + `${contador+1}`)
+                    quantidadeSensores++
+                    sensores.push(`Sensor ${contador+1}`)
 
-                    G1_data.push(json[contador].qtdHoras)
+                    G1_data.push(json[contador].qtdHorasLuz)
 
-                    if (json[contador].qtdHoras < 16) {
+                    if (json[contador].qtdHorasLuz < 15 || json[contador].qtdHorasLuz > 17) {
                         qtdIndesejavel++
-                        div_botoesTalhoes.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Talhão ${contador+1}</a>
+                        div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Sensor ${contador+1}</a>
                         </div>`
                     } else {
                         qtdIdeal++
-                        div_botoesTalhoes.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Talhão ${contador+1}</a>
+                        div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
+                            <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Sensor ${contador+1}</a>
                         </div>`
                     }
 
-                    if (json[contador].qtdHoras > 17) {
+                    if (json[contador].qtdHorasLuz > 17) {
                         qtdExcesso++
-                    } else if (json[contador].qtdHoras < 15) {
+                    } else if (json[contador].qtdHorasLuz < 15) {
                         qtdAbaixo++
                     }
                 }
@@ -61,10 +65,10 @@ function horasLuz() {
 
                 plotarGrafico1();
                 plotarGrafico2();
-                span_totalTalhoes.innerHTML = quantidadeTalhoes;
-                span_totalIdeal.innerHTML = qtdIdeal;
-                span_totalAbaixo.innerHTML = qtdAbaixo;
-                span_totalExcesso.innerHTML = qtdExcesso;
+                span_totalSensores.innerHTML = quantidadeSensores;
+                // span_totalIdeal.innerHTML = qtdIdeal;
+                // span_totalAbaixo.innerHTML = qtdAbaixo;
+                // span_totalExcesso.innerHTML = qtdExcesso;
 
             });
 
@@ -85,12 +89,11 @@ function horasLuz() {
     return false;
 }
 
-var talhoes = []
-var qtdAlertas = []
 
-function qtdAlertasTalhao() {
+
+function qtdAlertasSensor() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/qtdAlertasTalhao/${idEmpresa}`, {
+    fetch(`/medidas/qtdAlertasSensor/${idEmpresa}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -106,18 +109,18 @@ function qtdAlertasTalhao() {
                 console.log(json);
                 console.log(JSON.stringify(json));
 
-                for (var i = 0; i < json.length; i++) {
+                for (var i = 0; i < sensores.length; i++) {
 
-                    if (talhoes.indexOf('Talhão ' + json[i].numero) == -1) {
-                        talhoes.push('Talhão ' + json[i].numero)
+                    if (sensores.indexOf('Sensor ' + `${i+1}`) == -1) {
+                        sensores.push('Sensor ' + `${i+1}`)
                         qtdAlertas.push(1)
 
                     } else {
-                        var posicao = talhoes.indexOf('Talhão ' + json[i].numero)
+                        var posicao = sensores.indexOf('Sensor ' + `${i+1}`)
                         qtdAlertas[posicao]++
                     }
                 }
-                console.log(talhoes)
+                console.log(sensores)
                 console.log(qtdAlertas)
                 plotarGrafico3()
             });
@@ -138,53 +141,6 @@ function qtdAlertasTalhao() {
 
     return false;
 }
-
-function historicoAlertas() {
-    var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/historicoAlertas/${idEmpresa}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
-
-        if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-
-
-                for (var i = 0; i < json.length; i++) {
-                    var somenteDataNasc = json[i].dia.split("T")[0];
-                    historico_Alertas.innerHTML += `<tr><th>${json[i].numero}</th>
-                    <th>${json[i].statusDia}</th>
-                    <th>${json[i].qtdHorasLuz}</th>
-                    <th>${somenteDataNasc}</th></tr>`
-                }
-
-            });
-
-        } else {
-
-            console.log("Houve um erro ao tentar realizar a busca da quantidade de horas!");
-
-            resposta.text().then(texto => {
-                console.error(texto);
-                // finalizarAguardar(texto);
-            });
-        }
-
-    }).catch(function (erro) {
-        console.log(erro);
-    })
-
-    return false;
-}
-
 
 
 function plotarGrafico1() {
@@ -222,17 +178,6 @@ function plotarGrafico1() {
             },
         ]
     };
-    const hoje = new Date();
-
-    // Calcula um dia antes
-    const umDiaAntes = new Date(hoje);
-    umDiaAntes.setDate(hoje.getDate() - 1);
-
-    // Obtém o dia do mês anterior
-    const diaAnterior = umDiaAntes.getDate();
-
-    // Obtém o mês (0 a 11, somamos 1 para ajustar)
-    const mesAtual = umDiaAntes.getMonth() + 1;
 
     const configA = {
         type: 'bar',
@@ -301,7 +246,7 @@ function plotarGrafico2() {
             plugins: {
                 title: {
                     display: true,
-                    text: `Dia ${diaAnterior}/${mesAtual} - Status Luminosidade nos Talhões`,
+                    text: `Dia ${diaAnterior}/${mesAtual} - Status Luminosidade nos Sensores`,
                     font: {
                         size: 14,
                     }
@@ -331,11 +276,12 @@ function plotarGrafico2() {
 
 }
 
+
 function plotarGrafico3() {
     /* TERCEIRO GRÁFICO */
 
     const dataC = {
-        labels: talhoes,
+        labels: sensores,
         datasets: [{
             label: 'Quantidade',
             backgroundColor: [
@@ -364,7 +310,7 @@ function plotarGrafico3() {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Quantidade de Alertas por Talhão',
+                    text: 'Quantidade de Alertas por Sensor',
                     font: {
                         size: 14,
                     }
@@ -386,6 +332,7 @@ function plotarGrafico3() {
         configC
     )
 }
+// FIM DAS ROTAS DA TELA TALHÃO 
 
 const hoje = new Date();
 

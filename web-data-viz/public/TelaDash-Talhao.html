@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styleDash-Geral.css">
+    <script src="./js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .class_kpiNumero {
@@ -28,7 +29,7 @@
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-<body>
+    <body onload="validarSessao(); qtdLuzSensor(); qtdAlertasSensor()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -53,16 +54,7 @@
                 </div>
 
                 <div class="class_talhoesSelecionar">
-                    <div class="class_talhoesSelecionarOpcoes">
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Sensor.html">Sensor 1.1</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Sensor.html" style="background-color:rgb(179, 53, 53);">Sensor 1.2</a>
-                        </div>
-                        <div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Sensor.html">Sensor 1.3</a>
-                        </div>
+                    <div class="class_talhoesSelecionarOpcoes" id="div_botoesSensores">
                         <div class="class_talhoesSelecionarOpcao">
                             <a href="TelaDash-Geral.html">Todos Talhões</a>
                         </div>
@@ -95,7 +87,7 @@
                     <div class="class_kpisMenu">
                         <div class="class_kpi class_kpi1">
                             <div class="class_kpiNumero">
-                                <span>5</span>
+                                <span id="span_totalSensores">5</span>
                             </div>
                             <div class="class_kpiTexto">
                                 <span>Sensores <br> total</span>
@@ -175,260 +167,4 @@
 </body>
 
 </html>
-
-<script>
-
-// const labelsA = [
-        
-//     ];
-
-//     const dataA = {
-//         labels: labelsA,
-//         datasets: [
-//             {
-//                 label: 'Meta diária',
-//                 backgroundColor: 'rgb(138, 141, 144)',
-//                 borderColor: 'rgb(138, 141, 144)',
-//                 data: [16, 16, 16],
-//                 type: "line"
-//             },
-//             {
-//                 label: 'Tempo com luz',
-//                 backgroundColor: [
-//                     'rgb(33, 150, 243)',
-
-//                 ],
-//                 borderColor: [
-//                     'rgb(67, 144, 228, 0.7)',
-//                     'rgb(124, 198, 116, 0.7)',
-//                     'rgb(67, 144, 228, 0.7)',
-//                 ],
-//                 data: [17, 14, 17, 20]
-//             },
-
-//         ]
-//     };
-
-//     const configA = {
-//         type: 'bar',
-//         data: dataA,
-//         options: {
-//             plugins: {
-//                 title: {
-//                     display: true,
-//                     text: 'Dia 05/11 - Horas com Luz'
-//                 }
-//             },
-//             scales: {
-//                 x: {
-//                     title: {
-//                         display: true,
-//                         text: 'Sensores'
-//                     },
-//                 },
-//                 y: {
-//                     title: {
-//                         display: true,
-//                         text: 'Quantidade de horas'
-//                     },
-//                 }
-//             }
-//         }
-//     }
-
-
-
-    const labelsA = [
-        'Sensor 1.1',
-        'Sensor 1.2',
-        'Sensor 1.3',
-    ];
-
-    const dataA = {
-        labels: labelsA,
-        datasets: [
-            {
-                label: 'Meta diária',
-                backgroundColor: 'rgb(138, 141, 144)',
-                borderColor: 'rgb(138, 141, 144)',
-                data: [16, 16, 16],
-                type: "line"
-            },
-            {
-                label: 'Horas com luz',
-                backgroundColor: [
-                    'rgb(114, 189, 119)',
-
-                ],
-                borderColor: [
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
-                ],
-                data: [17, 14, 17]
-            },
-        ]
-    };
-
-    const configA = {
-        type: 'bar',
-        data: dataA,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Dia 05/11 - Horas com Luz'
-                },
-                legend: {
-                    labels: {
-                        boxWidth: 20 // Configuração correta para ajustar a largura dos quadrados da legenda
-                    }
-                }
-            },
-            scales: {
-                // x: {
-                //     title: {
-                //         display: true,
-                //         text: 'Talhões'
-                //     },
-                // },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Quantidade de horas'
-                    },
-                }
-            }
-        }
-    }
-
-
-    // Segundo Gráfico
-
-    const labelsB = [
-        'ideal',
-        'indesejável',
-    ];
-
-
-    const dataB = {
-        labels: labelsB,
-        datasets: [{
-            label: 'Talhões',
-            backgroundColor: [
-                'rgb(95, 155, 99)',
-                'rgb(179, 53, 53)',
-            ],
-            borderColor: [
-                'rgb(0, 0, 0, 0.2)',
-                'rgb(0, 0, 0, 0.2)',
-            ],
-            data: [2, 1]
-        }]
-
-    };
-
-    const configB = {
-        type: 'doughnut',
-        data: dataB,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Dia 05/11 - Status Luminosidade nos Sensores',
-                    font: {
-                        size: 14,
-                    }
-                },
-                legend: {
-                    position: 'right', // Posiciona a legenda à direita
-                    labels: {
-                        font: {
-                            // size: 14, // Tamanho da fonte
-                            // family: 'Arial', // Fonte personalizada
-                            // style: 'italic', // Estilo da fonte (normal, italic, bold)
-                        },
-                        // color: '#333', // Cor do texto da legenda
-                        boxWidth: 20, // Largura do quadrado de cor na legenda
-                        // boxHeight: 15, // Altura do quadrado de cor na legenda
-                        // padding: 10, // Espaçamento entre os itens
-                        // usePointStyle: true, // Exibe ícones como pontos ao invés de quadrados
-                    }
-                }
-            }
-        }
-    }
-
-    /* TERCEIRO GRÁFICO */
-    
-    const labelsC = [
-      'Sensor 1.1',
-        'Sensor 1.2',
-        'Sensor 1.3',
-    ];
-
-
-    const dataC = {
-        labels: labelsC,
-        datasets: [{
-            label: 'Quantidade',
-            backgroundColor: [
-                'rgb(188, 53, 53)',
-                'rgb(218, 99, 1)',
-                ' rgb(185, 190, 27)',
-            ],
-            borderColor: [
-                'rgb(0,0,0,0.2)',
-                'rgb(0,0,0,0.2)',
-                'rgb(0,0,0,0.2)',
-            ],
-            data: [3, 2, 1]
-        }]
-
-    };
-
-    const configC = {
-        type: 'doughnut',
-        data: dataC,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Quantidade de Alertas por Sensor',
-                    font: {
-                        size: 14,
-                    }
-                },
-                legend: {
-                    position: 'right', // Posiciona a legenda à direita
-                    labels: {
-                        boxWidth: 20,
-                    }
-
-
-                }
-            }
-        }
-    }
-
-</script>
-
-<script>
-    const myChart = new Chart(
-        document.getElementById('myChartA'),
-        configA
-
-    )
-
-    const myChart2 = new Chart(
-        document.getElementById('myChartB'),
-        configB
-    )
-
-    const myChart3 = new Chart(
-        document.getElementById('myChartC'),
-        configC
-    )
-</script>
+<script src="./js/funcDashTalhao.js"></script>

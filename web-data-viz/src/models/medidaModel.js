@@ -1,5 +1,6 @@
 var database = require("../database/config");
 
+// INÍCIO DAS ROTAS DA TELA TALHÃO GERAL
 function horasLuz(idEmpresa) {
 
     var instrucaoSql = `SELECT min(filtragemDados.qtdHorasLuz) as qtdHoras, talhao.numero as numTalhao   
@@ -46,9 +47,48 @@ function historicoAlertas(idEmpresa) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+// FIM DAS ROTAS DA TELA TALHÃO GERAL
+
+
+// INÍCIO DAS ROTAS DA TELA TALHÃO SENSOR
+function qtdLuzSensor(idEmpresa) {
+
+    var instrucaoSql = `SELECT filtragemDados.qtdHorasLuz, sensor.idSensor
+	FROM filtragemDados
+	JOIN dadosSensor
+		ON idFiltragemDados = fkDadosSensor_FiltragemDados
+	JOIN sensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN talhao
+		ON idTalhao = fkSensor_Talhao
+	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND talhao.numero = '2';`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function qtdAlertasSensor(idEmpresa) {
+
+    var instrucaoSql = `SELECT sensor.idSensor, dadosSensor.statusLuminosidade FROM talhao
+	JOIN sensor
+		ON idTalhao = fkSensor_Talhao
+	JOIN dadosSensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN filtragemDados
+		ON fkDadosSensor_FiltragemDados = idFiltragemDados
+	WHERE (dadosSensor.statusLuminosidade = 'Insuficiente' OR dadosSensor.statusLuminosidade = 'Excesso') 
+		AND filtragemDados.dia = '2024-12-03'
+        AND talhao.numero = '2' AND talhao.fkTalhao_Empresa = ${idEmpresa};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+// FIM DAS ROTAS DA TELA TALHÃO SENSOR
 
 module.exports = {
     horasLuz,
 	qtdAlertasTalhao,
-	historicoAlertas
+	historicoAlertas,
+	qtdLuzSensor,
+	qtdAlertasSensor
 }
