@@ -26,6 +26,10 @@ router.get("/qtdLuzSensor/:idEmpresa", function (req, res) {
 router.get("/statusSensor/:idEmpresa", function (req, res) {
     medidaController.statusSensor(req, res);
 })
+
+router.get("/historicoAlertasSensor/:idEmpresa", function (req, res) {
+    medidaController.historicoAlertasSensor(req, res);
+})
 // FIM DAS ROTAS DA TELA TALHÃO 
 
 module.exports = router;

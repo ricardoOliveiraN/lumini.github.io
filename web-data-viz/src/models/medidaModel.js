@@ -82,6 +82,21 @@ function statusSensor(idEmpresa) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function historicoAlertasSensor(idEmpresa) {
+
+    var instrucaoSql = `SELECT sensor.idSensor, dadosSensor.qtdLuz, dadosSensor.statusLuminosidade, dadosSensor.momentoCaptura FROM filtragemDados 
+    JOIN dadosSensor
+        ON idFiltragemDados = fkDadosSensor_FiltragemDados 
+    JOIN sensor 
+        ON idSensor = fkDadosSensor_Sensor 
+    JOIN talhao 
+        ON idTalhao = fkSensor_Talhao
+    WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND dadosSensor.alerta = 'sim' AND talhao.numero = '2';`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 // FIM DAS ROTAS DA TELA TALHÃO SENSOR
 
 module.exports = {
@@ -89,5 +104,6 @@ module.exports = {
 	qtdAlertasTalhao,
 	historicoAlertas,
 	qtdLuzSensor,
-	statusSensor
+	statusSensor,
+	historicoAlertasSensor
 }

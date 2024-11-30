@@ -67,12 +67,12 @@ function qtdLuzSensor() {
                         }
 
                         div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                        <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Sensor ${i+1}</a>
+                        <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Sensor ${i + 1}</a>
                     </div>`
                     } else {
                         qtdIdeal++
                         div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                        <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Sensor ${[i+1]}</a>
+                        <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Sensor ${[i + 1]}</a>
                     </div>`
                     }
 
@@ -332,11 +332,11 @@ function statusSensor() {
                 console.log(json);
                 console.log(JSON.stringify(json));
 
-                for(var contador = 0; contador < json.length; contador++){
+                for (var contador = 0; contador < json.length; contador++) {
                     if (json[contador].statusFuncionamento == 'Ativo') {
                         sensoresAtivos++
                     } else if (json[contador].statusFuncionamento == 'Inativo') {
-                      sensoresInativos++  
+                        sensoresInativos++
                     } else {
                         sensoresManutencao++
                     }
@@ -363,4 +363,52 @@ function statusSensor() {
     return false;
 }
 
+
+function historicoAlertasSensor() {
+    var idEmpresa = sessionStorage.FK_EMPRESA;
+    fetch(`/medidas/historicoAlertasSensor/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+
+                for (var i = 0; i < json.length; i++) {
+                    const dataCompleta = json[i].momentoCaptura;
+                    const data = new Date(dataCompleta);
+                    var somenteHorario = data.toLocaleTimeString('pt-BR', { hour12: false });
+                    historico_Alertas.innerHTML += `<tr><th>${json[i].idSensor}</th>
+                    <th>${json[i].qtdLuz}</th>
+                    <th>${json[i].statusLuminosidade}</th>
+                    <th>${somenteHorario}</th></tr>`
+                }
+
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar realizar a busca da quantidade de horas!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                // finalizarAguardar(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
 

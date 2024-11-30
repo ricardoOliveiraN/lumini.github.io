@@ -29,7 +29,7 @@
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-    <body onload="validarSessao(); qtdLuzSensor(); statusSensor()">
+    <body onload="validarSessao(); qtdLuzSensor(); statusSensor(); historicoAlertasSensor()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -125,35 +125,14 @@
                 </div>
                 <div class="class_sensorAlertas">
                     <table>
-                        <thead>
+                        <thead id="historico_Alertas">
                             <tr class="tituloAlerta">
                                 <th>Sensor</th>
-                                <th>Talhao</th>
+                                <th>Luminosidade</th>
                                 <th>Tipo</th>
-                                <th>Horas</th>
-                                <th>Dia</th>
+                                <th>Horário</th>
                             </tr>
-                            <tr>
-                                <th>1.2</th>
-                                <th>01</th>
-                                <th>Insuficiente</th>
-                                <th>14</th>
-                                <th>20/09/24</th>
-                            </tr>
-                            <tr>
-                                <th>01</th>
-                                <th>1.1</th>
-                                <th>Excesso</th>
-                                <th>18</th>
-                                <th>22/09/24</th>
-                            </tr>
-                            <tr>
-                                <th>02</th>
-                                <th>1.3</th>
-                                <th>Insuficiente</th>
-                                <th>14.5</th>
-                                <th>24/10/24</th>
-                            </tr>
+                            
                         </thead>
                         <tbody id="tableCampo">
                         </tbody>

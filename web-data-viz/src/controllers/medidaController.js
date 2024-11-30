@@ -89,6 +89,23 @@ function statusSensor(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+function historicoAlertasSensor(req, res) {
+    
+    var idEmpresa = req.params.idEmpresa;
+    
+    medidaModel.historicoAlertasSensor(idEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 // FIM DAS ROTAS DA TELA TALHÃO SENSOR
 
 module.exports = {
@@ -96,5 +113,6 @@ module.exports = {
     qtdAlertasTalhao,
     historicoAlertas,
     qtdLuzSensor,
-    statusSensor
+    statusSensor,
+    historicoAlertasSensor
 }
