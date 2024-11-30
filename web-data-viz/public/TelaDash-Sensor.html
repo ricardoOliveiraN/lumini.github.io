@@ -30,7 +30,7 @@
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-<body onload="validarSessao(); luminosidadeSensor(); historicoAlertasSensorEspecifico()">
+<body onload="validarSessao(); luminosidadeSensor(); historicoAlertasSensorEspecifico(); luminosidadePorHora()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -74,7 +74,7 @@
                         </div> -->
                 <div class="class_talhoesGraficos">
                     <div class="class_talhoesGrafico class_talhoesGrafico1">
-                        <canvas id="myChartA" style="position: relative; height: 20vh; width: 34.5vw;"></canvas>
+                        <canvas id="myChartA" style="position: relative; height: 20vh; width: 40vw;"></canvas>
                     </div>
                     <div class="class_talhoesGrafico class_talhoesGrafico2">
                         <canvas id="myChartB"
@@ -87,8 +87,8 @@
                 <div class="class_talhoesSelecionar">
                     <div class="class_kpisMenu">
                         <div class="class_kpi class_kpi1">
-                            <div class="class_kpiNumero">
-                                <span>1640</span>
+                            <div class="class_kpiNumero" style="width: auto;">
+                                <span id="span_mediaLuminosidade" style="margin: 10px;">1640</span>
                             </div>
                             <div class="class_kpiTexto">
                                 <span>Média Luminosidade</span>
@@ -144,67 +144,6 @@
 
     }
 
-
-
-    // Primeiro Gráfico
-
-    const labelsA = [
-        '00:00',
-        '01:00',
-        '02:00',
-        '03:00',
-        '04:00',
-        '05:00',
-        '06:00',
-        '07:00',
-        '08:00',
-        '09:00',
-        '10:00',
-        '11:00',
-        '12:00',
-        '13:00',
-        '14:00',
-        '15:00',
-        '16:00',
-        '17:00',
-        '18:00',
-        '19:00',
-        '20:00',
-        '21:00',
-        '22:00',
-        '23:00',
-    ];
-
-    const dataA = {
-        labels: labelsA,
-        datasets: [{
-            label: 'Tempo com luz',
-            borderColor: backGroundValues,
-            backgroundColor: backGroundValues,
-            data: dataValues
-        },
-        {
-            label: 'Mínimo',
-            backgroundColor: 'rgb(255, 171, 0)',
-            borderColor: 'rgb(255, 171, 0)',
-            data: [10000, 10000, 10000, 10000,10000, 10000,10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000,10000, 10000,10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000],
-            type: "line"
-        },
-        ]
-    };
-
-    const configA = {
-        type: 'line',
-        data: dataA,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Luminosidade: 06/10/24'
-                }
-            }
-        }
-    }
 
 
 
@@ -279,13 +218,4 @@
     // ATE AQUI O GRAFICO
 </script>
 
-<script>
-    const myChart = new Chart(
-        document.getElementById('myChartA'),
-        configA
-
-    )
-
-
-</script>
 <script src="./js/funcDashSensor.js"></script>

@@ -49,7 +49,7 @@ function horasLuz() {
                             <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Talhão ${contador+1}</a>
                         </div>`
                     }
-
+ 
                     if (json[contador].qtdHoras > 17) {
                         qtdExcesso++
                     } else if (json[contador].qtdHoras < 15) {

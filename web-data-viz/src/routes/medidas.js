@@ -34,6 +34,10 @@ router.get("/historicoAlertasSensor/:idEmpresa", function (req, res) {
 
 
 // INÍCIO DAS ROTAS DA TELA SENSOR 
+router.get("/luminosidadePorHora", function (req, res) {
+    medidaController.luminosidadePorHora(req, res);
+})
+
 router.get("/luminosidadeSensor", function (req, res) {
     medidaController.luminosidadeSensor(req, res);
 }) 

@@ -133,6 +133,24 @@ function historicoAlertasSensorEspecifico() {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function luminosidadePorHora() {
+
+    var instrucaoSql = `SELECT DISTINCT HOUR(momentoCaptura) AS hora, ROUND(AVG(dadosSensor.qtdLuz), 0) AS qtdLuz
+    FROM filtragemDados 
+    JOIN dadosSensor 
+        ON idFiltragemDados = fkDadosSensor_FiltragemDados 
+    JOIN sensor 
+        ON idSensor = fkDadosSensor_Sensor 
+    JOIN talhao 
+        ON idTalhao = fkSensor_Talhao 
+    WHERE filtragemDados.dia = '2024-12-03' AND sensor.idSensor = 10004
+    GROUP BY HOUR(momentoCaptura)
+    ORDER BY hora ASC;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 // FIM DAS ROTAS DA TELA SENSOR 
  
 module.exports = {
@@ -143,5 +161,6 @@ module.exports = {
 	statusSensor,
 	historicoAlertasSensor,
 	luminosidadeSensor,
-	historicoAlertasSensorEspecifico
+	historicoAlertasSensorEspecifico,
+    luminosidadePorHora
 }
