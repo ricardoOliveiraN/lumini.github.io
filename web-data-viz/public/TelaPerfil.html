@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="css/TelaPerfil.css">
 </head>
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
-data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+    data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+
 <body>
     <!-- <header>
         <nav>
@@ -53,34 +54,37 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
 
 
                 <div class="class_DadosInternosDois">
-                <div class="class_Esquerda">
-                    <p>
-                        <span class="class_span1">Nome</span> <br>
-                        <div class="class_DiveErro"><span class="class_span2">Ricardo de Oliveira</span></div>
-                    </p>
-                    <p>
-                        <span class="class_span1">Empresa</span> <br>
-                        <div class="class_DiveErro"><span class="class_span2">LuminiCorporation</span></div>
-                    </p>
-                    <p>
-                        <span class="class_span1">Cargo</span> <br>
-                        <div class="class_DiveErro"><span class="class_span2">Administrador</span></div>
-                    </p>
-                </div>
-                <div class="class_Direita">
-                    <p>
-                        <span class="class_span1">Email</span> <br>
-                        <div class="class_DiveErro"><span class="class_span2">ricardo@sptech.scholl</span></div>
-                    </p>
-                    <p>
-                        <span class="class_span1">Número Telefone</span> <br>
-                        <div class="class_DiveErro"><span class="class_span2">11999999999</span></div>
-                    </p>
-                    <p>
-                        <span class="class_span1">Senha</span> <br>
-                        <div class="class_DiveErro"><span class="class_span2">*********</span></div>
-                    </p>
-                </div>
+                    <div class="class_Esquerda">
+                        <p>
+                            <span class="class_span1">Nome</span> <br>
+                        <div class="class_DiveErro"><span class="class_span2" id="span_nome">Ricardo de Oliveira</span>
+                        </div>
+                        </p>
+                        <p>
+                            <span class="class_span1">Empresa</span> <br>
+                        <div class="class_DiveErro"><span class="class_span2" id="span_empresa">LuminiCorporation</span></div>
+                        </p>
+                        <p>
+                            <span class="class_span1">Cargo</span> <br>
+                        <div class="class_DiveErro"><span class="class_span2" id="span_cargo">Administrador</span></div>
+                        </p>
+                    </div>
+                    <div class="class_Direita">
+                        <p>
+                            <span class="class_span1">Email</span> <br>
+                        <div class="class_DiveErro"><span class="class_span2"
+                                id="span_email">ricardo@sptech.scholl</span></div>
+                        </p>
+                        <p>
+                            <span class="class_span1">Número Telefone</span> <br>
+                        <div class="class_DiveErro"><span class="class_span2" id="span_telefone">11999999999</span>
+                        </div>
+                        </p>
+                        <p>
+                            <span class="class_span1">Senha</span> <br>
+                        <div class="class_DiveErro"><span class="class_span2" id="span_senha">*********</span></div>
+                        </p>
+                    </div>
                 </div>
 
                 <button>Alterar Dados</button>
@@ -92,4 +96,12 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
 </body>
 
 </html>
-<script src=""></script>
+<script src="./js/funcionalidades.js"></script>
+<script>
+    span_nome.innerHTML = sessionStorage.NOME_USUARIO;
+    span_email.innerHTML = sessionStorage.EMAIL_USUARIO;
+    span_empresa.innerHTML = 'Falta colocar a session aqui'
+    span_telefone.innerHTML = sessionStorage.TELEFONE_USUARIO;
+    span_cargo.innerHTML = 'Falta colocar a session aqui'
+    span_senha.innerHTML = sessionStorage.SENHA_USUARIO;
+</script>

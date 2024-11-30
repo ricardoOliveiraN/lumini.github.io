@@ -267,11 +267,14 @@ function entrar() {
             resposta.json().then(json => {
                 console.log(json);
                 console.log(JSON.stringify(json));
+                sessionStorage.ID_USUARIO = json.idUsuario;
+                sessionStorage.FK_EMPRESA = json.fkEmpresa;
+                sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.SENHA_USUARIO = json.senha;
-                sessionStorage.FK_EMPRESA = json.fkEmpresa;
-                // sessionStorage.ID_USUARIO = json.id;
-                // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                sessionStorage.TELEFONE_USUARIO = json.telefone;
+                sessionStorage.TIPO_USUARIO = json.tipoUsuario;
+                
                 if (sessionStorage.FK_EMPRESA == 1) {
                     setTimeout(function () {
                         window.location = "CadastrarFuncionario.html";
