@@ -108,11 +108,48 @@ function historicoAlertasSensor(req, res) {
 }
 // FIM DAS ROTAS DA TELA TALHÃO SENSOR
 
+
+// INÍCIO DAS ROTAS DA TELA SENSOR 
+function luminosidadeSensor(req, res) {
+    
+    
+    medidaModel.luminosidadeSensor().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function historicoAlertasSensorEspecifico(req, res) {
+    
+    
+    medidaModel.historicoAlertasSensorEspecifico().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+// FIM DAS ROTAS DA TELA SENSOR 
+
 module.exports = {
-    horasLuz,
+    horasLuz, 
     qtdAlertasTalhao,
     historicoAlertas,
     qtdLuzSensor,
     statusSensor,
-    historicoAlertasSensor
+    historicoAlertasSensor,
+    luminosidadeSensor,
+    historicoAlertasSensorEspecifico
 }

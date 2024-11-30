@@ -99,11 +99,49 @@ function historicoAlertasSensor(idEmpresa) {
 }
 // FIM DAS ROTAS DA TELA TALHÃO SENSOR
 
+
+// INÍCIO DAS ROTAS DA TELA SENSOR 
+function luminosidadeSensor() {
+
+    var instrucaoSql = `SELECT filtragemDados.qtdHorasLuz, filtragemDados.dia 
+	FROM filtragemDados 
+	JOIN dadosSensor
+		ON idFiltragemDados = fkDadosSensor_FiltragemDados
+	JOIN sensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN talhao
+		ON idTalhao = fkSensor_Talhao
+	WHERE idSensor = 10004
+    ORDER BY filtragemDados.dia DESC
+	LIMIT 14;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function historicoAlertasSensorEspecifico() {
+
+    var instrucaoSql = `SELECT sensor.idSensor, dadosSensor.qtdLuz, dadosSensor.statusLuminosidade, dadosSensor.momentoCaptura FROM filtragemDados 
+    JOIN dadosSensor
+        ON idFiltragemDados = fkDadosSensor_FiltragemDados 
+    JOIN sensor 
+        ON idSensor = fkDadosSensor_Sensor 
+    JOIN talhao 
+        ON idTalhao = fkSensor_Talhao
+    WHERE filtragemDados.dia = '2024-12-03' AND dadosSensor.alerta = 'sim' AND talhao.numero = '2' AND sensor.idSensor = 10004;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+// FIM DAS ROTAS DA TELA SENSOR 
+ 
 module.exports = {
     horasLuz,
 	qtdAlertasTalhao,
 	historicoAlertas,
 	qtdLuzSensor,
 	statusSensor,
-	historicoAlertasSensor
+	historicoAlertasSensor,
+	luminosidadeSensor,
+	historicoAlertasSensorEspecifico
 }

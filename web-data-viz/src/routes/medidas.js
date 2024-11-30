@@ -32,4 +32,15 @@ router.get("/historicoAlertasSensor/:idEmpresa", function (req, res) {
 })
 // FIM DAS ROTAS DA TELA TALHÃO 
 
+
+// INÍCIO DAS ROTAS DA TELA SENSOR 
+router.get("/luminosidadeSensor", function (req, res) {
+    medidaController.luminosidadeSensor(req, res);
+}) 
+
+router.get("/historicoAlertasSensorEspecifico", function (req, res) {
+    medidaController.historicoAlertasSensorEspecifico(req, res);
+})
+// FIM DAS ROTAS DA TELA SENSOR
+
 module.exports = router;

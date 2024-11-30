@@ -67,12 +67,12 @@ function qtdLuzSensor() {
                         }
 
                         div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                        <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Sensor ${i + 1}</a>
+                        <a href="TelaDash-Sensor.html" style="background-color:rgb(179, 53, 53);">Sensor ${i + 1}</a>
                     </div>`
                     } else {
                         qtdIdeal++
                         div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                        <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Sensor ${[i + 1]}</a>
+                        <a href="TelaDash-Sensor.html" style="background-color: rgb(95, 155, 99);">Sensor ${[i + 1]}</a>
                     </div>`
                     }
 
@@ -411,4 +411,6 @@ function historicoAlertasSensor() {
 
     return false;
 }
+
+
 
