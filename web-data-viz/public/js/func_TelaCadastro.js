@@ -179,6 +179,7 @@ function cadastrar2(){
 
     if (qtdEmailCorreto >= 1 && qtdCelularCorreto >= 1 && qtdNomeCorreto >= 1 && TipoUser != 0){ 
         idUser++
+        cadastrar()
         alert(`Usuário cadastrado com sucesso!\n\nLogin:\nEmail: ${Email}\nSenha: ${senhaAleatoria[0]}${senhaAleatoria[1]}${senhaAleatoria[2]}${senhaAleatoria[3]}${senhaAleatoria[4]}${senhaAleatoria[5]}${senhaAleatoria[6]}${senhaAleatoria[7]}${senhaAleatoria[8]}${senhaAleatoria[9]}`)
         tableCampo.innerHTML += ` <tr>
                             <td>${idUser}</td>
