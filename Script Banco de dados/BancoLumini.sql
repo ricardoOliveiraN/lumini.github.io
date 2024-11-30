@@ -44,7 +44,7 @@ CREATE TABLE endereco (
 );
 
 CREATE TABLE usuario (
-	idUsuario INT,
+	idUsuario INT AUTO_INCREMENT,
 	fkUsuario_Empresa INT,
     PRIMARY KEY (idUsuario, fkUsuario_Empresa),
     nome VARCHAR(45),
