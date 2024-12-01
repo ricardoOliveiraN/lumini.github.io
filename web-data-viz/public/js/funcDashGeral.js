@@ -1,5 +1,6 @@
 var G1_labels = [];
 var G1_data = [];
+var G1_dataNatural = [];
 
 
 var qtdIdeal = 0
@@ -38,6 +39,7 @@ function horasLuz() {
                     quantidadeTalhoes++
 
                     G1_data.push(json[contador].qtdHoras)
+                    G1_dataNatural.push(14)
 
                     var Talhao = json[contador]
                     var idTalhao = Talhao.idTalhao;
@@ -219,9 +221,24 @@ function plotarGrafico1() {
                 type: "line"
             },
             {
-                label: 'Horas com luz',
+                label: 'Luz natural',
                 backgroundColor: [
                     'rgb(114, 189, 119)',
+
+                ],
+                borderColor: [
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                ],
+                data: G1_dataNatural
+            },
+            {
+                label: 'Luz Artificial',
+                backgroundColor: [
+                    'rgb(53, 151, 222)',
 
                 ],
                 borderColor: [
@@ -263,17 +280,19 @@ function plotarGrafico1() {
                 }
             },
             scales: {
-                // x: {
+                x: {
                 //     title: {
                 //         display: true,
                 //         text: 'Talhões'
                 //     },
-                // },
+                    stacked: true
+                },
                 y: {
                     title: {
                         display: true,
                         text: 'Quantidade de horas'
                     },
+                    // stacked: true
                 }
             }
         }

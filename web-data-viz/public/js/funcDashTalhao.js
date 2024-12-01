@@ -1,5 +1,6 @@
 var G1_labels = [];
 var G1_data = [];
+var G1_dataNatural = [];
 var idSensoresLista = []
 
 var qtdIdeal = 0
@@ -47,6 +48,7 @@ function qtdLuzSensor() {
                         G1_labels.push(`Sensor ${idSensoresLista.length}`)
                         quantidadeSensores++
                         G1_data.push(json[contador].qtdHorasLuz)
+                        G1_dataNatural.push(14);
                     }
                 }
 
@@ -130,9 +132,24 @@ function plotarGrafico1() {
                 type: "line"
             },
             {
-                label: 'Horas com luz',
+                label: 'Luz Natural',
                 backgroundColor: [
                     'rgb(114, 189, 119)',
+
+                ],
+                borderColor: [
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                ],
+                data: G1_dataNatural
+            },
+            {
+                label: 'Luz Artifical',
+                backgroundColor: [
+                    'rgb(53, 151, 222)',
 
                 ],
                 borderColor: [
@@ -163,12 +180,13 @@ function plotarGrafico1() {
                 }
             },
             scales: {
-                // x: {
+                x: {
                 //     title: {
                 //         display: true,
                 //         text: 'Talhões'
                 //     },
-                // },
+                    stacked: true
+                },
                 y: {
                     title: {
                         display: true,
