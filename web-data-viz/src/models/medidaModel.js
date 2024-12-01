@@ -3,7 +3,7 @@ var database = require("../database/config");
 // INÍCIO DAS ROTAS DA TELA TALHÃO GERAL
 function horasLuz(idEmpresa) {
 
-    var instrucaoSql = `SELECT min(filtragemDados.qtdHorasLuz) as qtdHoras, talhao.numero as numTalhao   
+    var instrucaoSql = `SELECT min(filtragemDados.qtdHorasLuz) as qtdHoras, talhao.numero as numTalhao, idTalhao 
 	FROM filtragemDados 
 	JOIN dadosSensor 
 		ON idFiltragemDados = fkDadosSensor_FiltragemDados 
@@ -12,7 +12,7 @@ function horasLuz(idEmpresa) {
 	JOIN talhao 
 		ON idTalhao = fkSensor_Talhao 
 	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa}
-    GROUP BY talhao.numero;`;
+    GROUP BY talhao.numero, idTalhao;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

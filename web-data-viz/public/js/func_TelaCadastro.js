@@ -203,11 +203,11 @@ function cadastrar() {
   // Agora vá para o método fetch logo abaixo
   var nomeVar = Nome;
   var emailVar = Email;
-  var senhaVar = 'Lumini@100';
+  var senhaVar = `${senhaAleatoria[0]+senhaAleatoria[1]+senhaAleatoria[2]+senhaAleatoria[3]+senhaAleatoria[4]+senhaAleatoria[5]+senhaAleatoria[6]+senhaAleatoria[7]+senhaAleatoria[8]+senhaAleatoria[9]}`;
   var telefoneVar = Telefone;
   var tipoVar = TipoUser;
   var fkEmpresaVar = sessionStorage.FK_EMPRESA;
-
+  alert(senhaVar)
   
   // Enviando o valor da nova input
   fetch("/usuarios/cadastrar", {
@@ -252,6 +252,8 @@ function cadastrar() {
 
   return false;
 }
+
+
 
 
 

@@ -12,6 +12,7 @@ var quantidadeTalhoes = 0
 
 // INÍCIO DAS ROTAS DA TELA TALHÃO GERAL
 function horasLuz() {
+   
     var idEmpresa = sessionStorage.FK_EMPRESA;
     fetch(`/medidas/horasLuz/${idEmpresa}`, {
         method: "GET",
@@ -38,15 +39,20 @@ function horasLuz() {
 
                     G1_data.push(json[contador].qtdHoras)
 
+                    var Talhao = json[contador]
+                    var idTalhao = Talhao.idTalhao;
+
                     if (json[contador].qtdHoras < 15 || json[contador].qtdHoras > 17) {
+                        
+                        
                         qtdIndesejavel++
                         div_botoesTalhoes.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color:rgb(179, 53, 53);">Talhão ${contador+1}</a>
+                            <a style="background-color:rgb(179, 53, 53);" onclick = "irTalhao(${idTalhao})">Talhão ${contador+1}</a>
                         </div>`
                     } else {
                         qtdIdeal++
                         div_botoesTalhoes.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                            <a href="TelaDash-Talhao.html" style="background-color: rgb(95, 155, 99);">Talhão ${contador+1}</a>
+                            <a href="" style="background-color: rgb(95, 155, 99);" onclick = "irTalhao(${idTalhao})">Talhão ${contador+1}</a>
                         </div>`
                     }
  
@@ -60,7 +66,7 @@ function horasLuz() {
             
 
                 plotarGrafico1();
-                plotarGrafico2();
+                plotarGrafico2();   
                 span_totalTalhoes.innerHTML = quantidadeTalhoes;
                 span_totalIdeal.innerHTML = qtdIdeal;
                 span_totalAbaixo.innerHTML = qtdAbaixo;
@@ -83,6 +89,13 @@ function horasLuz() {
     })
 
     return false;
+}
+
+function irTalhao(idTalhao){
+
+    sessionStorage.ID_TALHAO = idTalhao
+    window.location = "TelaDash-Talhao.html"
+
 }
 
 var talhoes = []

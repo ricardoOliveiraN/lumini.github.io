@@ -1,13 +1,14 @@
+var CEP = '';
+var UF = '';
+var Cidade = '';
+var Logradouro = '';
+var Numero = '';
+var Complemento = '';
+var fkEmpresa = '';
 
 function cadastrarEndereco() {
 
-    var CEP = Number(inp_cep.value);
-    var UF = inp_uf.value;
-    var Cidade = inp_cidade.value;
-    var Logradouro = inp_logradouro.value;
-    var Numero = Number(inp_numero.value);
-    var Complemento = inp_complemento.value;
-    var fkEmpresa = sessionStorage.ID_EMPRESA;
+    fkEmpresa = sessionStorage.ID_EMPRESA;
 
     var EnderecoNotNull = CEP != '' && UF != '' && Cidade != '' && Logradouro != '' && Numero != '';
     alert('entrei aqui')
@@ -69,6 +70,15 @@ function cadastrarEmpresa() {
     var QuantidadeHectare = Number(inp_qtdHectare.value);
     var StatusCadastro = inp_statusCadastro.value;
     var DataCriacao = inp_dataCriacao.value;
+
+    
+    CEP = Number(inp_cep.value);
+    UF = inp_uf.value;
+    Cidade = inp_cidade.value;
+    Logradouro = inp_logradouro.value;
+    Numero = Number(inp_numero.value);
+    Complemento = inp_complemento.value;
+    
 
 
 
@@ -137,6 +147,7 @@ function buscarIDEmpresa(cnpj){
                 sessionStorage.ID_EMPRESA = valor;
 
                 alert(valor)
+                cadastrarEndereco()
                 
 
 

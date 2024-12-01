@@ -21,7 +21,7 @@ function autenticar(req, res) {
 
                         if (resultadoAutenticar.length > 0) {
                             res.json({
-                                id: resultadoAutenticar[0].id,
+                                idUsuario: resultadoAutenticar[0].idUsuario,
                                 fkEmpresa: resultadoAutenticar[0].fkUsuario_Empresa,
                                 nome: resultadoAutenticar[0].nome,
                                 senha: resultadoAutenticar[0].senha,
@@ -87,7 +87,33 @@ function cadastrar(req, res) {
     }
 }
 
+function selecionarDadosUser(req,res){
+
+    var idUser = req.params.idUser;
+    usuarioModel.selecionarDadosUser(idUser)
+        .then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado! Das empresas");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+
+}
+
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    selecionarDadosUser
 }

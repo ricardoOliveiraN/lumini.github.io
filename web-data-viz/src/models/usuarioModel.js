@@ -22,7 +22,17 @@ function cadastrar(fkEmpresa, nome, email, senha, telefone, tipo) {
     return database.executar(instrucaoSql);
 }
 
+function selecionarDadosUser(idUser) {
+
+    var instrucaoSql = `
+       select tipoUsuario as cargo, nomeFantasia as nomeEmpresa FROM usuario JOIN empresa ON fkUsuario_Empresa = idEmpresa WHERE idUsuario = ${idUser};;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    selecionarDadosUser
 };
