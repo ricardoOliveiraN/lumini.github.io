@@ -14,22 +14,22 @@
     <script src="./js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .class_kpiNumero {
-            width: 45px;
-            height: 45px;
+        /* .class_kpiNumero {
+            width: 43px;
+            height: 43px;
         }
         .class_kpi {
-            font-size: 14px;
-        }
-        .class_kpisMenu {
+            font-size: 15px;
+        } */
+        /* .class_kpisMenu {
             padding: 44px 10px;
-        }
+        } */
     </style>
 </head>
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-    <body onload="validarSessao(); qtdLuzSensor(); statusSensor(); historicoAlertasSensor()">
+<body onload="validarSessao(); qtdLuzSensor(); statusSensor(); historicoAlertasSensor()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -50,7 +50,7 @@
         <div class="class_dashs">
             <div class="class_dashCima">
                 <div class="class_tituloDash">
-                    <h1>Dashboard Talhão 2</h1>
+                    <h1 style="font-size: 40px;">Dashboard Talhão 2</h1>
                 </div>
 
                 <div class="class_talhoesSelecionar">
@@ -74,23 +74,26 @@
                         <canvas id="myChartA" style="position: relative; height: 45vh; width: 21.6vw;"></canvas>
                     </div>
                     <div class="class_talhoesGrafico class_talhoesGrafico2">
-                        <canvas id="myChartB" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                        <canvas id="myChartB"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
                     </div>
                     <div class="class_talhoesGrafico class_talhoesGrafico2">
-                        <canvas id="myChartC" style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                        <canvas id="myChartC"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
                     </div>
                 </div>
             </div>
             <!-- </div> -->
             <div class="container-AlertaeSelecionar">
-                <div class="class_talhoesSelecionar">
+
+                <div class="class_talhoesSelecionar" style="width: 55%;">
                     <div class="class_kpisMenu">
                         <div class="class_kpi class_kpi1">
                             <div class="class_kpiNumero">
                                 <span id="span_totalSensores">5</span>
                             </div>
                             <div class="class_kpiTexto">
-                                <span>Sensores <br> total</span>
+                                <span>Sensores <br> totais</span>
                             </div>
                         </div>
                         <div class="class_kpi class_kpi2">
@@ -115,7 +118,7 @@
                                 <span id="span_sensoresAlerta">1</span>
                             </div>
                             <div class="class_kpiTexto">
-                                <span>Sensores<br> com alerta</span>
+                                <span>Sensores<br> em alerta</span>
                             </div>
 
                         </div>
@@ -132,7 +135,7 @@
                                 <th>Tipo</th>
                                 <th>Horário</th>
                             </tr>
-                            
+
                         </thead>
                         <tbody id="tableCampo">
                         </tbody>

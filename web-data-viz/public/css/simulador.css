@@ -263,6 +263,7 @@ input:focus {
     border-bottom: 2px solid #013220;
     display: flex;
     justify-content: center;
+    position: absolute;
 }
 
 .class_Footer .class_Container {

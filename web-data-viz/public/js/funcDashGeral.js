@@ -372,10 +372,10 @@ function plotarGrafico3() {
             label: 'Quantidade',
             backgroundColor: [
                 'rgb(188, 53, 53)',
-                ' rgb(185, 190, 27)',
-                ' rgb(168, 193, 25)',
-                'rgb(218, 99, 1)',
+                ' rgb(185, 190, 27)', 
                 'rgb(218, 149, 1)',
+                'rgb(218, 99, 1)',
+                ' rgb(168, 193, 25)',
             ],
             borderColor: [
                 'rgb(0,0,0,0.2)',
