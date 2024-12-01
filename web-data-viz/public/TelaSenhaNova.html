@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumini</title>
     <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
-    <link rel="stylesheet" href="css/styleSenhaNova.css">
+    <!-- <link rel="stylesheet" href="css/styleSenhaNova.css"> -->
+    <link rel="stylesheet" href="css/stylelogin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,19 +18,19 @@
 <body>
     <div class="class_login"></div>
     <div class="class_mensagem2">
-        <span>MANTENHA SEU</span>
-        <span class="class_ideal" style="font-size: 60px;">IDEAL</span>
-        <span>PRO SEU NEGÓCIO!</span>
+        <p>A solução
+        <span class="class_ideal" style="font-size: 60px; font-style: italic;">Ideal</span>
+        para o seu negócio!</p>
     </div>
     <div class="class_signin">
         <div class="class_home2">
-
-            <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
-
+            <a href="index.html">
+                <img src="./imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+            </a>
         </div>
         <div class="class_registro2">
-            <span class="class_NovaSenha">Nova senha</span>
-            <span class="class_NovaSenha2">Digite sua nova senha</span>
+            <span id="lbl_signin" style="margin-bottom: 15px;">Nova senha</span>
+            <p style="width: 320px; font-size: 18px; margin-bottom: 20px; text-align: center;">Digite sua nova senha.</p>
             <input oninput="validarSenha()" type="password" placeholder="Nova Senha" id="ipt_Senha">
             <input oninput="confirmarSenha()" type="password" placeholder="Confirmar Senha" id="ipt_ConfirmarSenha">
             <div id="div_ConfirmarSenha"></div>
@@ -38,5 +39,6 @@
         </div>
     </div>
 </body>
+
 </html>
-<script src="func_TelaNovaSenha.js"></script>
+<script src="js/func_TelaNovaSenha.js"></script>

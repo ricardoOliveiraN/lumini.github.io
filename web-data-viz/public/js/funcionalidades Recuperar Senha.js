@@ -13,10 +13,10 @@ function validarEmail() {
     if ((Email[tamanhoEmail - 1] == 'm' && Email[tamanhoEmail - 2] == 'o' && Email[tamanhoEmail - 3] == 'c' && Email[tamanhoEmail - 4] == '.') || (Email[tamanhoEmail - 1] == 'r' && Email[tamanhoEmail - 2] == 'b' && Email[tamanhoEmail - 3] == '.')) {
       qtdEmailCorreto += 1;
       inp_email.style.borderColor = 'green';
-      div_emailErrado.innerHTML = '';
+      div_alerta.innerHTML = '';
     } else {
       inp_email.style.borderColor = 'red';
-      div_emailErrado.innerHTML = 'Email inválido';
+      div_alerta.innerHTML = 'Email inválido';
       qtdEmailCorreto = 0;
     }
   } else {
@@ -24,10 +24,10 @@ function validarEmail() {
     if ((Email[tamanhoEmail - 1] == 'm' && Email[tamanhoEmail - 2] == 'o' && Email[tamanhoEmail - 3] == 'c' && Email[tamanhoEmail - 4] == '.') || (Email[tamanhoEmail - 1] == 'r' && Email[tamanhoEmail - 2] == 'b' && Email[tamanhoEmail - 3] == '.')) {
       qtdEmailCorreto += 1;
       inp_email.style.borderColor = 'green';
-      div_emailErrado.innerHTML = '';
+      div_alerta.innerHTML = '';
     } else {
       inp_email.style.borderColor = 'red';
-      div_emailErrado.innerHTML = 'Email inválido';
+      div_alerta.innerHTML = 'Email inválido';
       qtdEmailCorreto = 0;
     }
   }
@@ -48,7 +48,7 @@ function ENVIAR() {
 // validando tela com botão
 
 function abrirTelaLogin() {
-  var urlLogin = "../Codigo/TelaCodigo.html";
+  var urlLogin = "TelaCodigo.html";
   window.close();
   window.open(urlLogin);
 }

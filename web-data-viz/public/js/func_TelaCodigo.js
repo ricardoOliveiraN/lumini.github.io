@@ -47,7 +47,7 @@ function EntrarSite() {
 }
 
 function telaMudarSenha() {
-    var urlLogin = "../SenhaNova/TelaSenhaNova.html";
+    var urlLogin = "TelaSenhaNova.html";
     window.close();
     window.open(urlLogin);
 }

@@ -1,7 +1,13 @@
-* { 
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Lato';
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
 }
 
 body {
@@ -13,18 +19,26 @@ body {
 button {
     cursor: pointer;
     transition: 0.2s;
+    border: none;
+    outline: none;
 }
+
 /* Animação do botão */
 button:hover {
-    transform: scale(1.1);
+    box-shadow: 0px 0px 10px #FF9800;
+    transition: all 0.3s ease;  /* Transição suave */
 }
+
 /* Padronização de todos os inputs */
 input {
     border-radius: 5px;
+    padding-left: 8px;
     width: 400px;
     height: 50px;
-    margin: 0px 0px 5px 0px;
+    margin: 0px 0px 10px 0px;
     font-size: 18px;
+    outline: none;
+    border: none;
 }
 
 select {
@@ -45,7 +59,7 @@ input::placeholder {
 .class_login {
     width: 50%;
     height: 100vh;
-    background-image: url('../imagens/fundo-lupulo.jpg');
+    background-image: url('../imagens/fundoLupulo.png');
     background-size: cover;
     position: fixed;
     z-index: 1;
@@ -62,22 +76,19 @@ input::placeholder {
     height: 100vh;
 }
 
-.class_mensagem2 span {
-    font-size: 40px;
-    font-weight: 1000;
+.class_mensagem2 p {
+    font-size: 55px;
+    font-weight: 900;
+    width: 500px;
+    line-height: 0.9;
+    /* margin-bottom: 160px; */
 }
 
 .class_ideal {
     color: #FF9800;
     text-shadow: 0px 0px 60px yellow;
     border-radius: 5px;
-    width: 200px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0px 20px 0px;
-} 
+}
 
 .class_signin {
     position: fixed;
@@ -90,13 +101,14 @@ input::placeholder {
 }
 
 .class_home2 {
-    display: flex;   
+    display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
     top: 20px;
-    right: 20px; 
-    width: auto; /* Mantém o tamanho de acordo com o conteúdo */
+    right: 20px;
+    width: auto;
+    /* Mantém o tamanho de acordo com o conteúdo */
     padding: 5px;
     box-sizing: border-box;
 }
@@ -104,42 +116,48 @@ input::placeholder {
 .class_home2 a {
     display: inline-block;
     position: relative;
-    font-size: 30px; /* Mantém o estilo de fonte */
+    font-size: 30px;
+    /* Mantém o estilo de fonte */
     color: #FF9800;
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
-    margin-right: 10px; /* Espaçamento entre o texto e a imagem */
+    margin-right: 10px;
+    /* Espaçamento entre o texto e a imagem */
 }
 
 .class_home2 img {
-    width: 200px; /* Ajuste o tamanho para que não fique muito largo */
+    width: 150px;
+    /* Ajuste o tamanho para que não fique muito largo */
     height: auto;
     display: block;
-    margin: 0; /* Remove margens desnecessárias */
+    margin: 0;
+    /* Remove margens desnecessárias */
 }
 
 .class_home2 a:hover img {
-    border: 2px solid yellow; /* Borda amarela ao passar o mouse */
+    border: 2px solid yellow;
+    /* Borda amarela ao passar o mouse */
 }
 
 .class_home2 a:hover {
-    box-shadow: 0 0 10px 2px yellow; /* Sombra amarela no hover */
+    box-shadow: 0 0 10px 2px yellow;
+    /* Sombra amarela no hover */
     transition: box-shadow 0.3s ease-in-out;
 }
 
 
 .class_registro2 {
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 #lbl_signin {
-    font-size: 40px;
-    font-weight: 800;
-    margin: 0px 0px 40px 0px;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0px 0px 30px 0px;
 }
 
 .class_olhos {
@@ -155,34 +173,36 @@ input::placeholder {
 .class_imagemOlho img {
     position: fixed;
     width: 30px;
-    margin: 10px 0px 0px 150px;
-    opacity: 0.7;   
+    margin: 10px 0px 0px 158px;
+    opacity: 0.7;
     cursor: pointer;
 }
 
 #lbl_esqueceu {
-    margin: 55px 0px 0px 260px;
-    font-size: 16px;
+    margin: 55px 0px 0px 280px;
+    font-size: 14px;
     cursor: pointer;
     color: white;
     font-weight: 600;
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    text-decoration: none;
     opacity: 0.9;
 }
+
 #btn_acessar {
     background-color: #FF9800;
     color: white;
-    height: 60px;
-    width: 200px;
+    height: 50px;
+    width: 120px;
     border-radius: 5px;
     margin: 35px 0px 20px 0px;
-    font-weight: 800;
-    font-size: 20px;
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .class_NovoCadastro {
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -198,6 +218,15 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.class_codigos input{
+    border-radius: 10px;
+    width: 60px;
+    height: 70px;
+    margin: 0px 6px 0px 0px;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* TELA CADASTRO */
@@ -280,9 +309,12 @@ input::placeholder {
     width: 12%;
     padding: 5px;
     box-sizing: border-box;
-    position: fixed; /* Torna a posição fixa na tela */
-    top: 20px; /* Define a distância do topo */
-    left: 20px; /* Posiciona no canto superior esquerdo */
+    position: fixed;
+    /* Torna a posição fixa na tela */
+    top: 20px;
+    /* Define a distância do topo */
+    left: 20px;
+    /* Posiciona no canto superior esquerdo */
 }
 
 .MenuLogo a {
@@ -297,11 +329,13 @@ input::placeholder {
 }
 
 .MenuLogo a:hover img {
-    border: 2px solid yellow; /* Adiciona borda amarela no hover */
+    border: 2px solid yellow;
+    /* Adiciona borda amarela no hover */
 }
 
 .MenuLogo a:hover {
-    box-shadow: 0 0 10px 2px yellow; /* Sombra amarela no hover */
-    transition: box-shadow 0.3s ease-in-out; /* Animação suave */
+    box-shadow: 0 0 10px 2px yellow;
+    /* Sombra amarela no hover */
+    transition: box-shadow 0.3s ease-in-out;
+    /* Animação suave */
 }
-

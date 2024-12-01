@@ -8,7 +8,10 @@
 body {
     background-color: #FFFEFA;
 }
-
+#Simulador{
+    color: #FF9800;
+    font-weight: 800;
+}
 nav {
     background-color: #013220;
     padding-left: 10%;

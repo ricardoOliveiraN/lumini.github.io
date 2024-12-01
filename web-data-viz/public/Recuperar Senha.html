@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumini</title>
     <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
-    <link rel="stylesheet" href="css/style Recuperar Senha.css">
+    <link rel="stylesheet" href="css/stylelogin.css">
+    <!-- <link rel="stylesheet" href="css/style Recuperar Senha.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,28 +18,26 @@
 <body>
     <div class="class_login"></div>
     <div class="class_mensagem2">
-        <span>MANTENHA O</span>
-        <span class="class_ideal" style="font-size: 60px;">IDEAL</span>
-        <span>PRO SEU NEGÓCIO!</span>
+        <p>A solução
+        <span class="class_ideal" style="font-size: 60px; font-style: italic;">Ideal</span>
+        para o seu negócio!</p>
     </div>
     <div class="class_signin">
         <div class="class_home2">
             <a href="index.html">
-                <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                <img src="./imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
             </a>
         </div>
-        <div class="recuperar-senha">
-            <h2>Recuperar Senha</h2>
-            <div class="mensagem-recuperacao">
-                <span>Digite o email, para o envio do código<br>de recuperação de senha.</span>
-            </div>
-            <input type="email" id="inp_email" placeholder="Email" />
-            <div id="div_emailErrado" style="color: red;font-weight: bold;"></div>
-            <button onclick="ENVIAR()" id="btn_enviar">Enviar</button>
-        </div>
-        
+         <div class="class_registro2">
+            <span id="lbl_signin" style="margin-bottom: 15px;">Recuperar Senha</span>
+            <p style="width: 320px; font-size: 18px; margin-bottom: 20px;">Digite o email, para o envio do código de recuperação de senha.</p>
+            <input type="text" placeholder="Email" id="inp_email">
+            <div id="div_alerta" style="color: red; position: relative; top: 10px; font-weight: bold;"></div>
+                
+            <button onclick="ENVIAR()" id="btn_acessar">Enviar</button>
+        </div> 
     </div>
 </body>
 
 </html>
-<script src="funcionalidades Recuperar Senha.js"></script>
+<script src="js/funcionalidades Recuperar Senha.js"></script>

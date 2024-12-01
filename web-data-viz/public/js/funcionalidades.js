@@ -7,10 +7,10 @@ function AbrirCadastro() {
 function VisualizarSenha() {
     if (inp_senha2.type == 'password') { // Se o tipo da input for password 
         inp_senha2.type = 'text'; // Transforma em text, ou seja, deixa a senha visível
-        img_olho3.src = '../Imagens/olho_fechado.png'; // Abre a imagem do olho fechado
+        img_olho3.src = './Imagens/olho_fechado.png'; // Abre a imagem do olho fechado
     } else {
         inp_senha2.type = 'password'; // Caso a senha já esteja como text (visível), volta a ser password e esconde a senha
-        img_olho3.src = '../Imagens/olho_aberto.png'; // Abre a imagem do olho aberto
+        img_olho3.src = './Imagens/olho_aberto.png'; // Abre a imagem do olho aberto
     }
 }
 
@@ -291,6 +291,8 @@ function entrar() {
         } else {
 
             console.log("Houve um erro ao tentar realizar o login!");
+
+            div_alerta.innerHTML = '<p> Erro ao realizar o login, verifique se as informações estão corretas </p>'
 
             resposta.text().then(texto => {
                 console.error(texto);
