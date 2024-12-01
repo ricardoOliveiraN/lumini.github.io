@@ -52,7 +52,7 @@
             <span>Qual sua produção média por safra (kg): </span>
             <input placeholder="Digite o peso em média da plantação" type="number" id="input_quilo">
 
-            <span>Por quanto você vende o quilo do lúpulo (): </span><br>
+            <span>Por quanto você vende o quilo do lúpulo (R$): </span><br>
             <input placeholder="Digite o valor do quilo do lúpulo" type="number" id="input_preco">
             <!-- Botões que chamam a função -->
             <Button class="btn_lucro" onclick="Calcular()">Calcular rendimento</Button>
@@ -131,7 +131,7 @@
 
             <span>Ainda o aumento de Safras anuais pode aumentar consideravelmente indo de 1 para até 3.
             Isso te geraria em média ${(precoSafraLumini * 3).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!</span>
-            <div class="conteiner-btn-grafico"><button class="btn_grafico" onclick="Ver()"> Ver graficos </button></div>
+            <div class="conteiner-btn-grafico"><button class="btn_grafico" onclick="Ver()"> Ver gráfico </button></div>
             `
         } else if (qtd_safra == 2) {
             mensagem += `Com o serviço LUMINI, e as tomadas de decisões corretas, você produzirá <span>${QuiloTotalLumini.toFixed(2)}kg</span> por ano. <br>
@@ -140,11 +140,11 @@
 
             <span>Ainda o aumento de Safras anuais pode aumentar  indo de 2 para até 3.
             Isso te geraria em média ${((precoSafraLumini * 3)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
-            <div class="conteiner-btn-grafico"><button class="btn_grafico" onclick="Ver()"> Ver graficos </button></div>`
+            <div class="conteiner-btn-grafico"><button class="btn_grafico" onclick="Ver()"> Ver gráfico </button></div>`
         } else if (qtd_safra == 3) {
             mensagem += `Com o serviço LUMINI, e as tomadas de decisões corretas, você produzirá <span>${QuiloTotalLumini.toFixed(2)}kg</span> por ano. <br>
             Cada safra gerará uma média de <span>${precoSafraLumini.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>. <br>
-            E Isso te gerará uma total de <span>${PrecoTotalLumini.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> por ano. <div class="conteiner-btn-grafico"><button class="btn_grafico" onclick="Ver()"> Ver graficos </button></div>`
+            E Isso te gerará uma total de <span>${PrecoTotalLumini.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> por ano. <div class="conteiner-btn-grafico"><button class="btn_grafico" onclick="Ver()"> Ver gráfico </button></div>`
         } else {
             mensagem = "Verifique se está colocando corretamente as Safras anuais.<br><br> <b>(Coloque um valor inteiro de 1 à 3)</b>"
         }
@@ -153,9 +153,9 @@
     }
 
     function Ver() {
-        containerMensagem.innerHTML = 
-        `<canvas id="myChartA" style="position: relative; height: 60%; width: 60%;"></canvas>
-       <div class= "container-btn-msg"><Button class="btn_mensagem" onclick="Calcular()">ver mensagem</Button></div>`
+        containerMensagem.innerHTML =
+            `<canvas id="myChartA" style="position: relative; height: 195px; width: 70%;"></canvas>
+       <div class= "container-btn-msg"><Button class="btn_mensagem" onclick="Calcular()">Ver mensagem</Button></div>`
 
         const labelsA = [
             'Faturamento Total'
@@ -182,7 +182,7 @@
                     ]
                 },
                 {
-                    label: 'Melhor resultado possivel',
+                    label: 'Melhor situação com Lumini',
                     backgroundColor: 'rgb(5, 80, 36)',
                     borderColor: 'rgb(5, 80, 36)',
                     data: [
@@ -208,7 +208,11 @@
                         stacked: false // Deixa as barras lado a lado
                     },
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Reais (R$)'
+                        }
                     }
                 }
             }
