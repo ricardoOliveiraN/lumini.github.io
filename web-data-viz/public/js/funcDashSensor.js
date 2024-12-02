@@ -13,7 +13,10 @@ var mediaHoras = 0
 
 
 function luminosidadePorHora() {
-    fetch(`/medidas/luminosidadePorHora`, {
+
+    var idSensor = sessionStorage.ID_SENSOR;
+
+    fetch(`/medidas/luminosidadePorHora/${idSensor}/${dataAnteriorCompleta}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -62,7 +65,10 @@ function luminosidadePorHora() {
 }
 
 function luminosidadeSensor() {
-    fetch(`/medidas/luminosidadeSensor`, {
+
+    var idSensor = sessionStorage.ID_SENSOR;
+
+    fetch(`/medidas/luminosidadeSensor/${idSensor}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -96,23 +102,37 @@ function luminosidadeSensor() {
                 span_mediaHoras.innerHTML = mediaHoras.toFixed(1);
                 plotarGrafico2()
             });
-
+            
         } else {
-
+            
             console.log("Houve um erro ao tentar realizar a busca da quantidade de horas!");
-
+            
             resposta.text().then(texto => {
                 console.error(texto);
                 // finalizarAguardar(texto);
             });
         }
-
+        
     }).catch(function (erro) {
         console.log(erro);
     })
-
+    
     return false;
 }
+
+    const hoje = new Date();
+    // Cria uma nova data para representar o dia anterior
+    const dataAnterior = new Date(hoje);
+    dataAnterior.setDate(hoje.getDate() - 1);
+    
+    // Extrai o ano, mês e dia
+    const anoAnterior = dataAnterior.getFullYear();
+    const mesAnterior = dataAnterior.getMonth() + 1; // Os meses começam do índice 0
+    const diaAnterior = dataAnterior.getDate();
+    
+    // Exibe o resultado
+    console.log(`Data anterior: ${anoAnterior}-${mesAnterior}-${diaAnterior}`);
+    const dataAnteriorCompleta = `${anoAnterior}-${mesAnterior}-${diaAnterior}`
 
 function plotarGrafico1() {
 
@@ -136,17 +156,6 @@ function plotarGrafico1() {
         ]
     };
 
-    const hoje = new Date();
-
-    // Calcula um dia antes
-    const umDiaAntes = new Date(hoje);
-    umDiaAntes.setDate(hoje.getDate() - 1);
-
-    // Obtém o dia do mês anterior
-    const diaAnterior = umDiaAntes.getDate();
-
-    // Obtém o mês (0 a 11, somamos 1 para ajustar)
-    const mesAtual = umDiaAntes.getMonth() + 1;
 
     const configA = {
         type: 'line',
@@ -155,7 +164,7 @@ function plotarGrafico1() {
             plugins: {
                 title: {
                     display: true,
-                    text: `Luminosidade: ${diaAnterior}/${mesAtual}`
+                    text: `Luminosidade: ${diaAnterior}/${mesAnterior}`
                 }
             }
         }
@@ -210,7 +219,11 @@ function plotarGrafico2() {
 }
 
 function historicoAlertasSensorEspecifico() {
-    fetch(`/medidas/historicoAlertasSensorEspecifico`, {
+
+    var idTalhao = sessionStorage.ID_TALHAO
+    var idSensor = sessionStorage.ID_SENSOR;
+
+    fetch(`/medidas/historicoAlertasSensorEspecifico/${idSensor}/${dataAnteriorCompleta}/${idTalhao}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"

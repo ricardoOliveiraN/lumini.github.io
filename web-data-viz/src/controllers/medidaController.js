@@ -5,8 +5,9 @@ var medidaModel = require("../models/medidaModel");
 function horasLuz(req, res) {
 
     var idEmpresa = req.params.idEmpresa;
+    var dataAnteriorCompleta = req.params.dataAnteriorCompleta;
 
-    medidaModel.horasLuz(idEmpresa).then(function (resultado) {
+    medidaModel.horasLuz(idEmpresa, dataAnteriorCompleta).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -22,8 +23,9 @@ function horasLuz(req, res) {
 function qtdAlertasTalhao(req, res) {
     
     var idEmpresa = req.params.idEmpresa;
+    var dataAnteriorCompleta = req.params.dataAnteriorCompleta;
     
-    medidaModel.qtdAlertasTalhao(idEmpresa).then(function (resultado) {
+    medidaModel.qtdAlertasTalhao(idEmpresa, dataAnteriorCompleta).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -39,8 +41,9 @@ function qtdAlertasTalhao(req, res) {
 function historicoAlertas(req, res) {
     
     var idEmpresa = req.params.idEmpresa;
+    var dataAnteriorCompleta = req.params.dataAnteriorCompleta;
     
-    medidaModel.historicoAlertas(idEmpresa).then(function (resultado) {
+    medidaModel.historicoAlertas(idEmpresa, dataAnteriorCompleta).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -60,8 +63,9 @@ function qtdLuzSensor(req, res) {
 
     var idEmpresa = req.params.idEmpresa;
     var idTalhao = req.params.idTalhao;
+    var dataAnteriorCompleta = req.params.dataAnteriorCompleta;
 
-    medidaModel.qtdLuzSensor(idEmpresa, idTalhao).then(function (resultado) {
+    medidaModel.qtdLuzSensor(idEmpresa, idTalhao, dataAnteriorCompleta).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -96,8 +100,9 @@ function historicoAlertasSensor(req, res) {
     
     var idEmpresa = req.params.idEmpresa;
     var idTalhao = req.params.idTalhao;
+    var dataAnteriorCompleta = req.params.dataAnteriorCompleta;
     
-    medidaModel.historicoAlertasSensor(idEmpresa, idTalhao).then(function (resultado) {
+    medidaModel.historicoAlertasSensor(idEmpresa, idTalhao, dataAnteriorCompleta).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -114,8 +119,11 @@ function historicoAlertasSensor(req, res) {
 
 // INÍCIO DAS ROTAS DA TELA SENSOR 
 function luminosidadePorHora(req, res) {
-    
-    medidaModel.luminosidadePorHora().then(function (resultado) {
+
+    var idSensor = req.params.idSensor;
+    var dataAnteriorCompleta = req.params.dataAnteriorCompleta;
+
+    medidaModel.luminosidadePorHora(idSensor, dataAnteriorCompleta).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -130,8 +138,10 @@ function luminosidadePorHora(req, res) {
 
 function luminosidadeSensor(req, res) {
     
+    var idSensor = req.params.idSensor;
+
     
-    medidaModel.luminosidadeSensor().then(function (resultado) {
+    medidaModel.luminosidadeSensor(idSensor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -146,8 +156,11 @@ function luminosidadeSensor(req, res) {
 
 function historicoAlertasSensorEspecifico(req, res) {
     
+    var idSensor = req.params.idSensor;
+    var dataAnteriorCompleta = req.params.dataAnteriorCompleta;
+    var idTalhao = req.params.idTalhao;
     
-    medidaModel.historicoAlertasSensorEspecifico().then(function (resultado) {
+    medidaModel.historicoAlertasSensorEspecifico(idSensor, dataAnteriorCompleta, idTalhao).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
