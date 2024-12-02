@@ -1,7 +1,7 @@
 var database = require("../database/config");
 
 // INÍCIO DAS ROTAS DA TELA TALHÃO GERAL
-function horasLuz(idEmpresa) {
+function horasLuz(idEmpresa, dataAnteriorCompleta) {
 
     var instrucaoSql = `SELECT min(filtragemDados.qtdHorasLuz) as qtdHoras, talhao.numero as numTalhao, idTalhao 
 	FROM filtragemDados 
@@ -11,14 +11,14 @@ function horasLuz(idEmpresa) {
 		ON idSensor = fkDadosSensor_Sensor 
 	JOIN talhao 
 		ON idTalhao = fkSensor_Talhao 
-	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa}
+	WHERE filtragemDados.dia = '${dataAnteriorCompleta}' AND talhao.fkTalhao_Empresa = ${idEmpresa}
     GROUP BY talhao.numero, idTalhao;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function qtdAlertasTalhao(idEmpresa) {
+function qtdAlertasTalhao(idEmpresa, dataAnteriorCompleta) {
 
     var instrucaoSql = `SELECT talhao.numero, dadosSensor.statusLuminosidade FROM talhao
 	JOIN sensor
@@ -27,13 +27,13 @@ function qtdAlertasTalhao(idEmpresa) {
 		ON idSensor = fkDadosSensor_Sensor
 	JOIN filtragemDados
 		ON fkDadosSensor_FiltragemDados = idFiltragemDados
-	WHERE (dadosSensor.statusLuminosidade = 'Insuficiente' OR dadosSensor.statusLuminosidade = 'Excesso') AND filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa};`;
+	WHERE (dadosSensor.statusLuminosidade = 'Insuficiente' OR dadosSensor.statusLuminosidade = 'Excesso') AND filtragemDados.dia = '${dataAnteriorCompleta}' AND talhao.fkTalhao_Empresa = ${idEmpresa};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function historicoAlertas(idEmpresa) {
+function historicoAlertas(idEmpresa, dataAnteriorCompleta) {
 
     var instrucaoSql = `SELECT talhao.numero, filtragemDados.statusDia, filtragemDados.qtdHorasLuz, filtragemDados.dia FROM talhao
 	JOIN sensor
@@ -42,7 +42,7 @@ function historicoAlertas(idEmpresa) {
 		ON sensor.idSensor = dadosSensor.fkDadosSensor_Sensor
 	JOIN filtragemDados
 		ON dadosSensor.fkDadosSensor_FiltragemDados = filtragemDados.idFiltragemDados
-	WHERE filtragemDados.statusDia = 'Insuficiente' OR filtragemDados.statusDia = 'Excesso' AND filtragemDados.dia = '2024-12-03' AND fkTalhao_Empresa = ${idEmpresa};`;
+	WHERE filtragemDados.statusDia = 'Insuficiente' OR filtragemDados.statusDia = 'Excesso' AND filtragemDados.dia = '${dataAnteriorCompleta}' AND fkTalhao_Empresa = ${idEmpresa};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -51,7 +51,7 @@ function historicoAlertas(idEmpresa) {
 
 
 // INÍCIO DAS ROTAS DA TELA TALHÃO SENSOR
-function qtdLuzSensor(idEmpresa, idTalhao) {
+function qtdLuzSensor(idEmpresa, idTalhao, dataAnteriorCompleta) {
 
     var instrucaoSql = `SELECT filtragemDados.qtdHorasLuz, sensor.idSensor, talhao.numero
 	FROM filtragemDados
@@ -61,7 +61,7 @@ function qtdLuzSensor(idEmpresa, idTalhao) {
 		ON idSensor = fkDadosSensor_Sensor
 	JOIN talhao
 		ON idTalhao = fkSensor_Talhao
-	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND talhao.idTalhao = ${idTalhao};`;
+	WHERE filtragemDados.dia = '${dataAnteriorCompleta}' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND talhao.idTalhao = ${idTalhao};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -83,7 +83,7 @@ function statusSensor(idEmpresa, idTalhao) {
     return database.executar(instrucaoSql);
 }
 
-function historicoAlertasSensor(idEmpresa, idTalhao) {
+function historicoAlertasSensor(idEmpresa, idTalhao, dataAnteriorCompleta) {
 
     var instrucaoSql = `SELECT sensor.idSensor, dadosSensor.qtdLuz, dadosSensor.statusLuminosidade, dadosSensor.momentoCaptura FROM filtragemDados 
     JOIN dadosSensor
@@ -92,7 +92,7 @@ function historicoAlertasSensor(idEmpresa, idTalhao) {
         ON idSensor = fkDadosSensor_Sensor 
     JOIN talhao 
         ON idTalhao = fkSensor_Talhao
-    WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND dadosSensor.alerta = 'sim' AND talhao.idTalhao = '${idTalhao}';`;
+    WHERE filtragemDados.dia = '${dataAnteriorCompleta}' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND dadosSensor.alerta = 'sim' AND talhao.idTalhao = '${idTalhao}';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -101,7 +101,7 @@ function historicoAlertasSensor(idEmpresa, idTalhao) {
 
 
 // INÍCIO DAS ROTAS DA TELA SENSOR 
-function luminosidadeSensor() {
+function luminosidadeSensor(idSensor) {
 
     var instrucaoSql = `SELECT filtragemDados.qtdHorasLuz, filtragemDados.dia 
 	FROM filtragemDados 
@@ -111,7 +111,7 @@ function luminosidadeSensor() {
 		ON idSensor = fkDadosSensor_Sensor
 	JOIN talhao
 		ON idTalhao = fkSensor_Talhao
-	WHERE idSensor = 10004
+	WHERE idSensor = ${idSensor}
     ORDER BY filtragemDados.dia DESC
 	LIMIT 14;`;
 
@@ -119,7 +119,7 @@ function luminosidadeSensor() {
     return database.executar(instrucaoSql);
 }
 
-function historicoAlertasSensorEspecifico() {
+function historicoAlertasSensorEspecifico(idSensor, dataAnteriorCompleta, idTalhao) {
 
     var instrucaoSql = `SELECT sensor.idSensor, dadosSensor.qtdLuz, dadosSensor.statusLuminosidade, dadosSensor.momentoCaptura FROM filtragemDados 
     JOIN dadosSensor
@@ -128,13 +128,13 @@ function historicoAlertasSensorEspecifico() {
         ON idSensor = fkDadosSensor_Sensor 
     JOIN talhao 
         ON idTalhao = fkSensor_Talhao
-    WHERE filtragemDados.dia = '2024-12-03' AND dadosSensor.alerta = 'sim' AND talhao.numero = '2' AND sensor.idSensor = 10004;`;
+    WHERE filtragemDados.dia = '${dataAnteriorCompleta}' AND dadosSensor.alerta = 'sim' AND talhao.idTalhao = ${idTalhao} AND sensor.idSensor = ${idSensor};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function luminosidadePorHora() {
+function luminosidadePorHora(idSensor, dataAnteriorCompleta) {
 
     var instrucaoSql = `SELECT DISTINCT HOUR(momentoCaptura) AS hora, ROUND(AVG(dadosSensor.qtdLuz), 0) AS qtdLuz
     FROM filtragemDados 
@@ -144,7 +144,7 @@ function luminosidadePorHora() {
         ON idSensor = fkDadosSensor_Sensor 
     JOIN talhao 
         ON idTalhao = fkSensor_Talhao 
-    WHERE filtragemDados.dia = '2024-12-03' AND sensor.idSensor = 10004
+    WHERE filtragemDados.dia = '${dataAnteriorCompleta}' AND sensor.idSensor = ${idSensor}
     GROUP BY HOUR(momentoCaptura)
     ORDER BY hora ASC;`;
 

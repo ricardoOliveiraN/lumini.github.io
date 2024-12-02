@@ -15,7 +15,7 @@ var quantidadeTalhoes = 0
 function horasLuz() {
    
     var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/horasLuz/${idEmpresa}`, {
+    fetch(`/medidas/horasLuz/${idEmpresa}/${dataAnteriorCompleta}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -108,7 +108,7 @@ var qtdAlertas = []
 
 function qtdAlertasTalhao() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/qtdAlertasTalhao/${idEmpresa}`, {
+    fetch(`/medidas/qtdAlertasTalhao/${idEmpresa}/${dataAnteriorCompleta}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -159,7 +159,7 @@ function qtdAlertasTalhao() {
 
 function historicoAlertas() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/historicoAlertas/${idEmpresa}`, {
+    fetch(`/medidas/historicoAlertas/${idEmpresa}/${dataAnteriorCompleta}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -203,7 +203,21 @@ function historicoAlertas() {
     return false;
 }
 
+// Obtém a data atual
+const hoje = new Date();
 
+// Cria uma nova data para representar o dia anterior
+const dataAnterior = new Date(hoje);
+dataAnterior.setDate(hoje.getDate() + 1);
+
+// Extrai o ano, mês e dia
+const anoAnterior = dataAnterior.getFullYear();
+const mesAnterior = dataAnterior.getMonth() + 1; // Os meses começam do índice 0
+const diaAnterior = dataAnterior.getDate();
+
+// Exibe o resultado
+console.log(`Data anterior: ${anoAnterior}-${mesAnterior}-${diaAnterior}`);
+const dataAnteriorCompleta = `${anoAnterior}-${mesAnterior}-${diaAnterior}`;
 
 function plotarGrafico1() {
     const dataA = {
@@ -255,17 +269,7 @@ function plotarGrafico1() {
             },
         ]
     };
-    const hoje = new Date();
 
-    // Calcula um dia antes
-    const umDiaAntes = new Date(hoje);
-    umDiaAntes.setDate(hoje.getDate() - 1);
-
-    // Obtém o dia do mês anterior
-    const diaAnterior = umDiaAntes.getDate();
-
-    // Obtém o mês (0 a 11, somamos 1 para ajustar)
-    const mesAtual = umDiaAntes.getMonth() + 1;
 
     const configA = {
         type: 'bar',
@@ -274,7 +278,7 @@ function plotarGrafico1() {
             plugins: {
                 title: {
                     display: true,
-                    text: `Dia ${diaAnterior}/${mesAtual} - Horas com Luz`
+                    text: `Dia ${diaAnterior}/${mesAnterior} - Horas com Luz`
                 },
                 legend: {
                     labels: {
@@ -336,7 +340,7 @@ function plotarGrafico2() {
             plugins: {
                 title: {
                     display: true,
-                    text: `Dia ${diaAnterior}/${mesAtual} - Status Luminosidade nos Talhões`,
+                    text: `Dia ${diaAnterior}/${mesAnterior} - Status Luminosidade nos Talhões`,
                     font: {
                         size: 14,
                     }
@@ -421,18 +425,6 @@ function plotarGrafico3() {
         configC
     )
 }
-// FIM DAS ROTAS DA TELA TALHÃO GERAL
 
-const hoje = new Date();
-
-// Calcula um dia antes
-const umDiaAntes = new Date(hoje);
-umDiaAntes.setDate(hoje.getDate() - 1);
-
-// Obtém o dia do mês anterior
-const diaAnterior = umDiaAntes.getDate();
-
-// Obtém o mês (0 a 11, somamos 1 para ajustar)
-const mesAtual = umDiaAntes.getMonth() + 1;
 
 

@@ -24,7 +24,7 @@ function qtdLuzSensor() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
     var idTalhao = sessionStorage.ID_TALHAO;
 
-    fetch(`/medidas/qtdLuzSensor/${idEmpresa}/${idTalhao}`, {
+    fetch(`/medidas/qtdLuzSensor/${idEmpresa}/${idTalhao}/${dataAnteriorCompleta}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -49,11 +49,8 @@ function qtdLuzSensor() {
                         G1_labels.push(`Sensor ${idSensoresLista.length}`)
                         quantidadeSensores++
                         G1_data.push(json[contador].qtdHorasLuz)
-<<<<<<< Updated upstream
                         G1_dataNatural.push(14);
-=======
                         span_numTalhao.innerHTML = json[contador].numero;
->>>>>>> Stashed changes
                     }
                 }
 
@@ -74,12 +71,12 @@ function qtdLuzSensor() {
                         }
 
                         div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                        <a href="TelaDash-Sensor.html" style="background-color:rgb(179, 53, 53);">Sensor ${i + 1}</a>
+                        <a onclick = 'irSensor(${idSensoresLista[i]})' style="background-color:rgb(179, 53, 53);">Sensor ${i + 1}</a>
                     </div>`
                     } else {
                         qtdIdeal++
                         div_botoesSensores.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                        <a href="TelaDash-Sensor.html" style="background-color: rgb(95, 155, 99);">Sensor ${[i + 1]}</a>
+                        <a onclick = 'irSensor(${idSensoresLista[i]})' style="background-color: rgb(95, 155, 99);">Sensor ${[i + 1]}</a>
                     </div>`
                     }
 
@@ -117,6 +114,10 @@ function qtdLuzSensor() {
     return false;
 }
 
+function irSensor(idSensor){
+    sessionStorage.ID_SENSOR = idSensor;
+    window.location = 'TelaDash-Sensor.html'
+}
 
 function plotarGrafico1() {
     const dataA = {
@@ -176,7 +177,7 @@ function plotarGrafico1() {
             plugins: {
                 title: {
                     display: true,
-                    text: `Dia ${diaAnterior}/${mesAtual} - Horas com Luz`
+                    text: `Dia ${diaAnterior}/${mesAnterior} - Horas com Luz`
                 },
                 legend: {
                     labels: {
@@ -237,7 +238,7 @@ function plotarGrafico2() {
             plugins: {
                 title: {
                     display: true,
-                    text: `Dia ${diaAnterior}/${mesAtual} - Status Luminosidade nos Sensores`,
+                    text: `Dia ${diaAnterior}/${mesAnterior} - Status Luminosidade nos Sensores`,
                     font: {
                         size: 14,
                     }
@@ -323,21 +324,24 @@ function plotarGrafico3() {
         configC
     )
 }
-// FIM DAS ROTAS DA TELA TALHÃO 
-
+// Obtém a data atual
 const hoje = new Date();
 
-// Calcula um dia antes
-const umDiaAntes = new Date(hoje);
-umDiaAntes.setDate(hoje.getDate() - 1);
+// Cria uma nova data para representar o dia anterior
+const dataAnterior = new Date(hoje);
+dataAnterior.setDate(hoje.getDate() - 1);
 
-// Obtém o dia do mês anterior
-const diaAnterior = umDiaAntes.getDate();
+// Extrai o ano, mês e dia
+const anoAnterior = dataAnterior.getFullYear();
+const mesAnterior = dataAnterior.getMonth() + 1; // Os meses começam do índice 0
+const diaAnterior = dataAnterior.getDate();
 
-// Obtém o mês (0 a 11, somamos 1 para ajustar)
-const mesAtual = umDiaAntes.getMonth() + 1;
+// Exibe o resultado
+console.log(`Data anterior: ${anoAnterior}-${mesAnterior}-${diaAnterior}`);
+const dataAnteriorCompleta = `${anoAnterior}-${mesAnterior}-${diaAnterior}`
 
 function statusSensor() {
+    
     var idEmpresa = sessionStorage.FK_EMPRESA;
     var idTalhao = sessionStorage.ID_TALHAO;
     fetch(`/medidas/statusSensor/${idEmpresa}/${idTalhao}`, {
@@ -391,7 +395,7 @@ function statusSensor() {
 function historicoAlertasSensor() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
     var idTalhao = sessionStorage.ID_TALHAO;
-    fetch(`/medidas/historicoAlertasSensor/${idEmpresa}/${idTalhao}`, {
+    fetch(`/medidas/historicoAlertasSensor/${idEmpresa}/${idTalhao}/${dataAnteriorCompleta}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
