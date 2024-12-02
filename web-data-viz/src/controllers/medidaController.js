@@ -59,8 +59,9 @@ function historicoAlertas(req, res) {
 function qtdLuzSensor(req, res) {
 
     var idEmpresa = req.params.idEmpresa;
+    var idTalhao = req.params.idTalhao;
 
-    medidaModel.qtdLuzSensor(idEmpresa).then(function (resultado) {
+    medidaModel.qtdLuzSensor(idEmpresa, idTalhao).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -76,8 +77,9 @@ function qtdLuzSensor(req, res) {
 function statusSensor(req, res) {
     
     var idEmpresa = req.params.idEmpresa;
+    var idTalhao = req.params.idTalhao;
     
-    medidaModel.statusSensor(idEmpresa).then(function (resultado) {
+    medidaModel.statusSensor(idEmpresa, idTalhao).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -93,8 +95,9 @@ function statusSensor(req, res) {
 function historicoAlertasSensor(req, res) {
     
     var idEmpresa = req.params.idEmpresa;
+    var idTalhao = req.params.idTalhao;
     
-    medidaModel.historicoAlertasSensor(idEmpresa).then(function (resultado) {
+    medidaModel.historicoAlertasSensor(idEmpresa, idTalhao).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

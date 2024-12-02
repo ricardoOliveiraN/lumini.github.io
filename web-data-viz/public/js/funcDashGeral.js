@@ -51,10 +51,13 @@ function horasLuz() {
                         div_botoesTalhoes.innerHTML += `<div class="class_talhoesSelecionarOpcao">
                             <a style="background-color:rgb(179, 53, 53);" onclick = "irTalhao(${idTalhao})">Talhão ${contador+1}</a>
                         </div>`
+
+                       
+
                     } else {
                         qtdIdeal++
                         div_botoesTalhoes.innerHTML += `<div class="class_talhoesSelecionarOpcao">
-                            <a href="" style="background-color: rgb(95, 155, 99);" onclick = "irTalhao(${idTalhao})">Talhão ${contador+1}</a>
+                            <a style="background-color:rgb(95, 155, 99);" onclick = "irTalhao(${idTalhao})">Talhão ${contador+1}</a>
                         </div>`
                     }
  

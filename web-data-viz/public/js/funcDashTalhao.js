@@ -22,7 +22,9 @@ var sensoresManutencao = 0
 // INÍCIO DAS ROTAS DA TELA TALHÃO 
 function qtdLuzSensor() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/qtdLuzSensor/${idEmpresa}`, {
+    var idTalhao = sessionStorage.ID_TALHAO;
+
+    fetch(`/medidas/qtdLuzSensor/${idEmpresa}/${idTalhao}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -40,7 +42,6 @@ function qtdLuzSensor() {
 
 
 
-
                 for (var contador = 0; contador < json.length; contador++) {
 
                     if (idSensoresLista.indexOf(`${json[contador].idSensor}`) == -1) {
@@ -48,7 +49,11 @@ function qtdLuzSensor() {
                         G1_labels.push(`Sensor ${idSensoresLista.length}`)
                         quantidadeSensores++
                         G1_data.push(json[contador].qtdHorasLuz)
+<<<<<<< Updated upstream
                         G1_dataNatural.push(14);
+=======
+                        span_numTalhao.innerHTML = json[contador].numero;
+>>>>>>> Stashed changes
                     }
                 }
 
@@ -334,7 +339,8 @@ const mesAtual = umDiaAntes.getMonth() + 1;
 
 function statusSensor() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/statusSensor/${idEmpresa}`, {
+    var idTalhao = sessionStorage.ID_TALHAO;
+    fetch(`/medidas/statusSensor/${idEmpresa}/${idTalhao}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -384,7 +390,8 @@ function statusSensor() {
 
 function historicoAlertasSensor() {
     var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/medidas/historicoAlertasSensor/${idEmpresa}`, {
+    var idTalhao = sessionStorage.ID_TALHAO;
+    fetch(`/medidas/historicoAlertasSensor/${idEmpresa}/${idTalhao}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -429,6 +436,8 @@ function historicoAlertasSensor() {
 
     return false;
 }
+
+
 
 
 

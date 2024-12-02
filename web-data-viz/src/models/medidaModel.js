@@ -51,9 +51,9 @@ function historicoAlertas(idEmpresa) {
 
 
 // INÍCIO DAS ROTAS DA TELA TALHÃO SENSOR
-function qtdLuzSensor(idEmpresa) {
+function qtdLuzSensor(idEmpresa, idTalhao) {
 
-    var instrucaoSql = `SELECT filtragemDados.qtdHorasLuz, sensor.idSensor
+    var instrucaoSql = `SELECT filtragemDados.qtdHorasLuz, sensor.idSensor, talhao.numero
 	FROM filtragemDados
 	JOIN dadosSensor
 		ON idFiltragemDados = fkDadosSensor_FiltragemDados
@@ -61,13 +61,13 @@ function qtdLuzSensor(idEmpresa) {
 		ON idSensor = fkDadosSensor_Sensor
 	JOIN talhao
 		ON idTalhao = fkSensor_Talhao
-	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND talhao.numero = '2';`;
+	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND talhao.idTalhao = ${idTalhao};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function statusSensor(idEmpresa) {
+function statusSensor(idEmpresa, idTalhao) {
 
     var instrucaoSql = `SELECT distinct(sensor.idSensor), statusFuncionamento
     FROM sensor
@@ -77,13 +77,13 @@ function statusSensor(idEmpresa) {
         ON idFiltragemDados = fkDadosSensor_FiltragemDados
     JOIN talhao
         ON idTalhao = fkSensor_Talhao
-    WHERE talhao.fkTalhao_Empresa = ${idEmpresa} AND talhao.numero = '2';`;
+    WHERE talhao.fkTalhao_Empresa = ${idEmpresa} AND talhao.idTalhao = '${idTalhao}';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function historicoAlertasSensor(idEmpresa) {
+function historicoAlertasSensor(idEmpresa, idTalhao) {
 
     var instrucaoSql = `SELECT sensor.idSensor, dadosSensor.qtdLuz, dadosSensor.statusLuminosidade, dadosSensor.momentoCaptura FROM filtragemDados 
     JOIN dadosSensor
@@ -92,7 +92,7 @@ function historicoAlertasSensor(idEmpresa) {
         ON idSensor = fkDadosSensor_Sensor 
     JOIN talhao 
         ON idTalhao = fkSensor_Talhao
-    WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND dadosSensor.alerta = 'sim' AND talhao.numero = '2';`;
+    WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = ${idEmpresa} AND dadosSensor.alerta = 'sim' AND talhao.idTalhao = '${idTalhao}';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

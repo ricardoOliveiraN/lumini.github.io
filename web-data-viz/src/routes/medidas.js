@@ -19,15 +19,15 @@ router.get("/historicoAlertas/:idEmpresa", function (req, res) {
 
 
 // INÍCIO DAS ROTAS DA TELA TALHÃO 
-router.get("/qtdLuzSensor/:idEmpresa", function (req, res) {
+router.get("/qtdLuzSensor/:idEmpresa/:idTalhao", function (req, res) {
     medidaController.qtdLuzSensor(req, res);
 })
 
-router.get("/statusSensor/:idEmpresa", function (req, res) {
+router.get("/statusSensor/:idEmpresa/:idTalhao", function (req, res) {
     medidaController.statusSensor(req, res);
 })
 
-router.get("/historicoAlertasSensor/:idEmpresa", function (req, res) {
+router.get("/historicoAlertasSensor/:idEmpresa/:idTalhao", function (req, res) {
     medidaController.historicoAlertasSensor(req, res);
 })
 // FIM DAS ROTAS DA TELA TALHÃO 
