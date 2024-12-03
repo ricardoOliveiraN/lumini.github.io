@@ -66,20 +66,20 @@ function validarSenha() {
 // FIM DA VALIDAÇÃO DA SENHA
 function confirmarSenha() {
     div_validarSenha.innerHTML = '';
-    var senhaConfirmacao = ipt_ConfirmarSenha.value; 
+    var senhaConfirmacao = ipt_ConfirmarSenha.value;
 
     if (senhaConfirmacao == Senha && senhaConfirmacao != '') {
         ipt_ConfirmarSenha.style.borderColor = 'green';
         div_ConfirmarSenha.innerHTML = '';
         qtdSenhaIgual += 1;
-    }else if (senhaConfirmacao != Senha && senhaConfirmacao != '') {
+    } else if (senhaConfirmacao != Senha && senhaConfirmacao != '') {
         ipt_ConfirmarSenha.style.borderColor = 'red';
         qtdSenhaIgual = 0;
         div_ConfirmarSenha.innerHTML = `Senhas não correspondentes`
-    }else if (senhaConfirmacao == '' && senhaConfirmacao == Senha){
+    } else if (senhaConfirmacao == '' && senhaConfirmacao == Senha) {
         ipt_ConfirmarSenha.style.borderColor = 'white';
         div_ConfirmarSenha.innerHTML = '';
-    }else if (senhaConfirmacao == '' && senhaConfirmacao != Senha){
+    } else if (senhaConfirmacao == '' && senhaConfirmacao != Senha) {
         ipt_ConfirmarSenha.style.borderColor = 'red';
     }
 }
@@ -92,10 +92,11 @@ function CriarSenha() {
     if (qtdCorretoTam >= 1 && qtdCorreto >= 1 && qtdCorretoMini >= 1 && qtdCorretoMais >= 1 && qtdSenhaIgual >= 1) {
 
         ipt_Senha.style.borderColor = 'green';
-        Senha = ipt_Senha;
-
+        Senha = ipt_Senha.value;
+     
+        
         // EU QUERO QUE QUANDO ENTRAR NESSE IF ABRA UMA NOVA TELA COM UMA IMAGEM DE CERTO E UMA FRASE "CADASTRADO COM SUCESSO"
-        abrirTelaInterna()
+        atualizarSenha(Senha);
     } else {
 
         if (qtdSenhaIgual >= 1 && (qtdCorretoTam < 1 || qtdCorreto < 1 || qtdCorretoMini < 1 || qtdCorretoMais < 1)) {
@@ -103,15 +104,51 @@ function CriarSenha() {
             ipt_Senha.style.borderColor = 'red';
         } else if (qtdSenhaIgual < 1) {
             ipt_ConfirmarSenha.style.borderColor = 'red';
-        } else{
+        } else {
             ipt_Senha.style.borderColor = 'red';
         }
     }
 
-}   
+}
 
-function abrirTelaInterna() {
-    var urlLogin = "TelaLogin.html";
-    window.close();
-    window.open(urlLogin);
-  }
+function atualizarSenha(Senha) {
+
+    var SenhaVar = Senha;
+    var idUserVar =  sessionStorage.ID_USUARIO;
+    alert(SenhaVar)
+
+    fetch("/usuarios/attSenhaUser", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            SenhaServer: SenhaVar,
+            idUserServer: idUserVar            
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                window.location = 'TelaDash-Geral.html'
+
+
+
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
+
+    return false;
+
+
+
+}

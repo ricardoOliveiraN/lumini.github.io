@@ -2,6 +2,9 @@ CREATE DATABASE lumini;
 
 USE lumini;
 
+
+
+
 CREATE TABLE empresa (
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
     nomeFantasia VARCHAR(45),
@@ -187,7 +190,7 @@ INSERT INTO sensor (idSensor, statusFuncionamento, dtInstalacao, dtUltimaManuten
 	(10008, 'Ativo', '2024-11-28', NULL, 102),
 	(10009, 'Ativo', '2024-11-28', NULL, 103),
 	(10010, 'Ativo', '2024-11-28', NULL, 103),
-	(10011, 'Ativo', '2024-11-28', NULL, 103);
+	(10011, 'Ativo', '2024-12-03', NULL, 103);
 	
 INSERT INTO filtragemDados (idFiltragemDados, dia, qtdHorasLuz, statusDia) VALUES
 	(500000, '2024-12-03', 16, 'Ideal'), -- 1
@@ -292,3 +295,16 @@ SELECT filtragemDados.qtdHorasLuz, filtragemDados.dia
 	WHERE idSensor = 10000
     ORDER BY filtragemDados.dia DESC
 	LIMIT 14;
+    
+    
+    -- TESTE
+    
+    SELECT filtragemDados.qtdHorasLuz, sensor.idSensor, talhao.numero
+	FROM filtragemDados
+	JOIN dadosSensor
+		ON idFiltragemDados = fkDadosSensor_FiltragemDados
+	JOIN sensor
+		ON idSensor = fkDadosSensor_Sensor
+	JOIN talhao
+		ON idTalhao = fkSensor_Talhao
+	WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = 2 AND talhao.idTalhao = 100;
