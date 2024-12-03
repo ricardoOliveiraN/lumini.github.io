@@ -115,7 +115,7 @@ function atualizarSenha(Senha) {
     var SenhaVar = Senha;
     var idUserVar =  sessionStorage.ID_USUARIO;
 
-    fetch("/empresas/attSenhaUser", {
+    fetch("/usuarios/attSenhaUser", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
