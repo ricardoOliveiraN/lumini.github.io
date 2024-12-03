@@ -92,8 +92,9 @@ function CriarSenha() {
     if (qtdCorretoTam >= 1 && qtdCorreto >= 1 && qtdCorretoMini >= 1 && qtdCorretoMais >= 1 && qtdSenhaIgual >= 1) {
 
         ipt_Senha.style.borderColor = 'green';
-        Senha = ipt_Senha;
-        alert(Senha)
+        Senha = ipt_Senha.value;
+     
+        
         // EU QUERO QUE QUANDO ENTRAR NESSE IF ABRA UMA NOVA TELA COM UMA IMAGEM DE CERTO E UMA FRASE "CADASTRADO COM SUCESSO"
         atualizarSenha(Senha);
     } else {
