@@ -1,3 +1,4 @@
+
 function empresasAtivas(){
 
     fetch(`/dashFunc/empresasAtivas`, { cache: 'no-store' }).then(function (response) {
@@ -19,22 +20,21 @@ function empresasAtivas(){
 
 }
 
+const estados = []
+const empresasEstado = []
+
 function quantidadeEmpresaEstado(){
 
-    var Estado = inp_uf;
-
-    fetch(`/dashFunc/enderecoEstado/${Estado}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/dashFunc/enderecoEstado`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
-
-
-                alert('Deu certo obtenção de empresas por cnpj' + idEmpresa);
-
-                quantidadeFuncionarios(idEmpresa)
                 
-
+                for(var i = 0; i < resposta.length; i++){
+                    estados.push(resposta[i].uf)
+                    empresasEstado.push(resposta[i].QuantidadeEmpresa)
+                }
+                plotarGrafico1()
 
             });
         } else {
@@ -50,7 +50,7 @@ function quantidadeEmpresaEstado(){
 }
 
 
-function quantidadeFuncionarios(dEmpresa){
+function quantidadeFuncionarios(idEmpresa){
 
     fetch(`/dashFunc/qtdFuncionarios`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
@@ -102,6 +102,68 @@ function qtdSensoresEmpresa(){
         });
 }
 
+function plotarGrafico1() {
+    
+    const dataA = {
+        labels: estados,
+        datasets: [
+            {
+                label: 'Quantidade',
+                backgroundColor: [
+                    'rgb(53, 151, 222)',
+
+                ],
+                borderColor: [
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0)',
+                ],
+                data: empresasEstado
+            },
+        ]
+    };
+
+
+    const configA = {
+        type: 'bar',
+        data: dataA,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: `Empresas por estado`
+                },
+                legend: {
+                    labels: {
+                        boxWidth: 20 // Configuração correta para ajustar a largura dos quadrados da legenda
+                    }
+                }
+            },
+            scales: {
+                x: {
+                //     title: {
+                //         display: true,
+                //         text: 'Talhões'
+                //     },
+                    stacked: true
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Quantidade de horas'
+                    },
+                    // stacked: true
+                }
+            }
+        }
+    }
+    const myChart = new Chart(
+        document.getElementById('myChartA'),
+        configA
+    )
+}
 
 /*
 Quantidade de empresas ativas

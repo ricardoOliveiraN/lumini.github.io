@@ -10,9 +10,9 @@ function buscarEmpresasAtivas() {
     return database.executar(instrucaoSql);
 }
 
-function buscarEnderecoEstado(Estado) {
+function buscarEnderecoEstado() {
 
-    var instrucaoSql = `SELECT COUNT(*) FROM empresa JOIN endereco ON fkEmpresa_Endereco = idendereco WHERE uf = '${Estado}';`;
+    var instrucaoSql = ` Select count(uf) as QuantidadeEmpresa, uf From endereco group by uf;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

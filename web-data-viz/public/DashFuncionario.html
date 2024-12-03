@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumini</title>
+    <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styleDashFuncionario.css">
+    <script src="./js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
+    data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+
+<body onload="validarSessao(); quantidadeEmpresaEstado()">
+    <main>
+        <div class="class_menuLateral">
+            <div class="class_LinksMenu">
+                <ul>
+                    <li><a href="CadastrarFuncionario.html">
+                            <img src="Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                        </a>
+                    </li>
+                    <li><a href="CadastrarFuncionario.html">Cadastrar Empresa</a></li>
+                    <li><a href="DashFuncionario.html">Dashboard</a></li>
+                    <li id="id_btnSair" onclick="limparSessao()"><a href="">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div class="class_dashs">
+            <div class="class_dashCima">
+                <div class="class_tituloDash">
+                    <h1>Dashboard Lumini</h1>
+                </div>           
+            </div>
+            <!-- <div class="class_dashBaixo"> -->
+
+
+            <div class="class_talhoesGraficosContainer">
+                <!-- <div class="class_talhoesGraficosTitulo">
+                            Todos os Talhões
+                        </div> -->
+                <div class="class_talhoesGraficos">
+                    <div class="class_talhoesGrafico class_talhoesGrafico1">
+                        <canvas id="myChartA" style="position: relative; height: 45vh; width: 21.6vw;"></canvas>
+                    </div>
+                    <div class="class_talhoesGrafico class_talhoesGrafico2">
+                        <canvas id="myChartB"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                    </div>
+                    <div class="class_talhoesGrafico class_talhoesGrafico2">
+                        <canvas id="myChartC"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <div class="container-AlertaeSelecionar">
+
+                <div class="class_talhoesSelecionar" style="width: 55%;">
+                    <div class="class_kpisMenu">
+                        <div class="class_kpi class_kpi1">
+                            <div class="class_kpiNumero">
+                                <span id="span_totalTalhoes">5</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Talhões <br> totais</span>
+                            </div>
+                        </div>
+                        <div class="class_kpi class_kpi2">
+                            <div class="class_kpiNumero">
+                                <span id="span_totalIdeal">3</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Talhões <br> ideais</span>
+                            </div>
+                        </div>
+                        <div class="class_kpi class_kpi3">
+                            <div class="class_kpiNumero">
+                                <span id="span_totalAbaixo">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Talhões <br> abaixo</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero">
+                                <span id="span_totalExcesso">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Talhões em <br> execesso</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="class_sensorAlertas">
+                    <table>
+                        <thead id="historico_Alertas">
+                            <tr class="tituloAlerta">
+                                <th>Talhao</th>
+                                <th>Tipo</th>
+                                <th>Horas</th>
+                                <th>Dia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableCampo">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>
+<script>
+    
+</script>
+<script src="./js/DashFuncionario.js"></script>

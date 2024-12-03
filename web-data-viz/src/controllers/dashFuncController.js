@@ -25,8 +25,7 @@ function buscarEmpresasAtivas(req, res) {
 
 function buscarEnderecoEstado(req,res){
 
-    var Estado = req.parms.Estado;
-    dashFuncModel.buscarEnderecoEstado(Estado)
+    dashFuncModel.buscarEnderecoEstado()
         .then(
             function (resultado) {
                 if (resultado.length > 0) {

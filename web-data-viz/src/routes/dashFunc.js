@@ -7,7 +7,7 @@ router.get("/empresasAtivas", function (req, res) {
   dashFuncController.buscarEmpresasAtivas(req, res);
 });
 
-router.get("/enderecoEstado/:Estado", function (req, res) {
+router.get("/enderecoEstado", function (req, res) {
     dashFuncController.buscarEnderecoEstado(req, res);
 });
 
