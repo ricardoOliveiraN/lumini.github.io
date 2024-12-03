@@ -68,7 +68,7 @@ function buscarQuantidadeFuncionarios(req,res){
 
 function buscarQuantidadeSensores(req,res){
 
-    dashFuncModel.buscarQTDFunc()
+    dashFuncModel.buscarQuantidadeSensores()
         .then(
             function (resultado) {
                 if (resultado.length > 0) {

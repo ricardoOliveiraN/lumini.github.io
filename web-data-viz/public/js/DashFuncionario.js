@@ -96,6 +96,44 @@ function qtdSensoresEmpresa(){
         });
 }
 
+var sensoresAtivos = 0
+var sensoresManutencao = 0
+var sensoresInativo = 0
+var qtdSensores = 0
+
+function buscarQuantidadeSensores(){
+    fetch(`/dashFunc/qtdSensores`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+
+                for(var i = 0; i < resposta.length; i++){
+                    if (resposta[i].statusFuncionamento == 'Ativo') {
+                        sensoresAtivos++
+                        qtdSensores++
+                    } else if (resposta[i].statusFuncionamento == 'Manutenção') {
+                        sensoresManutencao++
+                        qtdSensores++
+                    }
+                }
+                span_totalSensores.innerHTML = qtdSensores;
+                span_sensoresAtivos.innerHTML = sensoresAtivos;
+                span_sensoresManutencao.innerHTML = sensoresManutencao;
+                span_sensoresInativos.innerHTML = sensoresInativo;
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+
+
 function plotarGrafico1() {
     
     const dataA = {

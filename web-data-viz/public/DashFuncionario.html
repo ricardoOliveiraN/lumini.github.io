@@ -18,7 +18,7 @@
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-<body onload="validarSessao(); quantidadeEmpresaEstado(); empresasAtivas(); quantidadeFuncionarios()">
+<body onload="validarSessao(); quantidadeEmpresaEstado(); empresasAtivas(); quantidadeFuncionarios(); buscarQuantidadeSensores()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -64,7 +64,7 @@
             <!-- </div> -->
             <div class="container-AlertaeSelecionar">
 
-                <div class="class_talhoesSelecionar" style="width: 55%;">
+                <div class="class_talhoesSelecionar">
                     <div class="class_kpisMenu">
                         <div class="class_kpi class_kpi1">
                             <div class="class_kpiNumero">
@@ -84,39 +84,42 @@
                         </div>
                         <div class="class_kpi class_kpi3">
                             <div class="class_kpiNumero">
-                                <span id="span_totalAbaixo">1</span>
+                                <span id="span_totalSensores">1</span>
                             </div>
                             <div class="class_kpiTexto">
-                                <span>Talhões <br> abaixo</span>
+                                <span>Total <br> sensores</span>
                             </div>
 
                         </div>
                         <div class="class_kpi class_kpi4">
                             <div class="class_kpiNumero">
-                                <span id="span_totalExcesso">1</span>
+                                <span id="span_sensoresAtivos">1</span>
                             </div>
                             <div class="class_kpiTexto">
-                                <span>Talhões em <br> execesso</span>
+                                <span>Sensores <br> ativos</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero">
+                                <span id="span_sensoresManutencao">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Sensores <br> em manutenção</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero">
+                                <span id="span_sensoresInativos">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Sensores <br> inativos</span>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                <div class="class_sensorAlertas">
-                    <table>
-                        <thead id="historico_Alertas">
-                            <tr class="tituloAlerta">
-                                <th>Talhao</th>
-                                <th>Tipo</th>
-                                <th>Horas</th>
-                                <th>Dia</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableCampo">
-                        </tbody>
-                    </table>
-                </div>
-
             </div>
         </div>
 

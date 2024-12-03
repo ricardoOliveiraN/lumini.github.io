@@ -481,6 +481,7 @@ th {
     align-items: center;
     background-color: #ffcc00;
     border-radius: 8px;
+    width: auto;
     height: 95%; 
     /* width: 16%; */
     /* margin: 1%; */

@@ -27,10 +27,19 @@ function buscarQTDFunc(){
 
 }
 
+function buscarQuantidadeSensores() {
+
+    var instrucaoSql = `SELECT * from sensor;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 module.exports = {
     buscarEmpresasAtivas,
     buscarEnderecoEstado,
-    buscarQTDFunc
+    buscarQTDFunc,
+    buscarQuantidadeSensores
 }
