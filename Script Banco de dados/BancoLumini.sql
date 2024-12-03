@@ -135,13 +135,35 @@ CREATE TABLE dadosSensor (
     		CONSTRAINT fkReFiltragemDados_DadosSensor FOREIGN KEY (fkDadosSensor_FiltragemDados)
 			REFERENCES filtragemDados(idFiltragemDados)
 ) AUTO_INCREMENT = 1000000;
-
+select * from empresa;
+select * from endereco;
 INSERT INTO empresa (idEmpresa, nomeFantasia, cnpj, tamanhoEmpresa, qtdHectares, statusCadastro, dtCriacao, dtSaida, fkEmpresa_EmpresaSede) VALUES
     (1, 'Lumini', '87654321000195', 'Grande', NULL, 'ativo', '2024-11-26', NULL, NULL),
-	(2, 'FrizzaLupulo', '12345678000195', 'Médio', '20', 'ativo', '2024-11-27', NULL, NULL);
+	(2, 'FrizzaLupulo', '12345678000195', 'Médio', '20', 'ativo', '2024-11-27', NULL, NULL),
+    (3, 'HopsBrasil', '23456789000196', 'Grande', '100', 'ativo', '2023-06-25', NULL, NULL),
+    (4, 'LupusField', '34567890100197', 'Médio', '50', 'ativo', '2023-11-20', NULL, NULL),
+    (5, 'GreenHop', '45678901200198', 'Pequeno', '15', 'ativo', '2022-11-23', NULL, NULL), 
+    (6, 'LupulinaTech', '56789012300199', 'Grande', '200', 'ativo', '2023-11-22', NULL, NULL), 
+    (7, 'EcoLupulo', '67890123400190', 'Médio', '30', 'ativo', '2022-11-21', NULL, NULL), 
+    (8, 'BrasilHops', '78901234500191', 'Grande', '150', 'ativo', '2021-11-24', NULL, NULL), 
+    (9, 'LupulusSol', '89012345600192', 'Pequeno', '10', 'ativo', '2021-11-26', NULL, NULL), 
+    (10, 'HopPower', '90123456700193', 'Médio', '40', 'ativo', '2023-11-20', NULL, NULL), 
+    (11, 'HopsCult', '01234567800194', 'Grande', '120', 'ativo', '2022-11-23', NULL, NULL), 
+    (12, 'LupuloNorte', '12345678900194', 'Pequeno', '8', 'ativo', '2021-11-21', NULL, NULL);
 
-INSERT INTO endereco (idEndereco, cep, uf, cidade, logradouro, numero, complemento) VALUES
- 	(1, '01414-001', 'SP', 'São Paulo', 'Rua Haddock Lobo', '585', NULL);
+INSERT INTO endereco (idEndereco, cep, uf, cidade, logradouro, numero, complemento, fkEndereco_Empresa) VALUES
+ 	(1, '01414-001', 'SP', 'São Paulo', 'Rua Haddock Lobo', '585', NULL, 1),
+ 	(2, '01414-001', 'SP', 'São Paulo', 'Rua Haddock Lobo', '585', NULL, 2),
+    (3, '01000-000', 'SP', 'São Paulo', 'Rua da Consolação', '123', NULL, 3),
+    (4, '02245-100', 'SP', 'São Paulo', 'Avenida Nova Cantareira', '876', 'Apto 301', 4),
+    (5, '03010-000', 'SP', 'São Paulo', 'Rua Vergueiro', '512', 'Bloco A', 5),
+    (6, '04050-000', 'MG', 'Belo Horizonte', 'Rua dos Três Irmãos', '732', 'Casa 5', 6),
+    (7, '04510-000', 'MS', 'Campo Grande', 'Avenida Brigadeiro Faria Lima', '1120', NULL, 7),
+    (8, '05040-080', 'MS', 'Campo Grande', 'Rua Santa Clara', '210', 'Sobrado', 8),
+    (9, '05670-060', 'GO', 'Goiânia', 'Rua Lapa', '568', 'Apartamento 2B', 9),
+    (10, '06753-000', 'SP', 'Cotia', 'Avenida São Lucas', '1500', 'Perto do Mercado Municipal', 10),
+    (11, '08050-220', 'MG', 'Belo Horizonte', 'Rua João Soares', '900', 'Apartamento 404', 11),
+    (12, '09080-300', 'RJ', 'Niterói', 'Rua Bernardino de Campos', '115', 'Casa 8', 12);
 
 INSERT INTO usuario (idUsuario, fkUsuario_Empresa, nome, senha, email, telefone, tipoUsuario, statusUsuario, dtCriacao, dtExclusao) VALUES
 	(1000, 1, 'Igor', 'Lumini@100', 'igor@lumini.com', '11942971496', 'Administrador', 'ativo', '2024-11-26', NULL),

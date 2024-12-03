@@ -27,7 +27,8 @@ function autenticar(req, res) {
                                 senha: resultadoAutenticar[0].senha,
                                 email: resultadoAutenticar[0].email,
                                 telefone: resultadoAutenticar[0].telefone,
-                                tipoUsuario: resultadoAutenticar[0].tipoUsuario
+                                tipoUsuario: resultadoAutenticar[0].tipoUsuario,
+                                usuarioValidado: resultadoAutenticar[0].usuarioValidado
                             });
                         } else {
                             res.status(204).json({ aquarios: [] });
@@ -48,6 +49,37 @@ function autenticar(req, res) {
             );
     }
 
+}
+
+function attSenhaUser(req, res) {
+    var Senha = req.body.SenhaServer;
+    var idUser = req.body.idUserServer;
+    
+
+
+    if (Senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    }
+
+    else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.attSenhaUser(Senha, idUser)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
 }
 
 function cadastrar(req, res) {
@@ -87,7 +119,7 @@ function cadastrar(req, res) {
     }
 }
 
-function selecionarDadosUser(req,res){
+function selecionarDadosUser(req, res) {
 
     var idUser = req.params.idUser;
     usuarioModel.selecionarDadosUser(idUser)
@@ -115,5 +147,6 @@ function selecionarDadosUser(req,res){
 module.exports = {
     autenticar,
     cadastrar,
-    selecionarDadosUser
+    selecionarDadosUser,
+    attSenhaUser
 }
