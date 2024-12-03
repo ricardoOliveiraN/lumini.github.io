@@ -146,7 +146,7 @@ function buscarIDEmpresa(cnpj){
 
                 sessionStorage.ID_EMPRESA = valor;
 
-                alert(valor)
+                
                 cadastrarEndereco()
                 
 
