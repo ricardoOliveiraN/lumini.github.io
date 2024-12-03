@@ -7,7 +7,7 @@ function empresasAtivas(){
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
 
-                alert('Deu certo obtenção de empresas ativas')
+                span_empresasAtivas.innerHTML = resposta[0].empresasAtivas;
 
             });
         } else {

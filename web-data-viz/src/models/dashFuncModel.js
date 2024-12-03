@@ -4,7 +4,7 @@ var database = require("../database/config");
 
 function buscarEmpresasAtivas() {
 
-    var instrucaoSql = `SELECT COUNT(idEmpresa) FROM Empresa;`;
+    var instrucaoSql = `SELECT COUNT(idEmpresa) as empresasAtivas FROM empresa WHERE statusCadastro = 'ativo';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

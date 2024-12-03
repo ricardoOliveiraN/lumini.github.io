@@ -9,7 +9,7 @@ router.get("/empresasAtivas", function (req, res) {
 
 router.get("/enderecoEstado", function (req, res) {
     dashFuncController.buscarEnderecoEstado(req, res);
-});
+}); 
 
 router.get("/qtdFuncionarios", function (req, res) {
     dashFuncController.buscarQuantidadeFuncionarios(req, res);
