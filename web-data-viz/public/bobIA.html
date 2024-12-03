@@ -5,83 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        #botaoBOBia {
-            width: 60px;
-            height: 60px;
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-        }
-
-        #container {
-            display: none;
-            font-family: Arial, sans-serif;
-            background-color: #63B1BC;
-            margin: 0;
-            padding: 0;
-            width: 28%;
-            border-radius: 8px;
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            transition: all 0.5s ease; /* Suaviza a transição */
-        }
-
-        h1 {
-            color: #1F2A44;
-        }
-
-        textarea[type="text"] {
-            padding: 8px;
-            font-size: 16px;
-            border-radius: 5px;
-            width: 88%;
-            height: 140px;
-            margin-bottom: 14px;
-            max-height: 200px;
-            max-width: 88%;
-            min-height: 20px;
-            min-width: 48%;
-        }
-
-        select,
-        button {
-            padding: 8px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button {
-            background-color: #ED145B;
-            color: #FFFFFF;
-            border: none;
-        }
-
-        button:hover {
-            background-color: #EFB661;
-        }
-
-        #resposta {
-            margin: 10px 0px;
-            padding: 10px;
-            border-radius: 5px;
-            width: 88%;
-            background-color: #D0D3D4;
-            border: 1px solid #63666A;
-            text-align: left;
-            display: none;
-        }
-        a{
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="css/BOBIA.css">
 </head>
 
 <body>
-    <a onclick="teste(1)"><img src="Imagens/bob_camisa.png" alt="" id="botaoBOBia"></a>
-    <div id="container">
+    <a onclick="teste(1)" style="cursor: pointer;"><img src="Imagens/bob_camisa.png" alt="" id="botaoBOBia"></a>
+    <div id="containerBOBIA">
         <div style="display: flex; flex-direction: column;align-items: center;">
             <div
                 style="display: flex; width: 50%; align-items: center; justify-content: space-between; margin-left: 90px;">
@@ -99,29 +28,4 @@
 </body>
 
 </html>
-<script>
-    // fazer a chamada do BobIA
-    async function gerarResposta() {
-        const pergunta = document.getElementById('pergunta').value;
-
-        const response = await fetch('http://localhost:3333/perguntar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ pergunta })
-        });
-
-        const data = await response.json();
-
-        resposta.style.display = 'block';
-        document.getElementById('resposta').innerText = data.resultado;
-    }
-    function teste(resposta) {
-        if (resposta == 1) {
-            container.style.display = 'block'
-        } else {
-            container.style.display = 'none'
-        }
-    }
-</script>
+<script src="js/BOBIA.js"></script>

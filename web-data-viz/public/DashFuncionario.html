@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumini</title>
+    <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styleDashFuncionario.css">
+    <script src="./js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<link rel="stylesheet" href="css/BOBIA.css">
+
+<div>
+    <a onclick="teste(1)" style="cursor: pointer;"><img src="Imagens/bob_camisa.png" alt="" id="botaoBOBia"></a>
+    <div id="containerBOBIA">
+        <div style="display: flex; flex-direction: column;align-items: center;">
+            <div
+                style="display: flex; width: 50%; align-items: center; justify-content: space-between; margin-left: 90px;">
+                <h1>BobIA</h1>
+                <a onclick="teste(2)"><img src="Imagens/iconamoon--close-duotone.png"
+                        style="margin-left: 90px; width: 40px; height: 40px;"></a>
+            </div>
+            <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+            <button onclick="gerarResposta()">Gerar Resposta</button>
+            <h3>Resposta da IA:</h3>
+            <div id="resposta"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/BOBIA.js"></script>
+
+<body onload="validarSessao(); quantidadeEmpresaEstado(); empresasAtivas(); quantidadeFuncionarios(); buscarQuantidadeSensores(); 
+evolucaoEmpresas(); statusLuminosidade(); tamanhoEmpresa(); qtdTalhoes()">
+    <main>
+        <div class="class_menuLateral">
+            <div class="class_LinksMenu">
+                <ul>
+                    <li><a href="CadastrarFuncionario.html">
+                            <img src="Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                        </a>
+                    </li>
+                    <li><a href="CadastrarFuncionario.html">Cadastrar Empresa</a></li>
+                    <li><a href="DashFuncionario.html">Dashboard</a></li>
+                    <li id="id_btnSair" onclick="limparSessao()"><a href="">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div class="class_dashs">
+            <div class="class_dashCima">
+                <div class="class_tituloDash">
+                    <h1>Dashboard Lumini</h1>
+                </div>           
+            </div>
+            <!-- <div class="class_dashBaixo"> -->
+
+
+            <div class="class_talhoesGraficosContainer">
+                <!-- <div class="class_talhoesGraficosTitulo">
+                            Todos os Talhões
+                        </div> -->
+                <div class="class_talhoesGraficos">
+                    <div class="class_talhoesGrafico class_talhoesGrafico1">
+                        <canvas id="myChartA" style="position: relative; height: 45vh; width: 21.6vw;"></canvas>
+                    </div>
+                    <div class="class_talhoesGrafico class_talhoesGrafico2">
+                        <canvas id="myChartB"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                    </div>
+                    <div class="class_talhoesGrafico class_talhoesGrafico2">
+                        <canvas id="myChartC"
+                            style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                    </div>
+                </div>
+                <div class="class_talhoesGraficos">
+                    <div class="class_talhoesGrafico class_talhoesGrafico1">
+                        <canvas id="myChartD" style="position: relative; height: 45vh; width: 21.6vw;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <div class="container-AlertaeSelecionar">
+
+                <div class="class_talhoesSelecionar">
+                    <div class="class_kpisMenu">
+                        <div class="class_kpi class_kpi1">
+                            <div class="class_kpiNumero">
+                                <span id="span_usuariosAtivos">5</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Usuários <br> ativos</span>
+                            </div>
+                        </div>
+                        <div class="class_kpi class_kpi2">
+                            <div class="class_kpiNumero">
+                                <span id="span_empresasAtivas">3</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Empresas <br> ativas</span>
+                            </div>
+                        </div>
+                        <div class="class_kpi class_kpi3">
+                            <div class="class_kpiNumero">
+                                <span id="span_totalSensores">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Total <br> sensores</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero">
+                                <span id="span_sensoresAtivos">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Sensores <br> ativos</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero">
+                                <span id="span_sensoresManutencao">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Sensores <br> em manutenção</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero">
+                                <span id="span_sensoresInativos">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Sensores <br> inativos</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero">
+                                <span id="span_talhoesTotais">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Quantidade <br> talhões</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>
+<script>
+    
+</script>
+<script src="./js/DashFuncionario.js"></script>

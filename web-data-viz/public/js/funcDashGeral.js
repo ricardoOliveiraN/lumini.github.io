@@ -303,7 +303,7 @@ function plotarGrafico1() {
                 }
             }
         }
-    }
+    } 
     const myChart = new Chart(
         document.getElementById('myChartA'),
         configA
