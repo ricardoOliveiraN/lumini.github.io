@@ -93,7 +93,7 @@ function CriarSenha() {
 
         ipt_Senha.style.borderColor = 'green';
         Senha = ipt_Senha;
-
+        alert(Senha)
         // EU QUERO QUE QUANDO ENTRAR NESSE IF ABRA UMA NOVA TELA COM UMA IMAGEM DE CERTO E UMA FRASE "CADASTRADO COM SUCESSO"
         atualizarSenha(Senha);
     } else {
@@ -114,6 +114,7 @@ function atualizarSenha(Senha) {
 
     var SenhaVar = Senha;
     var idUserVar =  sessionStorage.ID_USUARIO;
+    alert(SenhaVar)
 
     fetch("/usuarios/attSenhaUser", {
         method: "POST",
