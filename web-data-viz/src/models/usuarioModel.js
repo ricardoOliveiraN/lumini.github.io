@@ -3,7 +3,7 @@ var database = require("../database/config")
 function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucaoSql = `
-        SELECT idUsuario, fkUsuario_Empresa, nome, email, senha, telefone, tipoUsuario FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+        SELECT idUsuario, fkUsuario_Empresa, nome, email, senha, telefone, tipoUsuario, usuarioValidado FROM usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -22,6 +22,15 @@ function cadastrar(fkEmpresa, nome, email, senha, telefone, tipo) {
     return database.executar(instrucaoSql);
 }
 
+function attSenhaUser(Senha, idUser) {
+    
+    var instrucaoSql = `
+        UPDATE usuario SET senha = '${Senha}' and usuarioValidado = 'sim' WHERE idUsuario = ${idUser};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function selecionarDadosUser(idUser) {
 
     var instrucaoSql = `
@@ -34,5 +43,6 @@ function selecionarDadosUser(idUser) {
 module.exports = {
     autenticar,
     cadastrar,
-    selecionarDadosUser
+    selecionarDadosUser,
+    attSenhaUser
 };

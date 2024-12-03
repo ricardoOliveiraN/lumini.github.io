@@ -274,16 +274,28 @@ function entrar() {
                 sessionStorage.SENHA_USUARIO = json.senha;
                 sessionStorage.TELEFONE_USUARIO = json.telefone;
                 sessionStorage.TIPO_USUARIO = json.tipoUsuario;
-                
+                sessionStorage.usuarioValidado = json.usuarioValidado;
+
                 if (sessionStorage.FK_EMPRESA == 1) {
                     setTimeout(function () {
                         window.location = "CadastrarFuncionario.html";
                     }, 1000);
                 } else {
 
-                    setTimeout(function () {
-                        window.location = "TelaDash-Geral.html";
-                    }, 1000); // apenas para exibir o loading
+                    if (sessionStorage.usuarioValidado == 'nao') {
+
+                        setTimeout(function () {
+                            window.location = "TelaSenhaNova.html"
+                        }, 1000); // apenas para exibir o loading
+
+                    } else {
+
+                        setTimeout(function () {
+                            window.location = "TelaDash-Geral.html";
+                        }, 1000); // apenas para exibir o loading
+                    }
+
+
                 }
 
             });
