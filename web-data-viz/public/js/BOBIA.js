@@ -3,7 +3,7 @@
     async function gerarResposta() {
         const pergunta = document.getElementById('pergunta').value;
 
-        const response = await fetch('http://localhost:3333/perguntar', {
+        const response = await fetch('http://10.18.35.237:3333/perguntar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
