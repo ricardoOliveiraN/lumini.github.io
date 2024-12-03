@@ -284,15 +284,15 @@ function entrar() {
 
                     if (sessionStorage.usuarioValidado == 'nao') {
 
-                        setTimeout(function () {
-                            window.location = "TelaSenhaNova.html"
-                        }, 1000); // apenas para exibir o loading
+
+                        window.location = "TelaSenhaNova.html"
+
 
                     } else {
 
-                        setTimeout(function () {
-                            window.location = "TelaDash-Geral.html";
-                        }, 1000); // apenas para exibir o loading
+
+                        window.location = "TelaDash-Geral.html";
+
                     }
 
 

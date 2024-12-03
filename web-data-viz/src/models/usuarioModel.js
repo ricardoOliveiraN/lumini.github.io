@@ -25,7 +25,7 @@ function cadastrar(fkEmpresa, nome, email, senha, telefone, tipo) {
 function attSenhaUser(Senha, idUser) {
     
     var instrucaoSql = `
-        UPDATE usuario SET senha = '${Senha}' and usuarioValidado = 'sim' WHERE idUsuario = ${idUser};
+        UPDATE usuario SET senha = '${Senha}', usuarioValidado = 'sim' WHERE idUsuario = ${idUser};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
