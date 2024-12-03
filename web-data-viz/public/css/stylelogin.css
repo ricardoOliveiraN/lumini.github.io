@@ -59,7 +59,7 @@ input::placeholder {
 .class_login {
     width: 50%;
     height: 100vh;
-    background-image: url('../imagens/fundoLupulo.png');
+    background-image: url('../Imagens/fundoLupulo.png');
     background-size: cover;
     position: fixed;
     z-index: 1;
