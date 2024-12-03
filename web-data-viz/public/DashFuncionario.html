@@ -18,7 +18,8 @@
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-<body onload="validarSessao(); quantidadeEmpresaEstado(); empresasAtivas(); quantidadeFuncionarios(); buscarQuantidadeSensores()">
+<body onload="validarSessao(); quantidadeEmpresaEstado(); empresasAtivas(); quantidadeFuncionarios(); buscarQuantidadeSensores(); 
+evolucaoEmpresas(); statusLuminosidade(); tamanhoEmpresa(); qtdTalhoes()">
     <main>
         <div class="class_menuLateral">
             <div class="class_LinksMenu">
@@ -58,6 +59,11 @@
                     <div class="class_talhoesGrafico class_talhoesGrafico2">
                         <canvas id="myChartC"
                             style="position: relative; height: 65vh; width: 21.6vw; margin: 24px 0px;"></canvas>
+                    </div>
+                </div>
+                <div class="class_talhoesGraficos">
+                    <div class="class_talhoesGrafico class_talhoesGrafico1">
+                        <canvas id="myChartD" style="position: relative; height: 45vh; width: 21.6vw;"></canvas>
                     </div>
                 </div>
             </div>
@@ -115,6 +121,15 @@
                             </div>
                             <div class="class_kpiTexto">
                                 <span>Sensores <br> inativos</span>
+                            </div>
+
+                        </div>
+                        <div class="class_kpi class_kpi4">
+                            <div class="class_kpiNumero">
+                                <span id="span_talhoesTotais">1</span>
+                            </div>
+                            <div class="class_kpiTexto">
+                                <span>Quantidade <br> talhões</span>
                             </div>
 
                         </div>
