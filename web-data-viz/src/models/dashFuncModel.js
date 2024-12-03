@@ -20,7 +20,7 @@ function buscarEnderecoEstado() {
 
 function buscarQTDFunc(){
     
-    var instrucaoSql = `SELECT COUNT(idUsuario) FROM usuario;`;
+    var instrucaoSql = `SELECT COUNT(idUsuario) as usuariosAtivos FROM usuario WHERE statusUsuario = 'ativo';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

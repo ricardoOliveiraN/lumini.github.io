@@ -58,13 +58,7 @@ function quantidadeFuncionarios(idEmpresa){
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
 
-                
-
-                alert('Deu certo obtenção de qtdFuncionarios');
-
-                quantidadeFuncionarios(idEmpresa)
-
-
+                span_usuariosAtivos.innerHTML = resposta[0].usuariosAtivos;
 
             });
         } else {
