@@ -12,8 +12,28 @@
     <script src="./js/sessao.js"></script>
     <link rel="stylesheet" href="css/styleCadastrarUsuario.css">
 </head>
-<script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
-data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+<link rel="stylesheet" href="css/BOBIA.css">
+
+<div>
+    <a onclick="teste(1)" style="cursor: pointer;"><img src="Imagens/bob_camisa.png" alt="" id="botaoBOBia"></a>
+    <div id="containerBOBIA">
+        <div style="display: flex; flex-direction: column;align-items: center;">
+            <div
+                style="display: flex; width: 50%; align-items: center; justify-content: space-between; margin-left: 90px;">
+                <h1>BobIA</h1>
+                <a onclick="teste(2)"><img src="Imagens/iconamoon--close-duotone.png"
+                        style="margin-left: 90px; width: 40px; height: 40px;"></a>
+            </div>
+            <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+            <button onclick="gerarResposta()">Gerar Resposta</button>
+            <h3>Resposta da IA:</h3>
+            <div id="resposta"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/BOBIA.js"></script>
 
 <body onload="selecionarDadosUser()">
     <main>
