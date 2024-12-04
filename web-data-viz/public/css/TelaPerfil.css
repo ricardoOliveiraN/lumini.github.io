@@ -211,6 +211,16 @@ main {
     border-radius: 5px;
     padding: 5px;
 }
+
+.class_Senha {
+    width: 75%;
+    height: 5vh;
+    background-color: white;
+    border: 1px solid #708090;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .class_Esquerda{
     width: 50%;
 }

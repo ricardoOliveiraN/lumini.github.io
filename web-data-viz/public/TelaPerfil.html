@@ -81,7 +81,7 @@
                         </p>
                         <p>
                             <span class="class_span1">Senha</span> <br>
-                        <div class="class_DiveErro"><span class="class_span2" id="span_senha">*********</span></div>
+                            <input id="span_senha" type="password" class="class_Senha" disabled></input>
                         </p>
                     </div>
                 </div>
@@ -102,5 +102,5 @@
     span_empresa.innerHTML =  sessionStorage.NOME_EMPRESA
     span_telefone.innerHTML = sessionStorage.TELEFONE_USUARIO;
     span_cargo.innerHTML = sessionStorage.CARGO
-    span_senha.innerHTML = sessionStorage.SENHA_USUARIO;
+    span_senha.value = sessionStorage.SENHA_USUARIO;
 </script>
