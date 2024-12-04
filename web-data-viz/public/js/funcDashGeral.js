@@ -183,6 +183,8 @@ function historicoAlertas() {
                     <th>${json[i].qtdHorasLuz}</th>
                     <th>${somenteDataNasc}</th></tr>`
                 }
+                
+                
 
             });
 
@@ -202,7 +204,7 @@ function historicoAlertas() {
 
     return false;
 }
-
+setInterval(historicoAlertas, 2000);
 // Obtém a data atual
 const hoje = new Date();
 

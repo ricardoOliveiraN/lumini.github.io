@@ -422,6 +422,8 @@ function historicoAlertasSensor() {
                     <th>${somenteHorario}</th></tr>`
                 }
 
+                
+
             });
 
         } else {
@@ -441,6 +443,7 @@ function historicoAlertasSensor() {
     return false;
 }
 
+setInterval(historicoAlertasSensor, 2000);
 
 
 
