@@ -34,6 +34,16 @@ function finalizarAguardar(texto) {
     }
 }
 
+function validarAdmin() {
+    if (sessionStorage.TIPO_USUARIO == 'Administrador') {
+        BarraAdmin.style.display = 'block'
+        BarraComum.style.display = 'none'
+    } else {
+        BarraAdmin.style.display = 'none'
+        BarraComum.style.display = 'block'
+    }
+}
+
 
 function selecionarDadosUser(){
 
