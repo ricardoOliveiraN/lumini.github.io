@@ -148,6 +148,7 @@ nav .class_BotoesMenu button:hover {
 }
 .class_tituloDash h1{
     font-size: 3rem;
+    padding: 24px 0px;
     color: #013220;
 }
 
@@ -159,6 +160,7 @@ nav .class_BotoesMenu button:hover {
     margin: 14px 44px;
     /* /* order: 1; */
     justify-content: space-between;
+    color: rgb(94, 172, 105);
 }
 
 /* .class_dashBaixo {
@@ -328,19 +330,19 @@ nav .class_BotoesMenu button:hover {
 
 .class_kpi1 .class_kpiNumero {
     background-color: #FFFEFA;
-    color: black;
+    color: #032505;
 }
 .class_kpi2 .class_kpiNumero {
-    background-color: rgb(114, 189, 119);
-    border: none;
+    background-color: #FFFEFA;
+    color: #032505;
 }
 .class_kpi3 .class_kpiNumero {
-    background-color: rgb(255, 171, 0);
-    border: none;
+    background-color: #FFFEFA;
+    color: #032505;
 }
 .class_kpi4 .class_kpiNumero {
-    background-color: rgb(179, 53, 53);
-    border: none;
+    background-color: #FFFEFA;
+    color: #032505;
 }
 .container-AlertaeSelecionar{
     display: flex;

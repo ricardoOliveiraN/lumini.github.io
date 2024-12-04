@@ -254,9 +254,9 @@ function plotarGrafico1() {
         labels: estados,
         datasets: [
             {
-                label: 'Quantidade',
+                label: 'Empresas clientes',
                 backgroundColor: [
-                    'rgb(53, 151, 222)',
+                    'rgb(18, 129, 68)',
 
                 ],
                 borderColor: [
@@ -279,7 +279,7 @@ function plotarGrafico1() {
             plugins: {
                 title: {
                     display: true,
-                    text: `Empresas por estado`
+                    text: `Clientes lumini por Estado`
                 },
                 legend: {
                     labels: {
@@ -298,7 +298,7 @@ function plotarGrafico1() {
                 y: {
                     title: {
                         display: true,
-                        text: 'Quantidade de horas'
+                        text: 'Quantidade de empresas'
                     },
                     // stacked: true
                 }
@@ -318,13 +318,13 @@ function plotarGrafico2() {
         labels: anos,
         datasets: [
             {
-                label: 'Quantidade',
+                label: 'Cadastros realizados',
                 backgroundColor: [
-                    'rgb(53, 151, 222)',
+                    'rgb(18, 129, 68)',
 
                 ],
                 borderColor: [
-                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0, 0.3)',
                     'rgb(0, 0, 0)',
                     'rgb(0, 0, 0)',
                     'rgb(0, 0, 0)',
@@ -343,7 +343,7 @@ function plotarGrafico2() {
             plugins: {
                 title: {
                     display: true,
-                    text: `Evolução das empresas cadastradas`
+                    text: `Novos cadastros por ano`
                 },
                 legend: {
                     labels: {
@@ -428,15 +428,15 @@ function plotarGrafico4() {
         datasets: [
             {
                 backgroundColor: [
-                    'rgb(95, 155, 99)',
-                    'rgb(179, 53, 53)',
-                    'rgb(255, 171, 0)',
+                    'rgb(18, 129, 68)',
+                    'rgb(94, 172, 105)',
+                    'rgb(29, 82, 45)',
 
                 ],
                 borderColor: [
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
-                    'rgb(0, 0, 0)',
+                    'rgb(0, 0, 0, 0.2)',
+                    'rgb(0, 0, 0, 0.2)',
+                    'rgb(0, 0, 0, 0.2)',
                 ],
                 data: [pequeno, medio, grande]
             },
@@ -451,11 +451,12 @@ function plotarGrafico4() {
             plugins: {
                 title: {
                     display: true,
-                    text: `Tamanho das empresas`
+                    text: `Tamanho das empresas clientes Lumini`
                 },
                 legend: {
+                    position: 'right', // Posiciona a legenda à direita
                     labels: {
-                        boxWidth: 20 // Configuração correta para ajustar a largura dos quadrados da legenda
+                        boxWidth: 20 // Ajusta a largura dos quadrados da legenda
                     }
                 }
             }

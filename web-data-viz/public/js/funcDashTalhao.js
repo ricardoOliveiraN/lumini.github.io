@@ -416,10 +416,11 @@ function historicoAlertasSensor() {
                     const dataCompleta = json[i].momentoCaptura;
                     const data = new Date(dataCompleta);
                     var somenteHorario = data.toLocaleTimeString('pt-BR', { hour12: false });
-                    historico_Alertas.innerHTML += `<tr><th>${json[i].idSensor}</th>
+                    historico_Alertas.innerHTML = `
+                    <tr><th>${json[i].idSensor}</th>
                     <th>${json[i].qtdLuz}</th>
                     <th>${json[i].statusLuminosidade}</th>
-                    <th>${somenteHorario}</th></tr>`
+                    <th>${somenteHorario}</th></tr>` + historico_Alertas.innerHTML
                 }
 
                 
