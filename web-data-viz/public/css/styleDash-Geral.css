@@ -475,6 +475,43 @@ th {
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
     /* padding: 25px; */
 }
+.class_talhoesGrafico1, .class_talhoesGrafico2, .class_talhoesGrafico3 {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.class_talhoesGrafico1 span, .class_talhoesGrafico2 span, .class_talhoesGrafico3 span{
+    padding: 2px 9px;
+    z-index: 99;
+    margin-bottom: -20px;
+    background-color: #173123b0;
+    color: #f0f5f1;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.class_talhoesGrafico {
+    position: relative; /* Permite posicionar o texto-info-metricas em relação ao pai */
+}
+
+.texto-info-metricas {
+    display: none; /* Esconde o texto-info-metricas inicialmente */
+    position: absolute;
+    top: 16px; /* Ajuste para posicionar o texto-info-metricas abaixo do link */
+    left: 24px;
+    font-size: 18px;
+    background-color: rgba(0, 46, 10, 0.936);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 100;
+    width: 250px; /* Largura da caixa de explicação */
+    font-size: 12px;
+}
+
+.info-metricas:hover + .texto-info-metricas {
+    display: block; /* Mostra o texto-info-metricas ao passar o mouse no link */
+}
 
 .class_talhoesSelecionar {
     display: flex;
