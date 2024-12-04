@@ -166,7 +166,8 @@ INSERT INTO endereco (idEndereco, cep, uf, cidade, logradouro, numero, complemen
 
 INSERT INTO usuario (idUsuario, fkUsuario_Empresa, nome, senha, email, telefone, tipoUsuario, statusUsuario, dtCriacao, dtExclusao) VALUES
 	(1000, 1, 'Igor', 'Lumini@100', 'igor@lumini.com', '11942971496', 'Administrador', 'ativo', '2024-11-26', NULL),
-	(1001, 2, 'Frizza', 'Urubu@100', 'frizza@sptech.com', '11912345678', 'Administrador', 'ativo', '2024-11-27', NULL);
+	(1001, 2, 'Frizza', 'Urubu@100', 'frizza@sptech.com', '11912345678', 'Administrador', 'ativo', '2024-11-27', NULL),
+	(1002, 2, 'Julia', 'Urubu@100', 'julia@sptech.com', '11987654321', 'Administrador', 'ativo', '2024-11-27', NULL);
 
 INSERT INTO talhao (idTalhao, numero, areaTalhao, fkTalhao_Empresa) VALUES
 	(100, 1, 15000, 2),
