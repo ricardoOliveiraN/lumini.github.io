@@ -279,7 +279,7 @@ function listarFunc() {
                 <td>${Nome}</td>
                 <td>${Email}</td>
                 <td>${Telefone}</td>
-                <td><button class="delete-btn"><img src="./assets/tabler--trash.png"></button></td>
+                <td><button class="delete-btn"><img src="./Imagens/tabler--trash.png"></button></td>
             </tr>`
         }
 
