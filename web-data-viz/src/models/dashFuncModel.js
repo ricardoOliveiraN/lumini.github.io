@@ -40,7 +40,7 @@ function evolucaoEmpresas() {
     var instrucaoSql = `SELECT YEAR(dtCriacao) AS anoCriacao, COUNT(idEmpresa) AS quantidadeEmpresas
         FROM empresa
         GROUP BY YEAR(dtCriacao)
-        ORDER BY anoCriacao;`;
+        ORDER BY anoCriacao DESC;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
