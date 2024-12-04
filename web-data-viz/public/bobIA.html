@@ -4,20 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lumini</title>
+    <link rel="icon" href="./Imagens/iconeLuz.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="./js/sessao.js"></script>
     <link rel="stylesheet" href="css/BOBIA.css">
 </head>
 
 <body>
-    <a onclick="teste(1)" style="cursor: pointer;"><img src="Imagens/bob_camisa.png" alt="" id="botaoBOBia"></a>
+    <div class="class_menuLateral">
+        <div class="class_LinksMenu">
+            <ul>
+                <li><a href="CadastrarFuncionario.html">
+                        <img src="Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                    </a>
+                </li>
+                <li><a href="DashFuncionario.html">Dashboard</a></li>
+                <li><a href="CadastrarFuncionario.html">Cadastrar</a></li>
+                <li><a href="bobIA.html">BobIA</a></li>
+                <li id="id_btnSair" style="margin-top: 110%;" onclick="limparSessao()"><a href="">Sair</a></li>
+            </ul>
+        </div>
+    </div>
     <div id="containerBOBIA">
         <div style="display: flex; flex-direction: column;align-items: center;">
-            <div
-                style="display: flex; width: 50%; align-items: center; justify-content: space-between; margin-left: 90px;">
                 <h1>BobIA</h1>
-                <a onclick="teste(2)"><img src="Imagens/iconamoon--close-duotone.png"
-                        style="margin-left: 90px; width: 40px; height: 40px;"></a>
-            </div>
             <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
             <button onclick="gerarResposta()">Gerar Resposta</button>
             <h3>Resposta da IA:</h3>

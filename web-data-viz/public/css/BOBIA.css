@@ -1,28 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* MENU LATERAL */
 
-        #botaoBOBia {
+.class_LinksMenu {
+    width: 100%;
+    margin: auto;
+    justify-content: space-between;
+    font-family: 'Lato', sans-serif; /* Fonte padrão atualizada para 'Lato' */
+
+}
+
+.class_LinksMenu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    font-weight: 500;
+    font-size: 1.12rem;
+}
+
+.class_LinksMenu li {
+    width: 100%;
+}
+
+.class_LinksMenu a {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #FFFEFA;
+}
+.class_LinksMenu a img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.class_LinksMenu a:hover {
+    background-color: #90D26D;
+    font-weight: 700;
+}
+
+nav .class_botaoUsuario {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav .class_botaoUsuario a {
+    text-decoration: none;
+    color: #FF9800;    
+}
+
+nav .class_botaoUsuario {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #013220;
+    font-size: 1.0rem;
+    color: #FFFEFA;
+    cursor: pointer;
+}
+
+nav .class_botaoUsuario button:hover a {
+    color: #FFFEFA; 
+}
+
+nav .class_BotoesMenu button:hover {
+    background-color: #FF9800;
+    color: #FFFEFA;
+    box-shadow: 0px 0px 10px #FF9800;
+}
+
+/* main{
+    width: 100%;
+} */
+.class_menuLateral {
+    position: fixed;
+    background-color: #013220;
+    height: 100%;
+    width: 16%;
+}
+#id_btnSair{
+    margin-top: 80%;
+}
+
+
+/* BOBIA */
+
+        /* #botaoBOBia {
             width: 60px;
             height: 60px;
             position: fixed;
             bottom: 10px;
             right: 10px;
-        }
+        } */
 
         #containerBOBIA {
             z-index: 99;
-            display: none;
             font-family: Arial, sans-serif;
             background-color: #63B1BC;
             margin: 0;
+
+            height: 100vh;
             padding: 0;
-            width: 28%;
-            border-radius: 8px;
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            transition: all 0.5s ease; /* Suaviza a transição */
+            margin-left: 16%;
+            width: 84%;
         }
 
         #containerBOBIA h1 {
+            margin: 30px 0px 20px 0px;
             color: #1F2A44;
         }
 
@@ -30,12 +120,11 @@
             padding: 8px;
             font-size: 16px;
             border-radius: 5px;
-            width: 88%;
+            width: 68%;
             height: 140px;
-            margin-bottom: 14px;
             max-height: 200px;
             max-width: 88%;
-            min-height: 20px;
+            min-height: 40px;
             min-width: 48%;
         }
 
@@ -51,6 +140,7 @@
             background-color: #ED145B;
             color: #FFFFFF;
             border: none;
+            margin: 14px 0px;
         }
 
         #containerBOBIA button:hover {
