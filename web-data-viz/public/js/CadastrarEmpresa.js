@@ -76,7 +76,7 @@ function cadastrarEmpresa() {
     var uf = inp_uf.value
     var logradouro = inp_logradouro.value
     var complemento = inp_complemento.value
-    var DataCriacao = inp_dataCriacao.value;
+    // var DataCriacao = inp_dataCriacao.value;
 
     
     CEP = Number(inp_cep.value);
@@ -106,8 +106,7 @@ function cadastrarEmpresa() {
                 NomeFantasiaServer: NomeFantasia,
                 CNPJServer: CNPJ,
                 TamanhoEmpresaServer: TamanhoEmpresa,
-                QuantidadeHectareServer: QuantidadeHectare,
-                DataCriacaoServer: DataCriacao       
+                QuantidadeHectareServer: QuantidadeHectare
             }),
         })
             .then(function (resposta) {

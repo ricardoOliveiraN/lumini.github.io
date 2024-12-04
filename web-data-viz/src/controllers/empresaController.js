@@ -5,8 +5,6 @@ function cadastrarEmpresa(req, res) {
   var cnpj = req.body.CNPJServer;
   var TamanhoEmpresa= req.body.TamanhoEmpresaServer;
   var QuantidadeHectare = req.body.QuantidadeHectareServer;
-  var StatusCadastro = req.body.StatusCadastroServer;
-  var DataCriacao = req.body.DataCriacaoServer;
 
 
   if (NomeFantasia == undefined) {
@@ -29,7 +27,7 @@ function cadastrarEmpresa(req, res) {
   else {
 
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    empresaModel.cadastrarEmpresa(NomeFantasia, cnpj, TamanhoEmpresa, QuantidadeHectare, StatusCadastro, DataCriacao)
+    empresaModel.cadastrarEmpresa(NomeFantasia, cnpj, TamanhoEmpresa, QuantidadeHectare)
       .then(
         function (resultado) {
           res.json(resultado);

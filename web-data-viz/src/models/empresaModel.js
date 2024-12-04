@@ -12,8 +12,8 @@ function listar() {
   return database.executar(instrucaoSql);
 }
 
-function cadastrarEmpresa(NomeFantasia, cnpj, TamanhoEmpresa, QuantidadeHectare, StatusCadastro, DataCriacao) {
-  var instrucaoSql = `INSERT INTO empresa (nomeFantasia, cnpj, tamanhoEmpresa, qtdHectares, dtCriacao) VALUES ('${NomeFantasia}', '${cnpj}', '${TamanhoEmpresa}', '${QuantidadeHectare}', '${DataCriacao}') `;
+function cadastrarEmpresa(NomeFantasia, cnpj, TamanhoEmpresa, QuantidadeHectare) {
+  var instrucaoSql = `INSERT INTO empresa (nomeFantasia, cnpj, tamanhoEmpresa, qtdHectares, dtCriacao) VALUES ('${NomeFantasia}', '${cnpj}', '${TamanhoEmpresa}', '${QuantidadeHectare}'); `;
 
   return database.executar(instrucaoSql);
 }
