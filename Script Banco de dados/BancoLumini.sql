@@ -135,8 +135,7 @@ CREATE TABLE dadosSensor (
     		CONSTRAINT fkReFiltragemDados_DadosSensor FOREIGN KEY (fkDadosSensor_FiltragemDados)
 			REFERENCES filtragemDados(idFiltragemDados)
 ) AUTO_INCREMENT = 1000000;
-select * from empresa;
-select * from endereco;
+
 INSERT INTO empresa (idEmpresa, nomeFantasia, cnpj, tamanhoEmpresa, qtdHectares, statusCadastro, dtCriacao, dtSaida, fkEmpresa_EmpresaSede) VALUES
     (1, 'Lumini', '87654321000195', 'Grande', NULL, 'ativo', '2024-11-26', NULL, NULL),
 	(2, 'FrizzaLupulo', '12345678000195', 'Médio', '20', 'ativo', '2024-11-27', NULL, NULL),
@@ -176,18 +175,18 @@ INSERT INTO talhao (idTalhao, numero, areaTalhao, fkTalhao_Empresa) VALUES
 	(103, 4, 15000, 2);
 
 INSERT INTO sensor (idSensor, statusFuncionamento, dtInstalacao, dtUltimaManutencao, fkSensor_Talhao) VALUES
-	(10000, 'Ativo', '2024-11-28', NULL, 100),
-	(10001, 'Ativo', '2024-11-28', NULL, 100),
-	(10002, 'Ativo', '2024-11-28', NULL, 100),
-	(10003, 'Ativo', '2024-11-28', NULL, 101),
-	(10004, 'Ativo', '2024-11-28', NULL, 101),
-	(10005, 'Ativo', '2024-11-28', NULL, 101),
-	(10006, 'Ativo', '2024-11-28', NULL, 101),
-	(10007, 'Ativo', '2024-11-28', NULL, 102),
-	(10008, 'Ativo', '2024-11-28', NULL, 102),
-	(10009, 'Ativo', '2024-11-28', NULL, 103),
-	(10010, 'Ativo', '2024-11-28', NULL, 103),
-	(10011, 'Ativo', '2024-11-28', NULL, 103);
+	(10000, 'Ativo', '2024-12-03', NULL, 100),
+	(10001, 'Ativo', '2024-12-03', NULL, 100),
+	(10002, 'Ativo', '2024-12-03', NULL, 100),
+	(10003, 'Ativo', '2024-12-03', NULL, 101),
+	(10004, 'Ativo', '2024-12-03', NULL, 101),
+	(10005, 'Manutenção', '2024-12-03', NULL, 101),
+	(10006, 'Ativo', '2024-12-03', NULL, 101),
+	(10007, 'Ativo', '2024-12-03', NULL, 102),
+	(10008, 'Ativo', '2024-12-03', NULL, 102),
+	(10009, 'Ativo', '2024-12-03', NULL, 103),
+	(10010, 'Ativo', '2024-12-03', NULL, 103),
+	(10011, 'Ativo', '2024-12-03', NULL, 103);
 	
 INSERT INTO filtragemDados (idFiltragemDados, dia, qtdHorasLuz, statusDia) VALUES
 	(500000, '2024-12-03', 16, 'Ideal'), -- 1
@@ -201,21 +200,71 @@ INSERT INTO filtragemDados (idFiltragemDados, dia, qtdHorasLuz, statusDia) VALUE
 	(500008, '2024-12-03', 16, 'Ideal'), -- 3
 	(500009, '2024-12-03', 16, 'Ideal'), -- 4
 	(500010, '2024-12-03', 16, 'Ideal'), -- 4
-	(500011, '2024-12-03', 16, 'Ideal'); -- 4
+	(500011, '2024-12-03', 16, 'Ideal'), -- 4
+    (500012, '2024-11-20', 16, 'Ideal'),
+    (500013, '2024-11-21', 16, 'Ideal'),
+    (500014, '2024-11-22', 16, 'Ideal'),
+    (500015, '2024-11-23', 16, 'Ideal'),
+    (500016, '2024-11-24', 18, 'Excesso'),
+    (500017, '2024-11-25', 15, 'Ideal'),
+    (500018, '2024-11-26', 14, 'Insuficiente'),
+    (500019, '2024-11-27', 16, 'Ideal'),
+    (500020, '2024-11-28', 16, 'Ideal'),
+    (500021, '2024-11-29', 16, 'Ideal'),
+    (500022, '2024-11-30', 16, 'Ideal'),
+    (500023, '2024-12-01', 16, 'Ideal'),
+    (500024, '2024-12-02', 16, 'Ideal');
         
 INSERT INTO dadosSensor (idDadosSensor, fkDadosSensor_Sensor, qtdLuz, statusLuminosidade, alerta, momentoCaptura, fkDadosSensor_FiltragemDados) VALUES
 	(1000000, 10000, 25000, 'Satisfatória', 'Não', DEFAULT, 500000),
 	(1000001, 10001, 8000, 'Insuficiente', 'Sim', DEFAULT, 500001),
 	(1000002, 10002, 25000, 'Satisfatória', 'Não', DEFAULT, 500002),
 	(1000003, 10003, 25000, 'Satisfatória', 'Não', DEFAULT, 500003),
-	(1000004, 10004, 122000, 'Excesso', 'Sim', DEFAULT, 500004),
-	(1000005, 10005, 25000, 'Satisfatória', 'Não', DEFAULT, 500005),
+	(1000004, 10004, 25000, 'Satisfatória', 'Sim', DEFAULT, 500004),
+	(1000005, 10005, 122000, 'Excesso', 'Não', DEFAULT, 500005),
 	(1000006, 10006, 9000, 'Insuficiente', 'Não', DEFAULT, 500006),
 	(1000007, 10007, 25000, 'Satisfatória', 'Não', DEFAULT, 500007),
 	(1000008, 10008, 25000, 'Satisfatória', 'Não', DEFAULT, 500008),
 	(1000009, 10009, 25000, 'Satisfatória', 'Não', DEFAULT, 500009),
 	(1000010, 10010, 7000, 'Insuficiente', 'Sim', DEFAULT, 500010),
-	(1000011, 10011, 25000, 'Satisfatória', 'Não', DEFAULT, 500011);
+	(1000011, 10011, 25000, 'Satisfatória', 'Não', DEFAULT, 500011),
+    (1000012, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500012),
+    (1000013, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500013),
+    (1000014, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500014),
+    (1000015, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500015),
+    (1000016, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500016),
+    (1000017, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500017),
+    (1000018, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500018),
+    (1000019, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500019),
+    (1000020, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500020),
+    (1000021, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500021),
+    (1000022, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500022),
+    (1000023, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500023),
+    (1000024, 10004, 25000, 'Satisfatória', 'Não', DEFAULT, 500024),
+    (1000035, 10004, 0, 'Satisfatória', 'Não', '2024-12-03 00:38:06', 500004),
+    (1000036, 10004, 0, 'Satisfatória', 'Não', '2024-12-03 01:21:05', 500004),
+    (1000037, 10004, 0, 'Satisfatória', 'Não', '2024-12-03 02:39:12', 500004),
+    (1000038, 10004, 0, 'Satisfatória', 'Não', '2024-12-03 03:42:42', 500004),
+    (1000039, 10004, 0, 'Satisfatória', 'Não', '2024-12-03 04:50:23', 500004),
+    (1000040, 10004, 400, 'Satisfatória', 'Não', '2024-12-03 05:11:42', 500004),
+    (1000041, 10004, 3000, 'Satisfatória', 'Não', '2024-12-03 06:12:01', 500004),
+    (1000042, 10004, 10000, 'Satisfatória', 'Não', '2024-12-03 07:11:23', 500004),
+    (1000043, 10004, 20000, 'Satisfatória', 'Não', '2024-12-03 08:09:38', 500004),
+    (1000044, 10004, 30000, 'Satisfatória', 'Não', '2024-12-03 09:05:28', 500004),
+    (1000045, 10004, 40000, 'Satisfatória', 'Não', '2024-12-03 10:55:18', 500004),
+    (1000046, 10004, 45000, 'Satisfatória', 'Não', '2024-12-03 11:59:37', 500004),
+    (1000047, 10004, 50000, 'Satisfatória', 'Não', '2024-12-03 12:58:28', 500004),
+    (1000048, 10004, 45000, 'Satisfatória', 'Não', '2024-12-03 13:12:17', 500004),
+    (1000049, 10004, 40000, 'Satisfatória', 'Não', '2024-12-03 14:42:41', 500004),
+    (1000050, 10004, 30000, 'Satisfatória', 'Não', '2024-12-03 15:12:12', 500004),
+(1000051, 10004, 20000, 'Satisfatória', 'Não', '2024-12-03 16:34:04', 500004),
+    (1000052, 10004, 10000, 'Satisfatória', 'Não', '2024-12-03 17:12:21', 500004),
+    (1000053, 10004, 10000, 'Satisfatória', 'Não', '2024-12-03 18:42:29', 500004),
+    (1000054, 10004, 10000, 'Satisfatória', 'Não', '2024-12-03 19:12:22', 500004),
+    (1000055, 10004, 0, 'Insuficiente', 'Não', '2024-12-03 20:13:35', 500004),
+    (1000056, 10004, 0, 'Satisfatória', 'Não', '2024-12-03 21:33:33', 500004),
+    (1000057, 10004, 0, 'Satisfatória', 'Não', '2024-12-03 22:31:21', 500004),
+    (1000058, 10004, 0, 'Satisfatória', 'Não', '2024-12-03 23:22:07', 500004);
  
 -- Grafico 1, pagina geral 
 SELECT min(filtragemDados.qtdHorasLuz), talhao.numero 
@@ -292,3 +341,23 @@ SELECT filtragemDados.qtdHorasLuz, filtragemDados.dia
 	WHERE idSensor = 10000
     ORDER BY filtragemDados.dia DESC
 	LIMIT 14;
+    
+
+SELECT sensor.idSensor, statusFuncionamento
+    FROM filtragemDados
+    JOIN dadosSensor
+        ON idFiltragemDados = fkDadosSensor_FiltragemDados
+    JOIN sensor
+        ON idSensor = fkDadosSensor_Sensor
+    JOIN talhao
+        ON idTalhao = fkSensor_Talhao
+    WHERE talhao.fkTalhao_Empresa = '2' AND talhao.numero = '2';
+
+SELECT sensor.idSensor, dadosSensor.qtdLuz, dadosSensor.statusLuminosidade, dadosSensor.momentoCaptura FROM filtragemDados 
+    JOIN dadosSensor
+        ON idFiltragemDados = fkDadosSensor_FiltragemDados 
+    JOIN sensor 
+        ON idSensor = fkDadosSensor_Sensor 
+    JOIN talhao 
+        ON idTalhao = fkSensor_Talhao
+    WHERE filtragemDados.dia = '2024-12-03' AND talhao.fkTalhao_Empresa = '2' AND dadosSensor.alerta = 'sim' AND talhao.numero = '4';
