@@ -357,7 +357,7 @@ nav .class_BotoesMenu button:hover {
     height: 19.3vh;
     /* margin: 1%; */
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
-    padding: 8px 12px;
+    padding: 2px 12px;
     overflow-y: auto;
     /* border: 0.5px solid #0132207a; */
 
@@ -412,6 +412,7 @@ th, td {
 
 th {
     color: #333;
+    font-size: 14px;
 }
 
 .class_talhoes {

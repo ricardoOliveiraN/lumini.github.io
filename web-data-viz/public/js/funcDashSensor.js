@@ -245,9 +245,9 @@ function historicoAlertasSensorEspecifico() {
                     const data = new Date(dataCompleta);
                     var somenteHorario = data.toLocaleTimeString('pt-BR', { hour12: false });
 
-                    historico_Alertas.innerHTML += `<tr><th>${json[i].statusLuminosidade}</th>
+                    historico_Alertas.innerHTML = `<tr><th>${json[i].statusLuminosidade}</th>
                     <th>${json[i].qtdLuz}</th>
-                    <th>${somenteHorario}</th></tr>`
+                    <th>${somenteHorario}</th></tr>` + historico_Alertas.innerHTML
                 }
 
                 

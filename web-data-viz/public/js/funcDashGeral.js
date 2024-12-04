@@ -174,14 +174,14 @@ function historicoAlertas() {
             resposta.json().then(json => {
                 console.log(json);
                 console.log(JSON.stringify(json));
-
+                
 
                 for (var i = 0; i < json.length; i++) {
                     var somenteDataNasc = json[i].dia.split("T")[0];
-                    historico_Alertas.innerHTML += `<tr><th>${json[i].numero}</th>
+                    historico_Alertas.innerHTML = `<tr><th>${json[i].numero}</th>
                     <th>${json[i].statusDia}</th>
                     <th>${json[i].qtdHorasLuz}</th>
-                    <th>${somenteDataNasc}</th></tr>`
+                    <th>${somenteDataNasc}</th></tr>` + historico_Alertas.innerHTML
                 }
                 
                 
