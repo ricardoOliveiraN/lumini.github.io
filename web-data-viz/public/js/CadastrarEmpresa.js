@@ -75,7 +75,7 @@ function cadastrarEmpresa() {
     var matriz = inp_matriz.value
     var uf = inp_uf.value
     var logradouro = inp_logradouro.value
-    var complemento = inp_complemento.value
+    var NomeFantasia = inp_razao.value
     // var DataCriacao = inp_dataCriacao.value;
 
     
