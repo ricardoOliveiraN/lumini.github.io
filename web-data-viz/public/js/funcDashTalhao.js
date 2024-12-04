@@ -329,7 +329,7 @@ const hoje = new Date();
 
 // Cria uma nova data para representar o dia anterior
 const dataAnterior = new Date(hoje);
-dataAnterior.setDate(hoje.getDate());
+dataAnterior.setDate(hoje.getDate() -1);
 
 // Extrai o ano, mês e dia
 const anoAnterior = dataAnterior.getFullYear();
