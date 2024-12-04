@@ -523,6 +523,7 @@ th {
     color: #FFFEFA;
     box-shadow: 0 0 2px 0.5px rgba(0, 0, 0, 0.2);
     text-decoration: none;
+    cursor: pointer;
 }
 
 .class_talhoesSelecionarOpcao a:hover{
