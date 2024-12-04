@@ -207,7 +207,6 @@ function cadastrar() {
   var telefoneVar = Telefone;
   var tipoVar = TipoUser;
   var fkEmpresaVar = sessionStorage.FK_EMPRESA;
-  alert(senhaVar)
   
   // Enviando o valor da nova input
   fetch("/usuarios/cadastrar", {

@@ -115,7 +115,6 @@ function atualizarSenha(Senha) {
 
     var SenhaVar = Senha;
     var idUserVar =  sessionStorage.ID_USUARIO;
-    alert(SenhaVar)
 
     fetch("/usuarios/attSenhaUser", {
         method: "POST",
