@@ -14,13 +14,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
-data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
-<body onload="validarSessao()">
-    <div class="class_menuLateral">
+    data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+
+<body onload="validarSessao(); validarAdmin()">
+    <div class="class_menuLateral" id="BarraAdmin" style="display: block;">
         <div class="class_LinksMenu">
             <ul>
                 <li><a href="TelaDash-Geral.html">
-                        <img src="Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                        <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
                     </a>
                 </li>
                 <li><a href="TelaDash-Geral.html">Dashboard</a></li>
@@ -31,29 +32,43 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
             </ul>
         </div>
     </div>
-        <div class="class_simulador">
-            <div class="class_Conteudo">
+    <div class="class_menuLateral" id="BarraComum" style="display: none;">
+        <div class="class_LinksMenu">
+            <ul>
+                <li><a href="TelaDash-Geral.html">
+                        <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                    </a>
+                </li>
+                <li><a href="TelaDash-Geral.html">Dashboard</a></li>
+                <li><a href="SimuladorCliente.html">Simulador</a></li>
+                <li><a href="TelaPerfil.html">Perfil</a></li>
+                <li id="id_btnSair" onclick="limparSessao()"><a href="">Sair</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="class_simulador">
+        <div class="class_Conteudo">
 
-                <div class="div_calculadora">
-                    <h1>Simulador Financeiro</h1>
-                    <span>Quantas safras você colhe por ano:</span>
-                    <input placeholder="Digite quantas safras colhe por ano" type="number" max="3" id="input_safra">
-        
-                    <span>Qual sua produção média por safra (kg): </span>
-                    <input placeholder="Digite o peso em média da plantação" type="number" id="input_quilo">
-        
-                    <span>Por quanto você vende o quilo do lúpulo (): </span><br>
-                    <input placeholder="Digite o valor do quilo do lúpulo" type="number" id="input_preco">
-                    <!-- Botões que chamam a função -->
-                    <Button class="btn_lucro" onclick="Calcular()">Calcular rendimento</Button>
-                </div>
-                <!-- p onde irá aparecer a mensagem -->
-                <div id="div_mensagem">
-                    <h3>Resultado:</h3>
-                    <div id="containerMensagem"></div>
-                </div>
+            <div class="div_calculadora">
+                <h1>Simulador Financeiro</h1>
+                <span>Quantas safras você colhe por ano:</span>
+                <input placeholder="Digite quantas safras colhe por ano" type="number" max="3" id="input_safra">
+
+                <span>Qual sua produção média por safra (kg): </span>
+                <input placeholder="Digite o peso em média da plantação" type="number" id="input_quilo">
+
+                <span>Por quanto você vende o quilo do lúpulo (): </span><br>
+                <input placeholder="Digite o valor do quilo do lúpulo" type="number" id="input_preco">
+                <!-- Botões que chamam a função -->
+                <Button class="btn_lucro" onclick="Calcular()">Calcular rendimento</Button>
+            </div>
+            <!-- p onde irá aparecer a mensagem -->
+            <div id="div_mensagem">
+                <h3>Resultado:</h3>
+                <div id="containerMensagem"></div>
             </div>
         </div>
+    </div>
     </main>
 </body>
 
@@ -127,8 +142,8 @@ data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassi
     }
 
     function Ver() {
-        containerMensagem.innerHTML = 
-        `<canvas id="myChartA" style="position: relative; height: 60%; width: 60%;"></canvas>
+        containerMensagem.innerHTML =
+            `<canvas id="myChartA" style="position: relative; height: 60%; width: 60%;"></canvas>
        <div class= "container-btn-msg"><Button class="btn_mensagem" onclick="Calcular()">ver mensagem</Button></div>`
 
         const labelsA = [

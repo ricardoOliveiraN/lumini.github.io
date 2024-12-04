@@ -15,7 +15,7 @@
 <script data-jsd-embedded data-key="c1c8f828-306c-4170-bbb7-1b74655c36af"
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(); validarAdmin()">
     <!-- <header>
         <nav>
             <div class="MenuLogo">
@@ -29,15 +29,29 @@
         </nav>
     </header> -->
     <main>
-        <div class="class_menuLateral">
+        <div class="class_menuLateral" id="BarraAdmin" style="display: block;">
             <div class="class_LinksMenu">
                 <ul>
                     <li><a href="TelaDash-Geral.html">
-                            <img src="Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                            <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
                         </a>
                     </li>
                     <li><a href="TelaDash-Geral.html">Dashboard</a></li>
                     <li><a href="CadastrarUsuario.html">Funcionários</a></li>
+                    <li><a href="SimuladorCliente.html">Simulador</a></li>
+                    <li><a href="TelaPerfil.html">Perfil</a></li>
+                    <li id="id_btnSair" onclick="limparSessao()"><a href="">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="class_menuLateral" id="BarraComum" style="display: none;">
+            <div class="class_LinksMenu">
+                <ul>
+                    <li><a href="TelaDash-Geral.html">
+                            <img src="./Imagens/logo-sem-fundo.png" alt="Logotipo da empresa Lumini">
+                        </a>
+                    </li>
+                    <li><a href="TelaDash-Geral.html">Dashboard</a></li>
                     <li><a href="SimuladorCliente.html">Simulador</a></li>
                     <li><a href="TelaPerfil.html">Perfil</a></li>
                     <li id="id_btnSair" onclick="limparSessao()"><a href="">Sair</a></li>
