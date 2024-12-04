@@ -276,6 +276,27 @@ function entrar() {
                 sessionStorage.TIPO_USUARIO = json.tipoUsuario;
                 sessionStorage.usuarioValidado = json.usuarioValidado;
 
+
+                if (sessionStorage.FK_EMPRESA == 1) {
+                    if (sessionStorage.usuarioValidado == 'nao') {
+                        window.location = "TelaSenhaNova.html"
+                    } else {
+                        setTimeout(function () {
+                            window.location = "CadastrarFuncionario.html";
+                        }, 1000);
+                    }
+
+                } else if (sessionStorage.usuarioValidado == 'nao') {
+                    window.location = "TelaSenhaNova.html"
+                } else {
+                    window.location = "TelaDash-Geral.html";
+                }
+
+
+
+
+
+
                 if (sessionStorage.usuarioValidado == 'nao') {
 
 
@@ -290,13 +311,20 @@ function entrar() {
 
                 } else {
                     if (sessionStorage.TIPO_USUARIO == 'Administrador') {
-                        
-                        window.location = "TelaDash-Geral.html";
-                        
-                    } else {
 
                         window.location = "TelaDash-Geral.html";
-                        
+
+                    } else {
+                        if (sessionStorage.FK_EMPRESA == 1) {
+
+                            setTimeout(function () {
+                                window.location = "CadastrarFuncionario.html";
+                            }, 1000);
+                        } else {
+
+                            window.location = "TelaDash-Geral.html";
+                        }
+
                     }
 
                 }

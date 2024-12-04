@@ -93,8 +93,8 @@ function CriarSenha() {
 
         ipt_Senha.style.borderColor = 'green';
         Senha = ipt_Senha.value;
-     
-        
+
+
         // EU QUERO QUE QUANDO ENTRAR NESSE IF ABRA UMA NOVA TELA COM UMA IMAGEM DE CERTO E UMA FRASE "CADASTRADO COM SUCESSO"
         atualizarSenha(Senha);
     } else {
@@ -114,7 +114,7 @@ function CriarSenha() {
 function atualizarSenha(Senha) {
 
     var SenhaVar = Senha;
-    var idUserVar =  sessionStorage.ID_USUARIO;
+    var idUserVar = sessionStorage.ID_USUARIO;
 
     fetch("/usuarios/attSenhaUser", {
         method: "POST",
@@ -125,7 +125,7 @@ function atualizarSenha(Senha) {
             // crie um atributo que recebe o valor recuperado aqui
             // Agora vá para o arquivo routes/usuario.js
             SenhaServer: SenhaVar,
-            idUserServer: idUserVar            
+            idUserServer: idUserVar
         }),
     })
         .then(function (resposta) {
@@ -133,14 +133,24 @@ function atualizarSenha(Senha) {
 
             if (resposta.ok) {
 
-                window.location = 'TelaDash-Geral.html'
+                if (sessionStorage.FK_EMPRESA == 1) {
+
+                    setTimeout(function () {
+                        window.location = "CadastrarFuncionario.html";
+                    }, 1000);
+
+                } else {
+                    
+                    window.location = 'TelaDash-Geral.html'
+                    
+                }
 
 
 
-            } else {
-                throw "Houve um erro ao tentar realizar o cadastro!";
-            }
-        })
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
 
