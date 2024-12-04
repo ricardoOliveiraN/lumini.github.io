@@ -64,7 +64,7 @@ function cadastrarEndereco() {
 function cadastrarEmpresa() {
 
     /*Tabela Empresa*/
-    var CNPJ = Number(inp_CNPJ.value);
+    var CNPJ = Number(inp_cnpj.value);
     var TamanhoEmpresa = inp_tamanho.value;
     var sede = inp_sede.value;
     CEP = Number(inp_cep.value);
