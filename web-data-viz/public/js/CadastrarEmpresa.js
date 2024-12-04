@@ -64,9 +64,18 @@ function cadastrarEndereco() {
 function cadastrarEmpresa() {
 
     /*Tabela Empresa*/
-    var CNPJ = Number(inp_cnpj.value);
-    var TamanhoEmpresa = inp_tamanhoEmpresa.value;
-    var QuantidadeHectare = Number(inp_qtdHectare.value);
+    var CNPJ = Number(inp_CNPJ.value);
+    var TamanhoEmpresa = inp_tamanho.value;
+    var sede = inp_sede.value;
+    CEP = Number(inp_cep.value);
+    var cidade = inp_cidade.value;
+    var numero = inp_numero.value;
+    var razao = inp_razao.value;
+    var QuantidadeHectare = Number(inp_hectar.value);
+    var matriz = inp_matriz.value
+    var uf = inp_uf.value
+    var logradouro = inp_logradouro.value
+    var complemento = inp_complemento.value
     var StatusCadastro = inp_statusCadastro.value;
     var DataCriacao = inp_dataCriacao.value;
 
