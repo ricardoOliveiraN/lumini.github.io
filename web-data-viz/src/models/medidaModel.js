@@ -112,7 +112,7 @@ function luminosidadeSensor(idSensor) {
 	JOIN talhao
 		ON idTalhao = fkSensor_Talhao
 	WHERE idSensor = ${idSensor}
-    ORDER BY filtragemDados.dia DESC
+    ORDER BY filtragemDados.dia ASC
 	LIMIT 14;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

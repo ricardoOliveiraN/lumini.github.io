@@ -64,7 +64,6 @@ function cadastrarEndereco() {
 function cadastrarEmpresa() {
 
     /*Tabela Empresa*/
-    var NomeFantasia = inp_nomeFantasia.value;
     var CNPJ = Number(inp_cnpj.value);
     var TamanhoEmpresa = inp_tamanhoEmpresa.value;
     var QuantidadeHectare = Number(inp_qtdHectare.value);
