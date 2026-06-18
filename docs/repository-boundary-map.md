@@ -222,6 +222,15 @@ Until further validation, treat the repository as three layers:
 - the `public/bobIA.html` surface remains in the executable tree, but its
   standalone BobIA project copy was isolated from `public/`
 
+Important review context:
+
+- `web-data-viz` appears to have been provided as an academic API/application
+  base for student use;
+- this helps explain inherited template modules, support examples, and
+  non-domain-specific remnants inside the repository;
+- the current review should therefore separate what the Lumini group actually
+  used from what came prepackaged in the base project.
+
 ### 2. Technical support and contextual reference
 
 - `banco-dados/`
@@ -271,6 +280,8 @@ Current status of step 5:
   `web-data-viz/artefatos-template/bobia-standalone/`
 - the active `public/bobIA.html` page and its frontend assets were kept in
   place because they still belong to the visible runtime surface
+- this isolation is consistent with the interpretation that `web-data-viz`
+  came from a reusable academic base rather than a Lumini-only codebase
 
 ## Portfolio Alignment
 
