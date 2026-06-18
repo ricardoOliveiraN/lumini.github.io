@@ -1,58 +1,59 @@
-# Lumini Repository Boundary Map
+# Mapa de Limites do Repositório Lumini
 
-## Purpose
+## Propósito
 
-This document records the current executable scope and the main repository
-boundaries identified during the initial structural recovery cycle of
+Este documento registra o escopo executável atual e os principais limites do
+repositório identificados durante o ciclo inicial de recuperação estrutural de
 `lumini.github.io`.
 
-It exists to support low-risk refinement of the original repository before any
-deeper correction or derivation work.
+Ele existe para apoiar o refinamento de baixo risco do repositório original
+antes de qualquer correção mais profunda ou trabalho de derivação.
 
-This project is being reviewed as a **portfolio refinement pilot**, not as a
-primary Data Engineering showcase. The immediate goal is to make the repository
-understandable, structurally safer to inspect, and ready for a later derived
-version with explicit scope, provenance, and limitations.
+Este projeto está sendo revisado como um **piloto de refinamento de portfólio**,
+não como a principal vitrine de Engenharia de Dados. O objetivo imediato é
+tornar o repositório compreensível, estruturalmente mais seguro para inspeção e
+preparado para uma versão derivada futura com escopo, origem e limitações
+explícitos.
 
-## Review Intent
+## Intenção da Revisão
 
-The current review follows these constraints:
+A revisão atual segue estas restrições:
 
-- preserve the historical repository as reference;
-- avoid deep refactoring in the first cycle;
-- avoid deleting legacy material before classification;
-- separate executable scope, support material, and historical artifacts;
-- clarify what the system really runs before deciding what to archive, isolate,
-  rewrite, or remove.
+- preservar o repositório histórico como referência;
+- evitar refatoração profunda no primeiro ciclo;
+- evitar apagar material legado antes da classificação;
+- separar escopo executável, material de apoio e artefatos históricos;
+- esclarecer o que o sistema realmente executa antes de decidir o que arquivar,
+  isolar, reescrever ou remover.
 
-## Current Operational Center
+## Centro Operacional Atual
 
-The current operational center of the repository is:
+O centro operacional atual do repositório é:
 
 - `web-data-viz/`
 
-Evidence:
+Evidências:
 
-- contains `package.json` and `app.js`;
-- contains `public/` and `src/`;
-- exposes backend routes and serves frontend assets;
-- contains the only clear application entrypoint currently identified.
+- contém `package.json` e `app.js`;
+- contém `public/` e `src/`;
+- expõe rotas backend e serve assets frontend;
+- contém o único ponto de entrada claro da aplicação identificado até agora.
 
-## Confirmed Runtime Surface
+## Superfície de Runtime Confirmada
 
-### Backend entrypoint
+### Ponto de entrada backend
 
 - `web-data-viz/app.js`
 
-### Active route groups confirmed in the current flow
+### Grupos de rotas ativos confirmados no fluxo atual
 
 - `/usuarios`
 - `/medidas`
 - `/dashFunc`
 - `/funcionarios`
-- `/empresas` (partially aligned, still needs structural review)
+- `/empresas` (fluxo do domínio Lumini, parcialmente adaptado e estruturalmente frágil)
 
-### Frontend flow confirmed in the current flow
+### Fluxo frontend confirmado no fluxo atual
 
 - `web-data-viz/public/index.html`
 - `web-data-viz/public/TelaLogin.html`
@@ -60,22 +61,22 @@ Evidence:
 - `web-data-viz/public/TelaDash-Talhao.html`
 - `web-data-viz/public/TelaDash-Sensor.html`
 
-### Session and navigation behavior
+### Comportamento de sessão e navegação
 
-The frontend currently uses `sessionStorage` to propagate runtime state such as:
+O frontend atualmente usa `sessionStorage` para propagar estado de runtime como:
 
-- logged user;
-- company id;
-- user type;
-- selected `talhao`;
-- selected `sensor`.
+- usuário logado;
+- id da empresa;
+- tipo de usuário;
+- `talhao` selecionado;
+- `sensor` selecionado.
 
-This confirms that the runtime is not just a static prototype. There is an
-actual web application flow coupling frontend pages to backend endpoints.
+Isso confirma que o runtime não é apenas um protótipo estático. Existe um fluxo
+real de aplicação web acoplando páginas frontend a endpoints backend.
 
-## Active Domain Surface Identified So Far
+## Superfície de Domínio Ativa Identificada Até Agora
 
-The currently active domain surface appears to be centered on:
+A superfície de domínio atualmente ativa parece estar centrada em:
 
 - `empresa`
 - `usuario`
@@ -84,78 +85,155 @@ The currently active domain surface appears to be centered on:
 - `dadosSensor`
 - `filtragemDados`
 
-Evidence:
+Evidências:
 
-- current dashboards use `/medidas/*` endpoints tied to `talhao`, `sensor`,
-  `dadosSensor`, and `filtragemDados`;
-- authentication and session behavior use `usuario` and `empresa`;
-- aggregate dashboards use `/dashFunc/*` against `empresa`, `usuario`,
-  `sensor`, and related data.
+- os dashboards atuais usam endpoints `/medidas/*` ligados a `talhao`, `sensor`,
+  `dadosSensor` e `filtragemDados`;
+- o comportamento de autenticação e sessão usa `usuario` e `empresa`;
+- dashboards agregados usam `/dashFunc/*` contra `empresa`, `usuario`, `sensor`
+  e dados relacionados.
 
-## Active Database Candidate
+## Fluxos Parciais de Runtime Validados
 
-The current database source most aligned with the runtime is:
+### `/empresas`
+
+Classificação:
+
+- fluxo do domínio Lumini;
+- parcialmente adaptado a partir do template acadêmico;
+- deve permanecer na árvore executável por enquanto;
+- não deve ser tratado como limpo ou totalmente alinhado até ser corrigido em
+  uma passada futura de implementação.
+
+Evidências de alinhamento com Lumini:
+
+- `web-data-viz/public/js/CadastrarEmpresa.js` chama
+  `/empresas/cadastrarEmpresa`, `/empresas/buscarID/:cnpj` e
+  `/empresas/cadastrarEndereco`;
+- `web-data-viz/src/models/empresaModel.js` insere em colunas de `empresa` que
+  existem em `banco-dados/BancoLumini.sql`: `nomeFantasia`, `cnpj`,
+  `tamanhoEmpresa`, `qtdHectares` e `dtCriacao`;
+- `web-data-viz/src/models/empresaModel.js` insere endereços em `endereco` com
+  `fkEndereco_Empresa`, que também existe em `BancoLumini.sql`;
+- `buscarId(cnpj)` lê `idEmpresa`, alinhando-se ao schema Lumini e ao fluxo
+  frontend que armazena `sessionStorage.ID_EMPRESA`.
+
+Evidências de resíduo herdado ou quebrado de template:
+
+- `buscarPorId(id)` consulta `empresa.id`, mas `BancoLumini.sql` define
+  `idEmpresa`;
+- `listar()` seleciona `id`, `razao_social` e `codigo_ativacao`, que não existem
+  na tabela `empresa` do Lumini;
+- `empresaController.cadastrarEmpresa()` valida as variáveis `StatusCadastro` e
+  `DataCriacao`, que não são definidas no escopo do controller;
+- `public/js/CadastrarEmpresa.js` também referencia `StatusCadastro` e
+  `DataCriacao` sem defini-las antes da expressão de validação;
+- `routes/empresas.js` expõe `/buscarIDEndereco`, mas
+  `empresaController.buscarIDEndereco` não é exportado nem definido.
+
+Interpretação atual:
+
+- a intenção de cadastrar empresa e endereço faz parte da superfície da
+  aplicação Lumini;
+- os helpers de listagem e busca ainda contêm pressupostos da era do template;
+- este fluxo deve ser classificado como ativo-mas-parcial, e não como legado
+  puro ou código seguro para produção.
+
+## Registros de Runtime Derivados de Template Validados
+
+### `/avisos`
+
+Classificação:
+
+- grupo de rotas legado derivado de template;
+- registrado por `web-data-viz/app.js`, mas desalinhado do schema Lumini;
+- nenhum chamador frontend de runtime foi confirmado nesta passada;
+- deve permanecer no lugar até que uma passada futura de limpeza decida se deve
+  isolar ou remover rotas de template.
+
+Evidências:
+
+- `web-data-viz/src/models/avisoModel.js` consulta e altera uma tabela `aviso`;
+- `banco-dados/BancoLumini.sql` não define uma tabela `aviso`;
+- `avisoModel.js` espera colunas de template como `aviso.id`,
+  `aviso.fk_usuario` e `usuario.id`, enquanto `BancoLumini.sql` usa
+  `usuario.idUsuario` e `usuario.fkUsuario_Empresa`;
+- `web-data-viz/src/database/script-tabelas.sql`, o arquivo SQL de template
+  herdado já identificado, define `CREATE TABLE aviso`;
+- a busca no frontend encontrou conteúdo textual com "aviso", mas nenhuma
+  chamada ativa de `fetch` ou navegação para `/avisos`.
+
+Interpretação atual:
+
+- `/avisos` não faz parte do domínio operacional Lumini confirmado;
+- é melhor tratá-lo como resíduo de template registrado, e não como código ativo
+  do Lumini ou módulo de negócio ambíguo.
+
+## Candidato Ativo de Banco de Dados
+
+A fonte de banco de dados atualmente mais alinhada ao runtime é:
 
 - `banco-dados/BancoLumini.sql`
 
-Why this is the leading candidate:
+Por que este é o principal candidato:
 
-- its entities match the runtime domain already confirmed in the backend and
-  frontend flow;
-- it aligns with `empresa`, `usuario`, `talhao`, `sensor`, `dadosSensor`, and
+- suas entidades correspondem ao domínio de runtime já confirmado no backend e
+  no fluxo frontend;
+- ele se alinha a `empresa`, `usuario`, `talhao`, `sensor`, `dadosSensor` e
   `filtragemDados`.
 
-Operational labeling in this branch:
+Rotulagem operacional nesta branch:
 
-- `BancoLumini.sql` should currently be treated as the active database
-  candidate for the application runtime;
-- this is a structural label for review purposes, not yet a claim that every
-  backend module is fully aligned with it.
+- `BancoLumini.sql` deve ser tratado atualmente como o candidato ativo de banco
+  de dados para o runtime da aplicação;
+- este é um rótulo estrutural para fins de revisão, ainda não uma afirmação de
+  que todos os módulos backend estão totalmente alinhados a ele.
 
-## Known Database Ambiguity
+## Ambiguidade Conhecida de Banco de Dados
 
-The repository still contains competing or legacy SQL sources:
+O repositório ainda contém fontes SQL concorrentes ou legadas:
 
 - `web-data-viz/src/database/script-tabelas.sql`
 - `banco-dados/BancoLegado.sql`
 - `banco-dados/ModelagemLuminiV2.mwb`
 - `banco-dados/ModelagemLuminiV2.mwb.bak`
 
-Current interpretation:
+Interpretação atual:
 
-- `BancoLumini.sql` is the leading operational candidate;
-- `script-tabelas.sql` appears to be inherited from the original academic
-  template and references another domain;
-- `BancoLegado.sql` is historical/legacy until proven otherwise;
-- the `.mwb` files are modeling/support artifacts, not runtime inputs.
+- `BancoLumini.sql` é o principal candidato operacional;
+- `script-tabelas.sql` parece herdado do template acadêmico original e
+  referencia outro domínio;
+- `BancoLegado.sql` é histórico/legado até prova em contrário;
+- os arquivos `.mwb` são artefatos de modelagem/apoio, não entradas de runtime.
 
-Current low-risk repository action:
+Ação atual de baixo risco no repositório:
 
-- keep all SQL and modeling files in place;
-- label `BancoLumini.sql` as active candidate;
-- label `BancoLegado.sql` as legacy/historical reference;
-- postpone any file move or rename until runtime safety is clearer.
+- manter todos os arquivos SQL e de modelagem no lugar;
+- rotular `BancoLumini.sql` como candidato ativo;
+- rotular `BancoLegado.sql` como referência legada/histórica;
+- adiar qualquer movimentação ou renomeação de arquivo até que a segurança do
+  runtime esteja mais clara.
 
-## Firmware and Hardware Boundary
+## Limite de Firmware e Hardware
 
-Relevant hardware-related material currently identified:
+Material relevante relacionado a hardware identificado até agora:
 
 - `firmware-arduino/codigo-ldr/codigoArduino.ino`
 - `firmware-arduino/Relatório Técnico - Sensor de Luminosidade LDR - Grupo 08.pdf`
 - `firmware-arduino/Arquitetura de montagem do Sensor Arduino.png`
 
-Current interpretation:
+Interpretação atual:
 
-- the Arduino code is relevant as technical context for sensor capture;
-- the hardware materials are not yet confirmed as part of a live ingest path in
-  the current runtime;
-- they should be preserved during the first structural cycle.
+- o código Arduino é relevante como contexto técnico para captura do sensor;
+- os materiais de hardware ainda não foram confirmados como parte de um caminho
+  de ingestão ativo no runtime atual;
+- eles devem ser preservados durante o primeiro ciclo estrutural.
 
-## Historical, Academic, and Support Material
+## Material Histórico, Acadêmico e de Apoio
 
-The repository root currently mixes executable and non-executable material.
+A raiz do repositório atualmente mistura material executável e não executável.
 
-Material currently isolated as historical, academic, or support context:
+Material atualmente isolado como contexto histórico, acadêmico ou de apoio:
 
 - `historico-academico/apresentacoes/`
 - `historico-academico/documentacao-academica/`
@@ -164,140 +242,198 @@ Material currently isolated as historical, academic, or support context:
 - `historico-academico/documentacao-academica/fluxogramas/`
 - `historico-academico/documentacao-academica/gmud-lumini-fonte-editavel.docx`
 
-These items may contain useful context, but they are not currently the primary
-source of truth for runtime behavior.
+Esses itens podem conter contexto útil, mas atualmente não são a fonte primária
+de verdade para o comportamento de runtime.
 
-## Template-Derived or Legacy-Suspect Areas
+## Artefatos de Raiz Não-Runtime Validados
 
-The following areas show strong signs of inherited template code, support-only
-material, or parallel examples:
+### `dat-acqu-ino/`
+
+Classificação:
+
+- diretório vazio no nível raiz;
+- nenhum arquivo foi encontrado dentro dele durante a validação;
+- nenhuma dependência de runtime foi identificada;
+- seguro para tratar como candidato de limpeza após aprovação de limpeza
+  estrutural pelo usuário.
+
+Interpretação atual:
+
+- `dat-acqu-ino/` não faz parte do núcleo executável, do contexto de firmware,
+  da fonte ativa de banco de dados ou do conjunto de documentação histórica em
+  seu estado vazio atual.
+
+### `package-lock.json` raiz
+
+Classificação:
+
+- lockfile npm órfão no nível raiz;
+- não existe `package.json` raiz ao lado dele;
+- o lockfile não possui entradas de pacote em `packages`;
+- o pacote real da aplicação Node.js é `web-data-viz/package.json`.
+
+Interpretação atual:
+
+- o `package-lock.json` raiz não faz parte da configuração ativa de runtime;
+- ele é candidato de limpeza, enquanto `web-data-viz/package.json` permanece
+  como manifesto operacional do pacote.
+
+## Áreas Derivadas de Template ou Suspeitas de Legado
+
+As áreas abaixo mostram sinais fortes de código herdado de template, material
+somente de apoio ou exemplos paralelos:
 
 - `web-data-viz/src/routes/aquarios.js`
 - `web-data-viz/src/models/aquarioModel.js`
+- `web-data-viz/src/routes/avisos.js`
+- `web-data-viz/src/controllers/avisoController.js`
+- `web-data-viz/src/models/avisoModel.js`
 - `web-data-viz/src/database/script-tabelas.sql`
 - `web-data-viz/README.md`
 - `web-data-viz/artefatos-template/documentos-de-apoio/`
 - `web-data-viz/artefatos-template/bobia-standalone/`
 
-These areas should not be removed in the initial cycle. They should first be
-classified, validated, and, when appropriate, isolated from the operational
-surface.
+Essas áreas não devem ser removidas no ciclo inicial. Elas devem primeiro ser
+classificadas, validadas e, quando apropriado, isoladas da superfície
+operacional.
 
-## Ambiguous Items Pending Validation
+## Itens Ambíguos Pendentes de Validação
 
-The following items still need explicit classification before structural moves:
+Nenhuma ambiguidade de raiz permanece aberta na fila inicial de revisão
+estrutural. Ambiguidades futuras devem ser adicionadas aqui apenas quando novas
+evidências forem encontradas durante validação de runtime ou limpeza.
 
-- `dat-acqu-ino/`
-- `src/routes/avisos.js` and related modules
-- partial `empresas` flow
-- root `package-lock.json`
+## O Que Está Dentro do Escopo da Recuperação Estrutural Inicial
 
-## What Is In Scope For The Initial Structural Recovery
+- confirmar como o sistema roda hoje;
+- confirmar qual superfície de runtime é realmente usada;
+- identificar a fonte de banco de dados mais compatível com o runtime;
+- separar escopo executável de material de apoio e histórico;
+- rotular módulos legados ou derivados de template sem alterar comportamento;
+- preparar o repositório para uma versão derivada futura com enquadramento de
+  portfólio explícito.
 
-- confirm how the system runs today;
-- confirm which runtime surface is actually used;
-- identify the database source most compatible with the runtime;
-- separate executable scope from support and historical material;
-- label legacy or template-derived modules without changing behavior;
-- prepare the repository for a later derived version with explicit portfolio
-  framing.
+## O Que Está Fora do Escopo Deste Primeiro Ciclo
 
-## What Is Out Of Scope For This First Cycle
+- reescritas amplas de lógica de negócio;
+- refatoração arquitetural profunda;
+- deleção agressiva de material antigo;
+- complexidade inventada para fazer o projeto parecer mais avançado;
+- mudança de identidade do projeto antes que o escopo real esteja totalmente
+  confirmado.
 
-- large-scale business logic rewrites;
-- deep architectural refactoring;
-- aggressive deletion of old material;
-- invented complexity to make the project look more advanced;
-- changing the project identity before the real scope is fully confirmed.
+## Orientação Estrutural Imediata
 
-## Immediate Structural Guidance
+Até validação adicional, trate o repositório como três camadas:
 
-Until further validation, treat the repository as three layers:
-
-### 1. Executable core
+### 1. Núcleo executável
 
 - `web-data-viz/`
-- active frontend pages and JS used in login and dashboards
-- active backend routes, controllers, models, and DB config
-- the `public/bobIA.html` surface remains in the executable tree, but its
-  standalone BobIA project copy was isolated from `public/`
+- páginas frontend e JS ativos usados em login e dashboards
+- rotas, controllers, models e configuração de banco ativos no backend
+- a superfície `public/bobIA.html` permanece na árvore executável, mas sua cópia
+  standalone do projeto BobIA foi isolada de `public/`
 
-Important review context:
+Contexto importante da revisão:
 
-- `web-data-viz` appears to have been provided as an academic API/application
-  base for student use;
-- this helps explain inherited template modules, support examples, and
-  non-domain-specific remnants inside the repository;
-- the current review should therefore separate what the Lumini group actually
-  used from what came prepackaged in the base project.
+- `web-data-viz` parece ter sido fornecido como base acadêmica de API/aplicação
+  para uso dos alunos;
+- isso ajuda a explicar módulos herdados de template, exemplos de apoio e
+  remanescentes não específicos do domínio dentro do repositório;
+- a revisão atual deve, portanto, separar o que o grupo Lumini realmente usou
+  daquilo que veio pré-empacotado na base do projeto.
 
-### 2. Technical support and contextual reference
+### 2. Apoio técnico e referência contextual
 
 - `banco-dados/`
 - `firmware-arduino/`
-- diagrams and documentation that explain the project
+- diagramas e documentação que explicam o projeto
 
-Within `banco-dados/`, the current interpretation is:
+Dentro de `banco-dados/`, a interpretação atual é:
 
-- active candidate: `BancoLumini.sql`
-- historical/legacy SQL: `BancoLegado.sql`
-- modeling/support only: `ModelagemLuminiV2.mwb`,
+- candidato ativo: `BancoLumini.sql`
+- SQL histórico/legado: `BancoLegado.sql`
+- somente modelagem/apoio: `ModelagemLuminiV2.mwb`,
   `ModelagemLuminiV2.mwb.bak`
 
-### 3. Historical, academic, template, or pending-validation material
+### 3. Material histórico, acadêmico, de template ou pendente de validação
 
-- presentation and sprint deliverables
-- support examples and template remnants
-- legacy SQL and unclear submodules
-- `historico-academico/` as the explicit home for root-level academic and
-  historical materials removed from the operational path
-- `web-data-viz/artefatos-template/` as the explicit home for isolated
-  template-derived support assets that do not belong in the main runtime path
+- entregáveis de apresentação e sprint
+- exemplos de apoio e remanescentes de template
+- SQL legado e submódulos pouco claros
+- `historico-academico/` como local explícito para materiais acadêmicos e
+  históricos de raiz removidos do caminho operacional
+- `web-data-viz/artefatos-template/` como local explícito para assets de apoio
+  derivados de template que não pertencem ao caminho principal de runtime
 
-## Next Structural Actions
+## Próximas Ações Estruturais
 
-The next low-risk steps should be:
+Os próximos passos de baixo risco devem ser:
 
-1. keep confirming the operational surface without changing runtime behavior;
-2. keep database labels explicit and check whether any backend module still
-   contradicts `BancoLumini.sql`;
-3. isolate ephemeral analysis from versioned repository documentation;
-4. reorganize historical academic material outside the operational path;
-5. isolate template-derived modules pending final validation.
+1. decidir se será feita uma passada somente de limpeza para artefatos
+   não-runtime validados, como diretórios vazios na raiz e lockfiles órfãos;
+2. decidir se rotas de template registradas, como `/avisos` e `/aquarios`, serão
+   isoladas da superfície de registro executável;
+3. manter os rótulos de banco explícitos e verificar se algum módulo backend
+   restante ainda contradiz `BancoLumini.sql`;
+4. isolar análise efêmera da documentação versionada do repositório;
+5. manter o comportamento de runtime inalterado, salvo se uma etapa de limpeza
+   for explicitamente aprovada.
 
-Current status of step 4:
+Status atual da validação de runtime:
 
-- root-level academic and historical materials were grouped under
-  `historico-academico/` without changing application runtime paths.
-- internal historical/support directories were renamed to clearer,
-  shell-friendly names without touching the executable core.
+- o fluxo `/empresas` foi validado como fluxo do domínio Lumini parcialmente
+  adaptado e estruturalmente frágil;
+- os caminhos de criação de empresa/endereço se alinham a `BancoLumini.sql` em
+  intenção, mas listagem, busca, validação e uma entrada de rota ainda contêm
+  pressupostos quebrados ou da era do template;
+- nenhum comportamento de runtime foi alterado durante estas passadas de
+  classificação;
+- o grupo de rotas `/avisos` foi validado como código legado derivado de
+  template, registrado na aplicação, mas desalinhado de `BancoLumini.sql`.
 
-Current status of step 5:
+Status atual de artefatos não-runtime:
 
-- `web-data-viz/DOCUMENTOS_DE_APOIO/` was isolated into
+- `dat-acqu-ino/` foi validado como diretório vazio no nível raiz, sem papel de
+  runtime identificado;
+- o `package-lock.json` raiz foi validado como lockfile órfão sem `package.json`
+  raiz correspondente nem entradas de pacote;
+- ambos são candidatos de limpeza, não entradas ativas de runtime.
+
+Status atual da reorganização histórica:
+
+- materiais acadêmicos e históricos no nível raiz foram agrupados em
+  `historico-academico/` sem alterar caminhos de runtime da aplicação;
+- diretórios internos históricos/de apoio foram renomeados para nomes mais
+  claros e amigáveis ao shell, sem tocar no núcleo executável.
+
+Status atual do isolamento de template:
+
+- `web-data-viz/DOCUMENTOS_DE_APOIO/` foi isolado em
   `web-data-viz/artefatos-template/documentos-de-apoio/`
-- `web-data-viz/public/BobIA/` was isolated into
+- `web-data-viz/public/BobIA/` foi isolado em
   `web-data-viz/artefatos-template/bobia-standalone/`
-- the active `public/bobIA.html` page and its frontend assets were kept in
-  place because they still belong to the visible runtime surface
-- this isolation is consistent with the interpretation that `web-data-viz`
-  came from a reusable academic base rather than a Lumini-only codebase
+- a página ativa `public/bobIA.html` e seus assets frontend foram mantidos no
+  lugar porque ainda pertencem à superfície visível de runtime
+- esse isolamento é consistente com a interpretação de que `web-data-viz` veio
+  de uma base acadêmica reutilizável, e não de um codebase exclusivo do Lumini
 
-## Portfolio Alignment
+## Alinhamento com o Portfólio
 
-This repository is being refined under a broader portfolio strategy in which
-Lumini serves as:
+Este repositório está sendo refinado dentro de uma estratégia mais ampla de
+portfólio na qual Lumini serve como:
 
-- a pilot for repository reading and structural recovery;
-- a project to demonstrate refinement, documentation, and scope control;
-- a candidate for a later derived repository with clear provenance to
+- piloto para leitura de repositório e recuperação estrutural;
+- projeto para demonstrar refinamento, documentação e controle de escopo;
+- candidato a uma versão derivada futura com origem clara em
   `ricardoOliveiraN/lumini.github.io`.
 
-Therefore, the first success condition here is not feature expansion. It is
-clarity:
+Portanto, a primeira condição de sucesso aqui não é expansão de funcionalidades.
+É clareza:
 
-- what the project is;
-- what runs;
-- what is support material;
-- what is legacy;
-- what can be safely preserved, isolated, documented, or later rewritten.
+- o que o projeto é;
+- o que roda;
+- o que é material de apoio;
+- o que é legado;
+- o que pode ser preservado, isolado, documentado ou reescrito com segurança
+  mais tarde.
