@@ -15,8 +15,9 @@ nome, formato e metadados, seguindo estas convenções:
 - `fonte-editavel`: arquivo de origem em formato editável;
 - `exportada` ou `pdf`: saída derivada para leitura/distribuição;
 - `sprint-01` e `final`: estágio acadêmico inferido pelo próprio arquivo;
-- `grupo-03` e `grupo-08`: identificação preservada quando já fazia parte do
-  nome original;
+- `grupo-03`: material produzido na fase posterior à transferência do projeto;
+- `origem-grupo-08`: material da primeira sprint, antes do sorteio e da
+  transferência do projeto entre grupos;
 - `rascunho-sem-titulo`: artefato ambíguo sem nome descritivo no original.
 
 ## O que fica aqui
