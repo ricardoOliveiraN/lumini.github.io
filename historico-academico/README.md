@@ -33,3 +33,5 @@ nome, formato e metadados, seguindo estas convenções:
 - ele não deve ser tratado como parte do núcleo executável atual;
 - qualquer reaproveitamento futuro precisa ser explícito e validado contra o
   runtime real.
+- quando houver cópias exatas entre arquivos históricos, manter a versão com
+  nome mais descritivo e remover a duplicata mais ambígua.
