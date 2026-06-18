@@ -23,8 +23,8 @@ nome, formato e metadados, seguindo estas convenções:
 ## O que fica aqui
 
 - apresentações;
-- documentação de sprint e entregáveis acadêmicos;
-- diagramas e fluxogramas;
+- documentação de sprint, entregáveis acadêmicos e fluxogramas;
+- diagramas de apoio separados por tipo;
 - documentos administrativos ou de apoio histórico, como `GMUD.docx`.
 
 ## Regra nesta fase
