@@ -161,8 +161,8 @@ Material currently isolated as historical, academic, or support context:
 - `historico-academico/documentacao-academica/`
 - `historico-academico/diagramas-solucao-tecnica/`
 - `historico-academico/diagramas-visao-negocio/`
-- `historico-academico/fluxogramas/`
-- `historico-academico/GMUD.docx`
+- `historico-academico/documentacao-academica/fluxogramas/`
+- `historico-academico/documentacao-academica/gmud-lumini-fonte-editavel.docx`
 
 These items may contain useful context, but they are not currently the primary
 source of truth for runtime behavior.
@@ -176,8 +176,8 @@ material, or parallel examples:
 - `web-data-viz/src/models/aquarioModel.js`
 - `web-data-viz/src/database/script-tabelas.sql`
 - `web-data-viz/README.md`
-- `web-data-viz/DOCUMENTOS_DE_APOIO/`
-- `web-data-viz/public/BobIA/`
+- `web-data-viz/artefatos-template/documentos-de-apoio/`
+- `web-data-viz/artefatos-template/bobia-standalone/`
 
 These areas should not be removed in the initial cycle. They should first be
 classified, validated, and, when appropriate, isolated from the operational
@@ -188,8 +188,6 @@ surface.
 The following items still need explicit classification before structural moves:
 
 - `dat-acqu-ino/`
-- `web-data-viz/public/BobIA/`
-- `web-data-viz/DOCUMENTOS_DE_APOIO/`
 - `src/routes/avisos.js` and related modules
 - partial `empresas` flow
 - root `package-lock.json`
@@ -221,6 +219,8 @@ Until further validation, treat the repository as three layers:
 - `web-data-viz/`
 - active frontend pages and JS used in login and dashboards
 - active backend routes, controllers, models, and DB config
+- the `public/bobIA.html` surface remains in the executable tree, but its
+  standalone BobIA project copy was isolated from `public/`
 
 ### 2. Technical support and contextual reference
 
@@ -242,6 +242,8 @@ Within `banco-dados/`, the current interpretation is:
 - legacy SQL and unclear submodules
 - `historico-academico/` as the explicit home for root-level academic and
   historical materials removed from the operational path
+- `web-data-viz/artefatos-template/` as the explicit home for isolated
+  template-derived support assets that do not belong in the main runtime path
 
 ## Next Structural Actions
 
@@ -260,6 +262,15 @@ Current status of step 4:
   `historico-academico/` without changing application runtime paths.
 - internal historical/support directories were renamed to clearer,
   shell-friendly names without touching the executable core.
+
+Current status of step 5:
+
+- `web-data-viz/DOCUMENTOS_DE_APOIO/` was isolated into
+  `web-data-viz/artefatos-template/documentos-de-apoio/`
+- `web-data-viz/public/BobIA/` was isolated into
+  `web-data-viz/artefatos-template/bobia-standalone/`
+- the active `public/bobIA.html` page and its frontend assets were kept in
+  place because they still belong to the visible runtime surface
 
 ## Portfolio Alignment
 
