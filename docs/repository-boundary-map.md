@@ -105,6 +105,13 @@ Why this is the leading candidate:
 - it aligns with `empresa`, `usuario`, `talhao`, `sensor`, `dadosSensor`, and
   `filtragemDados`.
 
+Operational labeling in this branch:
+
+- `BancoLumini.sql` should currently be treated as the active database
+  candidate for the application runtime;
+- this is a structural label for review purposes, not yet a claim that every
+  backend module is fully aligned with it.
+
 ## Known Database Ambiguity
 
 The repository still contains competing or legacy SQL sources:
@@ -121,6 +128,13 @@ Current interpretation:
   template and references another domain;
 - `BancoLegado.sql` is historical/legacy until proven otherwise;
 - the `.mwb` files are modeling/support artifacts, not runtime inputs.
+
+Current low-risk repository action:
+
+- keep all SQL and modeling files in place;
+- label `BancoLumini.sql` as active candidate;
+- label `BancoLegado.sql` as legacy/historical reference;
+- postpone any file move or rename until runtime safety is clearer.
 
 ## Firmware and Hardware Boundary
 
@@ -215,6 +229,13 @@ Until further validation, treat the repository as three layers:
 - `Arduino/`
 - diagrams and documentation that explain the project
 
+Within `Script Banco de dados/`, the current interpretation is:
+
+- active candidate: `BancoLumini.sql`
+- historical/legacy SQL: `BancoLegado.sql`
+- modeling/support only: `ModelagemLuminiV2.mwb`,
+  `ModelagemLuminiV2.mwb.bak`
+
 ### 3. Historical, academic, template, or pending-validation material
 
 - presentation and sprint deliverables
@@ -226,7 +247,8 @@ Until further validation, treat the repository as three layers:
 The next low-risk steps should be:
 
 1. keep confirming the operational surface without changing runtime behavior;
-2. mark active database source versus legacy SQL artifacts;
+2. keep database labels explicit and check whether any backend module still
+   contradicts `BancoLumini.sql`;
 3. isolate ephemeral analysis from versioned repository documentation;
 4. reorganize historical academic material outside the operational path;
 5. isolate template-derived modules pending final validation.
