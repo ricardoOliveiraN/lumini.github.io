@@ -6,6 +6,9 @@ Este diretório reúne materiais históricos, acadêmicos e de apoio que foram
 movidos para fora do caminho operacional do repositório durante o primeiro
 ciclo de saneamento estrutural.
 
+Os nomes internos foram normalizados em ASCII com hífens para reduzir
+ambiguidade, melhorar navegação e evitar fricção com shell, scripts e links.
+
 ## O que fica aqui
 
 - apresentações;

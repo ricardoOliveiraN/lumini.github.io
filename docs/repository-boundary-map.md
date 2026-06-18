@@ -96,7 +96,7 @@ Evidence:
 
 The current database source most aligned with the runtime is:
 
-- `Script Banco de dados/BancoLumini.sql`
+- `banco-dados/BancoLumini.sql`
 
 Why this is the leading candidate:
 
@@ -117,9 +117,9 @@ Operational labeling in this branch:
 The repository still contains competing or legacy SQL sources:
 
 - `web-data-viz/src/database/script-tabelas.sql`
-- `Script Banco de dados/BancoLegado.sql`
-- `Script Banco de dados/ModelagemLuminiV2.mwb`
-- `Script Banco de dados/ModelagemLuminiV2.mwb.bak`
+- `banco-dados/BancoLegado.sql`
+- `banco-dados/ModelagemLuminiV2.mwb`
+- `banco-dados/ModelagemLuminiV2.mwb.bak`
 
 Current interpretation:
 
@@ -140,9 +140,9 @@ Current low-risk repository action:
 
 Relevant hardware-related material currently identified:
 
-- `Arduino/codigo-ldr/codigoArduino.ino`
-- `Arduino/Relatório Técnico - Sensor de Luminosidade LDR - Grupo 08.pdf`
-- `Arduino/Arquitetura de montagem do Sensor Arduino.png`
+- `firmware-arduino/codigo-ldr/codigoArduino.ino`
+- `firmware-arduino/Relatório Técnico - Sensor de Luminosidade LDR - Grupo 08.pdf`
+- `firmware-arduino/Arquitetura de montagem do Sensor Arduino.png`
 
 Current interpretation:
 
@@ -157,11 +157,11 @@ The repository root currently mixes executable and non-executable material.
 
 Material currently isolated as historical, academic, or support context:
 
-- `historico-academico/Apresentação/`
-- `historico-academico/Documentação/`
-- `historico-academico/Diagrama de solução/`
-- `historico-academico/Diagrama de visão de negócio/`
-- `historico-academico/Fluxograma/`
+- `historico-academico/apresentacoes/`
+- `historico-academico/documentacao-academica/`
+- `historico-academico/diagramas-solucao-tecnica/`
+- `historico-academico/diagramas-visao-negocio/`
+- `historico-academico/fluxogramas/`
 - `historico-academico/GMUD.docx`
 
 These items may contain useful context, but they are not currently the primary
@@ -224,11 +224,11 @@ Until further validation, treat the repository as three layers:
 
 ### 2. Technical support and contextual reference
 
-- `Script Banco de dados/`
-- `Arduino/`
+- `banco-dados/`
+- `firmware-arduino/`
 - diagrams and documentation that explain the project
 
-Within `Script Banco de dados/`, the current interpretation is:
+Within `banco-dados/`, the current interpretation is:
 
 - active candidate: `BancoLumini.sql`
 - historical/legacy SQL: `BancoLegado.sql`
@@ -258,6 +258,8 @@ Current status of step 4:
 
 - root-level academic and historical materials were grouped under
   `historico-academico/` without changing application runtime paths.
+- internal historical/support directories were renamed to clearer,
+  shell-friendly names without touching the executable core.
 
 ## Portfolio Alignment
 

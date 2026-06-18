@@ -1,4 +1,4 @@
-# Script Banco de dados
+# Banco de dados
 
 ## Objetivo deste diretório
 
