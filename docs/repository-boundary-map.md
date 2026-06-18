@@ -155,15 +155,14 @@ Current interpretation:
 
 The repository root currently mixes executable and non-executable material.
 
-Material that should currently be treated as historical, academic, or support
-context until proven otherwise:
+Material currently isolated as historical, academic, or support context:
 
-- `Apresentação/`
-- `Documentação/`
-- `Diagrama de solução/`
-- `Diagrama de visão de negócio/`
-- `Fluxograma/`
-- `GMUD.docx`
+- `historico-academico/Apresentação/`
+- `historico-academico/Documentação/`
+- `historico-academico/Diagrama de solução/`
+- `historico-academico/Diagrama de visão de negócio/`
+- `historico-academico/Fluxograma/`
+- `historico-academico/GMUD.docx`
 
 These items may contain useful context, but they are not currently the primary
 source of truth for runtime behavior.
@@ -241,6 +240,8 @@ Within `Script Banco de dados/`, the current interpretation is:
 - presentation and sprint deliverables
 - support examples and template remnants
 - legacy SQL and unclear submodules
+- `historico-academico/` as the explicit home for root-level academic and
+  historical materials removed from the operational path
 
 ## Next Structural Actions
 
@@ -252,6 +253,11 @@ The next low-risk steps should be:
 3. isolate ephemeral analysis from versioned repository documentation;
 4. reorganize historical academic material outside the operational path;
 5. isolate template-derived modules pending final validation.
+
+Current status of step 4:
+
+- root-level academic and historical materials were grouped under
+  `historico-academico/` without changing application runtime paths.
 
 ## Portfolio Alignment
 
