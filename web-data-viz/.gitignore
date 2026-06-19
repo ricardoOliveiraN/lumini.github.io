@@ -2,4 +2,10 @@
 node_modules
 package-lock.json
 
+# Arquivos de ambiente locais não devem ser versionados
+.env
+.env.*
+!.env.example
+!.env.*.example
+
 .github
