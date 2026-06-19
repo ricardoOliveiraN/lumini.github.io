@@ -1,4 +1,4 @@
-var database = require("../database/config");
+var database = require("../config/database");
 
 // INÍCIO DAS ROTAS DA TELA TALHÃO GERAL
 function horasLuz(idEmpresa, dataAnteriorCompleta) {

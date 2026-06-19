@@ -1,4 +1,4 @@
-var database = require("../database/config");
+var database = require("../config/database");
 function buscarAquariosPorEmpresa(fkEmpresa) {
 
   var instrucaoSql = `SELECT * FROM usuario WHERE fkUsuario_Empresa = ${fkEmpresa}`;

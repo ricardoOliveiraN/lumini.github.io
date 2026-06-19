@@ -111,16 +111,18 @@ Evidências de alinhamento com Lumini:
   `/empresas/cadastrarEmpresa`, `/empresas/buscarID/:cnpj` e
   `/empresas/cadastrarEndereco`;
 - `web-data-viz/src/models/empresaModel.js` insere em colunas de `empresa` que
-  existem em `banco-dados/BancoLumini.sql`: `nomeFantasia`, `cnpj`,
+  existem em `artefatos-banco/sql-ativo/schema-ativo-lumini.sql`: `nomeFantasia`,
+  `cnpj`,
   `tamanhoEmpresa`, `qtdHectares` e `dtCriacao`;
 - `web-data-viz/src/models/empresaModel.js` insere endereços em `endereco` com
-  `fkEndereco_Empresa`, que também existe em `BancoLumini.sql`;
+  `fkEndereco_Empresa`, que também existe em
+  `schema-ativo-lumini.sql`;
 - `buscarId(cnpj)` lê `idEmpresa`, alinhando-se ao schema Lumini e ao fluxo
   frontend que armazena `sessionStorage.ID_EMPRESA`.
 
 Evidências de resíduo herdado ou quebrado de template:
 
-- `buscarPorId(id)` consulta `empresa.id`, mas `BancoLumini.sql` define
+- `buscarPorId(id)` consulta `empresa.id`, mas `schema-ativo-lumini.sql` define
   `idEmpresa`;
 - `listar()` seleciona `id`, `razao_social` e `codigo_ativacao`, que não existem
   na tabela `empresa` do Lumini;
@@ -154,11 +156,12 @@ Classificação:
 Evidências:
 
 - `web-data-viz/src/models/avisoModel.js` consulta e altera uma tabela `aviso`;
-- `banco-dados/BancoLumini.sql` não define uma tabela `aviso`;
+- `artefatos-banco/sql-ativo/schema-ativo-lumini.sql` não define uma tabela `aviso`;
 - `avisoModel.js` espera colunas de template como `aviso.id`,
-  `aviso.fk_usuario` e `usuario.id`, enquanto `BancoLumini.sql` usa
+  `aviso.fk_usuario` e `usuario.id`, enquanto
+  `schema-ativo-lumini.sql` usa
   `usuario.idUsuario` e `usuario.fkUsuario_Empresa`;
-- `web-data-viz/src/database/script-tabelas.sql`, o arquivo SQL de template
+- `web-data-viz/artefatos-template/script-tabelas-template-aquatech.sql`, o arquivo SQL de template
   herdado já identificado, define `CREATE TABLE aviso`;
 - a busca no frontend encontrou conteúdo textual com "aviso", mas nenhuma
   chamada ativa de `fetch` ou navegação para `/avisos`.
@@ -173,7 +176,9 @@ Interpretação atual:
 
 A fonte de banco de dados atualmente mais alinhada ao runtime é:
 
-- `banco-dados/BancoLumini.sql`
+- `artefatos-banco/sql-ativo/schema-ativo-lumini.sql`
+- `artefatos-banco/sql-ativo/seed-ativo-lumini.sql`
+- `artefatos-banco/sql-ativo/consultas-referencia-lumini.sql`
 
 Por que este é o principal candidato:
 
@@ -184,8 +189,12 @@ Por que este é o principal candidato:
 
 Rotulagem operacional nesta branch:
 
-- `BancoLumini.sql` deve ser tratado atualmente como o candidato ativo de banco
-  de dados para o runtime da aplicação;
+- `sql-ativo/schema-ativo-lumini.sql` deve ser tratado atualmente como o
+  candidato ativo de banco de dados para o runtime da aplicação;
+- `sql-ativo/seed-ativo-lumini.sql` deve ser tratado como carga mockada de
+  apoio local, e não como definição estrutural do banco;
+- `sql-ativo/consultas-referencia-lumini.sql` deve ser tratado como referência
+  analítica e de inspeção, não como parte obrigatória do bootstrap;
 - este é um rótulo estrutural para fins de revisão, ainda não uma afirmação de
   que todos os módulos backend estão totalmente alinhados a ele.
 
@@ -193,26 +202,31 @@ Rotulagem operacional nesta branch:
 
 O repositório ainda contém fontes SQL concorrentes ou legadas:
 
-- `web-data-viz/src/database/script-tabelas.sql`
-- `banco-dados/BancoLegado.sql`
-- `banco-dados/ModelagemLuminiV2.mwb`
-- `banco-dados/ModelagemLuminiV2.mwb.bak`
+- `web-data-viz/artefatos-template/script-tabelas-template-aquatech.sql`
+- `artefatos-banco/sql-ativo/seed-ativo-lumini.sql`
+- `artefatos-banco/sql-ativo/consultas-referencia-lumini.sql`
+- `artefatos-banco/modelo-workbench-lumini.mwb`
 
 Interpretação atual:
 
-- `BancoLumini.sql` é o principal candidato operacional;
-- `script-tabelas.sql` parece herdado do template acadêmico original e
+- `sql-ativo/schema-ativo-lumini.sql` é o principal candidato operacional;
+- `sql-ativo/seed-ativo-lumini.sql` representa dados mockados locais acoplados
+  ao schema ativo;
+- `sql-ativo/consultas-referencia-lumini.sql` preserva consultas utilitárias
+  associadas ao domínio ativo;
+- `script-tabelas-template-aquatech.sql` parece herdado do template acadêmico original e
   referencia outro domínio;
-- `BancoLegado.sql` é histórico/legado até prova em contrário;
 - os arquivos `.mwb` são artefatos de modelagem/apoio, não entradas de runtime.
 
 Ação atual de baixo risco no repositório:
 
 - manter todos os arquivos SQL e de modelagem no lugar;
-- rotular `BancoLumini.sql` como candidato ativo;
-- rotular `BancoLegado.sql` como referência legada/histórica;
-- adiar qualquer movimentação ou renomeação de arquivo até que a segurança do
-  runtime esteja mais clara.
+- rotular `sql-ativo/schema-ativo-lumini.sql` como candidato ativo;
+- rotular `sql-ativo/seed-ativo-lumini.sql` como carga mockada opcional;
+- rotular `sql-ativo/consultas-referencia-lumini.sql` como referência de apoio;
+- manter a pasta `artefatos-banco/` como área explícita de apoio estrutural;
+- manter o SQL legado isolado em `web-data-viz/artefatos-template/` e o schema
+  ativo em `artefatos-banco/sql-ativo/schema-ativo-lumini.sql`.
 
 ## Limite de Firmware e Hardware
 
@@ -247,22 +261,6 @@ de verdade para o comportamento de runtime.
 
 ## Artefatos de Raiz Não-Runtime Validados
 
-### `dat-acqu-ino/`
-
-Classificação:
-
-- diretório vazio no nível raiz;
-- nenhum arquivo foi encontrado dentro dele durante a validação;
-- nenhuma dependência de runtime foi identificada;
-- seguro para tratar como candidato de limpeza após aprovação de limpeza
-  estrutural pelo usuário.
-
-Interpretação atual:
-
-- `dat-acqu-ino/` não faz parte do núcleo executável, do contexto de firmware,
-  da fonte ativa de banco de dados ou do conjunto de documentação histórica em
-  seu estado vazio atual.
-
 ### `package-lock.json` raiz
 
 Classificação:
@@ -288,7 +286,7 @@ somente de apoio ou exemplos paralelos:
 - `web-data-viz/src/routes/avisos.js`
 - `web-data-viz/src/controllers/avisoController.js`
 - `web-data-viz/src/models/avisoModel.js`
-- `web-data-viz/src/database/script-tabelas.sql`
+- `web-data-viz/artefatos-template/script-tabelas-template-aquatech.sql`
 - `web-data-viz/README.md`
 - `web-data-viz/artefatos-template/documentos-de-apoio/`
 - `web-data-viz/artefatos-template/bobia-standalone/`
@@ -345,16 +343,17 @@ Contexto importante da revisão:
 
 ### 2. Apoio técnico e referência contextual
 
-- `banco-dados/`
+- `artefatos-banco/`
 - `firmware-arduino/`
 - diagramas e documentação que explicam o projeto
 
-Dentro de `banco-dados/`, a interpretação atual é:
+Dentro de `artefatos-banco/`, a interpretação atual é:
 
-- candidato ativo: `BancoLumini.sql`
-- SQL histórico/legado: `BancoLegado.sql`
-- somente modelagem/apoio: `ModelagemLuminiV2.mwb`,
-  `ModelagemLuminiV2.mwb.bak`
+- candidato ativo: `sql-ativo/schema-ativo-lumini.sql`
+- carga mockada de apoio: `sql-ativo/seed-ativo-lumini.sql`
+- consultas de referência: `sql-ativo/consultas-referencia-lumini.sql`
+- somente modelagem/apoio: `modelo-workbench-lumini.mwb`,
+  `diagrama-er-lumini.drawio`
 
 ### 3. Material histórico, acadêmico, de template ou pendente de validação
 
@@ -375,7 +374,7 @@ Os próximos passos de baixo risco devem ser:
 2. decidir se rotas de template registradas, como `/avisos` e `/aquarios`, serão
    isoladas da superfície de registro executável;
 3. manter os rótulos de banco explícitos e verificar se algum módulo backend
-   restante ainda contradiz `BancoLumini.sql`;
+   restante ainda contradiz `schema-ativo-lumini.sql`;
 4. isolar análise efêmera da documentação versionada do repositório;
 5. manter o comportamento de runtime inalterado, salvo se uma etapa de limpeza
    for explicitamente aprovada.
@@ -384,21 +383,23 @@ Status atual da validação de runtime:
 
 - o fluxo `/empresas` foi validado como fluxo do domínio Lumini parcialmente
   adaptado e estruturalmente frágil;
-- os caminhos de criação de empresa/endereço se alinham a `BancoLumini.sql` em
-  intenção, mas listagem, busca, validação e uma entrada de rota ainda contêm
-  pressupostos quebrados ou da era do template;
+- os caminhos de criação de empresa/endereço se alinham a
+  `schema-ativo-lumini.sql` em intenção, mas listagem, busca, validação e uma
+  entrada de rota ainda contêm pressupostos quebrados ou da era do template;
 - nenhum comportamento de runtime foi alterado durante estas passadas de
   classificação;
 - o grupo de rotas `/avisos` foi validado como código legado derivado de
-  template, registrado na aplicação, mas desalinhado de `BancoLumini.sql`.
+  template, registrado na aplicação, mas desalinhado de
+  `schema-ativo-lumini.sql`.
 
 Status atual de artefatos não-runtime:
 
-- `dat-acqu-ino/` foi validado como diretório vazio no nível raiz, sem papel de
-  runtime identificado;
+- `dat-acqu-ino/` foi removido após validação como diretório vazio no nível
+  raiz, sem papel de runtime identificado;
 - o `package-lock.json` raiz foi validado como lockfile órfão sem `package.json`
   raiz correspondente nem entradas de pacote;
-- ambos são candidatos de limpeza, não entradas ativas de runtime.
+- o `package-lock.json` raiz permanece como candidato de limpeza, não entrada
+  ativa de runtime.
 
 Status atual da reorganização histórica:
 

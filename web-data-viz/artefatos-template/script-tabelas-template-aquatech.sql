@@ -1,3 +1,7 @@
+-- Arquivo legado de template, preservado apenas como referência histórica.
+-- Não use este script para inicializar o schema atual do projeto Lumini.
+-- Para a estrutura vigente, consulte ../../artefatos-banco/sql-ativo/schema-ativo-lumini.sql.
+-- Para dados mockados e consultas de apoio, consulte os arquivos correspondentes em ../../artefatos-banco/sql-ativo/.
 -- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
 -- Você precisa executar os comandos no banco de dados para criar as tabelas,
 -- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
@@ -42,7 +46,7 @@ create table aquario (
 	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+/* comentário legado de template preservado; antiga referência a dat-acqu-ino removida */
 
 create table medida (
 	id INT PRIMARY KEY AUTO_INCREMENT,

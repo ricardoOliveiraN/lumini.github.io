@@ -12,7 +12,11 @@ _Implementação de Referência para o seu Projeto de Primeiro Semestre_
 
 
 1. Crie, no Banco de Dados, as tabelas necessárias para o funcionamento deste projeto.
-- Siga as instruções no arquivo **/src/database/script-tabelas.sql**
+- Use **/../artefatos-banco/sql-ativo/schema-ativo-lumini.sql** para criar a estrutura do banco
+- Use **/../artefatos-banco/sql-ativo/seed-ativo-lumini.sql** apenas se quiser popular o ambiente com dados mockados
+- Use **/../artefatos-banco/setup-ativo-lumini.sql** se quiser bootstrap local em uma passada única
+- As consultas de apoio foram isoladas em **/../artefatos-banco/sql-ativo/consultas-referencia-lumini.sql**
+- O antigo script de template foi movido para **/artefatos-template/script-tabelas-template-aquatech.sql** e não deve ser usado para inicializar o schema atual
 
 
 3. Acesse o arquivo **app.js** e parametrize o ambiente.
