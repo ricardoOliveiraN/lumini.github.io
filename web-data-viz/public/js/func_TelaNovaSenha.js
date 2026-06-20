@@ -136,7 +136,7 @@ function atualizarSenha(Senha) {
                 if (sessionStorage.FK_EMPRESA == 1) {
 
                     setTimeout(function () {
-                        window.location = "CadastrarFuncionario.html";
+                        window.location = "CadastrarEmpresa.html";
                     }, 1000);
 
                 } else {

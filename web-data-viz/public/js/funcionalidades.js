@@ -282,7 +282,7 @@ function entrar() {
                         window.location = "TelaSenhaNova.html"
                     } else {
                         setTimeout(function () {
-                            window.location = "CadastrarFuncionario.html";
+                            window.location = "CadastrarEmpresa.html";
                         }, 1000);
                     }
 
@@ -306,7 +306,7 @@ function entrar() {
                 } else if (sessionStorage.FK_EMPRESA == 1) {
 
                     setTimeout(function () {
-                        window.location = "CadastrarFuncionario.html";
+                        window.location = "CadastrarEmpresa.html";
                     }, 1000);
 
                 } else {
@@ -318,7 +318,7 @@ function entrar() {
                         if (sessionStorage.FK_EMPRESA == 1) {
 
                             setTimeout(function () {
-                                window.location = "CadastrarFuncionario.html";
+                                window.location = "CadastrarEmpresa.html";
                             }, 1000);
                         } else {
 
