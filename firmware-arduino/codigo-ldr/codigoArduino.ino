@@ -1,86 +1,59 @@
-// const int PINO_SENSOR_LDR = A3; // declara a entrada analógica
-// int valorLuminosidade; // declara uma variável
-// void setup() {
-//   Serial.begin(9600);
-// }
-// // configuração de iniciação e comunicação entre arduino e computador
-// void loop() {
-//   valorLuminosidade = analogRead(PINO_SENSOR_LDR);
-//   // os dados coletados pela porta analogica serão armazenados na variável
-//   // definindo labels/variáveis e valores que serão mostrados na tela para melhorar o entendimento do gráfico
-//   Serial.print("MiniVoltsMax:");
-//   Serial.print(900);
-//   Serial.print(" ");
-//   Serial.print("Luminosidade:");
-//   Serial.print(valorLuminosidade);
-//   Serial.print(" ");
-//   Serial.print("MiniVoltsMin:");
-//   Serial.println(400);
-//   delay(1000);
-//   // configura para atualizar os dados a cada 2 segundos
-// }
+// Alterna entre dois comportamentos:
+// - true: envia uma saida serial simples para teste/mock de integracao.
+// - false: le o LDR real e estima a iluminancia em lux.
+const bool USAR_MODO_MOCK = true;
 
-int ldr_pin = A3;
-int ldr_read = 0;
-float vin = 5.00;
-float valor_ADC = 0.00488758, r_ohms = 10000;
+const int PINO_SENSOR_LDR = A3;
+const unsigned long INTERVALO_LEITURA_MS = 3300;
+
+// Parametros usados no modo mockado para alimentar graficos ou testes de serial.
+const int MOCK_MINI_VOLTS_MAX = 900;
+const int MOCK_MINI_VOLTS_MIN = 400;
+
+// Parametros usados no modo real para conversao da leitura analogica.
+const float TENSAO_ENTRADA = 5.00;
+const float VALOR_ADC = 0.00488758;
+const float RESISTOR_REFERENCIA_OHMS = 10000.0;
 
 void setup() {
-    Serial.begin(9600);
+  Serial.begin(9600);
 }
 
-
-
 void loop() {
-    if (isnan(ldr_read)){
-        Serial.println("Erro ao ler o sensor");
-    } 
-    else{
-        ldr_read = analogRead(ldr_pin);
-        float volt = valor_ADC * ldr_read;
-        float res_ldr = (r_ohms * (vin - volt)) / volt;
-        float lux = 500/(res_ldr/1000);
-        Serial.println(lux);
-      
-          
-          delay(3300);
-         }
-    }
-  
+  if (USAR_MODO_MOCK) {
+    executarModoMock();
+  } else {
+    executarModoReal();
+  }
 
+  delay(INTERVALO_LEITURA_MS);
+}
 
+void executarModoMock() {
+  int valorLuminosidade = analogRead(PINO_SENSOR_LDR);
 
+  // Mantem o formato rotulado da serial para testes de grafico/integracao.
+  Serial.print("MiniVoltsMax:");
+  Serial.print(MOCK_MINI_VOLTS_MAX);
+  Serial.print(" ");
+  Serial.print("Luminosidade:");
+  Serial.print(valorLuminosidade);
+  Serial.print(" ");
+  Serial.print("MiniVoltsMin:");
+  Serial.println(MOCK_MINI_VOLTS_MIN);
+}
 
+void executarModoReal() {
+  int leituraLdr = analogRead(PINO_SENSOR_LDR);
+  float tensao = VALOR_ADC * leituraLdr;
 
-  /*
-        Checando a voltagem
-        Quanto maior a incidência de luz menor a resistência do sensor
-        */
-    //     if(ldr_read > 750){
-    //         // Serial.print(ldr_read);
-    //         // Serial.print(" ");
-    //         // Serial.print("Volt:");
-    //         // Serial.print(volt);
-    //         // Serial.print(" ");
-    //         // Serial.print("R_ldr:");
-    //         // Serial.print(res_ldr);
-    //         // Serial.print(" ");
-    //         Serial.print("Lux:");
-    //          Serial.print(" ");
-    //         Serial.print(lux);
-    //         // Serial.println(" Claro");
-    //     }
-    //     else{
-    //         Serial.print("Volt:"); //imprime na tela a tensão de saída
-    //         Serial.print(" ");
-    //       // Serial.print(ldr_read);
-    //         // Serial.print(" ");
-    //         // Serial.print(volt);
-    //         // Serial.print(" ");
-    //         // Serial.print("R_ldr:"); imprime na tela a resistência do LDR
-    //         // Serial.print(res_ldr);
-    //         // Serial.print(" ");
-    //         // Serial.print("Lux:"); //imprime na tela o valor de lux
-    //         // Serial.print(" ");
-              // Serial.print(lux);
-    //         // Serial.println(" Escuro");
+  if (tensao <= 0.0) {
+    Serial.println("Erro ao ler o sensor");
+    return;
+  }
+
+  float resistenciaLdr = (RESISTOR_REFERENCIA_OHMS * (TENSAO_ENTRADA - tensao)) / tensao;
+  float lux = 500.0 / (resistenciaLdr / 1000.0);
+
+  Serial.println(lux);
+}

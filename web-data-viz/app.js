@@ -19,9 +19,11 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var medidasRouter = require("./src/routes/medidas");
+var sensoresRouter = require("./src/routes/sensores");
 var empresasRouter = require("./src/routes/empresas");
 var dashFuncRouter = require("./src/routes/dashFunc");
 var funcionariosRouter = require("./src/routes/funcionarios");
+var serialSensorService = require("./src/services/serialSensorService");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,9 +42,12 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/medidas", medidasRouter);
+app.use("/sensores", sensoresRouter);
 app.use("/empresas", empresasRouter);
 app.use("/dashFunc", dashFuncRouter);
 app.use("/funcionarios", funcionariosRouter);
+
+serialSensorService.iniciar();
 
 app.listen(PORTA_APP, function () {
     console.log(`
