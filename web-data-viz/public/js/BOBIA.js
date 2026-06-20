@@ -1,25 +1,45 @@
+function obterUrlPerguntarBobIA() {
+    const bobiaApiBaseUrl = window.LUMINI_CONFIG && window.LUMINI_CONFIG.bobiaApiBaseUrl;
 
-    // fazer a chamada do BobIA
-    async function gerarResposta() {
-        const pergunta = document.getElementById('pergunta').value;
+    if (!bobiaApiBaseUrl) {
+        throw new Error("BobIA nao configurado. Defina BOBIA_API_BASE_URL em .env.dev ou .env do web-data-viz e reinicie a aplicacao.");
+    }
 
-        const response = await fetch('http://10.18.35.237:3333/perguntar', {
-            method: 'POST',
+    return `${bobiaApiBaseUrl.replace(/\/$/, "")}/perguntar`;
+}
+
+// fazer a chamada do BobIA
+async function gerarResposta() {
+    const pergunta = document.getElementById("pergunta").value;
+    const respostaElemento = document.getElementById("resposta");
+
+    try {
+        const response = await fetch(obterUrlPerguntarBobIA(), {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({ pergunta })
         });
 
         const data = await response.json();
 
-        resposta.style.display = 'block';
-        document.getElementById('resposta').innerText = data.resultado;
-    }
-    function teste(resposta) {
-        if (resposta == 1) {
-            containerBOBIA.style.display = 'block'
-        } else {
-            containerBOBIA.style.display = 'none'
+        if (!response.ok) {
+            throw new Error(data.error || "Nao foi possivel obter resposta do BobIA.");
         }
+
+        respostaElemento.style.display = "block";
+        respostaElemento.innerText = data.resultado;
+    } catch (erro) {
+        respostaElemento.style.display = "block";
+        respostaElemento.innerText = erro.message;
     }
+}
+
+function teste(resposta) {
+    if (resposta == 1) {
+        containerBOBIA.style.display = "block";
+    } else {
+        containerBOBIA.style.display = "none";
+    }
+}

@@ -23,6 +23,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(204);
+    }
+
     next();
 });
 
@@ -39,7 +45,7 @@ app.listen(PORTA_SERVIDOR, () => {
         ######   ####  #####  ### #     # 
         `
     );
-    console.info(`A API BobIA iniciada, acesse http://10.18.35.237:${PORTA_SERVIDOR}`);
+    console.info(`A API BobIA iniciada, acesse http://localhost:${PORTA_SERVIDOR}`);
 });
 
 // rota para receber perguntas e gerar respostas
@@ -50,10 +56,24 @@ app.post("/perguntar", async (req, res) => {
         const resultado = await gerarResposta(pergunta);
         res.json( { resultado } );
     } catch (error) {
-        res.status(500).json({ error: 'Erro interno do servidor' });
+        if (ehErroDeChaveInvalidaGemini(error)) {
+            console.error("BobIA: configuração insuficiente para conexao com LLM.", error);
+            return res.status(502).json({
+                error: "Conexao com LLM não configurada ou configuração insuficiente."
+            });
+        }
+
+        console.error("BobIA: erro interno ao consultar LLM.", error);
+        res.status(500).json({ error: "Erro interno do servidor BobIA." });
     }
 
 });
+
+function ehErroDeChaveInvalidaGemini(error) {
+    const mensagem = error && error.message ? error.message : "";
+
+    return mensagem.includes("API key not valid") || mensagem.includes("API_KEY_INVALID");
+}
 
 // função para gerar respostas usando o gemini
 async function gerarResposta(mensagem) {

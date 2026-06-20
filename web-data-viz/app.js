@@ -12,6 +12,7 @@ var cors = require("cors");
 var path = require("path");
 var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
+var BOBIA_API_BASE_URL = process.env.BOBIA_API_BASE_URL || "";
 
 var app = express();
 
@@ -26,6 +27,14 @@ var funcionariosRouter = require("./src/routes/funcionarios");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.get("/js/bobia-config.js", function (req, res) {
+    res.type("application/javascript");
+    res.send(
+        `window.LUMINI_CONFIG = window.LUMINI_CONFIG || {};\nwindow.LUMINI_CONFIG.bobiaApiBaseUrl = ${JSON.stringify(BOBIA_API_BASE_URL)};\n`
+    );
+});
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());

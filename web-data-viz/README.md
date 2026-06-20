@@ -42,6 +42,53 @@ _O comando acima irá iniciar seu projeto e efetuar os comandos de acordo com a 
 
 7. Caso queira parar a execução, tecle **CTRL+C** no terminal em que o projeto está rodando.
 
+## BobIA como servico separado
+
+O BobIA usado pelo Lumini continua fora do backend principal deste projeto.
+O frontend do Lumini espera uma API externa com a rota `POST /perguntar`.
+
+### Configurar a URL da API no Lumini
+
+Defina a URL base do servico no `.env` ou `.env.dev` do `web-data-viz`:
+
+```env
+BOBIA_API_BASE_URL=http://localhost:3000
+```
+
+O `web-data-viz` expoe essa configuracao ao frontend em `GET /js/bobia-config.js`.
+O frontend concatenara `/perguntar` automaticamente.
+
+### Subir o servico standalone do BobIA
+
+O projeto standalone esta em `../bobia-standalone/`.
+
+1. Entre no diretorio:
+
+```bash
+cd ../bobia-standalone
+```
+
+2. Instale as dependencias:
+
+```bash
+npm install
+```
+
+3. Crie um arquivo `.env` com:
+
+```env
+MINHA_CHAVE=sua_chave_do_google_generative_ai
+PORTA=3000
+```
+
+4. Inicie o servico:
+
+```bash
+npm start
+```
+
+Com isso, o Lumini podera consumir o BobIA externamente sem depender de URL hardcoded no frontend.
+
 ## Adicionar novo recurso ao projeto
 
 **"Recurso? O que é?"** Enquanto no Banco de Dados chamamos as tabelas de "entidades", quando tratamos de desenvolvimento WEB usamos a palavra "recurso" para se referir a algo que podemos criar, ler, atualizar ou deletar [1]. Estas ações são conhecidas como CRUD: Create, Read, Update e Delete. Para acessar cada ação, usamos os métodos HTTP: POST, GET, PUT e DELETE [2]. (Há outros verbos, porém com estes já conseguimos efetuar CRUDs). 

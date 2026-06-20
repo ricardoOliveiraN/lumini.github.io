@@ -289,7 +289,7 @@ somente de apoio ou exemplos paralelos:
 - `web-data-viz/artefatos-template/script-tabelas-template-aquatech.sql`
 - `web-data-viz/README.md`
 - `web-data-viz/artefatos-template/documentos-de-apoio/`
-- `web-data-viz/artefatos-template/bobia-standalone/`
+- `bobia-standalone/`
 
 Essas áreas não devem ser removidas no ciclo inicial. Elas devem primeiro ser
 classificadas, validadas e, quando apropriado, isoladas da superfície
@@ -413,7 +413,7 @@ Status atual do isolamento de template:
 - `web-data-viz/DOCUMENTOS_DE_APOIO/` foi isolado em
   `web-data-viz/artefatos-template/documentos-de-apoio/`
 - `web-data-viz/public/BobIA/` foi isolado em
-  `web-data-viz/artefatos-template/bobia-standalone/`
+  `bobia-standalone/`
 - a página ativa `public/bobIA.html` e seus assets frontend foram mantidos no
   lugar porque ainda pertencem à superfície visível de runtime
 - esse isolamento é consistente com a interpretação de que `web-data-viz` veio
