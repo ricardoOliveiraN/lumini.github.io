@@ -6,156 +6,127 @@ var Numero = '';
 var Complemento = '';
 var fkEmpresa = '';
 
-function cadastrarEndereco() {
+function obterDataAtualISO() {
+    return new Date().toISOString().slice(0, 10);
+}
 
+function cadastrarEndereco() {
     fkEmpresa = sessionStorage.ID_EMPRESA;
 
-    var EnderecoNotNull = CEP != '' && UF != '' && Cidade != '' && Logradouro != '' && Numero != '';
-    alert('entrei aqui')
-    if (EnderecoNotNull) {
+    var enderecoPreenchido = CEP !== '' && UF !== '' && Cidade !== '' && Logradouro !== '' && Numero !== '';
 
-        if (Complemento == '') {
-            Complemento = '...';
-        }
-
-        fetch("/empresas/cadastrarEndereco", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                cepServer: CEP,
-                ufServer: UF,
-                cidadeServer: Cidade,
-                logradouroServer: Logradouro,
-                numeroServer: Numero,
-                complementoServer: Complemento,
-                fkEmpresaServer: fkEmpresa
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-                    
-                    alert('Deu certo no endereco')
-                    
-
-
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-         
-            });
-
+    if (!enderecoPreenchido) {
+        alert('Preencha os campos obrigatórios do endereço antes de continuar.');
         return false;
-    } else {
-        alert('Por favor, preencher todos os campos!!')
     }
-}
 
-/*Cadastrar empresa, pegar o */
+    if (Complemento === '') {
+        Complemento = '...';
+    }
+
+    fetch("/empresas/cadastrarEndereco", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            cepServer: CEP,
+            ufServer: UF,
+            cidadeServer: Cidade,
+            logradouroServer: Logradouro,
+            numeroServer: Numero,
+            complementoServer: Complemento,
+            fkEmpresaServer: fkEmpresa
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                alert('Empresa e endereço cadastrados com sucesso!');
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+    return false;
+}
 
 function cadastrarEmpresa() {
+    var CNPJ = inp_cnpj.value.trim();
+    var TamanhoEmpresa = inp_tamanho.value.trim();
+    var NomeFantasia = inp_razao.value.trim();
+    var QuantidadeHectare = inp_hectar.value.trim();
+    var StatusCadastro = 'ativo';
+    var DataCriacao = obterDataAtualISO();
 
-    /*Tabela Empresa*/
-    var CNPJ = Number(inp_cnpj.value);
-    var TamanhoEmpresa = inp_tamanho.value;
-    var sede = inp_sede.value;
-    CEP = Number(inp_cep.value);
-    var cidade = inp_cidade.value;
-    var numero = inp_numero.value;
-    var razao = inp_razao.value;
-    var QuantidadeHectare = Number(inp_hectar.value);
-    var matriz = inp_matriz.value
-    var uf = inp_uf.value
-    var logradouro = inp_logradouro.value
-    var NomeFantasia = inp_razao.value
-    // var DataCriacao = inp_dataCriacao.value;
+    CEP = inp_cep.value.trim();
+    UF = inp_uf.value.trim();
+    Cidade = inp_cidade.value.trim();
+    Logradouro = inp_logradouro.value.trim();
+    Numero = inp_numero.value.trim();
+    Complemento = inp_complemento.value.trim();
 
-    
-    CEP = Number(inp_cep.value);
-    UF = inp_uf.value;
-    Cidade = inp_cidade.value;
-    Logradouro = inp_logradouro.value;
-    Numero = Number(inp_numero.value);
-    Complemento = inp_complemento.value;
-    
+    var empresaPreenchida = NomeFantasia !== '' && CNPJ !== '' && TamanhoEmpresa !== '' && QuantidadeHectare !== '';
+    var enderecoPreenchido = CEP !== '' && UF !== '' && Cidade !== '' && Logradouro !== '' && Numero !== '';
 
-
-
-
-
-    var nenhumNull = NomeFantasia != '' && CNPJ != '' && TamanhoEmpresa != '' && QuantidadeHectare != '' && StatusCadastro != '' && DataCriacao != '' 
-
-    if (nenhumNull) {
-
-        fetch("/empresas/cadastrarEmpresa", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                NomeFantasiaServer: NomeFantasia,
-                CNPJServer: CNPJ,
-                TamanhoEmpresaServer: TamanhoEmpresa,
-                QuantidadeHectareServer: QuantidadeHectare
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-                
-
-                    alert('Deu certo!! Inserir Empresa')
-
-                    buscarIDEmpresa(CNPJ);
-
-
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-           
-            });
-
+    if (!empresaPreenchida) {
+        alert('Preencha os campos obrigatórios da empresa antes de continuar.');
         return false;
-    } else {
-        alert('Por favor, preencher todos os campos!!')
     }
 
+    if (!enderecoPreenchido) {
+        alert('Preencha os campos obrigatórios do endereço antes de continuar.');
+        return false;
+    }
 
+    fetch("/empresas/cadastrarEmpresa", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            NomeFantasiaServer: NomeFantasia,
+            CNPJServer: CNPJ,
+            TamanhoEmpresaServer: TamanhoEmpresa,
+            QuantidadeHectareServer: QuantidadeHectare,
+            StatusCadastroServer: StatusCadastro,
+            DataCriacaoServer: DataCriacao
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
 
+            if (resposta.ok) {
+                buscarIDEmpresa(CNPJ);
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+    return false;
 }
 
-function buscarIDEmpresa(cnpj){
+function buscarIDEmpresa(cnpj) {
+    var cnpjCodificado = encodeURIComponent(cnpj);
 
-    fetch(`/empresas/buscarID/${cnpj}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/empresas/buscarID?cnpj=${cnpjCodificado}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
 
-
                 var valor = resposta[0].idEmpresa;
 
                 sessionStorage.ID_EMPRESA = valor;
 
-                
-                cadastrarEndereco()
-                
-
-
+                cadastrarEndereco();
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -164,6 +135,4 @@ function buscarIDEmpresa(cnpj){
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
-
-
 }
