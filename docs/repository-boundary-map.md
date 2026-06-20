@@ -130,8 +130,6 @@ Evidências de resíduo herdado ou quebrado de template:
   `DataCriacao`, que não são definidas no escopo do controller;
 - `public/js/CadastrarEmpresa.js` também referencia `StatusCadastro` e
   `DataCriacao` sem defini-las antes da expressão de validação;
-- `routes/empresas.js` expõe `/buscarIDEndereco`, mas
-  `empresaController.buscarIDEndereco` não é exportado nem definido.
 
 Interpretação atual:
 
