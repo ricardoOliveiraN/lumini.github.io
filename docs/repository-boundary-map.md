@@ -141,37 +141,6 @@ Interpretação atual:
 - este fluxo deve ser classificado como ativo-mas-parcial, e não como legado
   puro ou código seguro para produção.
 
-## Registros de Runtime Derivados de Template Validados
-
-### `/avisos`
-
-Classificação:
-
-- grupo de rotas legado derivado de template;
-- registrado por `web-data-viz/app.js`, mas desalinhado do schema Lumini;
-- nenhum chamador frontend de runtime foi confirmado nesta passada;
-- deve permanecer no lugar até que uma passada futura de limpeza decida se deve
-  isolar ou remover rotas de template.
-
-Evidências:
-
-- `web-data-viz/src/models/avisoModel.js` consulta e altera uma tabela `aviso`;
-- `artefatos-banco/sql-ativo/schema-ativo-lumini.sql` não define uma tabela `aviso`;
-- `avisoModel.js` espera colunas de template como `aviso.id`,
-  `aviso.fk_usuario` e `usuario.id`, enquanto
-  `schema-ativo-lumini.sql` usa
-  `usuario.idUsuario` e `usuario.fkUsuario_Empresa`;
-- `web-data-viz/artefatos-template/script-tabelas-template-aquatech.sql`, o arquivo SQL de template
-  herdado já identificado, define `CREATE TABLE aviso`;
-- a busca no frontend encontrou conteúdo textual com "aviso", mas nenhuma
-  chamada ativa de `fetch` ou navegação para `/avisos`.
-
-Interpretação atual:
-
-- `/avisos` não faz parte do domínio operacional Lumini confirmado;
-- é melhor tratá-lo como resíduo de template registrado, e não como código ativo
-  do Lumini ou módulo de negócio ambíguo.
-
 ## Candidato Ativo de Banco de Dados
 
 A fonte de banco de dados atualmente mais alinhada ao runtime é:
@@ -202,7 +171,6 @@ Rotulagem operacional nesta branch:
 
 O repositório ainda contém fontes SQL concorrentes ou legadas:
 
-- `web-data-viz/artefatos-template/script-tabelas-template-aquatech.sql`
 - `artefatos-banco/sql-ativo/seed-ativo-lumini.sql`
 - `artefatos-banco/sql-ativo/consultas-referencia-lumini.sql`
 - `artefatos-banco/modelo-workbench-lumini.mwb`
@@ -214,8 +182,6 @@ Interpretação atual:
   ao schema ativo;
 - `sql-ativo/consultas-referencia-lumini.sql` preserva consultas utilitárias
   associadas ao domínio ativo;
-- `script-tabelas-template-aquatech.sql` parece herdado do template acadêmico original e
-  referencia outro domínio;
 - os arquivos `.mwb` são artefatos de modelagem/apoio, não entradas de runtime.
 
 Ação atual de baixo risco no repositório:
@@ -224,9 +190,7 @@ Ação atual de baixo risco no repositório:
 - rotular `sql-ativo/schema-ativo-lumini.sql` como candidato ativo;
 - rotular `sql-ativo/seed-ativo-lumini.sql` como carga mockada opcional;
 - rotular `sql-ativo/consultas-referencia-lumini.sql` como referência de apoio;
-- manter a pasta `artefatos-banco/` como área explícita de apoio estrutural;
-- manter o SQL legado isolado em `web-data-viz/artefatos-template/` e o schema
-  ativo em `artefatos-banco/sql-ativo/schema-ativo-lumini.sql`.
+- manter a pasta `artefatos-banco/` como área explícita de apoio estrutural.
 
 ## Limite de Firmware e Hardware
 
@@ -259,41 +223,17 @@ Material atualmente isolado como contexto histórico, acadêmico ou de apoio:
 Esses itens podem conter contexto útil, mas atualmente não são a fonte primária
 de verdade para o comportamento de runtime.
 
-## Artefatos de Raiz Não-Runtime Validados
-
-### `package-lock.json` raiz
-
-Classificação:
-
-- lockfile npm órfão no nível raiz;
-- não existe `package.json` raiz ao lado dele;
-- o lockfile não possui entradas de pacote em `packages`;
-- o pacote real da aplicação Node.js é `web-data-viz/package.json`.
-
-Interpretação atual:
-
-- o `package-lock.json` raiz não faz parte da configuração ativa de runtime;
-- ele é candidato de limpeza, enquanto `web-data-viz/package.json` permanece
-  como manifesto operacional do pacote.
-
 ## Áreas Derivadas de Template ou Suspeitas de Legado
 
 As áreas abaixo mostram sinais fortes de código herdado de template, material
 somente de apoio ou exemplos paralelos:
 
-- `web-data-viz/src/routes/aquarios.js`
-- `web-data-viz/src/models/aquarioModel.js`
-- `web-data-viz/src/routes/avisos.js`
-- `web-data-viz/src/controllers/avisoController.js`
-- `web-data-viz/src/models/avisoModel.js`
-- `web-data-viz/artefatos-template/script-tabelas-template-aquatech.sql`
 - `web-data-viz/README.md`
-- `web-data-viz/artefatos-template/documentos-de-apoio/`
 - `bobia-standalone/`
 
-Essas áreas não devem ser removidas no ciclo inicial. Elas devem primeiro ser
-classificadas, validadas e, quando apropriado, isoladas da superfície
-operacional.
+As rotas `/avisos` e `/aquarios`, o lockfile órfão da raiz e
+`web-data-viz/artefatos-template/` já foram removidos após validação como fora
+do runtime operacional.
 
 ## Itens Ambíguos Pendentes de Validação
 
@@ -329,8 +269,8 @@ Até validação adicional, trate o repositório como três camadas:
 - `web-data-viz/`
 - páginas frontend e JS ativos usados em login e dashboards
 - rotas, controllers, models e configuração de banco ativos no backend
-- a superfície `public/bobIA.html` permanece na árvore executável, mas sua cópia
-  standalone do projeto BobIA foi isolada de `public/`
+- a superfície `public/bobIA.html` permanece na árvore executável, enquanto
+  `bobia-standalone/` permanece como serviço separado fora do backend principal
 
 Contexto importante da revisão:
 
@@ -358,12 +298,9 @@ Dentro de `artefatos-banco/`, a interpretação atual é:
 ### 3. Material histórico, acadêmico, de template ou pendente de validação
 
 - entregáveis de apresentação e sprint
-- exemplos de apoio e remanescentes de template
-- SQL legado e submódulos pouco claros
+- SQL legado e submódulos pouco claros ainda presentes fora do runtime
 - `historico-academico/` como local explícito para materiais acadêmicos e
   históricos de raiz removidos do caminho operacional
-- `web-data-viz/artefatos-template/` como local explícito para assets de apoio
-  derivados de template que não pertencem ao caminho principal de runtime
 
 ## Próximas Ações Estruturais
 
@@ -371,8 +308,8 @@ Os próximos passos de baixo risco devem ser:
 
 1. decidir se será feita uma passada somente de limpeza para artefatos
    não-runtime validados, como diretórios vazios na raiz e lockfiles órfãos;
-2. decidir se rotas de template registradas, como `/avisos` e `/aquarios`, serão
-   isoladas da superfície de registro executável;
+2. verificar se ainda restam registros ou artefatos herdados de template fora
+   da superfície operacional já validada;
 3. manter os rótulos de banco explícitos e verificar se algum módulo backend
    restante ainda contradiz `schema-ativo-lumini.sql`;
 4. isolar análise efêmera da documentação versionada do repositório;
@@ -386,20 +323,15 @@ Status atual da validação de runtime:
 - os caminhos de criação de empresa/endereço se alinham a
   `schema-ativo-lumini.sql` em intenção, mas listagem, busca, validação e uma
   entrada de rota ainda contêm pressupostos quebrados ou da era do template;
-- nenhum comportamento de runtime foi alterado durante estas passadas de
-  classificação;
-- o grupo de rotas `/avisos` foi validado como código legado derivado de
-  template, registrado na aplicação, mas desalinhado de
-  `schema-ativo-lumini.sql`.
+- as rotas herdadas `/avisos` e `/aquarios` foram removidas após validação
+  como código de template sem utilidade operacional confirmada.
 
 Status atual de artefatos não-runtime:
 
 - `dat-acqu-ino/` foi removido após validação como diretório vazio no nível
   raiz, sem papel de runtime identificado;
-- o `package-lock.json` raiz foi validado como lockfile órfão sem `package.json`
-  raiz correspondente nem entradas de pacote;
-- o `package-lock.json` raiz permanece como candidato de limpeza, não entrada
-  ativa de runtime.
+- o `package-lock.json` raiz foi removido após validação como lockfile órfão sem
+  `package.json` raiz correspondente nem entradas de pacote.
 
 Status atual da reorganização histórica:
 
@@ -410,12 +342,11 @@ Status atual da reorganização histórica:
 
 Status atual do isolamento de template:
 
-- `web-data-viz/DOCUMENTOS_DE_APOIO/` foi isolado em
-  `web-data-viz/artefatos-template/documentos-de-apoio/`
-- `web-data-viz/public/BobIA/` foi isolado em
-  `bobia-standalone/`
+- `web-data-viz/public/BobIA/` foi isolado em `bobia-standalone/`
 - a página ativa `public/bobIA.html` e seus assets frontend foram mantidos no
   lugar porque ainda pertencem à superfície visível de runtime
+- o diretório `web-data-viz/artefatos-template/` foi removido após validação
+  como material fora do runtime operacional
 - esse isolamento é consistente com a interpretação de que `web-data-viz` veio
   de uma base acadêmica reutilizável, e não de um codebase exclusivo do Lumini
 

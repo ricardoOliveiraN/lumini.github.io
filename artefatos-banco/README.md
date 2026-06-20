@@ -28,10 +28,7 @@ Com base no fluxo confirmado em `web-data-viz/`:
 - `sql-ativo/seed-ativo-lumini.sql` deve ser lido como apoio de ambiente
   local, não como definição estrutural;
 - `sql-ativo/consultas-referencia-lumini.sql` deve ser lido como material de
-  referência, não como etapa obrigatória de inicialização;
-- `web-data-viz/artefatos-template/script-tabelas-template-aquatech.sql`
-  continua tratado como artefato herdado de template e não como fonte
-  principal do schema Lumini.
+  referência, não como etapa obrigatória de inicialização.
 
 ## Regra de saneamento nesta fase
 
