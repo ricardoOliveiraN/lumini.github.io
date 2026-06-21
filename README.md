@@ -225,15 +225,6 @@ primeira solução tecnológica integrada para um problema real de negócio:
 - a demonstração completa com leitura serial em tempo real ainda depende de
   ambiente local com hardware e porta serial corretamente configurados.
 
-## Próximos Passos
-
-- alinhar os demais documentos públicos do projeto ao README consolidado;
-- refinar a apresentação final do Lumini para futura publicação/autoria própria;
-- decidir o nível final de demonstração entre setup mockado e setup sensorial
-  real;
-- consolidar, quando necessário, instruções de execução mais verificadas do
-  runtime principal.
-
 ## Licença
 
 As condições de uso e os créditos aplicáveis devem seguir os arquivos de
