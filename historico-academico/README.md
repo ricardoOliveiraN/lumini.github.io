@@ -1,37 +1,133 @@
-# Historico academico
+# historico-academico
 
-## Objetivo
+## Visão Geral
 
-Este diretório reúne materiais históricos, acadêmicos e de apoio que foram
-movidos para fora do caminho operacional do repositório durante o primeiro
-ciclo de saneamento estrutural.
+`historico-academico/` é a área de preservação histórica, acadêmica e
+documental do Lumini.
 
-Os nomes internos foram normalizados em ASCII com hífens para reduzir
-ambiguidade, melhorar navegação e evitar fricção com shell, scripts e links.
+Esta pasta reúne materiais que ajudam a explicar a origem, a evolução e os
+entregáveis acadêmicos do projeto, mas que não fazem parte da superfície
+executável principal.
 
-Além disso, os arquivos foram renomeados com base em leitura superficial de
-nome, formato e metadados, seguindo estas convenções:
+Dentro do conjunto do Lumini, esta é a área de memória documental e
+rastreabilidade.
 
-- `fonte-editavel`: arquivo de origem em formato editável;
-- `exportada` ou `pdf`: saída derivada para leitura/distribuição;
-- `sprint-01` e `final`: estágio acadêmico inferido pelo próprio arquivo;
-- `grupo-03`: material produzido na fase posterior à transferência do projeto;
-- `origem-grupo-08`: material da primeira sprint, antes do sorteio e da
-  transferência do projeto entre grupos;
-- `rascunho-sem-titulo`: artefato ambíguo sem nome descritivo no original.
+## Papel no Projeto
 
-## O que fica aqui
+`historico-academico/` existe para preservar:
 
-- apresentações;
-- documentação de sprint, entregáveis acadêmicos e fluxogramas;
-- diagramas de apoio separados por tipo;
-- documentos administrativos ou de apoio histórico, como `GMUD.docx`.
+- apresentações acadêmicas;
+- documentação de sprint;
+- documentos finais exportados e editáveis;
+- diagramas técnicos e de visão de negócio;
+- fluxogramas;
+- artefatos administrativos ou históricos de apoio.
 
-## Regra nesta fase
+Seu valor principal está em ajudar a responder:
 
-- este material deve ser preservado para rastreabilidade;
-- ele não deve ser tratado como parte do núcleo executável atual;
-- qualquer reaproveitamento futuro precisa ser explícito e validado contra o
-  runtime real.
-- quando houver cópias exatas entre arquivos históricos, manter a versão com
-  nome mais descritivo e remover a duplicata mais ambígua.
+- como o projeto foi apresentado ao longo da sua evolução acadêmica;
+- quais documentos e diagramas foram produzidos;
+- quais materiais ajudam a entender contexto e decisões do projeto;
+- o que pertence à história do Lumini e não ao runtime atual.
+
+## O Que Fica Aqui
+
+Os grupos principais desta pasta são:
+
+- `apresentacoes/`
+- `documentacao-academica/`
+- `diagramas-solucao-tecnica/`
+- `diagramas-visao-negocio/`
+- `documentacao-academica/fluxogramas/`
+
+Exemplos concretos de artefatos:
+
+- `apresentacoes/sprint-01/apresentacao-lumini-sprint-01.pdf`
+- `documentacao-academica/documentacao-lumini-fonte-editavel.docx`
+- `documentacao-academica/documentacao-lumini-exportada.pdf`
+- `documentacao-academica/apresentacao-final-lumini-exportada.pdf`
+- `documentacao-academica/backlog-lumini-fonte-editavel.xlsx`
+- `documentacao-academica/gmud-lumini-grupo-03-exportada.pdf`
+- `diagramas-solucao-tecnica/diagrama-solucao-tecnica-lumini.png`
+- `diagramas-visao-negocio/diagrama-visao-negocio-lumini-2024-09.pdf`
+
+## Como Esta Pasta Deve Ser Lida
+
+Esta pasta deve ser lida como:
+
+- apoio documental;
+- memória acadêmica;
+- evidência histórica;
+- contexto para entendimento do projeto.
+
+Ela não deve ser tratada como:
+
+- núcleo operacional;
+- fonte normativa do runtime atual;
+- substituta dos documentos técnicos ativos das outras áreas.
+
+## Relação com o Restante do Lumini
+
+### Relação com `web-data-viz/`
+
+Há uma relação de contexto e rastreabilidade.
+
+`web-data-viz/` mostra a superfície executável atual, enquanto
+`historico-academico/` preserva parte do material que ajuda a explicar origem,
+entregáveis acadêmicos e evolução do projeto.
+
+### Relação com `artefatos-banco/`
+
+Há uma relação indireta de apoio documental.
+
+Diagramas, fluxogramas e documentos acadêmicos podem ajudar a interpretar o
+domínio do banco, mas não substituem a leitura técnica da estrutura SQL ativa.
+
+### Relação com `firmware-arduino/`
+
+Há uma relação contextual e explicativa.
+
+Parte dos materiais históricos pode ajudar a contextualizar o papel do sensor,
+da coleta física e da proposta técnica do projeto.
+
+### Relação com `bobia-standalone/`
+
+Não há ligação estrutural direta identificada.
+
+No máximo, existe proximidade de contexto acadêmico dentro do mesmo projeto.
+
+## Estrutura
+
+```text
+historico-academico/
+├── README.md
+├── apresentacoes/
+│   └── sprint-01/
+├── documentacao-academica/
+│   ├── sprint-01/
+│   └── fluxogramas/
+├── diagramas-solucao-tecnica/
+└── diagramas-visao-negocio/
+```
+
+## Observações
+
+- esta pasta preserva materiais úteis para leitura histórica e explicativa do
+  Lumini;
+- parte dos nomes atuais foi organizada para facilitar navegação e leitura;
+- a utilidade de cada artefato pode variar entre evidência histórica, apoio
+  explicativo e documentação acadêmica;
+- qualquer reaproveitamento futuro de conteúdo desta pasta para documentação
+  ativa deve ser explícito e validado contra o estado real do projeto.
+
+## Relação com o README Principal
+
+O README da raiz de `lumini.github.io/` apresenta o Lumini como projeto
+completo.
+
+Este README foca apenas em `historico-academico/`, isto é:
+
+- a memória documental do projeto;
+- os grupos de material preservados;
+- o papel histórico/acadêmico dessa pasta;
+- e os limites corretos de interpretação dessa área.

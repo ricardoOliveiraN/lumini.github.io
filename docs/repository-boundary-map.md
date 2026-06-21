@@ -3,17 +3,16 @@
 ## Propósito
 
 Este documento registra o escopo executável atual e os principais limites do
-repositório identificados durante o ciclo inicial de recuperação estrutural de
-`lumini.github.io`.
+repositório `lumini.github.io` dentro do enquadramento consolidado atual do
+projeto Lumini.
 
-Ele existe para apoiar o refinamento de baixo risco do repositório original
-antes de qualquer correção mais profunda ou trabalho de derivação.
+Ele existe para apoiar a leitura estrutural do projeto, distinguir runtime,
+apoio técnico e material histórico, e preparar uma versão derivada futura com
+fronteiras e papéis mais explícitos.
 
-Este projeto está sendo revisado como um **piloto de refinamento de portfólio**,
-não como a principal vitrine de Engenharia de Dados. O objetivo imediato é
-tornar o repositório compreensível, estruturalmente mais seguro para inspeção e
-preparado para uma versão derivada futura com escopo, origem e limitações
-explícitos.
+Este projeto está sendo apresentado como um projeto acadêmico reorganizado para
+se tornar mais compreensível, apresentável e rastreável como parte do
+desenvolvimento na faculdade e também como artefato de portfólio.
 
 ## Intenção da Revisão
 
@@ -52,6 +51,7 @@ Evidências:
 - `/dashFunc`
 - `/funcionarios`
 - `/empresas` (fluxo do domínio Lumini, parcialmente adaptado e estruturalmente frágil)
+- `/sensores`
 
 ### Fluxo frontend confirmado no fluxo atual
 
@@ -200,10 +200,12 @@ Material relevante relacionado a hardware identificado até agora:
 
 Interpretação atual:
 
-- o código Arduino é relevante como contexto técnico para captura do sensor;
-- os materiais de hardware ainda não foram confirmados como parte de um caminho
-  de ingestão ativo no runtime atual;
-- eles devem ser preservados durante o primeiro ciclo estrutural.
+- o código Arduino é parte relevante do contexto técnico de coleta;
+- `firmware-arduino/` não é o centro operacional do projeto, mas se conecta ao
+  runtime por meio da leitura serial consumida por `web-data-viz/`;
+- os materiais de hardware e montagem ajudam a explicar como o dado físico de
+  luminosidade chega ao sistema;
+- eles devem ser preservados como parte complementar do conjunto Lumini.
 
 ## Material Histórico, Acadêmico e de Apoio
 
@@ -218,16 +220,24 @@ Material atualmente isolado como contexto histórico, acadêmico ou de apoio:
 - `historico-academico/documentacao-academica/fluxogramas/`
 - `historico-academico/documentacao-academica/gmud-lumini-fonte-editavel.docx`
 
-Esses itens podem conter contexto útil, mas atualmente não são a fonte primária
-de verdade para o comportamento de runtime.
+Esses itens podem conter contexto útil, problema de negócio, justificativa de
+solução, diagramas e evidências de evolução, mas atualmente não são a fonte
+primária de verdade para o comportamento de runtime.
 
-## Áreas Derivadas de Template ou Suspeitas de Legado
+## Áreas com Origem Externa, Acadêmica ou Separada do Núcleo Operacional
 
-As áreas abaixo mostram sinais fortes de código herdado de template, material
-somente de apoio ou exemplos paralelos:
+As áreas abaixo exigem leitura cuidadosa de enquadramento para não serem
+interpretadas de forma simplificada ou contraditória:
 
-- `web-data-viz/README.md`
 - `bobia-standalone/`
+
+Interpretação atual:
+
+- `bobia-standalone/` deve ser lido como um serviço separado de apoio usado no
+  contexto do Lumini;
+- sua origem acadêmica própria não deve ser apagada nem confundida com módulo
+  nativo do núcleo `web-data-viz/`;
+- ele faz parte do conjunto documentado do Lumini, mas com fronteira própria.
 
 As rotas `/avisos` e `/aquarios`, o lockfile órfão da raiz e
 `web-data-viz/artefatos-template/` já foram removidos após validação como fora
@@ -245,7 +255,8 @@ evidências forem encontradas durante validação de runtime ou limpeza.
 - confirmar qual superfície de runtime é realmente usada;
 - identificar a fonte de banco de dados mais compatível com o runtime;
 - separar escopo executável de material de apoio e histórico;
-- rotular módulos legados ou derivados de template sem alterar comportamento;
+- esclarecer o papel de cada parte principal do conjunto Lumini sem distorcer
+  sua origem ou sua fronteira;
 - preparar o repositório para uma versão derivada futura com enquadramento de
   portfólio explícito.
 

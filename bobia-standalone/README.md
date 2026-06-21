@@ -1,74 +1,117 @@
-# BobIA
+# BobIA no Lumini
 
-_Este é um projeto educativo desenvolvido para auxiliar os alunos na disciplina de Arquitetura Computacional. Ele consiste em uma API e uma interface web que utilizam o serviço de inteligência artificial Google Generative AI (Gemini) para responder perguntas relacionadas ao tema da disciplina._
+## Visão Geral
 
-## Instalação e Configuração
+Este diretório contém o serviço separado do BobIA usado como apoio ao projeto
+Lumini no contexto acadêmico em que ele foi exigido.
 
-### Clonar o repositório:
+Ele não faz parte do backend principal de `web-data-viz/`, mas pode ser
+consumido pelo frontend do Lumini quando `BOBIA_API_BASE_URL` aponta para uma
+instância ativa deste serviço.
 
-```bash
-git clone https://github.com/BandTec/BobIA.git
-```
+## O Que Este Diretório É
 
-### Instalar as dependências:
+`bobia-standalone/` é uma aplicação Node.js/Express com:
 
-*Navegue até o diretório clonado e execute o seguinte comando para instalar as dependências necessárias:*
+- uma API HTTP simples;
+- uma interface web mínima para teste local;
+- integração com Google Generative AI;
+- uma rota `POST /perguntar` para receber perguntas e devolver respostas.
+
+## Papel Dentro do Lumini
+
+No contexto atual do Lumini, o BobIA funciona como um serviço auxiliar
+separado.
+
+Sua função é oferecer uma camada de interação por IA sem incorporar essa
+responsabilidade diretamente ao backend principal do projeto.
+
+## Como Ele Se Conecta ao Lumini
+
+A integração com o Lumini acontece por configuração externa.
+
+O fluxo atual é:
+
+1. `web-data-viz/` expõe `GET /js/bobia-config.js`;
+2. o frontend do Lumini lê `window.LUMINI_CONFIG.bobiaApiBaseUrl`;
+3. os scripts do frontend montam chamadas para `POST /perguntar`;
+4. este serviço responde usando a chave configurada para o Gemini.
+
+Se `BOBIA_API_BASE_URL` não estiver configurada no `web-data-viz/`, o Lumini
+continua existindo sem esse serviço.
+
+## Tecnologias
+
+- Node.js
+- Express
+- `dotenv`
+- `@google/generative-ai`
+- HTML/CSS para interface local simples
+
+## Setup Local
+
+1. Instale as dependências:
 
 ```bash
 npm install
 ```
 
-### Configurar as variáveis de ambiente:
+2. Crie `.env` a partir de `.env.example`.
 
-⚠️⚠️⚠️*O arquivo .env deve ser criado e conter as variáveis de ambiente necessárias para configurar a aplicação. Você deve definir as seguintes variáveis:*
+3. Configure as variáveis:
 
 ```env
-MINHA_CHAVE='sua_chave_do_Google_Generative_AI'
-PORTA=3000
+MINHA_CHAVE=
+PORTA=
 ```
 
-_*Substitua 'sua_chave_do_Google_Generative_AI' pela sua chave de API do Google Generative AI, conforme orientações em material de aula.*_
-
-## Utilização
-
-### Iniciar o servidor:
-
-*Para iniciar o servidor, execute o seguinte comando:*
+4. Inicie o serviço:
 
 ```bash
 npm start
 ```
 
-### Acessar a interface web:
+## Superfície Exposta
 
-*Acesse http://localhost:3000 em um navegador da web para acessar a interface de usuário. Você poderá digitar uma pergunta e clicar no botão "Gerar Resposta" para receber uma resposta da inteligência artificial.*
+Pontos principais:
 
-## Estrutura do Projeto
+- `main.js`
+- `public/index.html`
+- `POST /perguntar`
 
-- **main.js:** Este arquivo contém o código principal da API, incluindo a configuração do servidor Express e a definição das rotas.
-- **index.html:** Esta é a interface de usuário web que permite aos usuários interagir com a API.
-- **.env:** Este arquivo contém as variáveis de ambiente necessárias para configurar o projeto, incluindo a chave de API do Google Generative AI e a porta do servidor. Você deve criar este arquivo após clonar o BobIA em sua máquina.
-- **package.json:** Este arquivo contém as informações do projeto e as dependências necessárias.
+O serviço também publica a interface estática de teste em `/`.
 
-## Autores
+## Como Testar
 
-- Matheus Matos (@MatheusFerreiraMatos)
-- Alexander Gonçalves (@gfalexander)
-- Marise Miranda (@miranda500)
+Depois de iniciar o servidor:
 
-## Fontes bibliográficas
+- acesse `http://localhost:<PORTA>`;
+- envie uma pergunta pela interface local;
+- ou faça uma chamada HTTP para `POST /perguntar`.
 
-- [1] [NodeJs](https://nodejs.org/en)
-- [2] [NPM](https://nodejs.org/en)
-- [3] [Gemini](https://nodejs.org/en)
-- [4] [DotEnv](https://www.npmjs.com/package/express)
-- [5] [Express](https://www.npmjs.com/package/express)
-- [6] [Get started with the Gemini API in Node.js applications](https://ai.google.dev/tutorials/get_started_node?hl=en)
+## Limitações
 
-Licenças
----------
+- depende de uma chave válida do Google Generative AI;
+- o serviço é opcional do ponto de vista do runtime principal do Lumini;
+- este diretório não substitui o backend principal de `web-data-viz/`;
+- a interface local existe principalmente para teste direto do serviço.
 
-Este projeto é licenciado sob a licença Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Consulte o arquivo LICENSE-CC-BY-NC para obter detalhes.
+## Estrutura
 
-Partes específicas deste projeto estão licenciadas sob a Licença MIT. Consulte o arquivo LICENSE para obter detalhes.
+```text
+bobia-standalone/
+├── main.js
+├── package.json
+├── .env.example
+├── README.md
+└── public/
+    ├── index.html
+    └── style.css
+```
 
+## Crédito de Origem
+
+Este serviço tem origem acadêmica ligada à São Paulo Tech School / Bandtec e
+foi utilizado no projeto Lumini conforme a diretriz do projeto da faculdade.
+Este README descreve o papel atual do diretório dentro do Lumini, sem tratar o
+BobIA como criação original deste repositório.
