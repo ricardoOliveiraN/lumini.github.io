@@ -1,104 +1,231 @@
-<img src="https://user-images.githubusercontent.com/46379117/192358781-9ca879e4-e55e-4d0d-b876-f9a4a2ed9ae8.png" width="600px">
+# web-data-viz
 
-_Web Data Visualization = Visualização de Dados na Web_
+## Visão Geral
 
-_Implementação de Referência para o seu Projeto de Primeiro Semestre_
+`web-data-viz/` é o centro operacional atual do Lumini.
 
-<hr>
+Este diretório concentra a aplicação web principal do projeto, reunindo:
 
-# Como usar
+- backend HTTP em Node.js/Express;
+- frontend estático servido pelo próprio backend;
+- rotas, controllers e models do domínio atual;
+- configuração de ambiente;
+- leitura serial local ligada ao sensor;
+- ponte de integração opcional com o BobIA.
 
-1. Clone este repositório em sua máquina.
+Dentro do conjunto do Lumini, esta é a pasta que melhor representa onde o
+projeto efetivamente roda hoje.
 
+## Papel no Projeto
 
-1. Crie, no Banco de Dados, as tabelas necessárias para o funcionamento deste projeto.
-- Siga as instruções no arquivo **/src/database/script-tabelas.sql**
+`web-data-viz/` é a camada que conecta:
 
+- interface do usuário;
+- lógica HTTP;
+- acesso ao banco do domínio Lumini;
+- leitura serial relacionada ao sensor Arduino;
+- integração opcional com o serviço separado do BobIA.
 
-3. Acesse o arquivo **app.js** e parametrize o ambiente.
-- Se você estiver utilizando o Ambiente de Produção (remoto), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **var ambiente_processo = 'producao';**
-- Se você estiver utilizando o Ambiente de Desenvolvimento (local), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **var ambiente_processo = 'desenvolvimento';**
+Se o README principal da raiz explica o projeto como um todo, este README
+explica a parte que sustenta a superfície executável principal.
 
-4. Adicione as credenciais de Banco de Dados no arquivo **.env** ou em **.end.dev**, seguindo as instruções neste.
+## Backend Exposto
 
-5. Acesse este repositório no seu terminal (GitBash ou VSCode) e execute os comandos abaixo:
+O `app.js` registra atualmente:
 
+- `/`
+- `/usuarios`
+- `/medidas`
+- `/sensores`
+- `/empresas`
+- `/dashFunc`
+- `/funcionarios`
+
+Também expõe:
+
+- `GET /js/bobia-config.js`
+
+Essa rota injeta no frontend a configuração de `BOBIA_API_BASE_URL`.
+
+## Frontend do Diretório
+
+As páginas HTML ficam em `public/` e são servidas pelo próprio Express via
+`express.static(...)`.
+
+Entre as telas atuais estão:
+
+- `index.html`
+- `TelaLogin.html`
+- `TelaDash-Geral.html`
+- `TelaDash-Talhao.html`
+- `TelaDash-Sensor.html`
+- `CadastrarEmpresa.html`
+- `CadastrarUsuario.html`
+- `DashFuncionario.html`
+- `bobIA.html`
+
+## Dependências Principais
+
+- Node.js
+- npm
+- MySQL compatível com o schema ativo do Lumini
+- configuração local de ambiente
+- opcionalmente, porta serial para leitura de sensor
+- opcionalmente, serviço BobIA externo
+
+## Banco de Dados
+
+O schema esperado por este diretório fica fora dele, em:
+
+- `../artefatos-banco/sql-ativo/schema-ativo-lumini.sql`
+
+Arquivos auxiliares:
+
+- `../artefatos-banco/sql-ativo/seed-ativo-lumini.sql`
+- `../artefatos-banco/sql-ativo/consultas-referencia-lumini.sql`
+- `../artefatos-banco/setup-ativo-lumini.sql`
+
+## Configuração de Ambiente
+
+Os arquivos de exemplo estão neste diretório:
+
+- `.env.example`
+- `.env.dev.example`
+
+As variáveis esperadas são:
+
+```env
+AMBIENTE_PROCESSO=
+
+DB_HOST=
+DB_DATABASE=
+DB_USER=
+DB_PASSWORD=
+DB_PORT=
+
+APP_PORT=
+APP_HOST=
+BOBIA_API_BASE_URL=
+
+SERIAL_PORT=
+SERIAL_BAUD_RATE=9600
+SERIAL_BUFFER_MAX=100
 ```
-npm i
-``` 
-_O comando acima irá instalar as bibliotecas necessárias para o funcionamento do projeto. As bibliotecas a serem instaladas estão listadas no arquivo **package.json** então é muito importante que este não seja alterado. Será criada uma nova pasta/diretório chamado **node_modules** quando o comando for finalizado, que é onde as bibliotecas estão localizadas. Não altere a pasta/diretório._
 
+Observações:
+
+- `app.js` escolhe entre `.env` e `.env.dev`;
+- a seleção ainda depende da variável local `ambiente_processo` dentro do
+  próprio `app.js`;
+- hoje o arquivo está configurado para `desenvolvimento`;
+- sem `SERIAL_PORT`, a aplicação continua subindo, mas a leitura serial em
+  tempo real não funciona.
+
+## Como Executar
+
+### 1. Instalar dependências
+
+```bash
+npm install
 ```
+
+### 2. Configurar ambiente
+
+Crie e preencha `.env.dev` a partir de `.env.dev.example` ou ajuste `.env`,
+conforme o ambiente que deseja usar.
+
+### 3. Subir o banco
+
+Monte o banco com base em `../artefatos-banco/`, usando pelo menos o schema
+ativo do Lumini.
+
+### 4. Iniciar a aplicação
+
+```bash
 npm start
-``` 
+```
 
-_O comando acima irá iniciar seu projeto e efetuar os comandos de acordo com a sua parametrização feita nos passos anteriores._
+Para desenvolvimento com reload:
 
-6. Para "ver" seu projeto funcionando, acesse em seu navegador o caminho **informado no terminal**.
+```bash
+npm run dev
+```
 
-7. Caso queira parar a execução, tecle **CTRL+C** no terminal em que o projeto está rodando.
+Quando o servidor subir, o terminal exibirá a URL formada com `APP_HOST` e
+`APP_PORT`.
 
-## Adicionar novo recurso ao projeto
+## BobIA
 
-**"Recurso? O que é?"** Enquanto no Banco de Dados chamamos as tabelas de "entidades", quando tratamos de desenvolvimento WEB usamos a palavra "recurso" para se referir a algo que podemos criar, ler, atualizar ou deletar [1]. Estas ações são conhecidas como CRUD: Create, Read, Update e Delete. Para acessar cada ação, usamos os métodos HTTP: POST, GET, PUT e DELETE [2]. (Há outros verbos, porém com estes já conseguimos efetuar CRUDs). 
+O frontend do Lumini não implementa o BobIA dentro deste backend.
 
-**Tabela para ajudar a fazer a associação**
+O fluxo atual é:
 
-<table>
-  <tr>
-    <th>C.R.U.D</th>
-    <th>Ação</th>
-    <th>Tradução</th>
-    <th>Verbo HTTP *</th>
-    <th>Comando BD</th>
-  </tr>
-  <tr>
-    <td>C</td>
-    <td>Create</td>
-    <td>Criar</td>
-    <td>POST</td>
-    <td>INSERT</td>
-  </tr>
-  <tr>
-    <td>R</td>
-    <td>Read</td>
-    <td>Ler</td>
-    <td>GET</td>
-    <td>SELECT</td>
-  </tr>
-  <tr>
-    <td>U</td>
-    <td>Update</td>
-    <td>Atualizar</td>
-    <td>PUT</td>
-    <td>UPDATE</td>
-  </tr>
-  <tr>
-    <td>D</td>
-    <td>Delete</td>
-    <td>Deletar</td>
-    <td>DELETE</td>
-    <td>DELETE</td>
-  </tr>
-</table>
+- o backend expõe `GET /js/bobia-config.js`;
+- o frontend lê `window.LUMINI_CONFIG.bobiaApiBaseUrl`;
+- as chamadas do BobIA seguem para a base configurada externamente.
 
-_* Você verá o verbo HTTP sendo apontado nos arquivos em /routes_
+Se o serviço estiver ativo em outra pasta do repositório ou em outro host,
+ajuste apenas `BOBIA_API_BASE_URL` no `.env` ou `.env.dev`.
 
-**"E no meu projeto, o que seria um recurso?"** Em web-data-viz manipulamos os recursos **usuário**, **aviso** e **medida**. Podemos conferir isso vendo para quais entidades foram criados os caminhos de inserção e captura de dados, que envolve os diretórios **routes**, **controllers** e **models**.
+## Leitura Serial do Sensor
 
-Abaixo, uma figura que ajuda a compreender o caminho percorrido para, por exemplo, efetuar o cadastro de um usuário:
+Este diretório também inicializa `serialSensorService`, responsável por tentar
+ler dados em tempo real por porta serial.
 
+Na prática:
 
-![image](https://github.com/BandTec/web-data-viz/assets/46379117/e8d63551-6153-4632-93b9-f59a1d2afd3e)
+- a rota `/sensores` participa dessa superfície;
+- `TelaDash-Sensor.html` usa essa leitura em tempo real;
+- a integração depende de hardware, porta serial e ambiente local compatíveis.
 
+## Estrutura
 
-**Entendi o que é um recurso e gostaria de adicionar um novo ao meu projeto! Como faz?**  
-- Primeiro, crie a tabela no Banco de Dados referente a este recurso. Exemplos de recursos comuns de serem adicionados ao projeto no primeiro semestre: Silo, Aquário, Sala, Andar, Endereço, Mercado, Prateleira, Unidade, Carro, Caminhão...  
-- Assim que criada a tabela, faça todo o caminho de **front-end → routes → controllers → models** replicando o que já existe!  
-- Exemplo, se você quiser a funcionalidade de adicionar um novo Aquário, deve criar arquivos referentes ao aquario nos diretórios e replicar também as funções.  
-- Dica: A implementação de AVISO já contém o CRUD completo! :wink:
- 
-### Fontes bibliográficas
+```text
+web-data-viz/
+├── app.js
+├── package.json
+├── .env.example
+├── .env.dev.example
+├── public/
+│   ├── *.html
+│   ├── css/
+│   ├── js/
+│   └── Imagens/
+└── src/
+    ├── config/
+    ├── controllers/
+    ├── models/
+    ├── routes/
+    └── services/
+```
 
-[1] https://datatracker.ietf.org/doc/html/rfc2396  
-[2] https://datatracker.ietf.org/doc/html/rfc7231
+Áreas internas mais importantes:
+
+- `public/`: interface estática e scripts do navegador;
+- `src/routes/`: definição dos grupos de rotas;
+- `src/controllers/`: camada intermediária da aplicação;
+- `src/models/`: acesso ao banco;
+- `src/config/`: configuração de banco;
+- `src/services/`: serviços auxiliares, incluindo leitura serial.
+
+## Limitações
+
+- este diretório representa o centro operacional atual, mas não explica sozinho
+  toda a composição do Lumini;
+- a seleção de ambiente ainda depende de edição manual em `app.js`;
+- a leitura serial depende de setup local real e não apenas de dependências
+  instaladas;
+- o frontend ainda usa HTML/CSS/JS estático, sem bundler;
+- a integração com o BobIA é opcional e externa ao backend principal.
+
+## Relação com o README Principal
+
+O README da raiz de `lumini.github.io/` apresenta o Lumini como projeto
+completo.
+
+Este README foca somente na pasta `web-data-viz/`, isto é:
+
+- a superfície executável principal;
+- o setup da aplicação web;
+- os pontos de integração ativos;
+- e os limites específicos desta parte do projeto.

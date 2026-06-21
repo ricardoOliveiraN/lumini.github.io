@@ -1,19 +1,13 @@
-var database = require("../database/config");
-
-function buscarPorId(id) {
-  var instrucaoSql = `SELECT * FROM empresa WHERE id = '${id}'`;
-
-  return database.executar(instrucaoSql);
-}
+var database = require("../config/database");
 
 function listar() {
-  var instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
+  var instrucaoSql = `SELECT idEmpresa, nomeFantasia, cnpj, tamanhoEmpresa, qtdHectares, statusCadastro, dtCriacao, dtSaida, fkEmpresa_EmpresaSede FROM empresa`;
 
   return database.executar(instrucaoSql);
 }
 
-function cadastrarEmpresa(NomeFantasia, cnpj, TamanhoEmpresa, QuantidadeHectare) {
-  var instrucaoSql = `INSERT INTO empresa (nomeFantasia, cnpj, tamanhoEmpresa, qtdHectares, dtCriacao) VALUES ('${NomeFantasia}', '${cnpj}', '${TamanhoEmpresa}', '${QuantidadeHectare}'); `;
+function cadastrarEmpresa(NomeFantasia, cnpj, TamanhoEmpresa, QuantidadeHectare, StatusCadastro, DataCriacao) {
+  var instrucaoSql = `INSERT INTO empresa (nomeFantasia, cnpj, tamanhoEmpresa, qtdHectares, statusCadastro, dtCriacao) VALUES ('${NomeFantasia}', '${cnpj}', '${TamanhoEmpresa}', '${QuantidadeHectare}', '${StatusCadastro}', '${DataCriacao}');`;
 
   return database.executar(instrucaoSql);
 }
@@ -30,7 +24,4 @@ function buscarId(cnpj) {
   return database.executar(instrucaoSql);
 }
 
-
-
-
-module.exports = { cadastrarEmpresa, buscarPorId, cadastrarEndereco, listar, buscarId };
+module.exports = { cadastrarEmpresa, cadastrarEndereco, listar, buscarId };

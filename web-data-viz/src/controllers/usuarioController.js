@@ -19,20 +19,16 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        if (resultadoAutenticar.length > 0) {
-                            res.json({
-                                idUsuario: resultadoAutenticar[0].idUsuario,
-                                fkEmpresa: resultadoAutenticar[0].fkUsuario_Empresa,
-                                nome: resultadoAutenticar[0].nome,
-                                senha: resultadoAutenticar[0].senha,
-                                email: resultadoAutenticar[0].email,
-                                telefone: resultadoAutenticar[0].telefone,
-                                tipoUsuario: resultadoAutenticar[0].tipoUsuario,
-                                usuarioValidado: resultadoAutenticar[0].usuarioValidado
-                            });
-                        } else {
-                            res.status(204).json({ aquarios: [] });
-                        }
+                        res.json({
+                            idUsuario: resultadoAutenticar[0].idUsuario,
+                            fkEmpresa: resultadoAutenticar[0].fkUsuario_Empresa,
+                            nome: resultadoAutenticar[0].nome,
+                            senha: resultadoAutenticar[0].senha,
+                            email: resultadoAutenticar[0].email,
+                            telefone: resultadoAutenticar[0].telefone,
+                            tipoUsuario: resultadoAutenticar[0].tipoUsuario,
+                            usuarioValidado: resultadoAutenticar[0].usuarioValidado
+                        });
 
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");

@@ -9,21 +9,13 @@ router.post("/cadastrarEndereco", function (req, res) {
 })
 
 
-router.get("/buscarID/:cnpj", function (req, res) {
+router.get("/buscarID", function (req, res) {
   empresaController.buscarID(req, res);
 });
 
 router.post("/cadastrarEmpresa", function (req, res) {
   empresaController.cadastrarEmpresa(req, res);
 })
-
-router.get("/buscarIDEndereco", function (req, res) {
-    empresaController.buscarIDEndereco(req, res);
-});
-
-router.get("/buscar/:id", function (req, res) {
-  empresaController.buscarPorId(req, res);
-});
 
 router.get("/listar", function (req, res) {
   empresaController.listar(req, res);
