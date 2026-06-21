@@ -199,26 +199,31 @@ Referências de operação tratadas pelo projeto:
 
 ## Principais Aprendizados
 
-Este repositório mostra, de forma combinada:
+Este projeto evidencia aprendizados importantes do desenvolvimento de uma
+primeira solução tecnológica integrada para um problema real de negócio:
 
-- organização de um projeto acadêmico em partes mais legíveis;
-- integração entre frontend, backend, banco e contexto sensorial;
-- uso de documentação estrutural para separar runtime de material histórico;
-- leitura de problema real de negócio traduzido em monitoramento e apoio à
-  decisão.
+- tradução de um problema do cultivo de lúpulo em métricas monitoráveis, como
+  fotoperíodo e intensidade luminosa;
+- integração entre sensor LDR, Arduino, aplicação web, banco de dados e
+  dashboards para formar um fluxo funcional de monitoramento;
+- uso de dados para apoiar a tomada de decisão do produtor, em vez de depender
+  apenas de observação manual;
+- organização de informações técnicas e de negócio para transformar coleta de
+  dados em acompanhamento mais útil da plantação;
+- aprendizado prático de trabalho em grupo com rituais de Scrum, incluindo
+  dailies, retrospectivas, organização das entregas por sprints e priorização
+  do que gerava mais valor para o usuário;
+- experiência prática de desenvolvimento em grupo, conectando hardware,
+  software e modelagem de dados em um mesmo projeto.
 
 ## Limitações
 
-- o projeto é uma ferramenta de apoio à decisão, não uma automação completa da
-  iluminação;
-- `historico-academico/` não é fonte normativa do runtime atual;
-- `bobia-standalone/` não deve ser tratado como módulo nativo do Lumini;
-- `artefatos-banco/` não prova, sozinho, alinhamento integral do backend sem
-  verificação adicional;
-- `firmware-arduino/` não comprova, sozinho, pipeline ponta a ponta totalmente
-  validado;
-- o setup real com Arduino ainda depende de ambiente local, hardware e porta
-  serial configurados corretamente.
+- o Lumini é uma ferramenta de apoio à decisão, não uma solução de automação
+  da iluminação;
+- a integração com o BobIA é opcional e depende de serviço e configuração
+  separados do núcleo principal do projeto;
+- a demonstração completa com leitura serial em tempo real ainda depende de
+  ambiente local com hardware e porta serial corretamente configurados.
 
 ## Próximos Passos
 
@@ -231,6 +236,5 @@ Este repositório mostra, de forma combinada:
 
 ## Licença
 
-Este repositório preserva a origem acadêmica do Lumini e reorganiza seus
-componentes para leitura mais clara. Licenças específicas e créditos de origem
-devem seguir os arquivos e subprojetos correspondentes.
+As condições de uso e os créditos aplicáveis devem seguir os arquivos de
+licença e os componentes correspondentes presentes neste repositório.
