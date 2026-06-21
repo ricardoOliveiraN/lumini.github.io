@@ -8,7 +8,7 @@
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-## Visão Geral
+## 📌 Visão Geral
 
 Lumini é um projeto acadêmico de monitoramento de luminosidade para plantações
 de lúpulo. O objetivo é apoiar o produtor na gestão do fotoperíodo e da
@@ -21,7 +21,7 @@ acadêmica preservada. Nesta versão, o projeto foi reorganizado para leitura
 técnica mais clara, mantendo explícita a diferença entre runtime ativo, apoio
 estrutural e material histórico.
 
-## Problema
+## 🌱 Problema
 
 O problema que o Lumini resolve é a dificuldade de manter a exposição à luz
 ideal no cultivo de lúpulo no Brasil.
@@ -39,7 +39,7 @@ Em termos de negócio, o projeto existe para responder esta pergunta:
 > a plantação está recebendo luz suficiente, no intervalo certo, para sustentar
 > produtividade e qualidade?
 
-## Solução
+## 💡 Solução
 
 Lumini é uma solução de monitoramento de luminosidade com foco em apoio à
 decisão, não em automação direta da iluminação.
@@ -58,7 +58,15 @@ O projeto busca melhorar a assertividade do manejo de luz, apoiar ganho de
 produtividade e ajudar o produtor a avaliar condições para múltiplas safras
 anuais.
 
-## Arquitetura
+## 🎯 Funcionalidades Principais
+
+- monitoramento de luminosidade com sensor LDR em modo real ou mockado;
+- dashboards para acompanhamento de condições de luz;
+- persistência de dados em banco relacional;
+- fluxo web com autenticação, cadastro e visualização;
+- integração opcional com o BobIA como serviço auxiliar separado.
+
+## 🧱 Arquitetura
 
 ```text
 Sensor LDR / Arduino
@@ -75,7 +83,7 @@ Serviço auxiliar opcional:
 web-data-viz frontend → BobIA standalone → Gemini
 ```
 
-## Superfície Executável Atual
+## ⚙️ Superfície Executável Atual
 
 ### Runtime principal
 
@@ -112,7 +120,7 @@ Essa superfície mostra que o projeto não é apenas um protótipo estático. Ex
 um fluxo real de aplicação web, com frontend servido pelo backend, persistência
 em banco e suporte a leitura sensorial local.
 
-## Estrutura do Projeto
+## 🗂️ Estrutura do Projeto
 
 ```text
 lumini.github.io/
@@ -139,7 +147,7 @@ lumini.github.io/
 - `docs/`: artefatos de leitura estrutural e clarificação dos limites do
   repositório.
 
-## Tecnologias
+## 🛠️ Tecnologias
 
 | Camada | Tecnologias / Artefatos |
 | --- | --- |
@@ -149,7 +157,7 @@ lumini.github.io/
 | Serviço auxiliar | BobIA, Google Generative AI |
 | Documentação e modelagem | Draw.io, PDF, DOCX, PPTX, XLSX |
 
-## Como Executar
+## ▶️ Como Executar
 
 ### 1. Execução mínima da aplicação principal
 
@@ -230,7 +238,7 @@ Se a demonstração incluir Arduino:
 3. disponibilize a porta serial no ambiente local;
 4. configure `SERIAL_PORT` no `web-data-viz`.
 
-## Banco de Dados e Artefatos
+## 🗄️ Banco de Dados e Artefatos
 
 ### Arquivos principais
 
@@ -250,7 +258,7 @@ Os artefatos principais de banco ficam em:
 - `setup-ativo-lumini.sql`: atalho para bootstrap local;
 - arquivos de modelagem como `.mwb` e `.drawio`: apoio estrutural, não runtime.
 
-## Dados e Exemplos
+## 📊 Dados e Exemplos
 
 Exemplos de apoio presentes no repositório:
 
@@ -271,59 +279,42 @@ Referências de operação tratadas pelo projeto:
 | Mínimo ideal | 10.000 lux |
 | Máximo indicado | 100.000 lux |
 
-## O Que Este Projeto Demonstra
+## 🧠 Principais Aprendizados
 
-Este repositório mostra, de forma combinada:
+Este projeto evidencia aprendizados importantes do desenvolvimento de uma
+primeira solução tecnológica integrada para um problema real de negócio:
 
-- integração entre aplicação web, banco relacional e componente sensorial;
-- organização técnica de um projeto acadêmico em partes mais legíveis;
-- separação entre runtime ativo, apoio estrutural e material histórico;
-- documentação estrutural para leitura técnica mais rápida;
-- tradução de um problema real de negócio em monitoramento e apoio à decisão.
+- tradução de um problema do cultivo de lúpulo em métricas monitoráveis, como
+  fotoperíodo e intensidade luminosa;
+- integração entre sensor LDR, Arduino, aplicação web, banco de dados e
+  dashboards para formar um fluxo funcional de monitoramento;
+- uso de dados para apoiar a tomada de decisão do produtor, em vez de depender
+  apenas de observação manual;
+- organização de informações técnicas e de negócio para transformar coleta de
+  dados em acompanhamento mais útil da plantação;
+- aprendizado prático de trabalho em grupo com rituais de Scrum, incluindo
+  dailies, retrospectivas, organização das entregas por sprints e priorização
+  do que gerava mais valor para o usuário;
+- experiência prática de desenvolvimento em grupo, conectando hardware,
+  software e modelagem de dados em um mesmo projeto.
 
-## Principais Aprendizados
+## ⚠️ Limitações
 
-- como clarificar a estrutura de um repositório acadêmico ou legado sem
-  descaracterizar sua origem;
-- como separar com mais precisão o que é runtime, o que é apoio estrutural e o
-  que é acervo histórico;
-- como documentar a relação entre backend, frontend, banco e sensoriamento;
-- como transformar um projeto existente em um artefato público mais fácil de
-  avaliar tecnicamente.
+- o Lumini é uma ferramenta de apoio à decisão, não uma solução de automação
+  da iluminação;
+- a integração com o BobIA é opcional e depende de serviço e configuração
+  separados do núcleo principal do projeto;
+- a demonstração completa com leitura serial em tempo real ainda depende de
+  ambiente local com hardware e porta serial corretamente configurados.
 
-## Limitações
+## 📚 Documentação
 
-- o projeto é uma ferramenta de apoio à decisão, não uma automação completa da
-  iluminação;
-- `historico-academico/` não é fonte normativa do runtime atual;
-- `bobia-standalone/` não deve ser tratado como módulo nativo do Lumini;
-- `artefatos-banco/` não prova, sozinho, alinhamento integral do backend sem
-  verificação adicional;
-- `firmware-arduino/` não comprova, sozinho, pipeline ponta a ponta totalmente
-  validado;
-- o setup real com Arduino ainda depende de ambiente local, hardware e porta
-  serial configurados corretamente;
-- a leitura serial e parte da demonstração continuam dependentes de contexto
-  local, não de infraestrutura pública reproduzível.
+- `docs/repository-boundary-map.md`: leitura estrutural do repositório;
+- `web-data-viz/README.md`: detalhes do runtime principal;
+- `artefatos-banco/README.md`: papel dos artefatos de banco;
+- `historico-academico/README.md`: contexto histórico e acadêmico preservado.
 
-## Créditos e Origem
+## 📄 Licença
 
-O Lumini surgiu originalmente como um projeto acadêmico em grupo. Esta versão
-do repositório reorganiza e consolida sua apresentação técnica para tornar mais
-claros o problema, a arquitetura, o fluxo executável, os limites do repositório
-e a relação entre seus componentes.
-
-A proposta original e o desenvolvimento acadêmico do projeto pertencem ao
-esforço coletivo do grupo de origem. Nesta versão, o foco está em evidenciar o
-refinamento estrutural, documental e técnico necessário para leitura pública
-mais clara, sem apagar o contexto acadêmico que deu origem ao trabalho.
-
-Quando aplicável, créditos específicos, licenças e materiais associados a áreas
-ou componentes particulares devem ser respeitados conforme os arquivos
-correspondentes.
-
-## Licença
-
-Este repositório preserva a origem acadêmica do Lumini e reorganiza seus
-componentes para leitura mais clara. Licenças específicas e créditos de origem
-devem seguir os arquivos e subprojetos correspondentes.
+As condições de uso e os créditos aplicáveis devem seguir os arquivos de
+licença e os componentes correspondentes presentes neste repositório.
