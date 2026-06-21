@@ -17,7 +17,9 @@ web para tomada de decisão.
 
 O repositório reúne uma aplicação web em Node.js/Express, artefatos de banco,
 componente de Arduino/LDR, um serviço separado de BobIA e documentação
-acadêmica preservada.
+acadêmica preservada. Nesta versão, o projeto foi reorganizado para leitura
+técnica mais clara, mantendo explícita a diferença entre runtime ativo, apoio
+estrutural e material histórico.
 
 ## Problema
 
@@ -49,7 +51,8 @@ O projeto combina:
 - armazenamento em banco relacional;
 - dashboards e indicadores para acompanhamento;
 - sinalização de condições fora do esperado;
-- suporte ao produtor no manejo de luz da plantação.
+- suporte ao produtor no manejo de luz da plantação;
+- integração opcional com o BobIA como serviço auxiliar separado.
 
 O projeto busca melhorar a assertividade do manejo de luz, apoiar ganho de
 produtividade e ajudar o produtor a avaliar condições para múltiplas safras
@@ -72,13 +75,69 @@ Serviço auxiliar opcional:
 web-data-viz frontend → BobIA standalone → Gemini
 ```
 
-Estrutura funcional do repositório:
+## Superfície Executável Atual
 
-- `web-data-viz/`: centro operacional atual;
-- `artefatos-banco/`: suporte estrutural do banco;
-- `firmware-arduino/`: apoio técnico da parte sensorial;
-- `bobia-standalone/`: serviço separado de apoio;
-- `historico-academico/`: memória documental e acadêmica.
+### Runtime principal
+
+O centro operacional atual do projeto está em:
+
+- `web-data-viz/`
+
+Ponto de entrada principal:
+
+- `web-data-viz/app.js`
+
+### Fluxos principais confirmados
+
+A superfície executável atual do Lumini inclui:
+
+- autenticação e sessão;
+- dashboards web;
+- cadastro de empresa e usuário;
+- leitura de sensores;
+- integração opcional com o BobIA.
+
+### Grupos de rotas relevantes
+
+O backend principal expõe atualmente os seguintes grupos:
+
+- `/usuarios`
+- `/medidas`
+- `/sensores`
+- `/empresas`
+- `/dashFunc`
+- `/funcionarios`
+
+Essa superfície mostra que o projeto não é apenas um protótipo estático. Existe
+um fluxo real de aplicação web, com frontend servido pelo backend, persistência
+em banco e suporte a leitura sensorial local.
+
+## Estrutura do Projeto
+
+```text
+lumini.github.io/
+├── web-data-viz/            # centro operacional atual
+├── artefatos-banco/         # apoio estrutural do banco
+├── firmware-arduino/        # apoio técnico da coleta sensorial
+├── bobia-standalone/        # serviço auxiliar separado
+├── historico-academico/     # memória histórica e acadêmica
+└── docs/                    # documentação estrutural do repositório
+```
+
+### Papel de cada diretório
+
+- `web-data-viz/`: aplicação principal, com backend HTTP, frontend estático,
+  configuração de ambiente, integração com banco e leitura serial.
+- `artefatos-banco/`: área de apoio estrutural do banco, com schema, seed,
+  consultas de referência e artefatos de modelagem.
+- `firmware-arduino/`: sketch e materiais relacionados ao sensor LDR e à coleta
+  de luminosidade.
+- `bobia-standalone/`: serviço auxiliar separado, com UI própria e integração
+  opcional ao frontend principal.
+- `historico-academico/`: documentação, diagramas e entregas preservadas como
+  memória acadêmica do projeto.
+- `docs/`: artefatos de leitura estrutural e clarificação dos limites do
+  repositório.
 
 ## Tecnologias
 
@@ -92,7 +151,7 @@ Estrutura funcional do repositório:
 
 ## Como Executar
 
-### 1. Aplicação principal
+### 1. Execução mínima da aplicação principal
 
 ```bash
 cd web-data-viz
@@ -128,13 +187,20 @@ SERIAL_BAUD_RATE=9600
 SERIAL_BUFFER_MAX=100
 ```
 
+Observações:
+
+- `app.js` escolhe entre `.env` e `.env.dev`;
+- a aplicação pode subir sem hardware conectado;
+- sem `SERIAL_PORT`, a leitura serial em tempo real não funciona;
+- `BOBIA_API_BASE_URL` só é necessária se a demonstração incluir o BobIA.
+
 ### 3. Banco de apoio
 
 Use `artefatos-banco/` para subir a estrutura:
 
-1. aplique `sql-ativo/schema-ativo-lumini.sql`;
-2. opcionalmente aplique `sql-ativo/seed-ativo-lumini.sql`;
-3. opcionalmente use `setup-ativo-lumini.sql` como atalho.
+1. aplique `artefatos-banco/sql-ativo/schema-ativo-lumini.sql`;
+2. opcionalmente aplique `artefatos-banco/sql-ativo/seed-ativo-lumini.sql`;
+3. opcionalmente use `artefatos-banco/setup-ativo-lumini.sql` como atalho.
 
 ### 4. BobIA opcional
 
@@ -164,17 +230,25 @@ Se a demonstração incluir Arduino:
 3. disponibilize a porta serial no ambiente local;
 4. configure `SERIAL_PORT` no `web-data-viz`.
 
-## Estrutura do Projeto
+## Banco de Dados e Artefatos
 
-```text
-lumini.github.io/
-├── web-data-viz/            # runtime principal
-├── bobia-standalone/        # serviço auxiliar separado
-├── artefatos-banco/         # schema, seed, queries e modelagem
-├── firmware-arduino/        # sketch e materiais do sensor
-├── historico-academico/     # documentação e rastreabilidade
-└── docs/                    # artefatos estruturais da revisão
-```
+### Arquivos principais
+
+Os artefatos principais de banco ficam em:
+
+- `artefatos-banco/sql-ativo/schema-ativo-lumini.sql`
+- `artefatos-banco/sql-ativo/seed-ativo-lumini.sql`
+- `artefatos-banco/sql-ativo/consultas-referencia-lumini.sql`
+- `artefatos-banco/setup-ativo-lumini.sql`
+
+### Interpretação correta dos arquivos
+
+- `schema-ativo-lumini.sql`: base estrutural principal do banco esperado pelo
+  runtime atual;
+- `seed-ativo-lumini.sql`: carga mockada opcional para apoio local;
+- `consultas-referencia-lumini.sql`: referência analítica e de inspeção;
+- `setup-ativo-lumini.sql`: atalho para bootstrap local;
+- arquivos de modelagem como `.mwb` e `.drawio`: apoio estrutural, não runtime.
 
 ## Dados e Exemplos
 
@@ -197,35 +271,59 @@ Referências de operação tratadas pelo projeto:
 | Mínimo ideal | 10.000 lux |
 | Máximo indicado | 100.000 lux |
 
+## O Que Este Projeto Demonstra
+
+Este repositório mostra, de forma combinada:
+
+- integração entre aplicação web, banco relacional e componente sensorial;
+- organização técnica de um projeto acadêmico em partes mais legíveis;
+- separação entre runtime ativo, apoio estrutural e material histórico;
+- documentação estrutural para leitura técnica mais rápida;
+- tradução de um problema real de negócio em monitoramento e apoio à decisão.
+
 ## Principais Aprendizados
 
-Este projeto evidencia aprendizados importantes do desenvolvimento de uma
-primeira solução tecnológica integrada para um problema real de negócio:
-
-- tradução de um problema do cultivo de lúpulo em métricas monitoráveis, como
-  fotoperíodo e intensidade luminosa;
-- integração entre sensor LDR, Arduino, aplicação web, banco de dados e
-  dashboards para formar um fluxo funcional de monitoramento;
-- uso de dados para apoiar a tomada de decisão do produtor, em vez de depender
-  apenas de observação manual;
-- organização de informações técnicas e de negócio para transformar coleta de
-  dados em acompanhamento mais útil da plantação;
-- aprendizado prático de trabalho em grupo com rituais de Scrum, incluindo
-  dailies, retrospectivas, organização das entregas por sprints e priorização
-  do que gerava mais valor para o usuário;
-- experiência prática de desenvolvimento em grupo, conectando hardware,
-  software e modelagem de dados em um mesmo projeto.
+- como clarificar a estrutura de um repositório acadêmico ou legado sem
+  descaracterizar sua origem;
+- como separar com mais precisão o que é runtime, o que é apoio estrutural e o
+  que é acervo histórico;
+- como documentar a relação entre backend, frontend, banco e sensoriamento;
+- como transformar um projeto existente em um artefato público mais fácil de
+  avaliar tecnicamente.
 
 ## Limitações
 
-- o Lumini é uma ferramenta de apoio à decisão, não uma solução de automação
-  da iluminação;
-- a integração com o BobIA é opcional e depende de serviço e configuração
-  separados do núcleo principal do projeto;
-- a demonstração completa com leitura serial em tempo real ainda depende de
-  ambiente local com hardware e porta serial corretamente configurados.
+- o projeto é uma ferramenta de apoio à decisão, não uma automação completa da
+  iluminação;
+- `historico-academico/` não é fonte normativa do runtime atual;
+- `bobia-standalone/` não deve ser tratado como módulo nativo do Lumini;
+- `artefatos-banco/` não prova, sozinho, alinhamento integral do backend sem
+  verificação adicional;
+- `firmware-arduino/` não comprova, sozinho, pipeline ponta a ponta totalmente
+  validado;
+- o setup real com Arduino ainda depende de ambiente local, hardware e porta
+  serial configurados corretamente;
+- a leitura serial e parte da demonstração continuam dependentes de contexto
+  local, não de infraestrutura pública reproduzível.
+
+## Créditos e Origem
+
+O Lumini surgiu originalmente como um projeto acadêmico em grupo. Esta versão
+do repositório reorganiza e consolida sua apresentação técnica para tornar mais
+claros o problema, a arquitetura, o fluxo executável, os limites do repositório
+e a relação entre seus componentes.
+
+A proposta original e o desenvolvimento acadêmico do projeto pertencem ao
+esforço coletivo do grupo de origem. Nesta versão, o foco está em evidenciar o
+refinamento estrutural, documental e técnico necessário para leitura pública
+mais clara, sem apagar o contexto acadêmico que deu origem ao trabalho.
+
+Quando aplicável, créditos específicos, licenças e materiais associados a áreas
+ou componentes particulares devem ser respeitados conforme os arquivos
+correspondentes.
 
 ## Licença
 
-As condições de uso e os créditos aplicáveis devem seguir os arquivos de
-licença e os componentes correspondentes presentes neste repositório.
+Este repositório preserva a origem acadêmica do Lumini e reorganiza seus
+componentes para leitura mais clara. Licenças específicas e créditos de origem
+devem seguir os arquivos e subprojetos correspondentes.
